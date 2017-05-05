@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.thalesgroup.stif.bouchons</groupId>
+	<artifactId>tests_automatiques</artifactId>
+	<version>0</version>
+	<packaging>pom</packaging>
+
+	<name>STIF Bouchons Tests automatiques</name>
+	<url>http://www.thalesgroup.com</url>
+
+	<repositories>
+		<repository>
+			<id>Internal company repository</id>
+			<url>file://${basedir}/lib</url>
+		</repository>
+		
+	</repositories>
+	
+	
+	<profiles>
+			<profile>
+					<id>ive1</id>
+					<properties>
+							<plateforme>ive1</plateforme>
+							<projetFile>tests_stabilisation.xml</projetFile>						
+					</properties>			
+			</profile>
+			<profile>
+					<id>ive2</id>
+					<properties>
+							<plateforme>ive2</plateforme>
+							<projetFile>tests_stabilisation.xml</projetFile>					
+					</properties>			
+			</profile>
+			<profile>
+					<id>rec</id>
+					<properties>
+							<plateforme>rec</plateforme>					
+							<projetFile>tests_stabilisation.xml</projetFile>
+					</properties>			
+			</profile>
+			<profile>
+					<id>ivl</id>
+					<properties>
+							<plateforme>ivl</plateforme>					
+							<projetFile>tests_stabilisation.xml</projetFile>
+					</properties>			
+			</profile>
+			
+			<profile>
+					<id>synchroive1</id>
+					<properties>
+							<plateforme>ive1</plateforme>
+							<projetFile>test_synchronisation_redis.xml</projetFile>						
+					</properties>			
+			</profile>
+			<profile>
+					<id>synchroive2</id>
+					<properties>
+							<plateforme>ive2</plateforme>
+							<projetFile>test_synchronisation_redis.xml</projetFile>					
+					</properties>			
+			</profile>
+			<profile>
+					<id>synchrorec</id>
+					<properties>
+							<plateforme>rec</plateforme>					
+							<projetFile>test_synchronisation_redis.xml</projetFile>
+					</properties>			
+			</profile>
+			<profile>
+					<id>synchroivl</id>
+					<properties>
+							<plateforme>ivl</plateforme>					
+							<projetFile>test_synchronisation_redis.xml</projetFile>
+					</properties>			
+			</profile>		
+	</profiles>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>SmartBearPluginRepository</id>
+			<url>http://www.soapui.org/repository/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>	
+
+	<build>	
+			
+		<plugins>
+			<plugin>
+				
+				<groupId>com.smartbear.soapui</groupId>
+				<artifactId>soapui-maven-plugin</artifactId>
+				<version>5.1.2</version>
+				<!--  configuration par défaut -->
+				<configuration>
+							<projectFile>${basedir}/${projetFile}</projectFile>
+							<printReport>true</printReport>
+							<testFailIgnore>true</testFailIgnore>
+							<junitReport>true</junitReport>
+							<outputFolder>${basedir}/log</outputFolder>
+							<projectProperties>
+									<value>utilisateur=jenkins</value>
+									<value>plateforme=${plateforme}</value>
+									<value>modeBinaire=true</value>
+							</projectProperties>
+				</configuration>
+								
+				<!-- Dépendances liées à l'éxecution du test (sql+redis+seleniumHq) -->
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>9.3-1100-jdbc41</version>
+					</dependency>
+					<dependency>
+						<groupId>redis.clients</groupId>
+						<artifactId>jedis</artifactId>
+						<version>2.7.2</version>
+					</dependency>
+					
+
+<!-- 					<dependency> -->
+<!-- 					  <groupId>org.seleniumhq.selenium</groupId> -->
+<!-- 					  <artifactId>selenium-server-standalone</artifactId> -->
+<!-- 					  <version>2.39.0</version> -->
+<!-- 					</dependency> -->
+					
+										
+					<dependency>
+					    <groupId>org.seleniumhq.selenium</groupId>
+					    <artifactId>selenium-firefox-driver</artifactId>
+					    <version>2.39.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-server</artifactId>
+						<version>2.39.0</version>
+						<exclusions>
+								<exclusion>
+										<groupId>javax.servlet</groupId>
+										<artifactId>servlet-api</artifactId>
+								</exclusion>
+						</exclusions>
+					</dependency>
+
+				
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.seleniumhq.selenium</groupId> -->
+<!-- 						<artifactId>selenium-java</artifactId> -->
+<!-- 						<version>2.39.0</version> -->
+<!-- 					</dependency> -->
+				
+					<dependency>
+				        <groupId>org.seleniumhq.selenium</groupId>
+				        <artifactId>selenium-support</artifactId>
+				        <version>2.39.0</version>
+				    </dependency>   
+				
+				    <dependency>
+				        <groupId>org.seleniumhq.selenium</groupId>
+				        <artifactId>selenium-api</artifactId>
+				        <version>2.39.0</version>
+				    </dependency>
+					
+				    <dependency>
+				        <groupId>org.apache.commons</groupId>
+				        <artifactId>commons-lang3</artifactId>
+				        <version>3.0</version>
+				    </dependency>
+				
+				    <dependency>
+					        <groupId>org.apache.httpcomponents</groupId>
+					        <artifactId>httpclient</artifactId>
+					        <version>4.3.3</version>
+				    </dependency>
+				    
+				     <dependency>
+					      <groupId>junit</groupId>
+					      <artifactId>junit</artifactId>
+					      <version>4.11</version>
+				    </dependency>
+<!-- 				    <dependency> -->
+<!-- 					      <groupId>org.apache.poi</groupId> -->
+<!-- 					      <artifactId>poi</artifactId> -->
+<!-- 					      <version>3.10.1</version> -->
+<!-- 				    </dependency> -->
+
+			      	<!-- not supported by selenium -->
+					<dependency>
+					       <groupId>com.github.detro</groupId>
+					       <artifactId>phantomjsdriver</artifactId>
+					       <version>1.2.0</version>
+				    </dependency>  
+
+				</dependencies>
+
+			</plugin>
+		</plugins>
+	</build>
+</project>

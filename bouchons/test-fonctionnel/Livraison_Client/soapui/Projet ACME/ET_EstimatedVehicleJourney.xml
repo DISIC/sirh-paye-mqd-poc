@@ -1,0 +1,25 @@
+                  <siri:EstimatedVehicleJourney>
+                     <siri:RecordedAtTime>§recordedAtTime§</siri:RecordedAtTime>
+                     <siri:LineRef>§lineRef§</siri:LineRef>
+                     <siri:DirectionRef>?</siri:DirectionRef>
+                     <siri:DatedVehicleJourneyRef>§vehicleJourneyName§</siri:DatedVehicleJourneyRef>
+                     <siri:JourneyPatternRef>§journeyPatternRef§</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName xml:lang="FR">§journeyPatternName§</siri:JourneyPatternName>
+                     <siri:VehicleMode>§vehicleMode§</siri:VehicleMode>
+                     <siri:RouteRef>§routeRef§</siri:RouteRef>
+                     <siri:PublishedLineName xml:lang="FR">§publishedLineName§</siri:PublishedLineName>
+                     <siri:DirectionName xml:lang="FR">?</siri:DirectionName>
+                     <siri:OriginRef>§originRef§</siri:OriginRef>
+                     <siri:OriginName xml:lang="FR">§originName§</siri:OriginName>
+                     <siri:Via>
+                        <siri:PlaceRef>§placeRef§</siri:PlaceRef>
+                        <siri:PlaceName xml:lang="FR">§placeName§</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>§destinationRef§</siri:DestinationRef>
+                     <siri:DestinationName xml:lang="FR">§destinationName§</siri:DestinationName>
+                     <siri:OperatorRef>§operatorRef§</siri:OperatorRef>
+                     <siri:EstimatedCalls>
+						§ListEstimatedCalls§
+                     </siri:EstimatedCalls>
+                     <siri:IsCompleteStopSequence>false</siri:IsCompleteStopSequence>
+                  </siri:EstimatedVehicleJourney>

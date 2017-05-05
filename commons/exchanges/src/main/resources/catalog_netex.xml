@@ -1,0 +1,8 @@
+
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+ 
+    <system
+        systemId="../siri/siri_requests-v2.0.xsd"
+        uri="/siri/siri_requests-v2.0.xsd"/>
+ 
+</catalog>

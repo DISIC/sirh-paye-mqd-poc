@@ -1,0 +1,77 @@
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>§recordedAtTime§</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>§itemIdentifier§</siri:ItemIdentifier>
+                  <siri:MonitoringRef>§monitoringRef§</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>§lineRef§</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>§dataFrameRef§</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>§datedVehicleJourneyRef§</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>§journeyPatternRef§</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>§journeyPatternName§</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>§routeRef§</siri:RouteRef>
+                     <siri:PublishedLineName>§publishedLineName§</siri:PublishedLineName>
+                     <siri:DirectionName>§directionName§</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>§operatorRef§</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>§originRef§</siri:OriginRef>
+                     <siri:OriginName>§originName§</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>§placeRef§</siri:PlaceRef>
+                        <siri:PlaceName>§placeName§</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>§destinationRef§</siri:DestinationRef>
+                     <siri:DestinationName>§destinationName§</siri:DestinationName>
+                     <siri:VehicleJourneyName>§vehicleJourneyName§</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>§originAimedDepartureTime§</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>§destinationAimedArrivalTime§</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>§Delay§</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>§StopPointRef§</siri:StopPointRef>
+                        <siri:Order>§Order§</siri:Order> 
+                        <siri:StopPointName>§StopPointName§</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>§destinationName§</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>§aimedArrivalTime§</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>§actualArrivalTime§</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>§expectedArrivalTime§</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>§aimedDepartureTime§</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>§actualDepartureTime§</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>§expectedDepartureTime§</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>

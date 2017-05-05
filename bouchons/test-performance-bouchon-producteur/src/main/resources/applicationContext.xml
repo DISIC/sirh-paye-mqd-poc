@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<!-- Permettre l'utilisation des annotations dans les beans -->
+	<context:annotation-config />
+	
+	
+	<context:property-placeholder ignore-unresolvable="true" properties-ref="application" />
+<!-- 	<context:property-placeholder ignore-unresolvable="true" location="classpath:properties/config.properties" /> -->
+	
+	<!-- Configuration de l'application -->
+	<bean id="application" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations" value="classpath:properties/config.properties" />
+	</bean>
+	
+	
+	<bean id="stopMonitoringNotificationBuilder" class="com.thalesgroup.stif.bouchon.producteur.notification.StopMonitoringNotificationBuilder" />
+	<bean id="siriProducerRcpPortImpl" class="com.thalesgroup.stif.bouchon.producteur.SiriProducerRcpPortImpl" />
+		
+		
+	
+	<jaxws:endpoint 
+		id="SOAPPortSiri" implementor="#siriProducerRcpPortImpl"
+			address="/services/siri">
+	</jaxws:endpoint>
+	
+	
+</beans>

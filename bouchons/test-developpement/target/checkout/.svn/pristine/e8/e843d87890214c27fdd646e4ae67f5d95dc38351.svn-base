@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns1:GetSiriService xmlns:ns1="http://wsdl.siri.org.uk">
+         <Request xmlns:ns2="http://www.ifopt.org.uk/acsb" xmlns:ns3="http://www.ifopt.org.uk/ifopt" xmlns:ns4="http://datex2.eu/schema/2_0RC1/2_0" xmlns:ns5="http://www.siri.org.uk/siri">
+            <ns5:RequestTimestamp>2014-04-01T13:24:06.713Z</ns5:RequestTimestamp>
+            <ns5:RequestorRef>SNCF</ns5:RequestorRef>
+            <ns5:MessageIdentifier>RELAIS:Message::9699a8ad-4575-4edc-8420-b6eb82073cbc:LOC</ns5:MessageIdentifier>
+            <ns5:StopMonitoringRequest version="2.0:FR-IDF-2.4">
+               <ns5:MonitoringRef>STIF:StopPoint:Q:18</ns5:MonitoringRef>
+            </ns5:StopMonitoringRequest>
+            <ns5:StopMonitoringRequest version="2.0:FR-IDF-2.4">
+               <ns5:MonitoringRef>STIF:StopPoint:Q:17</ns5:MonitoringRef>
+               
+            </ns5:StopMonitoringRequest>
+         </Request>
+      </ns1:GetSiriService>
+   </soap:Body>
+</soap:Envelope>

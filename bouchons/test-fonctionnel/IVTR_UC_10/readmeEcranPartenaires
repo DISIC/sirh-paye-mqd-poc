@@ -1,0 +1,201 @@
+Ecran Partenaires - Tests fonctionnels.
+
+1. Test d'ajout enregistré d'un partenaire.
+
+   - Avoir les tables "participant", "operator" et "operator_code" vièrges.
+   - Sur l'écran "Partenaires", cliquer sur "Ajouter".
+   - Une pop-up s'ouvre. Dans le champ "Nom de partenaire", entrer "Test".
+   - Pour "Type de partenaire", cocher "Diffuseur".
+   - Pour "Version SIRI", cocher "Version 2.2".
+   - Pour "Style WSDL", cocher "RPC Literal".
+   - Pour "Mode(s) d'acquisition", cocher "Abonnement".
+   - Cliquer sur "Enregistrer".
+   - La pop-up se ferme. Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et vérifier que "Test" est bien proposé en auto-complétion, le selectionner et vérifier que les paramètres sont les mêmes que ceux remplis lors de l'ajout.
+
+
+2. Test d'ajout non enregistré d'un partenaire.
+
+   - Sur l'écran "Partenaires", cliquer sur "Ajouter".
+   - Une pop-up s'ouvre. Dans le champ "Nom de partenaire", entrer "NoToSave".
+   - Pour "Type de partenaire", cocher "Diffuseur".
+   - Pour "Version SIRI", cocher "Version 2.2".
+   - Pour "Style WSDL", cocher "RPC Literal".
+   - Pour "Mode(s) d'acquisition", cocher "Abonnement".
+   - Cliquer sur "Annuler".
+   - La pop-up se ferme.
+   - Dans le champ "Choisir un partenaire", taper la lettre "n" et vérifier que "NoToSave" n'est pas proposé en auto-complétion.
+
+
+3. Test d'ajout d'un partenaire existant.
+
+   - Sur l'écran "Partenaires", cliquer sur "Ajouter".
+   - Une pop-up s'ouvre. Dans le champ "Nom de partenaire", entrer "Test".
+   - Pour "Type de partenaire", cocher "Diffuseur".
+   - Pour "Version SIRI", cocher "Version 2.2".
+   - Pour "Style WSDL", cocher "RPC Literal".
+   - Pour "Mode(s) d'acquisition", cocher "Abonnement" (il aurait été possible de cocher n'importe quel paramètre pour les boutons radio).
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "Nom de partenaire" devient rouge et l'apparition du message "Un partenaire porte déjà ce nom" juste en dessous.
+   - Cliquer sur "Annuler" pour fermer la pop-up sans enregistrer.
+
+
+4. Test d'ajout d'un partenaire non valide.
+
+   - Sur l'écran "Partenaires", cliquer sur "Ajouter".
+   - Une pop-up s'ouvre. Dans le champ "Nom de partenaire", entrer "Test2".
+   - Pour "Type de partenaire", ne rien cocher.
+   - Pour "Version SIRI", ne rien cocher.
+   - Pour "Style WSDL", ne rien cocher.
+   - Pour "Mode(s) d'acquisition", ne rien cocher.
+   - Cliquer sur "Enregistrer".
+   - Constater que les champs "Type de partenaire", "Version SIRI", "Style WSDL" et "Mode(s) d'acquisition" deviennent rouge et l'apparition du message "Une option doit être sélectionnée" sous chacun des champs.
+   - Cliquer sur "Annuler" pour fermer la pop-up sans enregistrer (il aurait été possible de tester les champs un par un, il aurait donc fallu faire 4 tests).
+
+
+5. Test d'ajouts enregistrés d'un deuxième et troisième partenaires.
+
+   - Suivre la procédure d'ajout d'un partenaire enregistré pour enregistrer deux nouveaux partenaires : "Test2" et "Stif".
+   - Il est possible de choisir d'autres paramètres, mais un bouton radio doit être coché par groupe de choix.
+
+
+6. Test de modification enregistrée de paramètres partenaire.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Modifier le paramètre "Style de WSDL" passer de "RPC Literal" à "Literal Document Wrapped".
+   - Cliquer sur "Enregistrer".
+   - Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Cliquer sur "Annuler" pour remettre le formulaire dans l'état de la base de donnée et vérifier que le paramètre "Style de WSDL" reste bien coché dans "Literal Document Wrapped".
+
+
+7. Test de modification non enregistrée de paramètres partenaire.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Modifier certains paramètres : pour "Version SIRI", cocher "Version 2.4", dans la colonne "Services Diffuseurs", cocher la case "CheckStatus" puis rentrer dans le champ de texte correspondant "http://test.com".
+   - Cliquer sur "Annuler" et vérifier que les paramètres reviennent bien dans leur état initial.
+
+
+8. Test de modification de partenaire avec référence de participant existante.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Avoir réalisté le test d'ajouts enregistrés d'un deuxième et troisième partenaires ("Test2" et "Stif").
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Dans le champ "Référence Participant", entrer "Test2".
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "Référence Participant" devient rouge et l'apparition du message "Cette référence de participant est déjà utilisée" juste en dessous.
+   - Cliquer sur "Annuler" pour annuler les modifications.
+
+
+9. Test de vérification de format des URLs.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Dans la colonne "Services Diffuseurs", cocher la case "GeneralMessage" puis laisser le champ de texte correspondant vide.
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "GeneralMessage" de la colonne "Services Diffuseurs" devient rouge et l'apparition du message "Ce champ est obligatoire quand le service est sélectionné" juste en dessous.
+   - Dans la colonne "Services Diffuseurs", dans le champ de texte correspondant à la case "GeneralMessage" rentrer le texte "badURLformat".
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "GeneralMessage" de la colonne "Services Diffuseurs" devient rouge et l'apparition du message "Ceci n'est pas un bon format d'URL" juste en dessous.
+   - Modifier l'URL précédemment entrée ("badURLformat") pour y mettre "http://test.com".
+   - Cliquer sur "Enregistrer".
+   - Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+
+
+10. Test de vérification de champs activés/désactivés.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Pour le paramètre "Mode(s) d'acquisition", passer de "Abonnement" à "Requête".
+   - Vérifier que les champs "Nombre de requêtes par minute" et "Nombre d'arrêts par requête" sont bien dégrisés.
+   - Remettre le paramètre "Mode(s) d'acquisition", à "Abonnement".
+   - Vérifier que les champs "Nombre de requêtes par minute" et "Nombre d'arrêts par requête" sont de nouveau grisés.
+   - Pour le paramètre "Type de partenaire", passer de "Diffuseur" à "Producteur/Diffuseur".
+   - Vérifier que les cases à cocher de la colonne "Service Producteurs" sont bien dégrisées (pas très visible à oeil nu, cocher et décocher pour constater que c'est possible).
+   - Remettre le paramètre "Type de partenaire" à "Diffuseur".
+   - Vérifier que les cases à cocher de la colonne "Service Producteurs" sont bien grisées  (pas très visible à oeil nu, essayer de cocher pour constater que c'est impossible).
+   - Pour chaque champs d'URL de services, vérifier qu'en cochant la case corespondante, le champ est bien dégrisé.
+
+
+11. Test de vérification de validation des champs du type nombres.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - Pour le paramètre "Mode(s) d'acquisition", passer de "Abonnement" à "Requête".
+   - Dans le champ "Nombre de requêtes par minute" entrer "pasDeChiffres" et dans le champ "Nombre d'arrêts par requête" supprimer le contenu pour laisser un champ vide.
+   - Constater que le champ "Nombre de requêtes par minute" devient rouge et l'apparition du message "Ce champ est de type entier" juste en dessous.
+   - Constater que le champ "Nombre d'arrêts par requête" devient rouge et l'apparition du message "Ce champ est obligatoire" juste en dessous.
+   - Cliquer sur "Annuler" pour remettre le formulaire dans l'état de la base de donnée.
+
+ 
+12. Test de recherche de transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - En bas de la page, cliquer sur "Association Transoporteurs" pour étendre le conteneur.
+   - Dans le champ "Transporteur", entrer "es" et cliquer sur "Rechercher".
+   - Vérifier que dans la colonne "Transporteurs Disponibles" apparaissent bien "Test" et "Test2".
+
+
+13. Test de modification non enregistrée d'association transporteurs.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - En bas de la page, cliquer sur "Association Transoporteurs" pour étendre le conteneur.
+   - Dans le champ "Transporteur", entrer "es" et cliquer sur "Rechercher".
+   - Dans la colonne "Transporteurs Disponibles" cliquer sur "Test" puis sur le bouton "Ajouter". "Test" passe maintenant dans la colonne "Transporteurs Associés".
+   - Cliquer sur "Annuler".
+   - Vérifier que le champ "Transporteur" est bien vide, que la colonne "Transporteurs Disponibles" est bien vide et que la colonne "Transporteurs Associés" ne contient plus "Test".
+
+
+14. Test de modification enregistrée d'association transporteurs - ajout.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - En bas de la page, cliquer sur "Association Transoporteurs" pour étendre le conteneur.
+   - Dans le champ "Transporteur", entrer "es" et cliquer sur "Rechercher".
+   - Dans la colonne "Transporteurs Disponibles" cliquer sur "Test" puis sur le bouton "Ajouter". "Test" passe maintenant dans la colonne "Transporteurs Associés".
+   - Cliquer sur "Enregistrer".
+   - Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Cliquer sur "Annuler" pour remettre le formulaire dans l'état de la base de donnée et vérifier que "Test" est toujours présent dans la colonne "Transporteur Associés"
+
+
+15. Test de modification enregistrée d'association transporteurs - suppression.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif". (Ecran Transporteurs).
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Avoir réalisé le test de modification enregistrée d'association transporteurs (ajout) (association au transporteur "Test").
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - En bas de la page, cliquer sur "Association Transoporteurs" pour étendre le conteneur.
+   - Dans la colonne "Transporteurs Associés" cliquer sur "Test" puis sur le bouton "Supprimer". "Test" passe maintenant dans la colonne "Transporteurs Disponibles".
+   - Cliquer sur "Enregistrer".
+   - Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Cliquer sur "Annuler" pour remettre le formulaire dans l'état de la base de donnée et vérifier que "Test" n'est plus présent dans la colonne "Transporteur Associés".
+
+
+16. Test de suppression annulée d'un partenaire.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - A droite du champ "Choisir un partenaire", cliquer sur "Supprimer".
+   - Une pop-up s'ouvre. Dans cette pop-up, cliquer sur "Annuler".
+   - Vérifier que "Test" est toujours affiché à l'écran et n'a donc pas été supprimé.
+
+
+16. Test de suppression validée d'un partenaire.
+
+   - Avoir réalisé le test d'ajout enregistré d'un partenaire nommé "Test".
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et selectionner "Test".
+   - A droite du champ "Choisir un partenaire", cliquer sur "Supprimer".
+   - Une pop-up s'ouvre. Dans cette pop-up, cliquer sur "Supprimer".
+   - Vérifier que "Test" est toujours affiché à l'écran et n'a donc pas été supprimé.
+   - La pop-up se ferme. Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Dans le champ "Choisir un partenaire", taper la lettre "t" et vérifier que "Test" n'est plus proposé en auto-complétion.

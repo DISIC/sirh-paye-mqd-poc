@@ -1,0 +1,2 @@
+INSERT INTO job_detail (ID,CRON,PARTICIPANTREF,SIRIREQUESTTYPE,REQUETE) 
+VALUES (nextval('seq_job_detail'),'0/10 * * * * ?','SNCF','SM','{"address":"http://localhost:8888/bouchon-producteur/services/siri","version":"2.4","monitoringRef":"STIF:StopPoint:Q:108925:","participantRef":"SNCF"}');

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<property name="defaultPattern" value="%date{dd/MM/YYYY HH:mm:ss.SSS,UTC}"/>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{dd/MM/YYYY HH:mm:ss.SSS,UTC} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+			<immediateFlush>false</immediateFlush>
+		</encoder>
+	</appender>
+
+
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<prudent>true</prudent>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>../log/simu-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            	<maxFileSize>20MB</maxFileSize>
+     		</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${defaultPattern}  [%-5level] %logger{15} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+
+	<!-- Uncomment for logging ALL HTTP request and responses -->
+	<logger name="com.excilys.ebi.gatling.http.action.HttpRequestAction" level="INFO" />
+	<!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
+	<!-- 	<logger name="com.excilys.ebi.gatling.http" level="DEBUG" /> -->
+
+	<root level="WARN">
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>

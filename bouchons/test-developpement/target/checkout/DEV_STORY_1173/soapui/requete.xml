@@ -1,0 +1,22 @@
+
+<!-- TEST-1 Reception d'une requête SM valide sur une ZDE sans filtre -->
+<!-- ZDE : STIF:StopPoint:Q:108940 -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetStopMonitoring>
+         <ServiceRequestInfo>
+            <siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:RequestTimestamp>
+            <siri:RequestorRef>ACME-PROD</siri:RequestorRef>
+            <siri:MessageIdentifier>ACME-PROD:Message::1:LOC</siri:MessageIdentifier>
+         </ServiceRequestInfo>
+         <Request version="2.0:FR-IDF-2.4">
+            <siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:RequestTimestamp>
+            <siri:MessageIdentifier>ACME-PROD:Message::1:LOC</siri:MessageIdentifier>
+            <siri:MonitoringRef>STIF:StopArea:SP:30:</siri:MonitoringRef>
+         </Request>
+         <RequestExtension>
+         </RequestExtension>
+      </wsdl:GetStopMonitoring>
+   </soapenv:Body>
+</soapenv:Envelope>

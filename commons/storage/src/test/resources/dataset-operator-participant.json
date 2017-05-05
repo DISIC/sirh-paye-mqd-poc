@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "simple": [
+                {
+                    "key": "ASSOCIATIONTP|SNCF|RER",
+                    "value": "{\"name\":\"RER\",\"code\":\"RER\",\"participantRef\":\"SNCF\"}"
+                },
+                {
+                    "key": "PARTICIPANT|SNCF",
+                    "value": "{\"name\":\"SNCF\",\"participantRef\":\"SNCF\",\"partenaireActif\":\"true\"}"
+                }
+            ]
+        }
+    ]
+}

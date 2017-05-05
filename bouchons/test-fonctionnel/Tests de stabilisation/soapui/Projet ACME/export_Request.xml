@@ -1,0 +1,779 @@
+<log xmlns:siri="http://www.siri.org.uk/siri">            <siri:StopMonitoringDelivery version="2.0:FR-IDF-2.4">
+               <siri:ResponseTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:ResponseTimestamp>
+               <siri:RequestMessageRef>${idMessage}</siri:RequestMessageRef>
+               <siri:Status>true</siri:Status>
+               <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+               <!-- Liste de passage-->
+				               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course12:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course12:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course12</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T12:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T12:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>1</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T12:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T12:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T12:16:26.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T12:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T12:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T12:16:26.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course13:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course13:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course13</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T13:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T13:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>2</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T13:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T13:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T13:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T13:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T13:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T13:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course14:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course14:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course14</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T14:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T14:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>3</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T14:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T14:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T14:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T14:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T14:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T14:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course15:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course15:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course15</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T15:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T15:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>4</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T15:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T15:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T15:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T15:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T15:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T15:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course16:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course16:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course16</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T16:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T16:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>5</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T16:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T16:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T16:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T16:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T16:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T16:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course17:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course17:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course17</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T17:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T17:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>6</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T17:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T17:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T17:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T17:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T17:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T17:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course18:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course18:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course18</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T18:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T18:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>7</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T18:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T18:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T18:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T18:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T18:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T18:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course19:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course19:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course19</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T19:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T19:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>8</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T19:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T19:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T19:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T19:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T19:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T19:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course20:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course20:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course20</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T20:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T20:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>9</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T20:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T20:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T20:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T20:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T20:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T20:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+               <siri:MonitoredStopVisit>
+                  <siri:RecordedAtTime>2016-02-10T12:07:01.101+01:00</siri:RecordedAtTime>
+                  <siri:ItemIdentifier>OpACME:Item::19785-Course21:LOC</siri:ItemIdentifier>
+                  <siri:MonitoringRef>STIF:StopPoint:Q:19785:</siri:MonitoringRef>
+                  <siri:MonitoredVehicleJourney>
+                     <siri:LineRef>STIF:Line::C00272:</siri:LineRef>
+                      <!-- FramedVehicleJourneyRef -->
+                     <siri:FramedVehicleJourneyRef>
+                        <siri:DataFrameRef>any</siri:DataFrameRef>
+                        <siri:DatedVehicleJourneyRef>OpACME:VehicleJourney::Course21:LOC</siri:DatedVehicleJourneyRef>
+                     </siri:FramedVehicleJourneyRef>
+                     <!-- JourneyPatternInfoGroup -->
+                     <siri:JourneyPatternRef>OpACME:JourneyPattern::1:LOC</siri:JourneyPatternRef>
+                     <siri:JourneyPatternName>mission</siri:JourneyPatternName>
+                     <siri:VehicleMode>bus</siri:VehicleMode>
+                     <siri:RouteRef>OpACME:Route::1:LOC</siri:RouteRef>
+                     <siri:PublishedLineName>12</siri:PublishedLineName>
+                     <siri:DirectionName>Préfecture Gare</siri:DirectionName>
+                     <!-- VehicleJourneyInfo-->
+                     <!-- ServiceInfo-->
+                     <siri:OperatorRef>OpACME:Operator::OpACME:</siri:OperatorRef>
+                     <siri:ProductCategoryRef>categorie</siri:ProductCategoryRef>
+                     <siri:ServiceFeatureRef>bus</siri:ServiceFeatureRef>
+                     <siri:VehicleFeatureRef>bus</siri:VehicleFeatureRef>
+                     <siri:OriginRef>STIF:StopPoint:Q:4644:</siri:OriginRef>
+                     <siri:OriginName>G. Versailles Chantiers</siri:OriginName>
+                     <siri:Via> 
+                        <siri:PlaceRef>STIF:StopPoint:Q:5604:</siri:PlaceRef>
+                        <siri:PlaceName>Gare de Sartrouville</siri:PlaceName>
+                     </siri:Via>
+                     <siri:DestinationRef>STIF:StopPoint:Q:23358:</siri:DestinationRef>
+                     <siri:DestinationName>Préfecture Gare</siri:DestinationName>
+                     <siri:VehicleJourneyName>Course21</siri:VehicleJourneyName>
+                     <siri:JourneyNote>ceci est une description de course</siri:JourneyNote>
+                     <siri:HeadwayService>false</siri:HeadwayService>
+                     <siri:OriginAimedDepartureTime>2016-02-10T21:00:00.101+01:00</siri:OriginAimedDepartureTime>
+                     <siri:DestinationAimedArrivalTime>2016-02-10T21:40:00.101+01:00</siri:DestinationAimedArrivalTime>
+                     <siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+                     <!--JourneyProgressInfo:-->
+                     <siri:Monitored>true</siri:Monitored>
+                     <!--<siri:MonitoringError></siri:MonitoringError>-->
+                     <siri:InCongestion>false</siri:InCongestion>
+                     <siri:InPanic>false</siri:InPanic>
+                     <siri:VehicleLocation id="1" srsName="1">
+                        <siri:Longitude>2.227435</siri:Longitude>
+                        <siri:Latitude>48.785067</siri:Latitude>
+                        <siri:Precision>1</siri:Precision>
+                     </siri:VehicleLocation>
+                     <siri:Bearing>1</siri:Bearing>
+                     <siri:Occupancy>full</siri:Occupancy>
+                     <siri:Delay>PT1M</siri:Delay>
+                     <!-- JourneyParts:-->
+                     <!-- MonitoredCall 1er passage-->
+                     <siri:MonitoredCall>
+                        <siri:StopPointRef>STIF:StopPoint:Q:19785:</siri:StopPointRef>
+                        <siri:Order>10</siri:Order> 
+                        <siri:StopPointName>Wagner</siri:StopPointName>
+                        <siri:VehicleAtStop>false</siri:VehicleAtStop>
+                        <siri:PlatformTraversal>false</siri:PlatformTraversal>
+                        <siri:DestinationDisplay>Préfecture Gare</siri:DestinationDisplay>
+                        <siri:AimedArrivalTime>2016-02-10T21:15:00.101+01:00</siri:AimedArrivalTime>
+                        <siri:ActualArrivalTime>2016-02-10T21:15:01.101+01:00</siri:ActualArrivalTime>
+                        <siri:ExpectedArrivalTime>2016-02-10T21:15:02.101+01:00</siri:ExpectedArrivalTime>
+                        <siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+                        <siri:ArrivalProximityText>§ l'approche</siri:ArrivalProximityText>
+                        <siri:AimedDepartureTime>2016-02-10T21:15:00.101+01:00</siri:AimedDepartureTime>
+                        <siri:ActualDepartureTime>2016-02-10T21:15:01.101+01:00</siri:ActualDepartureTime>
+                        <siri:ExpectedDepartureTime>2016-02-10T21:15:02.101+01:00</siri:ExpectedDepartureTime>
+                        <siri:DepartureStatus>onTime</siri:DepartureStatus>
+                        <siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+                        <siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+                        <siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+                        <siri:DistanceFromStop>2300</siri:DistanceFromStop>
+                        <siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+                     </siri:MonitoredCall>
+                  </siri:MonitoredVehicleJourney>
+               </siri:MonitoredStopVisit>
+
+            </siri:StopMonitoringDelivery>
+ </log>

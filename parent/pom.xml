@@ -1,0 +1,432 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.sirh.mqd</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>POC MQD RH Parent</name>
+	<url>http://www.octo.com</url>
+	<description>POM Parent pour la compilation globale du POC SIRH MQD</description>
+
+	<!-- Découpage en Modules -->
+	<modules>
+		<module>../commons</module>
+		<module>../reporting</module>
+		<module>../mockups</module>
+		<module>../cots</module>
+	</modules>
+
+	<properties>
+		<!-- 1) Project properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<!-- 2) Library dependency versions -->
+		<!-- SPRING -->
+		<spring.version>4.3.8.RELEASE</spring.version>
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
+		<spring.boot.cxf.version>3.1.11</spring.boot.cxf.version>
+		<spring.integration.version>4.2.5.RELEASE</spring.integration.version>
+
+		<!-- DATABASE CLIENTS -->
+		<spring.data.elasticsearch.version>2.1.3.RELEASE</spring.data.elasticsearch.version>
+		<spring.data.mongodb.version>1.10.3.RELEASE</spring.data.mongodb.version>
+		<postgre.version>9.3-1100-jdbc41</postgre.version>
+
+		<!-- REPORT MANAGER -->
+		<dynamicreports.version>3.2.1</dynamicreports.version>
+		<itext.version>2.1.7</itext.version>
+
+		<!-- LOG MANAGER -->
+		<logback.version>1.0.13</logback.version>
+
+		<!-- OTHERS -->
+		<guava.version>18.0</guava.version>
+		<jcsv.version>1.4.0</jcsv.version>
+		<joda.version>2.7</joda.version>
+		<cxf.version>3.1.11</cxf.version>
+		<jackson.version>2.8.8</jackson.version>
+		<commons.lang3.version>3.2.1</commons.lang3.version>
+		<commons.collections.version>3.2.1</commons.collections.version>
+		<commons.configuration.version>1.8</commons.configuration.version>
+		<commons.io.version>2.1</commons.io.version>
+		<commons.validator.version>1.4.0</commons.validator.version>
+
+		<!-- 3) Tests library dependency versions -->
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5</mockito.version>
+		<powermock.version>1.5</powermock.version>
+		<easymock.version>3.2</easymock.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
+		<unitils.version>3.4</unitils.version>
+		<dbunit.version>2.4.9</dbunit.version>
+		<spring.test.dbunit.version>1.1.0</spring.test.dbunit.version>
+		<fest.assert.version>1.4</fest.assert.version>
+		<fest.test.version>2.1.0</fest.test.version>
+
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.16</version>
+					<configuration>
+						<argLine>-XX:-UseSplitVerifier</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- COMMONS UTILS -->
+			<dependency>
+				<groupId>com.sirh.mqd.commons</groupId>
+				<artifactId>utils</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- COMMONS TEST -->
+			<dependency>
+				<groupId>com.sirh.mqd.commons</groupId>
+				<artifactId>test</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- COMMONS TRACE -->
+			<dependency>
+				<groupId>com.sirh.mqd.commons</groupId>
+				<artifactId>traces</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- COMMONS EXCHANGES -->
+			<dependency>
+				<groupId>com.sirh.mqd.commons</groupId>
+				<artifactId>exchanges</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- COMMONS STORAGE -->
+			<dependency>
+				<groupId>com.sirh.mqd.commons</groupId>
+				<artifactId>storage</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- SPRING -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-messaging</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- SPRING SECURITY -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+
+			<!-- APACHE CXF -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-json-provider</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
+				<version>${spring.boot.cxf.version}</version>
+			</dependency>
+
+			<!-- SPRING DATA ELASTICSEARCH -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-elasticsearch</artifactId>
+				<version>${spring.data.elasticsearch.version}</version>
+			</dependency>
+
+			<!-- SPRING DATA MONGODB -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-mongodb</artifactId>
+				<version>${spring.data.mongodb.version}</version>
+			</dependency>
+
+			<!-- SPRING INTEGRATION -->
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-core</artifactId>
+				<version>${spring.integration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-sftp</artifactId>
+				<version>${spring.integration.version}</version>
+			</dependency>
+
+			<!-- POSTGRE -->
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgre.version}</version>
+			</dependency>
+
+			<!--DYNAMIC REPORTS -->
+			<dependency>
+				<groupId>net.sourceforge.dynamicreports</groupId>
+				<artifactId>dynamicreports-core</artifactId>
+				<version>${dynamicreports.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.dynamicreports</groupId>
+				<artifactId>dynamicreports-adhoc</artifactId>
+				<version>${dynamicreports.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.dynamicreports</groupId>
+				<artifactId>dynamicreports-googlecharts</artifactId>
+				<version>${dynamicreports.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>${itext.version}</version>
+			</dependency>
+
+			<!-- LOGGING -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+			<!-- JCSV -->
+			<dependency>
+				<groupId>com.googlecode.jcsv</groupId>
+				<artifactId>jcsv</artifactId>
+				<version>${jcsv.version}</version>
+			</dependency>
+
+			<!-- DIVERS -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons.collections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons.configuration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons.validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>${joda.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.resource</groupId>
+				<artifactId>javax.resource-api</artifactId>
+				<version>1.7</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- JUNIT -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<!-- MOCKITO -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>${powermock.version}</version>
+			</dependency>
+
+			<!-- POWERMOCK -->
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>${powermock.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-easymock</artifactId>
+				<version>${powermock.version}</version>
+			</dependency>
+
+			<!-- EASY TESTING -->
+			<dependency>
+				<groupId>org.easytesting</groupId>
+				<artifactId>fest-assert</artifactId>
+				<version>${fest.assert.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.easytesting</groupId>
+				<artifactId>fest-test</artifactId>
+				<version>${fest.test.version}</version>
+			</dependency>
+
+			<!-- EASY MOCK -->
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+			</dependency>
+
+			<!-- TEST DBUNIT -->
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${dbunit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.unitils</groupId>
+				<artifactId>unitils-dbunit</artifactId>
+				<version>${unitils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.unitils</groupId>
+				<artifactId>unitils-orm</artifactId>
+				<version>${unitils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.springtestdbunit</groupId>
+				<artifactId>spring-test-dbunit</artifactId>
+				<version>${spring.test.dbunit.version}</version>
+			</dependency>
+
+			<!-- SPRING TEST -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- GIT Configurations -->
+	<issueManagement>
+		<url>https://github.com/disic/sirh-paye-mqd-poc/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+	<scm>
+		<url>https://github.com/disic/sirh-paye-mqd-poc</url>
+		<connection>scm:git:git://github.com/disic/sirh-paye-mqd-poc.git</connection>
+		<developerConnection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<developers>
+		<developer>
+			<email>atingaud@octo.com</email>
+			<name>Alexandre TINGAUD</name>
+			<url>https://github.com/atingaud</url>
+			<id>atingaud</id>
+		</developer>
+	</developers>
+
+</project>

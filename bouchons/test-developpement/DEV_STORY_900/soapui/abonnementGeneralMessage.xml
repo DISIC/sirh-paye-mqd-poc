@@ -1,0 +1,47 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri" xmlns:acsb="http://www.ifopt.org.uk/acsb">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:Subscribe>
+         <SubscriptionRequestInfo>
+            <siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:RequestTimestamp>
+         	  <siri:RequestorRef>KEOLIS</siri:RequestorRef>
+            <!--Optional:-->
+            <siri:MessageIdentifier>id123</siri:MessageIdentifier>
+            <!--Optional:-->
+            <siri:SubscriptionFilterIdentifier>filter</siri:SubscriptionFilterIdentifier>
+         </SubscriptionRequestInfo>
+         <Request>
+            <!--You have a CHOICE of the next 10 items at this level-->
+            <!--1 or more repetitions:-->
+            <siri:GeneralMessageSubscriptionRequest>
+               <!--Optional:-->
+               <siri:SubscriberRef>KEOLIS</siri:SubscriberRef>
+               <siri:SubscriptionIdentifier>idSubscription22</siri:SubscriptionIdentifier>
+               <siri:InitialTerminationTime>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:InitialTerminationTime>
+               <siri:GeneralMessageRequest version="2.0">
+                  <siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:RequestTimestamp>
+                  <!--Optional:-->
+                  <siri:MessageIdentifier>idMessage</siri:MessageIdentifier>
+                  <!--Zero or more repetitions:-->
+                  <siri:InfoChannelRef>Information</siri:InfoChannelRef>
+                  <!--Optional:-->
+                  <siri:Language>en</siri:Language>
+
+                  <siri:Extensions>
+         			
+         			
+					<!--<siri:LineRef>STIF:Line:Q:1234:</siri:LineRef>-->
+					<siri:StopPointRef>STIF:StopPoint:Q:108925:</siri:StopPointRef>
+					
+				
+         
+                  </siri:Extensions>
+               </siri:GeneralMessageRequest>
+            </siri:GeneralMessageSubscriptionRequest>
+          </Request>
+         <RequestExtension>
+                     
+         </RequestExtension>
+      </wsdl:Subscribe>
+   </soapenv:Body>
+</soapenv:Envelope>

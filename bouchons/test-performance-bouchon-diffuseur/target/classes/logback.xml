@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 minutes">
+	
+	<property name="date" value="%date{dd/MM/YYYY HH:mm:ss.SSS,UTC}" />
+	
+	<appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>/var/data/stif/log/diffuseur/notification.log</file>
+		<prudent>true</prudent>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/data/stif/log/diffuseur/notification.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>2</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches maxFilesSize -->
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %class - %msg%n</pattern>
+		</layout>
+	</appender>
+
+
+	<logger name="com.thalesgroup.stif.bouchon.diffuseur.GeneralMessageSOAPPortImpl" additivity="false" level="INFO">
+<!-- 		<level value="ERROR" /> -->
+<!--            <appender-ref ref="CONSOLE" /> -->
+		<appender-ref ref="APPLICATION" />
+	</logger>
+
+	<root level="ERROR">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

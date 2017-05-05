@@ -1,0 +1,69 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:NotifyGeneralMessage>
+         <ServiceDeliveryInfo>
+            <siri:ResponseTimestamp>${requestTimestamp}</siri:ResponseTimestamp>
+            <!--Optional:-->
+            <siri:ProducerRef>${requestorRef}</siri:ProducerRef>
+            <!--Optional:-->
+            <siri:ResponseMessageIdentifier>${messageIdentifier}</siri:ResponseMessageIdentifier>
+            <!--Optional:-->
+            <siri:RequestMessageRef>${requestMessageRef}</siri:RequestMessageRef>
+         </ServiceDeliveryInfo>
+         <Notification>
+            <!--1 or more repetitions:-->
+            <siri:GeneralMessageDelivery version="2.0:FR-IDF-2.4" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"      
+                                xsi:schemaLocation="http://www.siri.org.uk/siri siri.xsd http://wsdl.siri.org.uk/siri siri-FR-IDF-Extensions-2.4.xsd" xmlns:stif="http://wsdl.siri.org.uk/siri">
+               <siri:ResponseTimestamp>${requestTimestamp}</siri:ResponseTimestamp>
+               <!--You have a CHOICE of the next 2 items at this level-->
+               <!--Optional:-->
+               <siri:RequestMessageRef>${requestMessageRef}</siri:RequestMessageRef>
+               <!--Optional:-->
+               <siri:SubscriberRef>RELAIS</siri:SubscriberRef>
+               <!--Optional:-->
+               <siri:SubscriptionFilterRef>fghjk</siri:SubscriptionFilterRef>
+               <siri:SubscriptionRef>dfghj</siri:SubscriptionRef>
+               <siri:Status>true</siri:Status>
+              <!--Optional:-->
+               <siri:ValidUntil>2035-03-17T18:18:56.480+01:00</siri:ValidUntil>
+              
+
+               <!--Zero or more repetitions:-->
+               <siri:GeneralMessage formatRef="STIF-IDF">
+                  <siri:RecordedAtTime>${requestTimestamp}</siri:RecordedAtTime>
+                           <siri:ItemIdentifier>${itemIdentifier}</siri:ItemIdentifier>
+                           <siri:InfoMessageIdentifier>${infoMessageIdentifier}</siri:InfoMessageIdentifier>
+                           <siri:InfoMessageVersion>3</siri:InfoMessageVersion>
+                           <siri:InfoChannelRef>${infoChannelRef}</siri:InfoChannelRef>
+                           <siri:ValidUntilTime>2035-08-08T16:04:22.480+01:00</siri:ValidUntilTime>
+                           <siri:Content xsi:type="stif:IDFGeneralMessageStructure">
+                                 <siri:DestinationRef>${destinationRef}</siri:DestinationRef>
+                                    <siri:LineRef>${lineRef}</siri:LineRef>
+                                        <Message>
+                                                <MessageType>textOnly</MessageType>
+                                                <MessageText xml:lang="FR">
+                                                        Trafic normal sur l'ensemble du réseau.
+                                                </MessageText>
+                                        </Message>
+                                </siri:Content>
+                 </siri:GeneralMessage>
+
+                
+                  
+                  <siri:GeneralMessageCancellation>
+                                        <siri:RecordedAtTime>${requestTimestamp}</siri:RecordedAtTime>
+                                        <siri:ItemRef>${itemIdentifier}</siri:ItemRef>
+                                        <siri:InfoMessageIdentifier>${infoMessageIdentifier}</siri:InfoMessageIdentifier>
+                                        <siri:InfoChannelRef>${infoChannelRef}</siri:InfoChannelRef>
+                                </siri:GeneralMessageCancellation>
+                 </siri:GeneralMessageDelivery>
+                       
+                
+         </Notification>
+         <NotifyExtension>
+            <!--You may enter ANY elements at this point-->
+         </NotifyExtension>
+      </wsdl:NotifyGeneralMessage>
+   </soapenv:Body>
+</soapenv:Envelope>

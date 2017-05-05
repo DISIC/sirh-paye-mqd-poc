@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 minutes">
+
+	<appender name="APPLICATION_SIRI_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/stif/metier/testlogsrolling-relais-siri.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="APPLICATION_ERROR_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/stif/metier/testlogsrolling-relais-error.%d{yyyyMMdd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="SYSTEM_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/stif/technique/testlogsrolling-system-technique.%d{yyyyMMdd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="SYSTEM_ROOT_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/stif/root/testlogsrolling-root.%d{yyyyMMdd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="SYSTEM_DEBUG_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/stif/debug/testlogsrolling-system-debug.%d{yyyyMMdd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="SYSTEM_ACTION_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<file>${filter.log.file.path.debug}/${filter.log.application.name}-system-action.log</file>
+		<prudent>false</prudent>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.debug}/${filter.log.application.name}-system-action.%i.zip</fileNamePattern>
+			<maxIndex>${filter.log.maxHistory}</maxIndex>
+		</rollingPolicy>
+		
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+		</triggeringPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="SYSTEM_WORKFLOW_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<file>${filter.log.file.path.debug}/${filter.log.application.name}-system-workflow.log</file>
+		<prudent>false</prudent>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.debug}/${filter.log.application.name}-system-workflow.%i.zip</fileNamePattern>
+			<maxIndex>${filter.log.maxHistory}</maxIndex>
+		</rollingPolicy>
+		
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+		</triggeringPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%-5level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %class - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.thalesgroup.stif.log.metier.testlogsrolling.siri" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="APPLICATION_SIRI_LOGFILE" />
+	</logger>
+
+	<logger name="com.thalesgroup.stif.log.metier.testlogsrolling.error" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="APPLICATION_ERROR_LOGFILE" />
+	</logger>
+
+	<logger name="com.thalesgroup.stif.log.system.error" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SYSTEM_LOGFILE" />
+	</logger>
+
+	<logger name="com.thalesgroup.stif.log.system.debug" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SYSTEM_DEBUG_LOGFILE" />
+	</logger>
+	
+
+	<logger name="com.thalesgroup.stif.log.system.workflow" additivity="false">
+		<level value="${filter.log.level}" />
+		<appender-ref ref="SYSTEM_WORKFLOW_LOGFILE" />
+	</logger>
+	
+	
+
+	<logger name="com.thalesgroup.stif.log.system.action" additivity="false">
+		<level value="${filter.log.level}" />
+		<appender-ref ref="SYSTEM_ACTION_LOGFILE" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

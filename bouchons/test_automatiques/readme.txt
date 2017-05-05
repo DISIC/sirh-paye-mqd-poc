@@ -1,0 +1,1 @@
+Les fichiers du répertoire lib sont à utiliser avec le répertoire lib de soapui.

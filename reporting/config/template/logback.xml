@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="${filter.log.scan.period}">
+	
+	<property name="date" value="%date{dd/MM/YYYY HH:mm:ss.SSS,UTC}" />
+	
+	<appender name="SYSTEM_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>${filter.log.file.path.technique}/${filter.log.application.name}-system-technique.log</file>
+		<prudent>true</prudent>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.technique}/${filter.log.application.name}-system-technique.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${filter.log.maxHistory}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches maxFilesSize -->
+				<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="SYSTEM_ROOT_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>${filter.log.file.path.root}/${filter.log.application.name}-root.log</file>
+		<prudent>true</prudent>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.root}/${filter.log.application.name}-root.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${filter.log.maxHistory}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches maxFilesSize -->
+				<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="SYSTEM_DEBUG_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>${filter.log.file.path.debug}/${filter.log.application.name}-system-debug.log</file>
+		<prudent>true</prudent>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.debug}/${filter.log.application.name}-system-debug.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${filter.log.maxHistory}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches maxFilesSize -->
+				<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="SYSTEM_WORKFLOW_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>${filter.log.file.path.debug}/${filter.log.application.name}-system-workflow.log</file>
+		<prudent>true</prudent>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${filter.log.file.path.debug}/${filter.log.application.name}-system-workflow.%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${filter.log.maxHistory}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches maxFilesSize -->
+				<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${date} [%level] %class - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.thalesgroup.stif.log.system.error" additivity="false">
+		<level value="${filter.log.level}" />
+		<appender-ref ref="SYSTEM_LOGFILE" />
+	</logger>
+
+	<logger name="com.thalesgroup.stif.log.system.debug" additivity="false">
+		<level value="${filter.log.level}" />
+		<appender-ref ref="SYSTEM_DEBUG_LOGFILE" />
+	</logger>
+
+	<logger name="com.thalesgroup.stif.log.system.workflow" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="SYSTEM_WORKFLOW_LOGFILE" />
+	</logger>
+
+	<logger name="log4j.category.org.springframework.integration.file" additivity="false">
+		<level value="${filter.log.level.root}" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="log4j.category.com.jcraft.jsch" additivity="false">
+		<level value="${filter.log.level.root}" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<root level="${filter.log.level.root}">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

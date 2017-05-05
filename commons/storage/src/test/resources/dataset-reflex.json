@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "simple": [
+                {
+                    "key": "REFLEX|109309",
+                    "value": "{\"idRefA\":\"109309\",\"idVersion\":\"114245\",\"nom\":\"Zone Industrielle\",\"idTypeArret\":\"5\",\"libelleTypeArret\":\"Arret de bus\",\"typeObjetReflex\":\"ZDE\",\"zonesEmbarquement\":null}"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+com/thalesgroup/stif/bouchon/producteur/notification/StopMonitoringNotificationBuilder.class
+com/thalesgroup/stif/bouchon/producteur/SiriProducerRcpPortImpl.class
+com/thalesgroup/stif/bouchon/producteur/GeneralMessageSOAPPortImpl.class
+com/thalesgroup/stif/bouchon/producteur/notification/NotificationUtils.class
+com/thalesgroup/stif/bouchon/producteur/notification/GeneralNotification.class

@@ -1,0 +1,43 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk"
+	xmlns:siri="http://www.siri.org.uk/siri">
+	<soapenv:Header />
+	<soapenv:Body>
+		<wsdl:GetMultipleStopMonitoring>
+			<ServiceRequestInfo>
+
+				<!--Optional: -->
+				<siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}
+				</siri:RequestTimestamp>
+				<siri:RequestorRef>SNCF</siri:RequestorRef>
+				<!--Optional: -->
+				<siri:MessageIdentifier>SNCF-ACCES:Message::1:LOC</siri:MessageIdentifier>
+
+			</ServiceRequestInfo>
+			<Request version="2.0:FR-IDF-2.2">
+				<siri:RequestTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}
+				</siri:RequestTimestamp>
+				<!--Optional: -->
+				<siri:MessageIdentifier>SNCF-ACCES:Message::1:LOC</siri:MessageIdentifier>
+				<!--1 or more repetitions: -->
+				<siri:StopMonitoringFIlter>
+					<!-- IDENTIQUE STOP MONITORING -->
+
+					<siri:MonitoringRef>STIF:StopPoint:Q:108925:</siri:MonitoringRef>
+
+				</siri:StopMonitoringFIlter>
+
+				<siri:StopMonitoringFIlter>
+					<!-- IDENTIQUE STOP MONITORING -->
+
+					<siri:MonitoringRef>STIF:StopPoint:Q:TEST1:</siri:MonitoringRef>
+
+
+				</siri:StopMonitoringFIlter>
+
+			</Request>
+			<RequestExtension>
+				<!--You may enter ANY elements at this point -->
+			</RequestExtension>
+		</wsdl:GetMultipleStopMonitoring>
+	</soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,19 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns3:DeleteSubscriptionResponse xmlns:ns2="http://www.siri.org.uk/siri" xmlns:ns3="http://wsdl.siri.org.uk" xmlns:ns4="http://www.ifopt.org.uk/acsb" xmlns:ns5="http://www.ifopt.org.uk/ifopt" xmlns:ns6="http://datex2.eu/schema/2_0RC1/2_0">
+         <Answer>
+            <ns2:TerminationResponseStatus>
+               <ns2:ResponseTimestamp>2014-06-24T08:33:48.174Z</ns2:ResponseTimestamp>
+               <ns2:SubscriberRef>RATP</ns2:SubscriberRef>
+               <ns2:Status>false</ns2:Status>
+               <ns2:ErrorCondition>
+                  <ns2:UnknownSubscriberError>
+                     <ns2:ErrorText>[BAD_REQUEST] : Le souscripteur nest pas référencé dans le référentiel</ns2:ErrorText>
+                  </ns2:UnknownSubscriberError>
+                  <ns2:Description>[BAD_REQUEST] : Le souscripteur nest pas référencé dans le référentiel</ns2:Description>
+               </ns2:ErrorCondition>
+            </ns2:TerminationResponseStatus>
+         </Answer>
+      </ns3:DeleteSubscriptionResponse>
+   </soap:Body>
+</soap:Envelope>

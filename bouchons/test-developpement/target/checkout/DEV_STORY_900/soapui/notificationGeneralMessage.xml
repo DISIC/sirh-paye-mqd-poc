@@ -1,0 +1,71 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:NotifyGeneralMessage>
+         <ServiceDeliveryInfo>
+            <siri:ResponseTimestamp>2014-03-14T22:01:41.000+01:00</siri:ResponseTimestamp>
+            <!--Optional:-->
+            <siri:ProducerRef>SNCF-ACCES</siri:ProducerRef>
+            <!--Optional:-->
+            <siri:Address>http://10.222.9.127:8180/reception/SiriRelais/SiriConsumerRpcPort</siri:Address>
+            <!--Optional:-->
+            <siri:ResponseMessageIdentifier>${= UUID.randomUUID().toString()}</siri:ResponseMessageIdentifier>
+            <!--Optional:-->
+            <siri:RequestMessageRef>${idMessage}</siri:RequestMessageRef>
+         </ServiceDeliveryInfo>
+         <Notification>
+            <!--1 or more repetitions:-->
+            <siri:GeneralMessageDelivery version="2.0:FR-IDF-2.4" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+				xsi:schemaLocation="http://www.siri.org.uk/siri siri.xsd http://wsdl.siri.org.uk/siri siri-FR-IDF-Extensions-2.4.xsd" xmlns:stif="http://wsdl.siri.org.uk/siri">
+               <siri:ResponseTimestamp>2014-03-15T15:17:51.480+01:00</siri:ResponseTimestamp>
+               <!--You have a CHOICE of the next 2 items at this level-->
+               <!--Optional:-->
+               <siri:RequestMessageRef>RELAIS:Message::3:LOC</siri:RequestMessageRef>
+               <!--Optional:-->
+               <siri:SubscriberRef>dfgh</siri:SubscriberRef>
+               <!--Optional:-->
+               <siri:SubscriptionFilterRef>fghjk</siri:SubscriptionFilterRef>
+               <siri:SubscriptionRef>dfghj</siri:SubscriptionRef>
+               <!--Optional:-->
+               <siri:DelegatorAddress>jkjk</siri:DelegatorAddress>
+               <!--Optional:-->
+               <siri:DelegatorRef>jkjkj</siri:DelegatorRef>
+               <!--Optional:-->
+               <siri:Status>true</siri:Status>
+              <!--Optional:-->
+               <siri:ValidUntil>2014-03-17T18:18:56.480+01:00</siri:ValidUntil>
+               
+               <!--Optional:-->
+               <siri:DefaultLanguage>yu</siri:DefaultLanguage>
+               <!--Zero or more repetitions:-->
+               <siri:GeneralMessage formatRef="STIF-IDF">
+                  <siri:RecordedAtTime>2014-03-14T17:16:22.480+01:00</siri:RecordedAtTime>
+			   <siri:ItemIdentifier>TEST:Message::14:</siri:ItemIdentifier>
+			   <siri:InfoMessageIdentifier>TEST:InfoMessage::14:</siri:InfoMessageIdentifier>
+			   <siri:InfoMessageVersion>3</siri:InfoMessageVersion>
+			   <siri:InfoChannelRef>TEST:InfoChannel::Perturbation:LOC</siri:InfoChannelRef>
+			   <siri:ValidUntilTime>2014-08-18T16:04:22.480+01:00</siri:ValidUntilTime>
+			   <siri:Content xsi:type="stif:IDFGeneralMessageStructure">
+			         <siri:DestinationRef>STIF:StopPoint:Q:108925:</siri:DestinationRef>
+					<Message>
+						<MessageType>textOnly</MessageType>
+						<MessageText xml:lang="FR">
+							Trafic normal surl'ensemble du réseau.
+						</MessageText>
+					</Message>
+				</siri:Content>
+                 </siri:GeneralMessage>
+           	  <siri:GeneralMessageCancellation>
+					<siri:RecordedAtTime>2014-03-14T17:16:22.480+01:00</siri:RecordedAtTime>
+					<siri:ItemRef>TEST:Message::16:</siri:ItemRef>
+					<siri:InfoMessageIdentifier>TEST:InfoMessage::16:</siri:InfoMessageIdentifier>
+					<siri:InfoChannelRef>TEST:InfoChannel::Perturbation:LOC</siri:InfoChannelRef>
+				</siri:GeneralMessageCancellation>
+                 </siri:GeneralMessageDelivery>
+         </Notification>
+         <NotifyExtension>
+            <!--You may enter ANY elements at this point-->
+         </NotifyExtension>
+      </wsdl:NotifyGeneralMessage>
+   </soapenv:Body>
+</soapenv:Envelope>

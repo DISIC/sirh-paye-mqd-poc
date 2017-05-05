@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:redis="http://www.springframework.org/schema/redis" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/redis 
+        http://www.springframework.org/schema/redis/spring-redis.xsd">
+
+	<!-- Jedis Connection -->
+	<bean id="jedisConnectionFactory" class="com.thalesgroup.stif.commons.tampon.JedisConnectionFactoryThales" >
+		<constructor-arg name="usePool" value="true"/>
+		<constructor-arg name="hostName" value="${redis.host.name}"/>
+		<constructor-arg name="port" value="${redis.host.port}"/>
+		<constructor-arg name="clusterName" value="${redis.host.cluster.name}"/>
+		<constructor-arg name="sentinelHosts" value="${redis.host.sentinel.list}"/>
+		<constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+	</bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.max.active}" />
+		<property name="maxIdle" value="${redis.pool.max.idle}" />
+		<property name="maxWaitMillis" value="${redis.pool.max.wait}" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+
+	<!-- Redis Templates -->
+	<!-- Redis Template, dédié à la persistence de Producteurs -->
+	
+	<bean id="redisTemplateSubscriptionProducteurDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerSubscriptionProducteur" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerSubscriptionProducteur" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.SubscriptionProducteurTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="redisParticipantTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerParticipant" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerParticipant" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.participant.ParticipantTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template, dédié à la persistence de date statut KO diffuseur -->
+	<bean id="redisTemplateDateStatutKO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerDateStatutKO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerDateStatutKO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.participant.DateStatutKODTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template, dédié à la persistence de Transporteurs -->
+	<bean id="redisOperatorTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerOperator" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerOperator" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.participant.OperatorTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--Redis Template dédié à la persistence d'objets Reflex -->
+	<bean id="redisReflexTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerReflex" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerReflex" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reflex.ReflexTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!--Redis Template dédié à la persistence d'objets Communication -->
+	<bean id="redisCommunicationTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerCommunication" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerCommunication" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.communication.CommunicationTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- Redis Template -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template CheckStatusRequestDTO pour le dépot de requete CheckStatus dans une queue Redis -->
+	<bean id="redisTemplateCheckStatusRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerCheckStatusRequestDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerCheckStatusRequestDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.CheckStatusRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template StopPointsDiscoveryRequestDTO pour le dépot de requete StopPointsDiscovery dans une queue Redis -->
+	<bean id="redisTemplateStopPointsDiscoveryRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerStopPointsDiscoveryRequestDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerStopPointsDiscoveryRequestDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.StopPointsDiscoveryRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template EstimatedTimetableRequestDTO pour le dépot de requete EstimatedTimetable dans une queue Redis -->
+	<bean id="redisTemplateEstimatedTimetableRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerEstimatedTimetableRequestDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerEstimatedTimetableRequestDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.EstimatedTimetableRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template TriggerReportingDTO pour le dépot de requete StopPointsDiscovery dans une queue Redis -->
+	<bean id="redisTemplateTriggerReportingDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerTriggerReportingDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerTriggerReportingDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.SiriRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template StopMonitoringDTO pour le dépot de requete StopMonitoring dans une queue Redis -->
+	<bean id="redisTemplateStopMonitoringRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerStopMonitoringRequestDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerStopMonitoringRequestDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.StopMonitoringRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template redisTemplateArretDiffuseurDTO pour le dépot d arret diffuseur -->
+	<bean id="redisTemplateArretDiffuseurDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerArretDiffuseurTamponDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerArretDiffuseurTamponDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.arretDiffuseur.ArretDiffuseurTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template redisTemplateArretProducteurDTO pour le dépot d arret producteur -->
+	<bean id="redisTemplateArretProducteurDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerArretProducteurTamponDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerArretProducteurTamponDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.arretProducteur.ArretProducteurTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template redisTemplateLigneProducteurDTO pour le dépot de ligne producteur -->
+	<bean id="redisTemplateLigneProducteurDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerLigneProducteurTamponDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerLigneProducteurTamponDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.ligneProducteur.LigneProducteurTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+	<!-- Redis Template NotifyStopMonitoringDTO pour le dépot d une notification en mode abonnement du producteur vers le relais StopMonitoring 
+		(apres stockage en base reddis) dans une queue Redis -->
+	<bean id="redisTemplateNotifyStopMonitoringDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerNotifyStopMonitoringDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerNotifyStopMonitoringDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.NotifyStopMonitoringDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template GeneralMessageDTO pour le dépot de requete GeneralMessage dans une queue Redis -->
+	<bean id="redisTemplateGeneralMessageRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerGeneralMessageRequestDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerGeneralMessageRequestDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.GeneralMessageRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template -->
+	<bean id="redisTemplateZoneEmbarquement" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerData" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerData" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.pivot.Passage" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template -->
+	<bean id="redisTemplateGeneralMessage" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerMessage" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerMessage" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.pivot.GeneralMessage" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template Erreur Condition -->
+	<bean id="redisTemplateErreurCondition" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerErreurCondition" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerErreurCondition" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.pivot.ErreurCondition" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- Redis Template CodifLigne -->
+	<bean id="redisTemplateCodifLigneDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerCodifLigne" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerCodifLigne" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.codifligne.CodifLigneDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="redisTemplateGetSiriRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerGetSiriRequest" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerGetSiriRequest" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.GetSiriRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="redisTemplateGetMultipleStopMonitoringRequestDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerGetMultipleStopMonitoringRequest" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerGetMultipleStopMonitoringRequest" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.GetMultipleStopMonitoringRequestDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Template redis de dépot de notification d'ajout d'arrêt depuis l'emission à destination de l'administration -->
+	<bean id="redisTemplateArretSouhaiteDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerArretSouhaiteDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerArretSouhaiteDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.ArretSouhaiteDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Template redis de date de démarrage du système -->
+	<bean id="redisCheckSystemStatusTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerDateSysteme" class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerDateSysteme" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="java.util.Date" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Template redis de dépot de notification d'ajout de souscription -->
+	<bean id="redisTemplateSubscriptionDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerSubscriptionDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerSubscriptionDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.SubscriptionDiffuseurTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template NotifyGeneralMessageDTO pour le dépot d une notification en mode abonnement du producteur vers le relais GeneralMessage 
+		(apres stockage en base reddis) dans une queue Redis -->
+	<bean id="redisTemplateNotifyGeneralMessageDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerNotifyGeneralMessageDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerNotifyGeneralMessageDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.reception.NotifyGeneralMessageDTO" />
+			</bean>
+		</property>
+	</bean>
+
+     <bean id="redisTemplateRestPassageDTO" class="org.springframework.data.redis.core.RedisTemplate">
+      <property name="connectionFactory" ref="jedisConnectionFactory" />
+      <property name="keySerializer">
+         <bean id="keySerializerRestPassageDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+         </bean>
+      </property>
+      <property name="valueSerializer">
+         <bean id="valueSerializerRestPassageDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+            <constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.pivot.Passage" />
+         </bean>
+      </property>
+   </bean>
+   
+   <bean id="redisTemplateRestGeneralMessageDTO" class="org.springframework.data.redis.core.RedisTemplate">
+      <property name="connectionFactory" ref="jedisConnectionFactory" />
+      <property name="keySerializer">
+         <bean id="keySerializerRestGeneralMessageDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+         </bean>
+      </property>
+      <property name="valueSerializer">
+         <bean id="valueSerializerRestGeneralMessageDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+            <constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.pivot.GeneralMessage" />
+         </bean>
+      </property>
+   </bean>
+
+	<bean id="redisTemplateSubscriptionGMDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerSubscriptionGMDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerSubscriptionGMDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.SubscriptionDiffuseurGMTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Redis Template AlertLogstash -->
+	<bean id="redisTemplateAlertLogstash" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerAlerteLogstashTamponDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerAlerteLogstashTamponDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.logstash.AlertLogstashTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--Redis Template dédié à la persistence d'objets Communication -->
+	<bean id="redisParametreTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerParametre" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerParametre" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.parametre.ParametreTamponDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Template redis de dépot de notification d'erreur aux diffuseurs abonnés sur le périmètre d'un le producteur est KO -->
+	<bean id="redisTemplateSubscriptionInitialisationDTO" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean id="keySerializerSubscriptionInitialisationDTO" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+			</bean>
+		</property>
+		<property name="valueSerializer">
+			<bean id="valueSerializerSubscriptionInitialisationDTO" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="com.thalesgroup.stif.commons.echange.dto.emission.SubscriptionInitialisationDTO" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+</beans>

@@ -1,0 +1,8 @@
+            <siri:StopMonitoringDelivery version="${version}">
+               <siri:ResponseTimestamp>${=javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.getInstance())}</siri:ResponseTimestamp>
+               <siri:RequestMessageRef>${idMessage}</siri:RequestMessageRef>
+               <siri:Status>true</siri:Status>
+               <siri:MonitoringRef>#monitoringRef#</siri:MonitoringRef>
+               <!-- Liste de passage-->
+				#ListMonitoredStopVisit#
+            </siri:StopMonitoringDelivery>

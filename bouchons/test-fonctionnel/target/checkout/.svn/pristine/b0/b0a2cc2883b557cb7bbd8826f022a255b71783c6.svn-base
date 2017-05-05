@@ -1,0 +1,152 @@
+Ecran Transporteurs - Tests fonctionnels.
+
+1. Test d'ajout d'un transporteur non existant enregistré.
+
+   - Avoir les tables "operator" et "operator_code" vièrges.
+   - Sur l'écran "Transporteurs", cliquer sur "Ajouter un transporteur".
+   - Une pop-up s'ouvre. Dans le champ "Nom de transporteur", entrer "Test".
+   - Dans le champ "Code de transporteur", laisser ce qui est pré-rempli ("Test").
+   - Cliquer sur "Enregistrer".
+   - La pop-up se ferme. Constater la présence du message "Enregistrement avec succès" dans un bandeau vert, sous les menus.
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et vérifier que "Test" est bien proposé en auto-complétion.
+
+
+2. Test d'ajout d'un transporteur non enregistré.
+
+   - Sur l'écran "Transporteurs", cliquer sur "Ajouter un transporteur".
+   - Dans le champ "Nom de transporteur", entrer "NotToSave".
+   - Dans le champ "Code de transporteur", laisser ce qui est pré-rempli ("NotToSave").
+   - Cliquer sur "Annuler".
+   - Aucun message ne doit apparaître à l'écran.
+   - Dans le champ "Choisir un transporteur", taper la lettre "n" et vérifier que "NotToSave" n'est pas proposé en auto-complétion.
+
+
+3. Test d'ajout d'un transporteur existant.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Sur l'écran "Transporteurs", cliquer sur "Ajouter un transporteur".
+   - Une pop-up s'ouvre. Dans le champ "Nom de transporteur", entrer "Test".
+   - Dans le champ "Code de transporteur", laisser ce qui est pré-rempli ("Test").
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "Nom de transporteur" devient rouge et l'apparition du message "Le transporteur Test existe déjà" juste en dessous.
+   - Cliquer sur "Annuler" pour fermer la pop-up.
+
+
+4. Test d'ajout d'un transporteur avec référence transporteur existante.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Sur l'écran "Transporteurs", cliquer sur "Ajouter un transporteur".
+   - Une pop-up s'ouvre. Dans le champ "Nom de transporteur", entrer "NomDispo".
+   - Dans le champ "Code de transporteur", modifier ce qui est pré-rempli ("NomDispo"), pour y mettre "Test".
+   - Cliquer sur "Enregistrer".
+   - Constater que le champ "Code de transporteur" devient rouge et l'apparition du message "Cette référence de transporteur existe déjà pour un autre transporteur" juste en dessous.
+   - Cliquer sur "Annuler" pour fermer la pop-up.
+
+
+5. Test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Refaire la même procédure que dans le test d'ajout de transporteur non existant enregistré avec un transporteur nommé "Test2" ayant pour code de transporteur "Test2".
+   - Refaire la même procédure que dans le test d'ajout de transporteur non existant enregistré avec un transporteur nommé "Stif" ayant pour code de transporteur "Stif".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et vérifier que "Test" et "Test2" sont bien proposés en auto-complétion.
+   - Dans le champ "Choisir un transporteur", taper la lettre "s" et vérifier que "Stif" est bien proposé en auto-complétion.
+
+
+6. Test d'ajout enregistré d'un code transporteur non existant.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur.
+   - Dans le champ "Code transporteur", entrer "RelaisIVTR" et cliquer sur "Ajouter un code".
+   - Constater que le code s'ajoute bien dans la liste juste en dessous. Cette liste contient donc "Test" et "RelaisIVTR".
+   - Cliquer sur "Enregistrer".
+   - Constater que les paramètres disparaissent, que "Test" disparaît du champ "Choisir un transporteur" et que le message "Enregistrement du transporteur Test avec succès" est affiché dans un bandeau vert.
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater que le code "Relais IVTR" est est toujours présent.
+
+
+7. Test d'ajout d'un code transporteur existant pour ce transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif".
+   - Avoir réalisé le test d'ajout enregistré d'un code transporteur non existant, le code étant "RelaisIVTR".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur, en particulier la présence des codes "Test" et "RelaisIVTR".
+   - Dans le champ "Code transporteur", entrer "RelaisIVTR" et cliquer sur "Ajouter un code".
+   - Constater que le champ devient rouger et l'apparition du message "Cette référence de transporteur existe déjà pour ce transporteur".
+   - Cliquer sur "Annuler".
+
+
+8. Test d'ajout d'un code transporteur existant pour un autre transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Avoir réalisé le test d'ajout d'un deuxième et d'un troisième transporteur non existants enregistrés, les transporteurs étant nommés "Test2" et "Stif".
+   - Avoir réalisé le test d'ajout enregistré d'un code transporteur non existant, le code étant "RelaisIVTR".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur, en particulier la présence des codes "Test" et "RelaisIVTR".
+   - Dans le champ "Code transporteur", entrer "Test2" et cliquer sur "Ajouter un code".
+   - Constater que le champ devient rouger et l'apparition du message "Cette référence de transporteur existe déjà pour un autre transporteur".
+   - Cliquer sur "Annuler".
+
+
+9. Test d'ajout non enregistré d'un code transporteur non existant.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur.
+   - Dans le champ "Code transporteur", entrer "CodeNotToSave" et cliquer sur "Ajouter un code".
+   - Constater que le code s'ajoute bien dans la liste juste en dessous. Cette liste contient donc "Test" et "RelaisIVTR".
+   - Cliquer sur "Annuler".
+   - Constater que les paramètres disparaissent, que "Test" disparaît du champ "Choisir un transporteur".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur, en particulier que le code "CodeNotToSave" ne fai pas partie de la liste.
+
+
+10. Test de suppression non enregistrée d'un code transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Avoir réalisé le test d'ajout enregistré d'un code transporteur non existant, le code étant "RelaisIVTR".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur, en particulier la présence des codes "Test" et "RelaisIVTR".
+   - Dans la liste des code transporteurs, sélectionner "RelaisIVTR" et cliquer sur "Supprimer un code".
+   - Constater que le code disparaît de la liste.
+   - Cliquer sur "Annuler".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater que le code "Relais IVTR" est toujours présent.
+
+
+11. Test de suppression enregistrée d'un code transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Avoir réalisé le test d'ajout enregistré d'un code transporteur non existant, le code étant "RelaisIVTR".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur, en particulier la présence des codes "Test" et "RelaisIVTR".
+   - Dans la liste des code transporteurs, sélectionner "RelaisIVTR" et cliquer sur "Supprimer un code".
+   - Constater que le code disparaît de la liste.
+   - Cliquer sur "Enregistrer".
+   - Constater que les paramètres disparaissent, que "Test" disparaît du champ "Choisir un transporteur" et que le message "Enregistrement du transporteur Test avec succès" est affiché dans un bandeau vert.
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater que le code "Relais IVTR" est n'est plus présent.
+ 
+
+12. Test de suppression confirmée d'un transporteur.
+
+   - Ajouter un transporteur ayant pour nom "Relais" et pour code transporteur "Relais".
+   - Dans le champ "Choisir un transporteur", taper la lettre "r" et sélectionner le transporteur "Relais".
+   - Constater l'apparition des paramètres du transporteur.
+   - Cliquer sur Supprimer le transporteur.
+   - Dans pop-up, cliquer sur "Supprimer".
+   - Constater l'apparition du message "Suppression avec succès".
+   - Dans le champ "Choisir un transporteur", taper la lettre "r" et constater que le transporteur "Relais" n'est plus disponible.
+
+
+12. Test de suppression non confirmée d'un transporteur.
+
+   - Avoir réalisé le test d'ajout de transporteur non existant enregistré, le transporteur étant nommé "Test".
+   - Dans le champ "Choisir un transporteur", taper la lettre "t" et sélectionner le transporteur "Test".
+   - Constater l'apparition des paramètres du transporteur.
+   - Cliquer sur Supprimer le transporteur.
+   - Dans pop-up, cliquer sur "Annuler".
+   - Constater la disparition de la pop-up et que le transporteur est toujours affiché à l'écran.
+   - Dans le champ "Choisir un transporteur", taper la lettre "r" et constater que le transporteur "Relais" n'est plus disponible.

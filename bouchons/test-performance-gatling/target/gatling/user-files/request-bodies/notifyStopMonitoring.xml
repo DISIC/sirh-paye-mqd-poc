@@ -1,0 +1,117 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk"
+	xmlns:siri="http://www.siri.org.uk/siri" xmlns:acsb="http://www.ifopt.org.uk/acsb" xmlns:ifop="http://www.ifopt.org.uk/ifopt">
+	<soapenv:Header />
+	<soapenv:Body>
+		<wsdl:NotifyStopMonitoring>
+			<ServiceDeliveryInfo>
+				<siri:ResponseTimestamp>${requestTimestamp}</siri:ResponseTimestamp>
+				<siri:ProducerRef>${requestorRef}</siri:ProducerRef>
+				<siri:ResponseMessageIdentifier>${messageIdentifier}</siri:ResponseMessageIdentifier>
+				<siri:RequestMessageRef>${requestMessageRef}</siri:RequestMessageRef>
+			</ServiceDeliveryInfo>
+			<Notification>
+				<siri:StopMonitoringDelivery version="2.0:FR-IDF-2.4">
+					<siri:ResponseTimestamp>${requestTimestamp}</siri:ResponseTimestamp>
+					<siri:RequestMessageRef>${requestMessageRef}</siri:RequestMessageRef>
+					<siri:Status>${status}</siri:Status>
+					<siri:MonitoringRef>${monitoringRef}</siri:MonitoringRef>
+					<siri:MonitoredStopVisit>
+						<siri:RecordedAtTime>${requestTimestamp}</siri:RecordedAtTime>
+						<siri:ItemIdentifier>${itemIdentifier}</siri:ItemIdentifier>
+						<siri:MonitoringRef>${monitoringRef}</siri:MonitoringRef>
+						<siri:MonitoredVehicleJourney>
+							<siri:LineRef>${lineRef}</siri:LineRef>
+							<!--FramedVehicleJourneyRef -->
+							<siri:FramedVehicleJourneyRef>
+								<siri:DataFrameRef>any</siri:DataFrameRef>
+								<siri:DatedVehicleJourneyRef>${datedVehicleJourneyRef}</siri:DatedVehicleJourneyRef>
+							</siri:FramedVehicleJourneyRef>
+							<!--JourneyPatternInfoGroup -->
+							<siri:JourneyPatternRef>${journeyPatternRef}</siri:JourneyPatternRef>
+							<siri:JourneyPatternName>${journeyPatternName}</siri:JourneyPatternName>
+							<siri:VehicleMode>rail</siri:VehicleMode>
+							<siri:RouteRef>${routeRef}</siri:RouteRef>
+							<siri:PublishedLineName>N</siri:PublishedLineName>
+							<siri:DirectionName>Rambouillet</siri:DirectionName>
+							<!--VehicleJourneyInfo -->
+							<!--ServiceInfo -->
+							<siri:OperatorRef>${operatorRef}</siri:OperatorRef>
+							<siri:ProductCategoryRef>categorie2</siri:ProductCategoryRef>
+							<siri:ServiceFeatureRef>trainVoyageurs</siri:ServiceFeatureRef>
+							<siri:VehicleFeatureRef>longTrain</siri:VehicleFeatureRef>
+							<siri:OriginRef>STIF:StopPoint:Q:41139:</siri:OriginRef>
+							<siri:OriginName>Arrêt 1</siri:OriginName>
+							<siri:Via>
+								<siri:PlaceRef>STIF:StopPoint:Q:41145:</siri:PlaceRef>
+								<siri:PlaceName>Arrêt 5</siri:PlaceName>
+							</siri:Via>
+							<siri:DestinationRef>${destinationRef}</siri:DestinationRef>
+							<siri:DestinationName>Arrêt 50</siri:DestinationName>
+							<siri:VehicleJourneyName>Course 2</siri:VehicleJourneyName>
+							<siri:JourneyNote>ceci est une description de course 2</siri:JourneyNote>
+							<siri:HeadwayService>false</siri:HeadwayService>
+							<siri:OriginAimedDepartureTime>${requestTimestamp}</siri:OriginAimedDepartureTime>
+							<siri:DestinationAimedArrivalTime>2018-03-14T19:20:00.000+01:00</siri:DestinationAimedArrivalTime>
+							<siri:FirstOrLastJourney>unspecified</siri:FirstOrLastJourney>
+							<!--JourneyProgressInfo: -->
+							<siri:Monitored>true</siri:Monitored>
+							<!--<siri:MonitoringError></siri:MonitoringError> -->
+							<siri:InCongestion>false</siri:InCongestion>
+							<siri:InPanic>false</siri:InPanic>
+							<siri:VehicleLocation id="1" srsName="1">
+								<siri:Longitude>2.227435</siri:Longitude>
+								<siri:Latitude>48.785067</siri:Latitude>
+								<siri:Precision>1</siri:Precision>
+							</siri:VehicleLocation>
+							<siri:Bearing>1</siri:Bearing>
+							<siri:Occupancy>full</siri:Occupancy>
+							<siri:Delay>PT1M</siri:Delay>
+							<siri:TrainNumbers>
+								<siri:TrainNumberRef>5918</siri:TrainNumberRef>
+							</siri:TrainNumbers>
+							<!--JourneyParts: -->
+							<siri:JourneyParts>
+								<siri:JourneyPartInfo>
+									<siri:JourneyPartRef>5409</siri:JourneyPartRef>
+									<siri:TrainNumberRef>5928:1</siri:TrainNumberRef>
+									<siri:OperatorRef>${operatorRef}</siri:OperatorRef>
+								</siri:JourneyPartInfo>
+							</siri:JourneyParts>
+							<!--MonitoredCall 2ème passage -->
+							<siri:MonitoredCall>
+								<siri:StopPointRef>${monitoringRef}</siri:StopPointRef>
+								<siri:Order>1</siri:Order>
+								<siri:StopPointName>Arrêt 2</siri:StopPointName>
+								<siri:VehicleAtStop>false</siri:VehicleAtStop>
+								<siri:PlatformTraversal>false</siri:PlatformTraversal>
+								<siri:DestinationDisplay>Arrêt 10</siri:DestinationDisplay>
+								<siri:AimedArrivalTime>2018-03-14T10:02:00.000+01:00</siri:AimedArrivalTime>
+								<siri:ActualArrivalTime>2018-03-14T19:02:01.000+01:00</siri:ActualArrivalTime>
+								<siri:LatestExpectedArrivalTime>2018-03-14T19:02:02.000+01:00</siri:LatestExpectedArrivalTime>
+								<siri:ArrivalStatus>onTime</siri:ArrivalStatus>
+								<siri:ArrivalProximityText>à l'approche</siri:ArrivalProximityText>
+								<siri:ArrivalPlatformName>quai 1</siri:ArrivalPlatformName>
+								<siri:ArrivalStopAssignment>
+									<siri:AimedQuayName>voie 2</siri:AimedQuayName>
+								</siri:ArrivalStopAssignment>
+								<siri:AimedDepartureTime>2018-03-14T19:02:41.000+01:00</siri:AimedDepartureTime>
+								<siri:ActualDepartureTime>2018-03-14T19:02:42.000+01:00</siri:ActualDepartureTime>
+								<siri:ProvisionalExpectedDepartureTime>2012-03-14T19:02:43.000+01:00</siri:ProvisionalExpectedDepartureTime>
+								<siri:DepartureStatus>onTime</siri:DepartureStatus>
+								<siri:DeparturePlatformName>quai 1</siri:DeparturePlatformName>
+								<siri:DepartureBoardingActivity>boarding</siri:DepartureBoardingActivity>
+								<siri:AimedHeadwayInterval>PT1M</siri:AimedHeadwayInterval>
+								<siri:ExpectedHeadwayInterval>PT1M</siri:ExpectedHeadwayInterval>
+								<siri:DistanceFromStop>2300</siri:DistanceFromStop>
+								<siri:NumberOfStopsAway>3</siri:NumberOfStopsAway>
+							</siri:MonitoredCall>
+						</siri:MonitoredVehicleJourney>
+					</siri:MonitoredStopVisit>
+				</siri:StopMonitoringDelivery>
+			</Notification>			
+			<NotifyExtension>
+				<siri:uuid>${uuid}</siri:uuid>
+			</NotifyExtension>
+		</wsdl:NotifyStopMonitoring>
+	</soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,114 @@
+Code,Type,Domaine,Libellé
+IVTR_ERR_1,SFTP,REFERENTIEL,Référentiel non intégré : Problème de synchronisation entre le répertoire distant et local.
+IVTR_ERR_2,SFTP,REFERENTIEL,Référentiel  REFLEX non intégré : Fichier non accessible.
+IVTR_ERR_3,SFTP,REFERENTIEL,Référentiel REFLEX non intégré : Le fichier n'est pas au format spécifié. Vérifiez le header {0}.
+IVTR_ERR_4,SFTP,REFERENTIEL,Référentiel CODIFLIGNE non intégré :  Fichier non accessible.
+IVTR_ERR_5,SFTP,REFERENTIEL,Référentiel CODIFLIGNE non intégré : Le fichier n'est pas au format spécifié. Vérifiez le header {0}.
+IVTR_ERR_6,REQUETE,SIRI_SM,Aucune réponse StopMonitoringDelivery n'est envoyée par le ProducerRef suite à la requête {0}.
+IVTR_ERR_7,REQUETE,SIRI_SM,La réponse StopMonitoringDelivery n'a pas le bon format SIRI.
+IVTR_ERR_8,REQUETE,SIRI_SM,Erreur de validation applicative lors du traitement du message StopMonitoring.
+IVTR_ERR_9,REQUETE,SIRI_GS,Aucune réponse GetSiriDelivery n'est envoyée par le ProducerRef suite à la requête {0}.
+IVTR_ERR_10,REQUETE,SIRI_GS,La réponse GetSiriDelivery reçue du {0} n'est pas valide SIRI.
+IVTR_ERR_11,REQUETE,SIRI_GS,Erreur de validation applicative lors du traitement du message GetSiri.
+IVTR_ERR_12,REQUETE,SIRI_CS,La réponse à la requête CheckStatus indique l'indisponibilité du producteur {0}.
+IVTR_ERR_13,REQUETE,SIRI_CS,Le message CheckStatus reçu du {0} n'est pas valide SIRI.
+IVTR_ERR_14,REQUETE,SIRI_CS,Erreur de validation applicative lors du traitement du message Checkstatus.
+IVTR_ERR_15,REQUETE,SIRI_GM,Aucune réponse GeneralMessageDelivery n'est envoyée par le ProducerRef suite à la requête {0}
+IVTR_ERR_16,REQUETE,SIRI,Absence de CheckStatus pour le producteur : {0}
+IVTR_ERR_17,REQUETE,SIRI_GM,Erreur de validation applicative lors du traitement du message GeneralMessage.
+IVTR_ERR_18,REQUETE,SIRI,"L'identifiant n'est pas attaché au référentiel PARTENAIRE , le partenaire {0} et le transporteur {1} sont sans relation."
+IVTR_ERR_19,REQUETE,SIRI_GM,Le GeneralMessageRequest reçu n’est pas au format SIRI 2.2 ou SIRI 2.4.
+IVTR_ERR_20,REQUETE,SIRI,"CheckStatus KO pour le producteur : {0}, impossible d'executer le job."
+IVTR_ERR_21,REQUETE,SIRI,Erreur SIRI 
+IVTR_ERR_22,ABONNEMENT,SIRI_SM,Erreur de validation applicative lors du traitement du message SubscriptionResponse.
+IVTR_ERR_23,ABONNEMENT,SIRI_SM,La réponse SubscriptionResponse n'a pas le bon format SIRI
+IVTR_ERR_24,ABONNEMENT,SIRI_SM,Aucune réponse SubscriptionResponse n'est envoyée par le producteur ProducerRef suite à la requête SubscriptionRequest {0}
+IVTR_ERR_25,ABONNEMENT,SIRI_SM,"Le message SubscriptionResponse ne doit contenir qu'un seul message ResponseStatus, Nombre de réponses suite à la demande d'abonnement :{0}"
+IVTR_ERR_26,ABONNEMENT,SIRI_SM,La fonction d'abonnement n'est pas supportée par le partenaire RequestorRef.
+IVTR_ERR_27,ABONNEMENT,SIRI_SM,Le partenaire  RequestorRef a refusé la demande d'abonnement.
+IVTR_ERR_28,ABONNEMENT,SIRI_SM,La demande d'abonnement engendre une réponse trop volumineuse.
+IVTR_ERR_29,ABONNEMENT,SIRI_SM,Une erreur technique s'est produite.
+IVTR_ERR_30,REQUETE,SIRI,La version {0} de la requête ne correspond pas à la version du partenaire.
+IVTR_ERR_31,REQUETE,SIRI,L'identifiant {0} est inconnu du référentiel REFLEX
+IVTR_ERR_32,REQUETE,SIRI,le champ {0} est vide.
+IVTR_ERR_33,REQUETE,SIRI,L'identifiant {0} du champ SIRI {1} ne respecte pas le pattern [Fournisseur]:[type d'objet]:[typeObjetDétaillé]:[identifiantTechnique]:(LOC)
+IVTR_ERR_34,REQUETE,SIRI,L'identifiant {0} est inconnu du référentiel CODIFLIGNE
+IVTR_ERR_35,REQUETE,SIRI,L'identifiant {0} est inconnu du référentiel PARTENAIRE
+IVTR_ERR_36,REQUETE,SIRI,Le partenaire {0} est désactivé
+IVTR_ERR_37,ABONNEMENT,SIRI_SM,Aucun abonnement ne correspond à la combinaison {0} - {1} 
+IVTR_ERR_38,ABONNEMENT,REFERENTIEL,Le partenaire {0} du message TerminateSubscriptionRequest est inconnu du Relais
+IVTR_ERR_39,ABONNEMENT,SIRI_SM,Le diffuseur {0} n'a pas l'autorisation de s'abonner à l'arrêt {1}.
+IVTR_ERR_40,REQUETE,SIRI,Le service {0} n'est pas activé pour le partenaire {1}.
+IVTR_ERR_41,REQUETE,SIRI,Ligne {0} : Erreur [BAD_PARAMETER] : {1} à {2} dans le référentiel Reflex est vide ou mal formé.
+IVTR_ERR_42,REQUETE,SIRI,"Erreur, le nombre de point d'arrêt par requête dans le contrat de service doit etre supérieur à 0, trouvé : {0}"
+IVTR_ERR_43,REQUETE,SIRI,Mauvais cron enregistré pour le job scruteur de file d'attente des esclaves : {0} n'est pas un cron valide
+IVTR_ERR_44,REQUETE,SIRI,Le nombre maximal d'informations de passage que l'on souhaite recevoir sur l’'arrêt requêté ne doit pas être égale à zéro.
+IVTR_ERR_45,REQUETE,SIRI,"La requête est valide, mais aucune donnée correspondante n'est disponible sur le serveur"
+IVTR_ERR_46,REQUETE,SIRI,Les données ne sont pas disponibles pour la période demandée.
+IVTR_ERR_47,REQUETE,SIRI,La requête GetSiri contient une autre requête que StopMonitoringRequest.
+IVTR_ERR_48,REQUETE,SIRI,La requête contient des paramètres qui ne sont pas supportés par le serveur.
+IVTR_ERR_49,REQUETE,SIRI,Le format de l'adresse {0} n'est pas supporté.
+IVTR_ERR_50,ABONNEMENT,SIRI,La date de fin d'abonnement [{0}] est antérieure à la date du jour [{1}].
+IVTR_ERR_51,ORDONANCEUR,JOB,L'hostname du maitre ordonanceur identifié par '{0}' est irrécuperable
+IVTR_ERR_52,SFTP,REFERENTIEL,Référentiel REFLEX non intégré : Impossible de se connecter au serveur {0}
+IVTR_ERR_53,SFTP,REFERENTIEL,Référentiel CODIFLIGNE non intégré : Impossible de se connecter au serveur {0}
+IVTR_ERR_54,REQUETE,SIRI_MSM,Erreur de validation applicative lors du traitement du message GetMultipleStopMonitoring.
+IVTR_ERR_55,REQUETE,SIRI_CS,Erreur inconnue lors du traitement du message CheckStatus
+IVTR_ERR_56,REQUETE,SIRI_GS,Erreur inconnue lors du traitement du message GetSiri
+IVTR_ERR_57,REQUETE,SIRI_SM,Erreur inconnue lors du traitement du message StopMonitoring
+IVTR_ERR_58,REQUETE,SIRI_GM,Erreur inconnue lors du traitement du message GeneralMessage
+IVTR_ERR_59,ABONNEMENT,SIRI_SM,Erreur de validation applicative lors du traitement du message StopMonitoring.
+IVTR_ERR_60,ABONNEMENT,SIRI_SM,Erreur inconnue lors du traitement du message StopMonitoringSubscription.
+IVTR_ERR_61,ABONNEMENT,SIRI_S,Erreur de validation applicative lors du traitement du message subscribe.
+IVTR_ERR_62,ABONNEMENT,SIRI_SM,Erreur inconnue lors du traitement du message subscribe.
+IVTR_ERR_63,REQUETE,SIRI_D,Le delivery a un statut KO
+IVTR_ERR_64,BDD,REFERENTIEL,Erreur lors de la vérification de la synchronisation bdd/Tampon du référentiel {0}
+IVTR_ERR_65,BDD,REFERENTIEL,Erreur inconnue lors d'un traitement dans le module orchestration
+IVTR_ERR_66,BDD,REFERENTIEL,Erreur inconnue lors d'un traitement dans le module emission
+IVTR_ERR_67,BDD,REFERENTIEL,Erreur inconnue lors d'un traitement dans le module reception
+IVTR_ERR_68,DESABONNEMENT,SIRI_S,Erreur de validation applicative lors du traitement du message TerminateSubscriptionRequest
+IVTR_ERR_69,DESABONNEMENT,SIRI_S,Erreur inconnue lors du traitement du message TerminateSubscriptionRequest
+IVTR_ERR_70,REQUETE,TAMPON,Tampon indisponible
+IVTR_ERR_71,REQUETE,SIRI_GM,Le canal {0} correspondant au message {1} reçu dans le GeneralMessageDelivery n'est pas à un canal valide.
+IVTR_ERR_72,REQUETE,SIRI_CS,Erreur lors de la récupération du status du système. Le système est considéré comme indisponible.
+IVTR_ERR_73,REQUETE,SIRI,La version {0} associée au partenaire {1} n'est pas supportée.
+IVTR_ERR_74,REQUETE,SIRI," La requête est faite sur le mauvais endpoint, ce endpoint accepte les requêtes en version {0} uniquement."
+IVTR_ERR_75,REQUETE,COMMUNICATION,Le service {0} n'est pas actif
+IVTR_ERR_76,REQUETE,SIRI,Le champ messageIdentifier {0} est manquant lors du traitement du message
+IVTR_ERR_77,REQUETE,SIRI,Le diffuseur {0} n'est pas autorisé à requêter ses propres informations.
+IVTR_ERR_78,REQUETE,SIRI_SPD,Aucune réponse StopPointDiscovery n'est envoyée par le ProducerRef suite à la requête {0}
+IVTR_ERR_79,REQUETE,SIRI_SPD,La réponse StopPointDiscovery n'a pas le bon format SIRI.
+IVTR_ERR_80,REQUETE,SIRI_SPD,Erreur de validation applicative lors du traitement du message StopPointDiscovery.
+IVTR_ERR_81,BDD,REFERENTIEL,GDL REFLEX en erreur concerné : {0}.
+IVTR_ERR_82,BDD,REFERENTIEL,LDA REFLEX en erreur concerné : {0}.
+IVTR_ERR_83,BDD,REFERENTIEL,ZDL REFLEX en erreur concerné : {0}.
+IVTR_ERR_84,BDD,REFERENTIEL,ZDE REFLEX en erreur concerné : {0}.
+IVTR_ERR_85,BDD,REFERENTIEL,Ligne CODIFLIGNE en erreur concernée : {0}.
+IVTR_ERR_86,SFTP,REFERENTIEL,Référentiel REFLEX non intégré : Le fichier n'est pas au format spécifié.
+IVTR_ERR_87,SFTP,REFERENTIEL,Référentiel CODIFLIGNE non intégré : Le fichier n'est pas au format spécifié.
+IVTR_ERR_88,REQUETE,SIRI_GM,Erreur [PRODUCER_UNAVAILABLE] : {0} indisponible
+IVTR_ERR_89,REQUETE,SIRI_SM,Erreur [PRODUCER_UNAVAILABLE] : {0} indisponible
+IVTR_ERR_90,ABONNEMENT,SIRI_SM,Le diffuseur {0} n'a pas l'autorisation de requêter à l'arrêt {1}.
+IVTR_ERR_91,REQUETE,SIRI_SPD,Le lineRef est manquant pour le StopPointRef {0}
+IVTR_ERR_92,REQUETE,SIRI_SM,Le filtre {0} du concentrateur {1} n'est pas pris en compte par le RELAIS
+IVTR_ERR_93,REQUETE,SIRI_SPD,Erreur inconnue lors du traitement du message stopPointDiscovery.
+IVTR_ERR_94,REQUETE,SIRI_SM,Le filtre {0} à été mis par défaut pour le concentrateur {1}
+IVTR_ERR_95,REQUETE,SIRI_S,La réponse à la demande d'abonnement {0} contient un status false.
+IVTR_ERR_96,REQUETE,SIRI_SM,Il n'y a pas d'abonnement SM associé au monitoringRef {0}
+IVTR_ERR_97,REQUETE,SIRI_GM, Il n'y a pas d'abonnement GM associé au monitoringRef {0}
+IVTR_ERR_98,REQUETE,SIRI,Le message reuçut n'a pas un format compatible avec les échanges SIRI soap.
+IVTR_ERR_99,REQUETE,SIRI_GM, Il n'y a pas d'abonnement GM associé au participant {0}
+IVTR_ERR_100,REQUETE,JOB,Le JOB {0} du particpant {1} est mal formé
+IVTR_ERR_101,REQUETE,SIRI,Le champ version {0} de la requête n'est pas au format spécifique.
+IVTR_ERR_102,REQUETE,SIRI_LD,La réponse LineDiscovery n'a pas le bon format SIRI.
+IVTR_ERR_103,REQUETE,SIRI_LD,Erreur de validation applicative lors du traitement du message LineDiscovery.
+IVTR_ERR_104,REQUETE,SIRI_SPD,Erreur inconnue lors du traitement du message LineDiscovery.
+IVTR_ERR_105,REQUETE,SIRI_SPD,Erreur fonction non suportée.
+IVTR_ERR_106,REQUETE,SIRI_ET,Aucune réponse EstimatedTimetable n'est envoyée par le ProducerRef suite à la requête {0}
+IVTR_ERR_107,REQUETE,SIRI_ET,Erreur de validation applicative lors du traitement du message ET.
+IVTR_ERR_108,REQUETE,SIRI_ET, La réponse EstimatedTimetable n'a pas le bon format SIRI.
+IVTR_ERR_109,REQUETE,SIRI_GM,Le canal {0} reçu dans le GeneralMessageSubscription n'est pas un canal valide.
+IVTR_ERR_110,REQUETE,SIRI_GM,Le format {0} correspondant au message {1} reçu dans le GeneralMessageDelivery n'est pas à un format valide.
+IVTR_ERR_111,REQUETE,SIRI_SM,Le nombre total de passage du producteur {0} dépasse la limite autorisée de {1} sur {2}.
+IVTR_ERR_112,REQUETE,SIRI_SM,Aucune vérification sur le nombre de passages car le paramètre du nombre maximum de passage n'est pas renseigné dans la base.
+IVTR_ERR_113,REQUETE,CODIFLIGNE,La valeur '{0}' du champs {1} pour la ligne {2} ne respecte pas le contrat sur service Codifligne.

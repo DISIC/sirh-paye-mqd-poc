@@ -1,0 +1,31 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk"
+	xmlns:siri="http://www.siri.org.uk/siri">
+	<soapenv:Header />
+	<soapenv:Body>
+		<wsdl:GetStopMonitoring>
+			<ServiceRequestInfo>
+
+				<siri:RequestTimestamp>${requestTimestamp}</siri:RequestTimestamp>
+
+				<!-- ${requestorRef} -->
+				<siri:RequestorRef>${requestorRefDiffuseur}</siri:RequestorRef>
+				<!-- ${messageIdentifier} -->
+				<siri:MessageIdentifier>${messageIdentifier}</siri:MessageIdentifier>
+
+
+			</ServiceRequestInfo>
+
+			<Request version="2.0:FR-IDF-2.4-1-2.1">
+				<!-- ${requestTimestamp} -->
+				<siri:RequestTimestamp>${requestTimestamp}</siri:RequestTimestamp>
+				<!-- ${messageIdentifier} -->
+				<siri:MessageIdentifier>${messageIdentifier}</siri:MessageIdentifier>
+				<!-- ${monitoringRef} -->
+				<siri:MonitoringRef>${monitoringRef}</siri:MonitoringRef>
+			</Request>
+			<RequestExtension>
+				<!--You may enter ANY elements at this point -->
+			</RequestExtension>
+		</wsdl:GetStopMonitoring>
+	</soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,134 @@
+{
+    "data": [
+        {
+            "set": [
+                {
+                    "key": "SUBSCRIPTION|STIF:StopPoint:Q:108925:",
+                    "values": [
+                        {
+                            "id": null,
+                            "participant": null,
+                            "monitoringRef": "STIF: StopPoint: Q: 108925: ",
+                            "initialSubscribedMonitoringRef": "STIF: StopPoint: Q: 108925",
+                            "subscriptionRef": "SRpc13",
+                            "address": "http: //localhost: 8110/bouchon-diffuseur",
+                            "initialTerminationTime": 1405288800000,
+                            "incrementalUpdates": false,
+                            "changeBeforeUpdates": "PT1M",
+                            "dateDerniereDemande": 1403088442335,
+                            "previewInterval": null,
+                            "startTime": null,
+                            "messageIdentifier": "MRpc3",
+                            "subscriptionFilterIdentifier": null,
+                            "name": "RATP",
+                            "participantRef": "RATP",
+                            "typePartenaire": null,
+                            "siriVersion": "2.4",
+                            "style": "RPC",
+                            "nombreArretParRequete": "10",
+                            "nombreRequeteParMinute": "1",
+                            "activationModeRequete": false,
+                            "activationModeAbonnement": true,
+                            "activationDiscovery": true,
+                            "partenaireActif": true,
+                            "producteurServicesDTO": {
+                                "idParticipant": 0,
+                                "stopMonitoringUsed": false,
+                                "stopMonitoringUrl": null,
+                                "checkStatusUsed": false,
+                                "checkStatusUrl": null,
+                                "estimateTimeTableUsed": false,
+                                "estimateTimeTableUrl": null,
+                                "generalMessageUsed": false,
+                                "generalMessageUrl": null,
+                                "stopPointDiscoveryUsed": false,
+                                "stopPointDiscoveryUrl": null,
+                                "linesDiscoveryUsed": false,
+                                "linesDiscoveryUrl": null
+                            },
+                            "diffuseurServicesDTO": {
+                                "idParticipant": 0,
+                                "stopMonitoringUsed": true,
+                                "stopMonitoringUrl": "http: //localhost: 8110/bouchon-diffuseur",
+                                "checkStatusUsed": false,
+                                "checkStatusUrl": null,
+                                "estimateTimeTableUsed": false,
+                                "estimateTimeTableUrl": null,
+                                "generalMessageUsed": false,
+                                "generalMessageUrl": null,
+                                "stopPointDiscoveryUsed": false,
+                                "stopPointDiscoveryUrl": null,
+                                "linesDiscoveryUsed": false,
+                                "linesDiscoveryUrl": null
+                            },
+                            "operators": []
+                        }
+                    ]
+                },
+                {
+                    "key": "SUBSCRIPTION|STIF:StopPoint:Q:108926:",
+                    "values": [
+                        {
+                            "id": null,
+                            "participant": null,
+                            "monitoringRef": "STIF: StopPoint: Q: 108926: ",
+                            "initialSubscribedMonitoringRef": "STIF: StopPoint: Q: 108926",
+                            "subscriptionRef": "SRpc13",
+                            "address": "http: //localhost: 8110/bouchon-diffuseur",
+                            "initialTerminationTime": 1405288800000,
+                            "incrementalUpdates": false,
+                            "changeBeforeUpdates": "PT1M",
+                            "dateDerniereDemande": 1403088442335,
+                            "previewInterval": null,
+                            "startTime": null,
+                            "messageIdentifier": "MRpc3",
+                            "subscriptionFilterIdentifier": null,
+                            "name": "RATP",
+                            "participantRef": "RATP",
+                            "typePartenaire": null,
+                            "siriVersion": "2.4",
+                            "style": "RPC",
+                            "nombreArretParRequete": "10",
+                            "nombreRequeteParMinute": "1",
+                            "activationModeRequete": false,
+                            "activationModeAbonnement": true,
+                            "activationDiscovery": true,
+                            "partenaireActif": true,
+                            "producteurServicesDTO": {
+                                "idParticipant": 0,
+                                "stopMonitoringUsed": false,
+                                "stopMonitoringUrl": null,
+                                "checkStatusUsed": false,
+                                "checkStatusUrl": null,
+                                "estimateTimeTableUsed": false,
+                                "estimateTimeTableUrl": null,
+                                "generalMessageUsed": false,
+                                "generalMessageUrl": null,
+                                "stopPointDiscoveryUsed": false,
+                                "stopPointDiscoveryUrl": null,
+                                "linesDiscoveryUsed": false,
+                                "linesDiscoveryUrl": null
+                            },
+                            "diffuseurServicesDTO": {
+                                "idParticipant": 0,
+                                "stopMonitoringUsed": true,
+                                "stopMonitoringUrl": "http: //localhost: 8110/bouchon-diffuseur",
+                                "checkStatusUsed": false,
+                                "checkStatusUrl": null,
+                                "estimateTimeTableUsed": false,
+                                "estimateTimeTableUrl": null,
+                                "generalMessageUsed": false,
+                                "generalMessageUrl": null,
+                                "stopPointDiscoveryUsed": false,
+                                "stopPointDiscoveryUrl": null,
+                                "linesDiscoveryUsed": false,
+                                "linesDiscoveryUrl": null
+                            },
+                            "operators": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

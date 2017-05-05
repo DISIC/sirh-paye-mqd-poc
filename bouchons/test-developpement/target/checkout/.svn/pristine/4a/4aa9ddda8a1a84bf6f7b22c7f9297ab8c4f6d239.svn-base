@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:CheckStatus>
+         <Request>
+            <siri:RequestTimestamp>2014-05-09T10:46:31.034+02:00</siri:RequestTimestamp>
+           
+            <siri:RequestorRef>SNCF</siri:RequestorRef>
+            <!--Optional:-->
+            <siri:MessageIdentifier>faefae</siri:MessageIdentifier>
+         </Request>
+         <RequestExtension>
+            <!--You may enter ANY elements at this point-->
+         </RequestExtension>
+      </wsdl:CheckStatus>
+   </soapenv:Body>
+</soapenv:Envelope>

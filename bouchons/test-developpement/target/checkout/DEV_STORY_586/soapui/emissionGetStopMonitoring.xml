@@ -1,0 +1,43 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetStopMonitoring>
+         <ServiceRequestInfo>
+            
+            <siri:RequestTimestamp>2014-05-09T10:46:31.034+02:00</siri:RequestTimestamp>
+           
+            <siri:RequestorRef>SNCF</siri:RequestorRef>
+            <!--Optional:-->
+            <siri:MessageIdentifier>AETAEssT</siri:MessageIdentifier>
+            
+         </ServiceRequestInfo>
+         <Request version="2.0:FR-IDF-2.4-1-2.1">
+            <siri:RequestTimestamp>2014-05-09T10:46:31.034+02:00</siri:RequestTimestamp>
+            <!--Optional:-->
+            <siri:MessageIdentifier>AAAEFGGER</siri:MessageIdentifier>
+            
+            <siri:MonitoringRef>STIF:StopPoint:Q:108925:</siri:MonitoringRef>
+           
+            <!--Optional:-->
+            <siri:LineRef>LIG13</siri:LineRef>
+            <!--Optional:-->
+            <siri:DirectionRef>CHATILLON</siri:DirectionRef>
+            <!--Optional:-->
+            <siri:DestinationRef>CHATILLON</siri:DestinationRef>
+            <!--Optional:-->
+            <siri:StopVisitTypes>all</siri:StopVisitTypes>
+            <!--Optional:-->
+            <siri:Language>false</siri:Language>
+            <!--Optional:-->
+            <siri:MaximumStopVisits>1</siri:MaximumStopVisits>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <!--Optional:-->
+            <siri:MinimumStopVisitsPerLine>2</siri:MinimumStopVisitsPerLine>
+            
+         </Request>
+         <RequestExtension>
+            <!--You may enter ANY elements at this point-->
+         </RequestExtension>
+      </wsdl:GetStopMonitoring>
+   </soapenv:Body>
+</soapenv:Envelope>

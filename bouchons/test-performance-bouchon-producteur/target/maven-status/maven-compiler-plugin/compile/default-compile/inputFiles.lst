@@ -1,0 +1,5 @@
+/home/alexandre/Workspace/stif/bouchons/test-performance-bouchon-producteur/src/main/java/com/thalesgroup/stif/bouchon/producteur/SiriProducerRcpPortImpl.java
+/home/alexandre/Workspace/stif/bouchons/test-performance-bouchon-producteur/src/main/java/com/thalesgroup/stif/bouchon/producteur/GeneralMessageSOAPPortImpl.java
+/home/alexandre/Workspace/stif/bouchons/test-performance-bouchon-producteur/src/main/java/com/thalesgroup/stif/bouchon/producteur/notification/GeneralNotification.java
+/home/alexandre/Workspace/stif/bouchons/test-performance-bouchon-producteur/src/main/java/com/thalesgroup/stif/bouchon/producteur/notification/NotificationUtils.java
+/home/alexandre/Workspace/stif/bouchons/test-performance-bouchon-producteur/src/main/java/com/thalesgroup/stif/bouchon/producteur/notification/StopMonitoringNotificationBuilder.java

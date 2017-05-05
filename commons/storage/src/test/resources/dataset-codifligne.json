@@ -1,0 +1,91 @@
+{
+    "data": [
+        {
+            "simple": [
+                {
+                    "key": "CODIFLIGNE|ligne1CodeStif|ligne1.1CodeAdministratif|ligne1CodeCommercial",
+                    "value": "{\"transporteur1\":null,\"transporteur2\":null,\"nom\":null,\"nomCourt\":null,\"mode\":null,\"codeAdminStif\":\"ligne1CodeStif\",\"sous_mode\":null,\"refLigneAdmin\":\"ligne1.1CodeAdministratif\",\"refLigneCom\":\"ligne1CodeCommercial\"}"
+                },
+                {
+                    "key": "CODIFLIGNE|ligne1CodeStif|ligne1.2CodeAdministratif|ligne1CodeCommercial",
+                    "value": "{\"transporteur1\":null,\"transporteur2\":null,\"nom\":null,\"nomCourt\":null,\"mode\":null,\"codeAdminStif\":\"ligne1CodeStif\",\"sous_mode\":null,\"refLigneAdmin\":\"ligne1.2CodeAdministratif\",\"refLigneCom\":\"ligne1CodeCommercial\"}"
+                },
+                {
+                    "key": "CODIFLIGNE|ligne2CodeStif|ligne2.1CodeAdministratif|ligne2CodeCommercial",
+                    "value": "{\"transporteur1\":null,\"transporteur2\":null,\"nom\":null,\"nomCourt\":null,\"mode\":null,\"codeAdminStif\":\"ligne2CodeStif\",\"sous_mode\":null,\"refLigneAdmin\":\"ligne2.1CodeAdministratif\",\"refLigneCom\":\"ligne2CodeCommercial\"}"
+                }
+            ]
+        },
+        {
+        	"set": [
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CS|ALL",
+        			"values": [
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CS|ligne1CodeStif"},
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CS|ligne2CodeStif"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CA|ALL",
+        			"values": [
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CA|ligne1.1CodeAdministratif"},
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CA|ligne1.2CodeAdministratif"},
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CA|ligne2.1CodeAdministratif"}
+        				
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CC|ALL",
+        			"values": [
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CC|ligne1CodeCommercial"},
+        				{"value": "CODIFLIGNE|CODIFLIGNE_CC|ligne2CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CS|ligne1CodeStif",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.1CodeAdministratif|ligne1CodeCommercial"},
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.2CodeAdministratif|ligne1CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CS|ligne2CodeStif",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne2CodeStif|ligne2.1CodeAdministratif|ligne2CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CA|ligne1.1CodeAdministratif",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.1CodeAdministratif|ligne1CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CA|ligne1.2CodeAdministratif",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.2CodeAdministratif|ligne1CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CA|ligne2.1CodeAdministratif",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne2CodeStif|ligne2.1CodeAdministratif|ligne2CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CC|ligne1CodeCommercial",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.1CodeAdministratif|ligne1CodeCommercial"},
+        				{"value": "CODIFLIGNE|ligne1CodeStif|ligne1.2CodeAdministratif|ligne1CodeCommercial"}
+        			]
+        		},
+        		{
+        			"key": "CODIFLIGNE|CODIFLIGNE_CC|ligne2CodeCommercial",
+        			"values": [
+        				{"value": "CODIFLIGNE|ligne2CodeStif|ligne2.1CodeAdministratif|ligne2CodeCommercial"}
+        			]
+        		}
+        	]
+        }
+    ]
+}

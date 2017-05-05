@@ -1,0 +1,150 @@
+dn: emailLogin=utilisateur11@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur11@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur12@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur12@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur13@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur13@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur14@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur14@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur15@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur15@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur16@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur16@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur17@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur17@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur18@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur18@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur19@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur19@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+
+dn: emailLogin=utilisateur20@r.r, ou=Users, dc=stif, dc=com
+emailLogin: utilisateur20@r.r
+diffuseur: TRUE
+profilCourant: ROLE_ADMINISTRATEUR
+utilisateurActif: TRUE
+givenName: r
+sn: r
+userPassword:: cg==
+superviseur: TRUE
+objectClass: top
+objectClass: stifUser
+administrateur: TRUE
+cn: r r
+producteurEtDiffuseur: TRUE
+

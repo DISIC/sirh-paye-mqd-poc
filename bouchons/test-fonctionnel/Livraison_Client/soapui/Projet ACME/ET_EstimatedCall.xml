@@ -1,0 +1,10 @@
+                        <!--1 or more repetitions:-->
+                        <siri:EstimatedCall>
+                           <siri:StopPointRef>§StopPointRef§</siri:StopPointRef>
+                           <siri:Order>§Order§</siri:Order>
+                           <siri:StopPointName xml:lang="FR">§StopPointName§</siri:StopPointName>
+                           <siri:AimedArrivalTime>§aimedArrivalTime§</siri:AimedArrivalTime>
+                           <siri:ExpectedArrivalTime>§aimedDepartureTime§</siri:ExpectedArrivalTime>
+                           <siri:AimedDepartureTime>§expectedArrivalTime§</siri:AimedDepartureTime>
+                           <siri:ExpectedDepartureTime>§expectedDepartureTime§</siri:ExpectedDepartureTime>
+                        </siri:EstimatedCall>

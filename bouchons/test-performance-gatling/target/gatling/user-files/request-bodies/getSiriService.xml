@@ -1,0 +1,54 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri" xmlns:acsb="http://www.ifopt.org.uk/acsb">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetSiriService>
+         <Request>
+         <siri:RequestTimestamp>${requestTimestamp}</siri:RequestTimestamp>
+         <siri:RequestorRef>${requestorRef}</siri:RequestorRef>
+         <!--Optional:-->
+         <siri:MessageIdentifier>${messageIdentifier}</siri:MessageIdentifier>
+         
+         <!--1 or more repetitions:-->
+         <siri:StopMonitoringRequest version="2.0[FR-IDF-2.4-1-2.1]">
+            <siri:RequestTimestamp>${requestTimestamp}</siri:RequestTimestamp>
+            <!--Optional:-->
+            <siri:MessageIdentifier>${messageIdentifier}</siri:MessageIdentifier>
+           
+               <!--Optional:-->
+               <siri:PreviewInterval>PT${previewInterval}S</siri:PreviewInterval>
+               <!--Optional:-->
+               <siri:StartTime>${startTime}</siri:StartTime>
+               <siri:MonitoringRef>${monitoringRef}</siri:MonitoringRef>
+               <!--Optional:-->
+               <siri:OperatorRef>${operatorRef}</siri:OperatorRef>
+               <!--Optional:-->
+               <siri:LineRef>${lineRef}</siri:LineRef>
+              
+               <!--Optional:-->
+               <siri:DestinationRef>${destinationRef}</siri:DestinationRef>
+               <!--Optional:-->
+               <siri:StopVisitTypes>${stopVisitTypes}</siri:StopVisitTypes>
+               
+               
+               <!--Optional:-->
+               <siri:MaximumStopVisits>${maximumStopVisits}</siri:MaximumStopVisits>
+               <!--You have a CHOICE of the next 2 items at this level-->
+               <!--Optional:-->
+               <siri:MinimumStopVisitsPerLine>${minimumStopVisitsPerLine}</siri:MinimumStopVisitsPerLine>
+               <!--Optional:-->
+               <siri:MinimumStopVisitsPerLineVia>${minimumStopVisitsPerLineVia}</siri:MinimumStopVisitsPerLineVia>
+               
+               
+               <!--Optional:-->
+               <siri:MaximumNumberOfCalls>
+                  <!--Optional:-->
+                  <siri:Onwards>${onwards}</siri:Onwards>
+               </siri:MaximumNumberOfCalls>
+               
+            
+         </siri:StopMonitoringRequest>
+         
+         </Request>
+      </wsdl:GetSiriService>
+   </soapenv:Body>
+</soapenv:Envelope>
