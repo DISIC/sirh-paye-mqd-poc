@@ -1,2 +1,0 @@
-#!/bin/sh
-java -DapplicationProperties.simulation="/home/adile/Workspace/stif/bouchons/bouchon-producteur-redis/src/main/resources/simulation.properties" -DapplicationProperties.override="/home/adile/Workspace/stif/bouchons/bouchon-producteur-redis/src/main/resources/override.properties" -jar ./bouchon-producteur-redis.jar

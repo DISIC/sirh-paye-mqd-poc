@@ -1,1 +1,0 @@
-Utilser le test DEV_STORY_187 pour alimenter la base

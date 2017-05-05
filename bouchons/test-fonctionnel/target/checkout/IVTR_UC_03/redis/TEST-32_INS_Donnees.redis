@@ -1,3 +1,0 @@
-SET RATP "{\"idProducer\":\"RATP\",\"name\":\"RATP\",\"producerRef\":\"RATP\"}"
-SET KEOLIS "{\"idProducer\":\"KEOLIS\",\"name\":\"KEOLIS\",\"producerRef\":\"KEOLIS\"}"
-SET SNCF "{\"idProducer\":\"SNCF\",\"name\":\"SNCF\",\"producerRef\":\"SNCF\"}"

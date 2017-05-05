@@ -15,9 +15,9 @@ import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.ExportService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 
-//
 /**
- * Bean permettant la réponse à un GET restfull d'une demande de log d'echange http://localhost:8480/reporting/log/echange
+ * Bean permettant la réponse à un GET restfull d'une demande de log d'echange
+ * http://localhost:8480/reporting/log/echange
  */
 @ControllerAdvice
 @RestController
@@ -32,15 +32,13 @@ public class ExportBean {
 
 	@RequestMapping("/echange/{from}")
 	public String getTextFile(@RequestParam("from") final Date from) {
-
 		return exportService.getTextFile(from, DateUtils.getCalendarInstance().getTime());
-
 	}
 
 	@RequestMapping("/echange")
 	public String getTextFile() {
 
-		Calendar calendar = new GregorianCalendar();
+		final Calendar calendar = new GregorianCalendar();
 		calendar.add(Calendar.DAY_OF_YEAR, -7);
 		return exportService.getTextFile(null, null);
 

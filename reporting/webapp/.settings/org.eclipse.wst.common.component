@@ -8,15 +8,6 @@
         <dependent-module archiveName="routing-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-routing/reporting-routing">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="api-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-api/reporting-api">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="core-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-core/reporting-core">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="persistence-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-persistence/reporting-persistence">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="utils-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/commons-utils/commons-utils">
             <dependency-type>uses</dependency-type>
         </dependent-module>

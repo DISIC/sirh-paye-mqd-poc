@@ -1,9 +1,0 @@
-STIFSCRUM-579
-
-En tant que RELAIS, je veux acquérir des informations CheckStatus 2.2 en mode requête.
-
-- Création d'un job en base de données (job_details)
-- Création du participant en base de données (participants)
-- lancement de soapUI avec la réponse adaptée (reponse-checkstatus-siri22.xml)
-- Vérification de la réponse en base de données(checkstatus_response) 
-

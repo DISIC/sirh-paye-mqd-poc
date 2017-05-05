@@ -1,9 +1,0 @@
-SET SNCF "{\"idProducer\":\"RATP\",\"name\":\"RATP\",\"producerRef\":\"RATP\"}"
-SET codifLigne|4004016|A00043|C00045 "{\"mode\":null,\"nomTransporteur\":\"Kéolis\",\"nomCT2\":\"RDV\",\"codeStif\":\"4004016\",\"refLigneAdmin\":\"A00043\",\"refLigneCom\":\"C00045\"}"
-SADD codifLigne|CodeStif|4004016 "codifLigne|4004016|A00043|C00045"
-SADD codifLigne|CodeAdministratif|A00043 "codifLigne|4004016|A00043|C00045"
-SADD codifLigne|CodeCommercial|C00045 "codifLigne|4004016|A00043|C00045"
-SET REFLEX|1 "{\"identifiantReflex\":\"REFLEX|1\",\"version\":\"1.0\",\"nom\":\"La_Défense\",\"type\":null,\"accessibilite\":\"true\",\"dateDebut\":\"01/01/2000\",\"dateFin\":null,\"correspondance\":\"true\",\"geoHash\":null,\"typeObjetReflex\":\"GDL\",\"idHierarchie\":null,\"ensembleZDE\":[\"REFLEX|4\"],\"ensembleArea\":[\"REFLEX|2\"]}"
-SET REFLEX|2 "{\"identifiantReflex\":\"REFLEX|1\",\"version\":\"1.0\",\"nom\":\"La_Défense-Grande_Arche\",\"type\":null,\"accessibilite\":\"true\",\"dateDebut\":\"01/01/2000\",\"dateFin\":null,\"correspondance\":\"true\",\"geoHash\":null,\"typeObjetReflex\":\"LDA\",\"idHierarchie\":\"REFLEX|1\",\"ensembleZDE\":[\"REFLEX|4\"],\"ensembleArea\":[\"REFLEX|3\"]}"
-SET REFLEX|3 "{\"identifiantReflex\":\"REFLEX|1\",\"version\":\"1.0\",\"nom\":\"La_Défense\",\"type\":null,\"accessibilite\":\"true\",\"dateDebut\":\"01/01/2000\",\"dateFin\":null,\"correspondance\":\"true\",\"geoHash\":null,\"typeObjetReflex\":\"ZDL\",\"idHierarchie\":\"REFLEX|2\",\"ensembleZDE\":[\"REFLEX|4\"],\"ensembleArea\":[]}
-SET REFLEX|4 "{\"identifiantReflex\":\"REFLEX|1\",\"version\":\"1.0\",\"nom\":\"La_Défense_(Grande_Arche)\",\"type\":\"1\",\"accessibilite\":\"true\",\"dateDebut\":\"01/01/2000\",\"dateFin\":null,\"correspondance\":\"true\",\"geoHash\":\"u09w5h07qer7\",\"typeObjetReflex\":\"ZDE\",\"idHierarchie\":\"REFLEX|3\",\"ensembleZDE\":[],\"ensembleArea\":[]}"
