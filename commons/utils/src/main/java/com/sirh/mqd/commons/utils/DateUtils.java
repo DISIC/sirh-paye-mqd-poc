@@ -18,7 +18,7 @@ import org.joda.time.Hours;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.sirh.mqd.commons.exchanges.exception.TechnicalException;
+import com.sirh.mqd.commons.exception.TechnicalException;
 
 /**
  * Utilitaires sur les dates.
@@ -226,7 +226,7 @@ public final class DateUtils {
 	 * @param date
 	 *            la date à parser
 	 *
-	 * @return la date au format jj/mm/aaaa hh:mm:ss.SSS
+	 * @return la date au format yyyy-MM-dd HH:mm:ss
 	 */
 	public static String formateDateAAAAMMJJhhmmss(final Date date) {
 		return formateDate(date, DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
@@ -372,7 +372,7 @@ public final class DateUtils {
 	 * @return -1, 0 ou 1 si d1 est antérieure, égale ou postérieure à d2.
 	 */
 	public static int compareDates(final Date d1, final Date d2) {
-		return org.apache.commons.lang.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.DAY_OF_MONTH);
+		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.DAY_OF_MONTH);
 	}
 
 	/**
@@ -386,7 +386,7 @@ public final class DateUtils {
 	 * @return -1, 0 ou 1 si d1 est antérieure, égale ou postérieure à d2.
 	 */
 	public static int compareMilliSecondes(final Date d1, final Date d2) {
-		return org.apache.commons.lang.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.MILLISECOND);
+		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.MILLISECOND);
 	}
 
 	/**

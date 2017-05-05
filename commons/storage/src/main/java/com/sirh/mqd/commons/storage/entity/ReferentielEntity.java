@@ -41,4 +41,12 @@ public class ReferentielEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
+
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(final Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 }

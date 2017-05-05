@@ -8,6 +8,11 @@ package com.sirh.mqd.commons.storage.constantes;
 public final class PersistenceConstantes {
 
 	/**
+	 * Nom du template SPRING DATA de connexion à MongoDB
+	 */
+	public static final String MONGO_TEMPLATE = "mongoTemplate";
+
+	/**
 	 * Nom du DAO pour la synchronisation des referentiels
 	 */
 	public static final String SYNCHRO_REFERENTIELS_DAO = "synchroReferentielsDAO";

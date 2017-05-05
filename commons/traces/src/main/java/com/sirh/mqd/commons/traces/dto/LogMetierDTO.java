@@ -3,7 +3,7 @@ package com.sirh.mqd.commons.traces.dto;
 import java.io.Serializable;
 
 import com.google.common.base.Joiner;
-import com.sirh.mqd.commons.constantes.Constantes;
+import com.sirh.mqd.commons.exchanges.constante.Constantes;
 import com.sirh.mqd.commons.traces.enums.LogType;
 
 public class LogMetierDTO implements Serializable {

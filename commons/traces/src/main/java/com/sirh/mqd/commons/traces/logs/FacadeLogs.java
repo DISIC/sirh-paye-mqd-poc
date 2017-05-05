@@ -26,7 +26,7 @@ import com.sirh.mqd.commons.traces.enums.LogType;
 /**
  * Façade pour les logs. C'est un Singleton.
  *
- * @author Thales Services
+ * @author alexandre
  */
 @Component(ConstantesTraces.FACADE_LOGS)
 public class FacadeLogs implements IFacadeLogs {
@@ -77,24 +77,25 @@ public class FacadeLogs implements IFacadeLogs {
 	 * Constructeur
 	 */
 	public FacadeLogs() {
-		this.logAction = LoggerFactory.getLogger("com.thalesgroup.stif.log.system.action");
-		this.logTechnique = LoggerFactory.getLogger("com.thalesgroup.stif.log.system.error");
-		this.logWorkflowDebug = LoggerFactory.getLogger("com.thalesgroup.stif.log.system.workflow");
-		this.logWorkflowInfo = LoggerFactory.getLogger("com.thalesgroup.stif.log.system.debug");
-		this.logPerf = LoggerFactory.getLogger("com.thalesgroup.stif.log.system.performance");
+		this.logAction = LoggerFactory.getLogger("com.sirh.mqd.log.system.action");
+		this.logTechnique = LoggerFactory.getLogger("com.sirh.mqd.log.system.error");
+		this.logWorkflowDebug = LoggerFactory.getLogger("com.sirh.mqd.log.system.workflow");
+		this.logWorkflowInfo = LoggerFactory.getLogger("com.sirh.mqd.log.system.debug");
+		this.logPerf = LoggerFactory.getLogger("com.sirh.mqd.log.system.performance");
 		String applicationName;
 		try {
-			Properties properties = PropertiesUtils.loadFromClasspath("properties/constantes.properties");
+			final Properties properties = PropertiesUtils.loadFromClasspath("properties/constantes.properties");
 			applicationName = properties.getProperty("log.application.name", FacadeLogs.class.getName());
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			applicationName = FacadeLogs.class.getName();
-			logException(LogExceptionFactory.getLogException(LogType.OTHER, this.getClass().getName(), ExceptionType.GLOBAL_EXCEPTION,
-					"File \"constantes.properties\" not found. Couldn't get application name. Default value is " + applicationName + "- "
-							+ FacadeLogs.getTraceString(e)));
+			logException(LogExceptionFactory.getLogException(LogType.OTHER, this.getClass().getName(),
+					ExceptionType.GLOBAL_EXCEPTION,
+					"File \"constantes.properties\" not found. Couldn't get application name. Default value is "
+							+ applicationName + "- " + FacadeLogs.getTraceString(e)));
 
 		}
-		this.logSiriSuccess = LoggerFactory.getLogger("com.thalesgroup.stif.log.metier." + applicationName + ".siri");
-		this.logSiriError = LoggerFactory.getLogger("com.thalesgroup.stif.log.metier." + applicationName + ".error");
+		this.logSiriSuccess = LoggerFactory.getLogger("com.sirh.mqd.log.metier." + applicationName + ".siri");
+		this.logSiriError = LoggerFactory.getLogger("com.sirh.mqd.log.metier." + applicationName + ".error");
 	}
 
 	/**
@@ -120,8 +121,8 @@ public class FacadeLogs implements IFacadeLogs {
 	}
 
 	public static String getTraceString(final Throwable exceptionLevee) {
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
+		final StringWriter sw = new StringWriter();
+		final PrintWriter pw = new PrintWriter(sw);
 		exceptionLevee.printStackTrace(pw);
 		return sw.toString();
 
@@ -145,112 +146,62 @@ public class FacadeLogs implements IFacadeLogs {
 
 	@Override
 	public void logException(final LogExceptionDTO logExceptionDTO) {
-		new LogThread(new Runnable() {
+		new LogThread(() -> {
+			logTechnique.error(logExceptionDTO.getLogTechniqueDTO().toString());
+			logWorkflowInfo.debug(logExceptionDTO.getLogWorkflowDTO().toString());
 
-			@Override
-			public void run() {
-				logTechnique.error(logExceptionDTO.getLogTechniqueDTO().toString());
-				logWorkflowInfo.debug(logExceptionDTO.getLogWorkflowDTO().toString());
-
-			}
 		}).start(logTask);
 
 	}
 
 	@Override
 	public void logPerformance(final LogPerformanceDTO logPerformanceDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logPerf.info(logPerformanceDTO.toString());
-			}
-		}).start(logTask);
+		new LogThread(() -> logPerf.info(logPerformanceDTO.toString())).start(logTask);
 	}
 
 	@Override
 	public void logTechniqueError(final LogTechniqueDTO logTechniqueDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logTechnique.error(logTechniqueDTO.toString());
-
-			}
-		}).start(logTask);
+		new LogThread(() -> logTechnique.error(logTechniqueDTO.toString())).start(logTask);
 
 	}
 
 	@Override
 	public void logTechniqueWarn(final LogTechniqueDTO logTechniqueDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logTechnique.warn(logTechniqueDTO.toString());
-
-			}
-		}).start(logTask);
+		new LogThread(() -> logTechnique.warn(logTechniqueDTO.toString())).start(logTask);
 
 	}
 
 	@Override
 	public void logsMetierSuccess(final LogsMetierDTO logsMetier) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				for (LogMetierDTO logMetier : logsMetier) {
-					logSiriSuccess.info(logMetier.toString());
-				}
+		new LogThread(() -> {
+			for (final LogMetierDTO logMetier : logsMetier) {
+				logSiriSuccess.info(logMetier.toString());
 			}
 		}).start(logTask);
 	}
 
 	@Override
 	public void logsMetierError(final LogsMetierDTO logsMetier) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				for (LogMetierDTO logMetier : logsMetier) {
-					logSiriError.error(logMetier.toString());
-				}
+		new LogThread(() -> {
+			for (final LogMetierDTO logMetier : logsMetier) {
+				logSiriError.error(logMetier.toString());
 			}
 		}).start(logTask);
 	}
 
 	@Override
 	public void logWorkflowInfo(final LogWorkflowDTO logWorkflowDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logWorkflowInfo.info(logWorkflowDTO.toString());
-			}
-		}).start(logTask);
+		new LogThread(() -> logWorkflowInfo.info(logWorkflowDTO.toString())).start(logTask);
 	}
 
 	@Override
 	public void logWorkflowDebug(final LogWorkflowDTO logWorkflowDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logWorkflowDebug.debug(logWorkflowDTO.toString());
-			}
-		}).start(logTask);
+		new LogThread(() -> logWorkflowDebug.debug(logWorkflowDTO.toString())).start(logTask);
 	}
 
 	@Override
 	public void logAction(final LogActionDTO logActionDTO) {
-		new LogThread(new Runnable() {
-
-			@Override
-			public void run() {
-				logAction.info(logActionDTO.toString());
-			}
-		}).start(logTask);
+		new LogThread(() -> logAction.info(logActionDTO.toString())).start(logTask);
 	}
 
 	public AsyncTaskExecutor getLogTask() {

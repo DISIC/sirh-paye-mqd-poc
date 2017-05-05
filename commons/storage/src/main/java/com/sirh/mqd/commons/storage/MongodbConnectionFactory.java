@@ -14,23 +14,14 @@ public class MongodbConnectionFactory extends MongoClientFactoryBean {
 	 * Constructeur d'une instance de connexion à la base de données MongoDB.
 	 * {@link MongoClientFactoryBean} instance using the given
 	 *
-	 * @param usePool
-	 *            Turns on or off the use of connection pooling.
-	 * @param hostName
-	 *            HostName.
+	 * @param host
+	 *            Host Address.
 	 * @param port
 	 *            Port used to connect to the instance.
-	 * @param clusterName
-	 *            Cluster name
-	 * @param poolConfig
-	 *            pool configuration. Defaulted to new instance if
-	 *            {@literal null}.
 	 */
-	public MongodbConnectionFactory(final boolean usePool, final String hostName, final int port,
-			final String clusterName) {
-		super(creerRedisSentinelConfiguration(clusterName, sentinelHosts), creerRedisPoolConfiguration(poolConfig));
-		super.setUsePool(usePool);
-		super.setHost(hostName);
+	public MongodbConnectionFactory(final String host, final int port) {
+		super();
+		super.setHost(host);
 		super.setPort(port);
 	}
 }

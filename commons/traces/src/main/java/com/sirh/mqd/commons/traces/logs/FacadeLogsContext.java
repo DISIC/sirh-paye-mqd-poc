@@ -10,7 +10,7 @@ import com.sirh.mqd.commons.traces.api.IFacadeLogsContext;
 /**
  * Contexte de la Facade de LOGS
  * 
- * @author Thales Services
+ * @author alexandre
  */
 public class FacadeLogsContext implements IFacadeLogsContext {
 

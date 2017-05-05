@@ -5,7 +5,7 @@ import com.sirh.mqd.commons.traces.logs.FacadeLogs;
 /**
  * Interface de gestion des Facades de LOGS
  * 
- * @author Thales Services
+ * @author alexandre
  */
 public interface IFacadeLogsContext {
 

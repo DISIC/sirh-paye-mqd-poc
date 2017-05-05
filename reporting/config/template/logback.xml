@@ -86,17 +86,17 @@
 		</layout>
 	</appender>
 
-	<logger name="com.thalesgroup.stif.log.system.error" additivity="false">
+	<logger name="com.sirh.mqd.log.system.error" additivity="false">
 		<level value="${filter.log.level}" />
 		<appender-ref ref="SYSTEM_LOGFILE" />
 	</logger>
 
-	<logger name="com.thalesgroup.stif.log.system.debug" additivity="false">
+	<logger name="com.sirh.mqd.log.system.debug" additivity="false">
 		<level value="${filter.log.level}" />
 		<appender-ref ref="SYSTEM_DEBUG_LOGFILE" />
 	</logger>
 
-	<logger name="com.thalesgroup.stif.log.system.workflow" additivity="false">
+	<logger name="com.sirh.mqd.log.system.workflow" additivity="false">
 		<level value="OFF" />
 		<appender-ref ref="SYSTEM_WORKFLOW_LOGFILE" />
 	</logger>

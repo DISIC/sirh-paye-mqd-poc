@@ -3,7 +3,7 @@ package com.sirh.mqd.commons.traces.constantes;
 /**
  * Classe contenant les constantes des erreurs techniques du système
  * 
- * @author Thales Services
+ * @author alexandre
  */
 public class ConstantesTechniqueErrors {
 

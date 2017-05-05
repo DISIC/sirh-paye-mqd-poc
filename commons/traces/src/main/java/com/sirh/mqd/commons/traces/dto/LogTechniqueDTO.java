@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.google.common.base.Joiner;
-import com.sirh.mqd.commons.constantes.Constantes;
+import com.sirh.mqd.commons.exchanges.constante.Constantes;
 import com.sirh.mqd.commons.traces.enums.LogType;
 import com.sirh.mqd.commons.utils.DateUtils;
 

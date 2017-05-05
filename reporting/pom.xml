@@ -62,7 +62,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
@@ -95,7 +94,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
 				<configuration>
 					<downloadJavadocs>true</downloadJavadocs>
 					<downloadSources>true</downloadSources>
@@ -127,12 +125,6 @@
 		<dependency>
 			<groupId>com.sirh.mqd.commons</groupId>
 			<artifactId>exchanges</artifactId>
-		</dependency>
-
-		<!-- COMMONS STORAGE -->
-		<dependency>
-			<groupId>com.sirh.mqd.commons</groupId>
-			<artifactId>storage</artifactId>
 		</dependency>
 
 		<!-- SPRING -->
@@ -211,8 +203,8 @@
 			<artifactId>dynamicreports-googlecharts</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
 		</dependency>
 
 		<!-- COMMONS TEST -->

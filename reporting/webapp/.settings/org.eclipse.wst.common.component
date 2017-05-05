@@ -8,6 +8,15 @@
         <dependent-module archiveName="routing-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-routing/reporting-routing">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="api-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-api/reporting-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="core-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/reporting-core/reporting-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="storage-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/commons-storage/commons-storage">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="utils-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/commons-utils/commons-utils">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -15,9 +24,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="exchanges-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/commons-exchanges/commons-exchanges">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="storage-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/commons-storage/commons-storage">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/reporting-webapp/target/classes"/>

@@ -42,16 +42,16 @@
 
 		<!-- DIVERS -->
 		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -77,6 +77,16 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+		</dependency>
+		
+		<!-- FASTER XML -->
+		<dependency>
+			<groupId>com.fasterxml</groupId>
+			<artifactId>jackson-module-json-org</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml</groupId>
+			<artifactId>jackson-xml-databind</artifactId>
 		</dependency>
 
 		<!-- CSV Parser -->

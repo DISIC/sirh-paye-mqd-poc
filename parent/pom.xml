@@ -56,7 +56,9 @@
 		<jcsv.version>1.4.0</jcsv.version>
 		<joda.version>2.9.9</joda.version>
 		<cxf.version>3.1.11</cxf.version>
-		<jackson.version>2.8.8</jackson.version>
+		<jackson.jaxrs.json.version>2.8.8</jackson.jaxrs.json.version>
+		<jackson.json.org.version>0.9.1</jackson.json.org.version>
+		<jackson.xml.databind.version>0.6.2</jackson.xml.databind.version>
 		<commons.lang.version>3.5</commons.lang.version>
 		<commons.collections.version>4.1</commons.collections.version>
 		<commons.configuration.version>2.1.1</commons.configuration.version>
@@ -65,7 +67,7 @@
 
 		<!-- 3) Tests library dependency versions -->
 		<junit.version>4.12</junit.version>
-		<mockito.version>2.7.22</mockito.version>
+		<mockito.version>1.10.19</mockito.version>
 		<powermock.version>1.6.6</powermock.version>
 		<easymock.version>3.4</easymock.version>
 		<hsqldb.version>2.4.0</hsqldb.version>
@@ -196,12 +198,24 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.jaxrs</groupId>
 				<artifactId>jackson-jaxrs-json-provider</artifactId>
-				<version>${jackson.version}</version>
+				<version>${jackson.jaxrs.json.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
 				<version>${spring.boot.cxf.version}</version>
+			</dependency>
+
+			<!-- FASTER XML -->
+			<dependency>
+				<groupId>com.fasterxml</groupId>
+				<artifactId>jackson-module-json-org</artifactId>
+				<version>${jackson.json.org.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml</groupId>
+				<artifactId>jackson-xml-databind</artifactId>
+				<version>${jackson.xml.databind.version}</version>
 			</dependency>
 
 			<!-- SPRING DATA ELASTICSEARCH -->

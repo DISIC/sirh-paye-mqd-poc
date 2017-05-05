@@ -15,18 +15,6 @@
 	<name>POC MQD RH Commons Exchanges</name>
 
 	<dependencies>
-	
-		<!-- COMMONS UTILS -->
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>utils</artifactId>
-		</dependency>
-
-		<!-- COMMONS TRACE -->
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>traces</artifactId>
-		</dependency>
 		
 		<!-- SPRING -->
 		<dependency>
@@ -38,6 +26,12 @@
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-core</artifactId>
+		</dependency>
+		
+		<!-- LOGGING -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
 
 		<!-- JCSV -->

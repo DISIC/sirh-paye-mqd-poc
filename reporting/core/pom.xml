@@ -21,11 +21,10 @@
 
 	<dependencies>
 
-		<!-- PERSISTENCE -->
+		<!-- COMMONS STORAGE -->
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>persistence</artifactId>
-			<version>${project.parent.version}</version>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>storage</artifactId>
 		</dependency>
 
 	</dependencies>

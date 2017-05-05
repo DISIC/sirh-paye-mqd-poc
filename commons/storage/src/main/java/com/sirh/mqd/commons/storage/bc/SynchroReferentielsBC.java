@@ -1,7 +1,5 @@
 package com.sirh.mqd.commons.storage.bc;
 
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,7 @@ import com.sirh.mqd.commons.storage.dao.ISynchroReferentielsDAO;
 
 /**
  * Implémentation du BusinessController permettant de vérifier si les
- * référentiels sont synchronisés avec le Tampon.
+ * référentiels sont synchronisés avec la base de données.
  *
  * @author alexandre
  */
@@ -40,12 +38,9 @@ public class SynchroReferentielsBC {
 	 *
 	 * @param majDate
 	 * @param referentiel
-	 * @param duree
-	 *            TODO
 	 */
-	public void modifierDateMaj(final String majDate, final ReferentielEnum referentiel, final Long duree,
-			final TimeUnit timeUnit) {
-		synchroReferentielsDAO.insertLastDateUpDate(majDate, referentiel, duree, timeUnit);
+	public void modifierDateMaj(final String majDate, final ReferentielEnum referentiel) {
+		synchroReferentielsDAO.insertLastDateUpDate(majDate, referentiel);
 	}
 
 }

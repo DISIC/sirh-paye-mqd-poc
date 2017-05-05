@@ -1,7 +1,5 @@
 package com.sirh.mqd.commons.storage.dao.impl;
 
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,6 +13,7 @@ import com.sirh.mqd.commons.exchanges.enums.ReferentielEnum;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.ISynchroReferentielsDAO;
 import com.sirh.mqd.commons.storage.entity.ReferentielEntity;
+import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
  * Implémentation du DAO permettant l'accès à la table de synchronisation des
@@ -27,39 +26,30 @@ import com.sirh.mqd.commons.storage.entity.ReferentielEntity;
 public class SynchroReferentielsDAO implements ISynchroReferentielsDAO {
 
 	@Autowired
-	@Qualifier("mongoTemplate")
+	@Qualifier(PersistenceConstantes.MONGO_TEMPLATE)
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public ReferentielEntity selectLastDateUpDate(final ReferentielEnum referentiel) {
+	public String selectLastDateUpDate(final ReferentielEnum referentiel) {
 
-		ReferentielEntity d = null;
+		String d = null;
 		if (referentiel.name() != null) {
 			final Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(referentiel.name()));
-			d = mongoTemplate.findOne(query, ReferentielEntity.class);
+			d = DateUtils
+					.formateDateAAAAMMJJhhmmss(mongoTemplate.findOne(query, ReferentielEntity.class).getLastUpdate());
 		}
 		return d;
 	}
 
 	@Override
-	public void insertLastDateUpDate(final String majDate, final ReferentielEnum referentiel, final Long duree,
-			final TimeUnit timeUnit) {
+	public void insertLastDateUpDate(final String majDate, final ReferentielEnum referentiel) {
 		if (majDate != null) {
 			final Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(referentiel.name()));
 			final Update update = new Update();
-			if (duree == null || duree.compareTo(new Long(1)) < 0) {
-				update.addToSet("lastUpdate", majDate);
-				mongoTemplate.upsert(query, update, ReferentielEntity.class);
-			} else {
-				// On prend la durée -1h pour que la mise à jour ne soit pas
-				// bloquée.
-				update.addToSet("lastUpdate", majDate);
-				mongoTemplate.upsert(query, update, ReferentielEntity.class);
-
-				redisTemplate.opsForValue().set(key, majDate, duree - 1, timeUnit);
-			}
+			update.addToSet("lastUpdate", majDate);
+			mongoTemplate.upsert(query, update, ReferentielEntity.class);
 		}
 
 	}

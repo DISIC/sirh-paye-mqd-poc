@@ -5,7 +5,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
 /**
  * Façade pour les logs. C'est un Singleton.
  * 
- * @author Thales Services
+ * @author alexandre
  */
 public class FacadeLogFactory {
 

@@ -10,7 +10,7 @@ import com.sirh.mqd.commons.traces.dto.LogsMetierDTO;
 /**
  * Interface de gestion des méthodes de LOG propres au projet
  *
- * @author Thales Services
+ * @author alexandre
  */
 public interface IFacadeLogs {
 

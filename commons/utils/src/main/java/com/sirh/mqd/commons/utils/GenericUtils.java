@@ -14,7 +14,7 @@ import org.apache.commons.validator.routines.UrlValidator;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
-import com.sirh.mqd.commons.constantes.Constantes;
+import com.sirh.mqd.commons.exchanges.constante.Constantes;
 
 /**
  * Classe utilitaire.

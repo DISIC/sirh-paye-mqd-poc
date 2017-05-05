@@ -3,20 +3,18 @@ package com.sirh.mqd.commons.utils;
 import java.io.File;
 import java.io.IOException;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  * Classe utilitaire permet de serialiser et déserialiser un message JSON
- * 
- * @author Thales Services
+ *
+ * @author alexandre
  */
 public class JsonUtils {
 
 	/**
 	 * Non constructeur.
-	 * 
+	 *
 	 * @throws InstantiationException
 	 *             si tentative d'appel de ce constructeur.
 	 */
@@ -26,7 +24,7 @@ public class JsonUtils {
 
 	/**
 	 * Méthode qui permet de transformer un message JSON en objet Java.
-	 * 
+	 *
 	 * @param jsonMessage
 	 *            Message JSON à transformer.
 	 * @param classObject
@@ -41,8 +39,9 @@ public class JsonUtils {
 	}
 
 	/**
-	 * Méthode qui permet de transformer un fichier contenant du JSON en objet Java.
-	 * 
+	 * Méthode qui permet de transformer un fichier contenant du JSON en objet
+	 * Java.
+	 *
 	 * @param jsonFile
 	 *            Fichier JSON à transformer.
 	 * @param classObject
@@ -58,7 +57,7 @@ public class JsonUtils {
 
 	/**
 	 * Méthode qui permet de sérialiser en JSON un objet Java.
-	 * 
+	 *
 	 * @param object
 	 *            Objet à sérialiser.
 	 * @return Une chaîne de caractères représentant un objet sérialisé
@@ -66,8 +65,9 @@ public class JsonUtils {
 	 *             exception en cas de problème de serialisation
 	 */
 	public static <T> String serializerJSON(final T object) throws IOException {
-		// STIFSCRUM-2340
-		if (object == null) return null;
+		if (object == null) {
+			return null;
+		}
 		final ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(object);
 	}
