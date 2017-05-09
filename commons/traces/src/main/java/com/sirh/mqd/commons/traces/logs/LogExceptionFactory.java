@@ -46,7 +46,7 @@ public class LogExceptionFactory {
 	 */
 	public static LogExceptionDTO getLogException(final LogType logType, final String srcClassName, final String content) {
 		LogTechniqueDTO logTechnique = LogTechniqueFactory.getLogTechnique(new Date(), logType, srcClassName,
-				ExceptionType.EXCEPTION_INCCONUE.getLibelle(), content);
+				ExceptionType.UNKNOWN_EXCEPTION.getLibelle(), content);
 		LogWorkflowDTO logWorkflow = LogWorkflowFactory.getLogWorkflow(content);
 		return new LogExceptionDTO(logTechnique, logWorkflow);
 	}
