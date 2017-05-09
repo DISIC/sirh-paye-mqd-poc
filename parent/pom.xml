@@ -22,8 +22,6 @@
 	<modules>
 		<module>../commons</module>
 		<module>../reporting</module>
-		<module>../mockups</module>
-		<module>../cots</module>
 	</modules>
 
 	<properties>
