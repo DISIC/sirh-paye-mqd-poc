@@ -1,10 +1,7 @@
 package com.sirh.mqd.commons.traces.api;
 
 import com.sirh.mqd.commons.traces.dto.LogActionDTO;
-import com.sirh.mqd.commons.traces.dto.LogExceptionDTO;
-import com.sirh.mqd.commons.traces.dto.LogPerformanceDTO;
 import com.sirh.mqd.commons.traces.dto.LogTechniqueDTO;
-import com.sirh.mqd.commons.traces.dto.LogWorkflowDTO;
 import com.sirh.mqd.commons.traces.dto.LogsMetierDTO;
 
 /**
@@ -15,73 +12,28 @@ import com.sirh.mqd.commons.traces.dto.LogsMetierDTO;
 public interface IFacadeLogs {
 
 	/**
-	 * Création d'un log lorsqu'une exception est detectée
+	 * Méthode de création d'un log technique
 	 *
-	 * @param LogExceptionDTO
-	 *            : crée avec la factory LogExceptionFactory
+	 * @param exception
+	 *            DTO d'un log technique contenant une exception
 	 */
-	void logException(LogExceptionDTO logExceptionDTO);
+	void logTechnique(LogTechniqueDTO exception);
 
 	/**
-	 * Création d'un log performance
+	 * Méthode de création d'un log métier en récupérant la date du système
 	 *
-	 * @param logPerformanceDTO
-	 *            : crée avec la factory LOgPerformanceFactory
+	 * @param messageMetier
+	 *            DTO d'un log métier contenant un message métier en succès,
+	 *            alerte ou erreur
 	 */
-	void logPerformance(LogPerformanceDTO logPerformanceDTO);
+	void logsMetier(LogsMetierDTO messageMetier);
 
 	/**
-	 * Création d'un log technique de niveau erreur
+	 * Méthode de création d'un log définissant une action IHM
 	 *
-	 * @param logTechniqueDTO
-	 *            : crée avec la factory LogTechniqueFactory
+	 * @param actionIHM
+	 *            DTO d'un log d'une action réalisée via l'IHM
 	 */
-	void logTechniqueError(LogTechniqueDTO logTechniqueDTO);
-
-	/**
-	 * création d'un log technique de niveau warn
-	 *
-	 * @param logTechniqueDTO
-	 *            : crée avec la factory LogTechniqueFactory
-	 */
-	void logTechniqueWarn(LogTechniqueDTO logTechniqueDTO);
-
-	/**
-	 *
-	 * @param logMetier
-	 */
-	void logsMetierSuccess(LogsMetierDTO logsMetier);
-
-	/**
-	 * Création d'un log métier SIRI en récupérant la date du système
-	 *
-	 * @param logsMetierDTO
-	 *            : crée avec la factory LogsMetierFactory
-	 */
-	void logsMetierError(LogsMetierDTO logMetierDTO);
-
-	/**
-	 * Crétaion d'un log Workflow
-	 *
-	 * @param logWorkflowDTO
-	 *            : crée avec la factory LogWorkflowFactory
-	 */
-	void logWorkflowInfo(LogWorkflowDTO logWorkflowDTO);
-
-	/**
-	 * Ajout d'une ligne de log Définissant une étape de workflow applicative
-	 *
-	 * @param logWorkflow
-	 *            : crée avec la factory : logWorkflowFactory
-	 */
-	void logWorkflowDebug(LogWorkflowDTO logWorkflow);
-
-	/**
-	 * Ajout d'une ligne de log définissant une action IHM
-	 *
-	 * @param logActionDTO
-	 *            : créé avec la factory LogActionFactory
-	 */
-	void logAction(LogActionDTO logActionDTO);
+	void logAction(LogActionDTO actionIHM);
 
 }
