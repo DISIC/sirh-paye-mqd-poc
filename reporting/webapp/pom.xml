@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>com.sirh.mqd</groupId>
 		<artifactId>reporting</artifactId>
@@ -10,11 +11,11 @@
 
 	<artifactId>webapp</artifactId>
 	<packaging>war</packaging>
-	
+
 	<name>POC MQD RH Reporting Webapp</name>
 	<description>Module Webapp définissant les servlets et autres listeners de l'application Web. 
 	Ce module peut contenir à terme l'implémentation d'une IHM.</description>
-	
+
 	<properties>
 		<main.basedir>..</main.basedir>
 	</properties>
@@ -47,20 +48,49 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>livraison-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${delivery.repository}/exec</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>*.war</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
-		
+
 		<!-- ROUTING -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>routing</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 </project>

@@ -84,7 +84,7 @@ public class LogMetierDTO implements Serializable {
 	@Override
 	public String toString() {
 		final StringBuilder logBuilder = new StringBuilder();
-		logBuilder.append(Constantes.SPACE).append(Constantes.OPEN_SQUARE_BRACKET);
+		logBuilder.append(Constantes.OPEN_SQUARE_BRACKET);
 		final Joiner joiner = Joiner
 				.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.DASH + Constantes.OPEN_SQUARE_BRACKET)
 				.useForNull(Constantes.DASH);

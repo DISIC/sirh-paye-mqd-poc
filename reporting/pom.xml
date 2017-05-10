@@ -25,11 +25,30 @@
 
 	<properties>
 		<main.basedir>.</main.basedir>
+		<delivery.repository>${main.basedir}/target/livraison/${environment}</delivery.repository>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<environment>local</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo</id>
+			<properties>
+				<environment>demo</environment>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 
-		<finalName>${project.artifactId}-${project.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}-${environment}</finalName>
 
 		<!-- Centralisation des fichiers de filtrage du contenu des ressources -->
 		<filters>
@@ -58,7 +77,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 			<!-- Externalisation de certaines ressources copiées dans le répertoire 
-				destination target/config/${environnement} -->
+				destination target/config/${environment} -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -76,7 +95,8 @@
 						<configuration>
 							<outputDirectory>${delivery.repository}/config</outputDirectory>
 							<filters>
-								<filter>${basedir}/config/filters/filter-local.properties</filter>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
 							</filters>
 							<resources>
 								<resource>
@@ -86,9 +106,29 @@
 							</resources>
 						</configuration>
 					</execution>
+					<execution>
+						<id>tomcat-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${delivery.repository}/tomcat</outputDirectory>
+							<filters>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
+							</filters>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/tomcat</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
-
 			<!-- Configuration du goal eclipse pour générer un projet WTP2.0 basé 
 				sur Spring et Maven -->
 			<plugin>

@@ -168,8 +168,9 @@ public class LogActionDTO implements Serializable {
 			authenticationDate = DateUtils.formateDateJJMMAAAAhhmmssSSS(this.authenticationDate);
 		}
 		final StringBuilder logBuilder = new StringBuilder();
-		logBuilder.append(Constantes.SPACE).append(Constantes.OPEN_SQUARE_BRACKET);
-		final Joiner joiner = Joiner.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.OPEN_SQUARE_BRACKET)
+		logBuilder.append(Constantes.OPEN_SQUARE_BRACKET);
+		final Joiner joiner = Joiner
+				.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.DASH + Constantes.OPEN_SQUARE_BRACKET)
 				.useForNull(Constantes.DASH);
 		joiner.appendTo(logBuilder, this.login, this.role, authenticationDate, this.pageName, this.actionType,
 				this.actionResult, this.businessID, this.businessObjectInitial, this.businessObjectModified);
