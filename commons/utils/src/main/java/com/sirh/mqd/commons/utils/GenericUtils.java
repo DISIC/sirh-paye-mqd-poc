@@ -14,7 +14,8 @@ import org.apache.commons.validator.routines.UrlValidator;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
-import com.sirh.mqd.commons.exchanges.constante.Constantes;
+import com.sirh.mqd.commons.utils.constante.Constantes;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
 
 /**
  * Classe utilitaire.
@@ -152,42 +153,45 @@ public final class GenericUtils {
 	 * @param chemins
 	 *            chemins de l'URL
 	 * @return URL finie.
-	 * @throws URISyntaxException
+	 * @throws TechnicalException
 	 */
 	public static String creerHttpUrl(final String protocole, final String serveur, final Integer port,
-			final String appli, final String... chemins) throws URISyntaxException {
-		if (null == serveur) {
-			return null;
-		}
-
-		final StringBuilder url = new StringBuilder();
-
-		if (StringUtils.isNotBlank(protocole)) {
-			url.append(protocole);
-			url.append(Constantes.SEPARATEUR_FIN_PROTOCOLE);
-		} else {
-			url.append(Constantes.HTTP_PROTOCOL);
-		}
-
-		url.append(serveur);
-
-		if (null != port) {
-			if (port < 0) {
+			final String appli, final String... chemins) throws TechnicalException {
+		try {
+			if (null == serveur) {
 				return null;
-			} else {
-				url.append(Constantes.COLON).append(port);
 			}
+
+			final StringBuilder url = new StringBuilder();
+
+			if (StringUtils.isNotBlank(protocole)) {
+				url.append(protocole);
+				url.append(Constantes.SEPARATEUR_FIN_PROTOCOLE);
+			} else {
+				url.append(Constantes.HTTP_PROTOCOL);
+			}
+
+			url.append(serveur);
+
+			if (null != port) {
+				if (port < 0) {
+					return null;
+				} else {
+					url.append(Constantes.COLON).append(port);
+				}
+			}
+
+			ajouterHttpSeparateur(url, appli);
+
+			for (final String chemin : chemins) {
+				ajouterHttpSeparateur(url, chemin);
+			}
+
+			final URI testUrl = new URI(url.toString());
+			return testUrl.toString();
+		} catch (final URISyntaxException e) {
+			throw new TechnicalException(e);
 		}
-
-		ajouterHttpSeparateur(url, appli);
-
-		for (final String chemin : chemins) {
-			ajouterHttpSeparateur(url, chemin);
-		}
-
-		final URI testUrl = new URI(url.toString());
-		return testUrl.toString();
-
 	}
 
 	/**
@@ -310,18 +314,6 @@ public final class GenericUtils {
 		}
 		return null;
 
-	}
-
-	/**
-	 * Cette méthode permet de retourner un string sous ce format arg1|arg2|arg3
-	 *
-	 * @param arguments
-	 *            arg1,ar2,arg3
-	 * @return une chaine sous ce format arg1|arg2|arg3
-	 */
-	public static String join(final String... arguments) {
-		final Joiner joiner = Joiner.on(Constantes.SEPARATOR_REDIS);
-		return Strings.emptyToNull(joiner.join(arguments));
 	}
 
 	/**

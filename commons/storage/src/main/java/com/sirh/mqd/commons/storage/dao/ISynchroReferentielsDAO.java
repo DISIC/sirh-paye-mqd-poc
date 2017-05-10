@@ -1,6 +1,6 @@
 package com.sirh.mqd.commons.storage.dao;
 
-import com.sirh.mqd.commons.exchanges.enums.ReferentielEnum;
+import com.sirh.mqd.commons.traces.enums.InteractionRepositoryEnum;
 
 /**
  * @see doc.story.ref307
@@ -21,7 +21,7 @@ public interface ISynchroReferentielsDAO {
 	 *            jour.
 	 * @return String String correspondant à la date de la dernière mise à jour.
 	 */
-	String selectLastDateUpDate(ReferentielEnum referentiel);
+	String selectLastDateUpDate(InteractionRepositoryEnum referentiel);
 
 	/**
 	 * Méthode permettant de mettre à jour le timestamp de la dernière
@@ -32,6 +32,6 @@ public interface ISynchroReferentielsDAO {
 	 * @param referentiel
 	 *            Referentiel mis à jours
 	 */
-	void insertLastDateUpDate(String majDate, ReferentielEnum referentiel);
+	void insertLastDateUpDate(String majDate, InteractionRepositoryEnum referentiel);
 
 }

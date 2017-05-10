@@ -28,6 +28,12 @@
 
 	<dependencies>
 
+		<!-- COMMONS ECHANGE -->
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>exchanges</artifactId>
+		</dependency>
+
 		<!-- COMMONS UTILS -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

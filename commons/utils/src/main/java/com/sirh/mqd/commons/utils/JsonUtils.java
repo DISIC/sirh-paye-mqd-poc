@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
+
 /**
  * Classe utilitaire permet de serialiser et déserialiser un message JSON
  *
@@ -30,12 +32,17 @@ public class JsonUtils {
 	 * @param classObject
 	 *            Classe de l'objet dans lequel le message sera transformé
 	 * @return l'objet créé
-	 * @throws IOException
+	 * @throws TechnicalException
 	 *             exception en cas de problème de serialisation
 	 */
-	public static <T> T deserializerJSON(final String jsonMessage, final Class<T> classObject) throws IOException {
-		final ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(jsonMessage, classObject);
+	public static <T> T deserializerJSON(final String jsonMessage, final Class<T> classObject)
+			throws TechnicalException {
+		try {
+			final ObjectMapper mapper = new ObjectMapper();
+			return mapper.readValue(jsonMessage, classObject);
+		} catch (final IOException e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 	/**
@@ -47,12 +54,16 @@ public class JsonUtils {
 	 * @param classObject
 	 *            Classe de l'objet dans lequel le message sera transformé
 	 * @return l'objet créé
-	 * @throws IOException
+	 * @throws TechnicalException
 	 *             exception en cas de problème de serialisation
 	 */
-	public static <T> T deserializerJSON(final File jsonFile, final Class<T> classObject) throws IOException {
-		final ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(jsonFile, classObject);
+	public static <T> T deserializerJSON(final File jsonFile, final Class<T> classObject) throws TechnicalException {
+		try {
+			final ObjectMapper mapper = new ObjectMapper();
+			return mapper.readValue(jsonFile, classObject);
+		} catch (final IOException e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 	/**
@@ -61,14 +72,18 @@ public class JsonUtils {
 	 * @param object
 	 *            Objet à sérialiser.
 	 * @return Une chaîne de caractères représentant un objet sérialisé
-	 * @throws IOException
+	 * @throws TechnicalException
 	 *             exception en cas de problème de serialisation
 	 */
-	public static <T> String serializerJSON(final T object) throws IOException {
-		if (object == null) {
-			return null;
+	public static <T> String serializerJSON(final T object) throws TechnicalException {
+		try {
+			if (object == null) {
+				return null;
+			}
+			final ObjectMapper mapper = new ObjectMapper();
+			return mapper.writeValueAsString(object);
+		} catch (final IOException e) {
+			throw new TechnicalException(e);
 		}
-		final ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(object);
 	}
 }

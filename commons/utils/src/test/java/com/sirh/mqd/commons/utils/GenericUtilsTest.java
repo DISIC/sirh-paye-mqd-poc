@@ -2,13 +2,12 @@ package com.sirh.mqd.commons.utils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.URISyntaxException;
 
 import org.fest.assertions.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.sirh.mqd.commons.utils.GenericUtils;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
 
 public class GenericUtilsTest {
 
@@ -338,7 +337,7 @@ public class GenericUtilsTest {
 	 * Cas où l'URL finale est invalide (un espace dans le nom du serveur).<br/>
 	 * Le résultat doit être null.
 	 */
-	@Test(expected = URISyntaxException.class)
+	@Test(expected = TechnicalException.class)
 	public void testCreerHttpUrl06UrlInvalide() throws Exception {
 		final String urlResultat = GenericUtils.creerHttpUrl(null, "mon Serveur", 1234, "mon Appli", "chemin0",
 				"chemin1/", "/chemin2", "/chemin3");
@@ -535,26 +534,6 @@ public class GenericUtilsTest {
 	public void testBigDecimalToDouble() throws Exception {
 		Assertions.assertThat(GenericUtils.bigDecimalToDouble(null)).isNull();
 		Assertions.assertThat(GenericUtils.bigDecimalToDouble(new BigDecimal("45.5"))).isEqualTo(45.5);
-	}
-
-	@Test
-	public void testJoin() throws Exception {
-		Assertions.assertThat(GenericUtils.join()).isEqualTo(null);
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void testJoinArgumentsNull() throws Exception {
-		GenericUtils.join("arg1", null);
-	}
-
-	@Test
-	public void testJoinNominal() throws Exception {
-		Assertions.assertThat(GenericUtils.join("arg1", "arg2", "arg3")).isEqualTo("arg1|arg2|arg3");
-	}
-
-	@Test
-	public void testJoinVide() throws Exception {
-		Assertions.assertThat(GenericUtils.join("arg1", "", "arg3")).isEqualTo("arg1||arg3");
 	}
 
 	@Test

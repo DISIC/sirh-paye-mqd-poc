@@ -9,10 +9,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.enums.ReferentielEnum;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.ISynchroReferentielsDAO;
 import com.sirh.mqd.commons.storage.entity.ReferentielEntity;
+import com.sirh.mqd.commons.traces.enums.InteractionRepositoryEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
@@ -30,7 +30,7 @@ public class SynchroReferentielsDAO implements ISynchroReferentielsDAO {
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public String selectLastDateUpDate(final ReferentielEnum referentiel) {
+	public String selectLastDateUpDate(final InteractionRepositoryEnum referentiel) {
 
 		String d = null;
 		if (referentiel.name() != null) {
@@ -43,7 +43,7 @@ public class SynchroReferentielsDAO implements ISynchroReferentielsDAO {
 	}
 
 	@Override
-	public void insertLastDateUpDate(final String majDate, final ReferentielEnum referentiel) {
+	public void insertLastDateUpDate(final String majDate, final InteractionRepositoryEnum referentiel) {
 		if (majDate != null) {
 			final Query query = new Query();
 			query.addCriteria(Criteria.where("name").is(referentiel.name()));

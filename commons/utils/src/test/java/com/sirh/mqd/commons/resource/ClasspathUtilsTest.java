@@ -1,10 +1,9 @@
 package com.sirh.mqd.commons.resource;
 
-import java.io.FileNotFoundException;
-
 import org.junit.Test;
 
-import com.sirh.mqd.commons.resource.ClasspathUtils;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
+import com.sirh.mqd.commons.utils.resource.ClasspathUtils;
 
 /**
  * Teste la classe ClasspathUtils
@@ -28,16 +27,15 @@ public class ClasspathUtilsTest {
 		ClasspathUtils.getResourceAsStream(FILE_NAME);
 	}
 
-	@Test(expected = FileNotFoundException.class)
+	@Test(expected = TechnicalException.class)
 	public void testGetResourceFile() throws Exception {
 		// ko, en echec
 		ClasspathUtils.getResourceFile(FILE_NAME_KO);
 	}
 
-	@Test(expected = FileNotFoundException.class)
+	@Test(expected = TechnicalException.class)
 	public void testGetResourceAsStream() throws Exception {
 		// ko, en echec
 		ClasspathUtils.getResourceAsStream(FILE_NAME_KO);
 	}
-
 }

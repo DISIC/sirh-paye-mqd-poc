@@ -14,11 +14,12 @@ import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Hours;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.sirh.mqd.commons.exception.TechnicalException;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
 
 /**
  * Utilitaires sur les dates.
@@ -63,43 +64,39 @@ public final class DateUtils {
 	private static final String DATE_FORMAT_DD_MM_YYYY_HH_MM_SS = "dd/MM/yyyy HH:mm:ss";
 
 	/**
-	 * Format de date "jj/mm/aaaa hh:mm:ss"
+	 * Format de date "jj/mm/aaaa hh:mm:ss.sss"
 	 */
 	private static final String DATE_FORMAT_DD_MM_YYYY_HH_MM_SS_SSS = "dd/MM/yyyy HH:mm:ss.SSS";
 
 	/**
-	 * Format de date "jj/mm/aaaa hh:mm:ss.SSS"
+	 * Format de date "aaaa-mm-jj hh:mm:ss.SSS"
 	 */
 	private static final String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/**
-	 * Format de date "eeee jj mm aaaa"
+	 * Format de date "eeee jj mmmm aaaa"
 	 */
 	private static final String DATE_FORMAT_EEEE_DD_MMMM_YYYY = "EEEE dd MMMM yyyy";
 
 	/**
-	 * Format de date "yyyy-MM-dd'T'HH:mm:ss'Z'"
+	 * Format de date "aaaa-mm-jj'T'hh:mm:ss'Z'"
 	 */
 	private static final String DATE_FORMAT_YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
 	/**
-	 * Format de date "yyyy-MM-dd'T'HH:mm:ss,SSSZ"
+	 * Format de date "aaaa-mm-jj'T'hh:mm:ss,SSSZ"
 	 */
 	private static final String DATE_FORMAT_YYYY_MM_DD_T_HH_MM_SSSZ = "yyyy-MM-dd'T'HH:mm:ss,SSSZ";
 
 	/**
-	 * Format d'entrée pour une horaire
-	 */
-	public static final String INPUT_FORMAT = "HH:mm";
-
-	/**
-	 * Format de date "yyyy-MM-dd HH:mm:ss"
+	 * Format de date "aaaa-mm-jj hh:mm:ss"
 	 */
 	private static final String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 	/**
-	 * Parser d'horaire.
+	 * Format d'entrée pour un horaire "hh:mm"
 	 */
+	public static final String INPUT_FORMAT = "HH:mm";
 
 	/**
 	 * Non constructeur.
@@ -115,12 +112,12 @@ public final class DateUtils {
 	 * Parse une horaire et donne la date passée à l'horaire concernée
 	 *
 	 * @param horaire
-	 * @return renvois la date passée à l'horaire concernée.
+	 * @return renvoie la date passée à l'horaire concernée.
 	 */
 	public static Date parseHoraire(final String horaire, final Date date) {
 
 		try {
-			final SimpleDateFormat inputParser = new SimpleDateFormat(INPUT_FORMAT, Locale.US);
+			final SimpleDateFormat inputParser = new SimpleDateFormat(INPUT_FORMAT, DEFAULT_LOCALE);
 			final Calendar calParser = DateUtils.getCalendarInstance();
 			calParser.setTime(inputParser.parse(horaire));
 			final Calendar cal = DateUtils.getCalendarInstance();
@@ -137,29 +134,29 @@ public final class DateUtils {
 	 * L'instance du Calendrier paramétrée en TimeZone "UTC" et Locale "FRENCH"
 	 * à utiliser.
 	 *
-	 * @return Calendar l'instance du calendrier
+	 * @return {@link Calendar} l'instance du calendrier
 	 */
 	public static Calendar getCalendarInstance() {
 		return GregorianCalendar.getInstance(DEFAULT_TIME_ZONE, DEFAULT_LOCALE);
 	}
 
 	/**
-	 * Récupération d'un format Date
+	 * Transformation d'un objet Date au format "eeee jj mmmm aaaa"
 	 *
 	 * @param date
 	 *            la date à parser
 	 *
-	 * @return la date au format eeee jj mm aaaa
+	 * @return la date au format eeee jj mmmm aaaa
 	 */
 	public static String formateDateEEEEddMMMMyyyy(final Date date) {
 		return formateDate(date, DATE_FORMAT_EEEE_DD_MMMM_YYYY);
 	}
 
 	/**
-	 * Récupération d'un format jj/mm/aaaa
+	 * Transformation d'un objet Date au format "jj/mm/aaaa"
 	 *
 	 * @param date
-	 *            : la date à parser
+	 *            la date à parser
 	 *
 	 * @return la date au format jj/mm/aaaa
 	 */
@@ -168,19 +165,19 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Récupération d'un format jj/mm/aaaa
+	 * Transformation d'un objet Date au format "jj/mm/aaaa hh:mm"
 	 *
 	 * @param date
-	 *            : la date à parser
+	 *            la date à parser
 	 *
-	 * @return la date au format jj/mm/aaaa
+	 * @return la date au format jj/mm/aaaa hh:mm
 	 */
 	public static String formateDateJJMMAAAAhhmm(final Date date) {
 		return formateDate(date, DATE_FORMAT_DD_MM_YYYY_HH_MM);
 	}
 
 	/**
-	 * Récupération d'un format Date
+	 * Transformation d'un objet Date au format "jj/mm/aaaa hh:mm:ss"
 	 *
 	 * @param date
 	 *            la date à parser
@@ -192,53 +189,36 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Récupération d'un format Date
+	 * Transformation d'un objet Date au format "jj/mm/aaaa hh:mm:ss.sss"
 	 *
 	 * @param date
 	 *            la date à parser
 	 *
-	 * @return la date au format jj/mm/aaaa hh:mm:ss
-	 */
-	public static String formateDateMailJJMMAAAAhhmmss(final Date date) {
-		String dateRetour = null;
-		if (date != null) {
-			final SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT_DD_MM_YYYY_HH_MM_SS, DEFAULT_LOCALE);
-			dateRetour = format.format(date);
-		}
-		return dateRetour;
-	}
-
-	/**
-	 * Récupération d'un format Date
-	 *
-	 * @param date
-	 *            la date à parser
-	 *
-	 * @return la date au format jj/mm/aaaa hh:mm:ss.SSS
+	 * @return la date au format jj/mm/aaaa hh:mm:ss.sss
 	 */
 	public static String formateDateJJMMAAAAhhmmssSSS(final Date date) {
 		return formateDate(date, DATE_FORMAT_DD_MM_YYYY_HH_MM_SS_SSS);
 	}
 
 	/**
-	 * Récupération d'un format Date
+	 * Transformation d'un objet Date au format "aaaa-mm-jj hh:mm:ss"
 	 *
 	 * @param date
 	 *            la date à parser
 	 *
-	 * @return la date au format yyyy-MM-dd HH:mm:ss
+	 * @return la date au format aaaa-mm-jj hh:mm:ss
 	 */
 	public static String formateDateAAAAMMJJhhmmss(final Date date) {
 		return formateDate(date, DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
 	}
 
 	/**
-	 * Récupération d'un format Date
+	 * Transformation d'un objet Date au format "aaaa-mm-jj hh:mm:ss.sss"
 	 *
 	 * @param date
 	 *            la date à parser
 	 *
-	 * @return la date au format jj/mm/aaaa hh:mm:ss.SSS
+	 * @return la date au format aaaa-mm-jj hh:mm:ss.sss
 	 */
 	public static String formateDateAAAAMMJJhhmmssSSS(final Date date) {
 		return formateDate(date, DATE_FORMAT_YYYY_MM_DD_HH_MM_SS_SSS);
@@ -264,7 +244,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Création d'une date
+	 * Création d'un objet Date à partir du format "jj/mm/aaaa"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
@@ -276,7 +256,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Création d'une date
+	 * Création d'un objet Date à partir du format "jj/mm/aaaa hh:mm:ss"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
@@ -288,7 +268,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Création d'une date
+	 * Création d'un objet Date à partir du format "jj/mm/aaaa hh:mm:ss.sss"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
@@ -300,17 +280,19 @@ public final class DateUtils {
 	}
 
 	/**
-	 * 2014-11-18 14:06:16,045
+	 * Création d'un objet Date à partir du format "aaaa-mm-jj hh:mm:ss.sss"
 	 *
 	 * @param date
-	 * @return
+	 *            date sous forme de chaîne de caractères
+	 *
+	 * @return date en objet {@link Date}
 	 */
 	public static Date parseeDateAAAAMMJJhhmmssSSS(final String date) {
 		return parseDate(date, DATE_FORMAT_YYYY_MM_DD_HH_MM_SS_SSS);
 	}
 
 	/**
-	 * Création d'une date
+	 * Création d'un objet Date à partir du format "aaaa-mm-jj'T'hh:mm:ss'Z'"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
@@ -322,7 +304,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Création d'une date
+	 * Création d'un objet Date à partir du format "aaaa-mm-jj'T'hh:mm:ss,SSSZ"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
@@ -344,21 +326,37 @@ public final class DateUtils {
 	 */
 	private static Date parseDate(final String date, final String dateFormat) {
 		Date dateRetour = null;
-
 		if (null != date) {
 			final SimpleDateFormat format = new SimpleDateFormat(dateFormat, DEFAULT_LOCALE);
 			format.setTimeZone(DEFAULT_TIME_ZONE);
 			try {
 				dateRetour = format.parse(date);
 			} catch (final ParseException e) {
-				// LOG.error("Erreur en parsant la chaine '{}' : {}", date, e);
-				final IllegalArgumentException iae = new IllegalArgumentException("Date : " + date + " non correcte");
-				iae.initCause(e);
-				throw iae;
+				throw new TechnicalException("Date : " + date + " non correcte", e);
 			}
 		}
-
 		return dateRetour;
+	}
+
+	/**
+	 * Méthode permettant de vérifier si le format d'une date est valide.
+	 *
+	 * @param date
+	 *            date sous forme de chaine.
+	 * @param dateFormat
+	 *            format de date.
+	 * @return true si le format est valide, false sinon
+	 */
+	public static boolean isDateFormatValid(final String date, final String dateFormat) {
+		boolean valid = true;
+		try {
+			final DateTimeFormatter formatter = DateTimeFormat.forPattern(dateFormat).withLocale(DEFAULT_LOCALE)
+					.withZone(DateTimeZone.UTC);
+			formatter.parseDateTime(date);
+		} catch (final Exception e) {
+			valid = false;
+		}
+		return valid;
 	}
 
 	/**
@@ -430,8 +428,11 @@ public final class DateUtils {
 	}
 
 	/**
-	 * @return un {@link XMLGregorianCalendar} à la date courante
-	 * @throws DatatypeConfigurationException
+	 * L'instance du Calendrier XML Gregorian paramétrée en TimeZone "UTC" et
+	 * Locale "FRENCH" à utiliser.
+	 *
+	 * @return {@link XMLGregorianCalendar} à la date courante
+	 * @throws TechnicalException
 	 */
 	public static XMLGregorianCalendar getXmlGregorianCalendar() {
 		try {
@@ -477,9 +478,8 @@ public final class DateUtils {
 	public static Date computeDate(final int year, final int month, final int day, final int hour) {
 		final Calendar calendar = DateUtils.getCalendarInstance();
 		calendar.set(Calendar.YEAR, year);
-		calendar.set(Calendar.MONTH, month - 1); // La valeur du mois est entre
-													// 0 (JANVIER) et 11
-													// (DECEMBRE)
+		calendar.set(Calendar.MONTH, month - 1);
+		// La valeur du mois est entre 0 (JANVIER) et 11 (DECEMBRE)
 		calendar.set(Calendar.DAY_OF_MONTH, day);
 		calendar.set(Calendar.HOUR_OF_DAY, hour);
 		calendar.set(Calendar.MINUTE, 0);
@@ -633,24 +633,5 @@ public final class DateUtils {
 				maxDate.setTime(testDate.getTime());
 			}
 		}
-	}
-
-	/**
-	 * Cette méthode vérifie si le format d'une date est valide
-	 *
-	 * @param date
-	 * @return true : si le format est valide, false : si non
-	 */
-	public static boolean formatDateValide(final String dateString) {
-		final String pattern = "dd/MM/yyyy HH:mm:ss";
-		boolean valid = true;
-		try {
-			final DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
-			formatter.parseDateTime(dateString);
-		} catch (final Exception e) {
-			valid = false;
-		}
-
-		return valid;
 	}
 }

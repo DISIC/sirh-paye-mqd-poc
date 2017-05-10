@@ -5,8 +5,8 @@ import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.sirh.mqd.commons.resource.ClasspathUtils;
-import com.sirh.mqd.commons.resource.PropertiesUtils;
+import com.sirh.mqd.commons.utils.resource.ClasspathUtils;
+import com.sirh.mqd.commons.utils.resource.PropertiesUtils;
 
 /**
  * Teste la classe PropertiesUtils
@@ -20,7 +20,7 @@ public class PropertiesUtilsTest {
 
 	@Test
 	public void testAbstractClass() {
-		PropertiesUtils classPathUtils = new PropertiesUtils() {
+		final PropertiesUtils classPathUtils = new PropertiesUtils() {
 		};
 		Assert.assertNotNull(classPathUtils);
 	}
@@ -28,11 +28,11 @@ public class PropertiesUtilsTest {
 	@Test
 	public void testChargementFichier() throws Exception {
 		// fichier choisi pour ce test
-		File file = ClasspathUtils.getResourceFile(FILE_NAME);
+		final File file = ClasspathUtils.getResourceFile(FILE_NAME);
 
 		PropertiesUtils.load(file);
 
-		String filename = file.toString();
+		final String filename = file.toString();
 		// ok, pas d'echec
 		PropertiesUtils.load(filename);
 		// ok, pas d'echec

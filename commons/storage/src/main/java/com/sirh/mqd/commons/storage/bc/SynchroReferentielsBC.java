@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.enums.ReferentielEnum;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.ISynchroReferentielsDAO;
+import com.sirh.mqd.commons.traces.enums.InteractionRepositoryEnum;
 
 /**
  * Implémentation du BusinessController permettant de vérifier si les
@@ -28,7 +28,7 @@ public class SynchroReferentielsBC {
 	 * @param referentiel
 	 * @return
 	 */
-	public String rechercherDerniereMAJ(final ReferentielEnum referentiel) {
+	public String rechercherDerniereMAJ(final InteractionRepositoryEnum referentiel) {
 		return synchroReferentielsDAO.selectLastDateUpDate(referentiel);
 	}
 
@@ -39,7 +39,7 @@ public class SynchroReferentielsBC {
 	 * @param majDate
 	 * @param referentiel
 	 */
-	public void modifierDateMaj(final String majDate, final ReferentielEnum referentiel) {
+	public void modifierDateMaj(final String majDate, final InteractionRepositoryEnum referentiel) {
 		synchroReferentielsDAO.insertLastDateUpDate(majDate, referentiel);
 	}
 

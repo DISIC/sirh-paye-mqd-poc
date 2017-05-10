@@ -16,6 +16,12 @@
 
 	<dependencies>
 		
+		<!-- COMMONS UTILS -->
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>utils</artifactId>
+		</dependency>
+		
 		<!-- SPRING -->
 		<dependency>
 			<groupId>org.springframework</groupId>

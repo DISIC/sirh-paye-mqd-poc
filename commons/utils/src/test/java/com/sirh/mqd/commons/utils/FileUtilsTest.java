@@ -1,8 +1,6 @@
 package com.sirh.mqd.commons.utils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,8 +9,8 @@ import java.util.List;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-import com.sirh.mqd.commons.utils.DateUtils;
-import com.sirh.mqd.commons.utils.FileUtils;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
+import com.sirh.mqd.commons.utils.resource.FileUtils;
 
 public class FileUtilsTest {
 
@@ -22,18 +20,18 @@ public class FileUtilsTest {
 	}
 
 	@Test
-	public void testLectureFichier() throws IOException {
-		String fichier = FileUtils.lectureFichier("./target/test-classes/lecture.txt");
+	public void testLectureFichier() throws TechnicalException {
+		final String fichier = FileUtils.lectureFichier("./target/test-classes/lecture.txt");
 
 		Assertions.assertThat(fichier).isNotNull();
 		Assertions.assertThat(fichier).isEqualTo("Le test\nDe lecture");
 	}
 
 	@Test
-	public void testEcritureFichier() throws IOException {
-		Date d = DateUtils.getCalendarInstance().getTime();
-		String nomFichier = "./target/test-classes/ecriture.txt";
-		StringBuilder nom = new StringBuilder();
+	public void testEcritureFichier() throws TechnicalException {
+		final Date d = DateUtils.getCalendarInstance().getTime();
+		final String nomFichier = "./target/test-classes/ecriture.txt";
+		final StringBuilder nom = new StringBuilder();
 		nom.append("La date du jour est : ").append(DateUtils.formateDateJJMMAAAAhhmmss(d));
 
 		FileUtils.ecrireStringDansFichier(nom.toString(), nomFichier);
@@ -42,19 +40,20 @@ public class FileUtilsTest {
 	}
 
 	@Test
-	public void testGetInputStream00CasNominal() throws FileNotFoundException {
+	public void testGetInputStream00CasNominal() throws TechnicalException {
 		final InputStream ips = FileUtils.getInputStream("/lecture.txt");
 		Assertions.assertThat(ips).isNotNull();
 	}
 
-	@Test(expected = FileNotFoundException.class)
-	public void testGetInputStream00FichierInexistant() throws FileNotFoundException {
+	@Test(expected = TechnicalException.class)
+	public void testGetInputStream00FichierInexistant() throws TechnicalException {
 		FileUtils.getInputStream("/lect.txt");
 	}
 
 	@Test
 	public void testGetLastDatedFilename() {
-		List<String> filenames = Arrays.asList("fichier_201401011830.csv", "fichier_201401011630.csv", "fichier_201401011730.csv");
+		List<String> filenames = Arrays.asList("fichier_201401011830.csv", "fichier_201401011630.csv",
+				"fichier_201401011730.csv");
 		String lastDatedFileName = FileUtils.getLastDatedFilename(filenames);
 		Assertions.assertThat(lastDatedFileName).isEqualTo("fichier_201401011830.csv");
 
@@ -69,9 +68,9 @@ public class FileUtilsTest {
 	}
 
 	@Test
-	public void testSuppressionFichier() throws IOException {
-		String nomFichier = "./target/test-classes/suppression.txt";
-		File file = new File(nomFichier);
+	public void testSuppressionFichier() throws TechnicalException {
+		final String nomFichier = "./target/test-classes/suppression.txt";
+		final File file = new File(nomFichier);
 		FileUtils.suppressionFichier(nomFichier);
 		Assertions.assertThat(file.exists()).isEqualTo(false);
 

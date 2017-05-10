@@ -13,8 +13,7 @@ import org.fest.assertions.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.sirh.mqd.commons.exception.TechnicalException;
-import com.sirh.mqd.commons.utils.DateUtils;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
 
 public class DateUtilsTest {
 
@@ -232,7 +231,7 @@ public class DateUtilsTest {
 	 * Test de la méthode {@link DateUtils#parseeDateJJMMAAAA(String)}.<br/>
 	 * Cas chaine en entrée invalide
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = TechnicalException.class)
 	public void testParseeDateJJMMAAAA02EntreeInvalide() throws Exception {
 		// Initialisations
 		final String chaineEnEntree = "azerty";
@@ -272,7 +271,7 @@ public class DateUtilsTest {
 		Assertions.assertThat(resultat).isNull();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = TechnicalException.class)
 	public void testParseeDateJJMMAAAAhhmmss01CasNonParsable() {
 		DateUtils.parseeDateJJMMAAAAhhmmss("azerty");
 	}
@@ -309,7 +308,7 @@ public class DateUtilsTest {
 		Assertions.assertThat(resultat).isNull();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = TechnicalException.class)
 	public void testParseeDateJJMMAAAAhhmmssSSS01CasNonParsable() {
 		DateUtils.parseeDateJJMMAAAAhhmmssSSS("azerty");
 	}

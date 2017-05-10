@@ -1,7 +1,6 @@
 package com.sirh.mqd.commons.utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
@@ -13,8 +12,7 @@ import org.junit.Test;
 
 import com.sirh.mqd.commons.MonObjet;
 import com.sirh.mqd.commons.MonSousObjet;
-import com.sirh.mqd.commons.utils.GenericUtils;
-import com.sirh.mqd.commons.utils.JsonUtils;
+import com.sirh.mqd.commons.utils.exception.TechnicalException;
 
 public class JsonUtilsTest {
 
@@ -25,10 +23,10 @@ public class JsonUtilsTest {
 	 * <br/>
 	 * Cas nominal.
 	 *
-	 * @throws IOException
+	 * @throws TechnicalException
 	 */
 	@Test
-	public void testDeserializerJSON00CasNominal() throws IOException {
+	public void testDeserializerJSON00CasNominal() throws TechnicalException {
 		final StringBuilder maChaineEnEntree = new StringBuilder();
 		maChaineEnEntree.append("{");
 
@@ -90,10 +88,10 @@ public class JsonUtilsTest {
 	 * <code>null</code>.<br/>
 	 * Permet de tester le catch de l'exception {@link JsonParseException}.
 	 *
-	 * @throws IOException
+	 * @throws TechnicalException
 	 */
-	@Test(expected = IOException.class)
-	public void testDeserializerJSON01ProblemeSurObjet() throws IOException {
+	@Test(expected = TechnicalException.class)
+	public void testDeserializerJSON01ProblemeSurObjet() throws TechnicalException {
 		final StringBuilder maChaineEnEntree = new StringBuilder();
 		maChaineEnEntree.append("{");
 
@@ -112,10 +110,10 @@ public class JsonUtilsTest {
 	 * Le résultat est alors <code>null</code>.<br/>
 	 * Permet de tester le catch de l'exception {@link JsonMappingException}.
 	 *
-	 * @throws IOException
+	 * @throws TechnicalException
 	 */
-	@Test(expected = IOException.class)
-	public void testDeserializerJSON02TypeIncompatible() throws IOException {
+	@Test(expected = TechnicalException.class)
+	public void testDeserializerJSON02TypeIncompatible() throws TechnicalException {
 		final StringBuilder maChaineEnEntree = new StringBuilder();
 		maChaineEnEntree.append("{");
 
@@ -132,27 +130,27 @@ public class JsonUtilsTest {
 	}
 
 	@Test
-	public void testDeserializerFichierJSON00CasNominal() throws IOException {
+	public void testDeserializerFichierJSON00CasNominal() throws TechnicalException {
 		final MonObjet objetResultat = JsonUtils.deserializerJSON(new File("./src/test/resources/objet.json"),
 				MonObjet.class);
 
 		Assertions.assertThat(objetResultat).isNotNull();
 	}
 
-	@Test(expected = IOException.class)
-	public void testDeserializerFichierJSON02TypeIncompatible() throws IOException {
+	@Test(expected = TechnicalException.class)
+	public void testDeserializerFichierJSON02TypeIncompatible() throws TechnicalException {
 		JsonUtils.deserializerJSON(new File("./src/test/resources/objet.json"), String.class);
 
 	}
 
-	@Test(expected = IOException.class)
-	public void testDeserializerFichierJSON01FichierInvalide() throws IOException {
+	@Test(expected = TechnicalException.class)
+	public void testDeserializerFichierJSON01FichierInvalide() throws TechnicalException {
 		JsonUtils.deserializerJSON(new File("./src/test/resources/objetInvalide.json"), String.class);
 
 	}
 
-	@Test(expected = IOException.class)
-	public void testDeserializerFichierJSON03FichierNonExistant() throws IOException {
+	@Test(expected = TechnicalException.class)
+	public void testDeserializerFichierJSON03FichierNonExistant() throws TechnicalException {
 		JsonUtils.deserializerJSON(new File("./src/test/resources/blabla.json"), String.class);
 	}
 
@@ -163,10 +161,10 @@ public class JsonUtilsTest {
 	 * Test de la méthode {@link GenericUtils#serializerJSON(Object)}.<br/>
 	 * Cas nominal.
 	 *
-	 * @throws IOException
+	 * @throws TechnicalException
 	 */
 	@Test
-	public void testSerializerJSON00CasNominal() throws IOException {
+	public void testSerializerJSON00CasNominal() throws TechnicalException {
 		final MonSousObjet sousObjetEnEntree1 = new MonSousObjet();
 		sousObjetEnEntree1.setMonNom("premier nom");
 		sousObjetEnEntree1.setMaDecimale(new BigDecimal("998.01"));
@@ -221,7 +219,7 @@ public class JsonUtilsTest {
 	}
 
 	@Test
-	public void testSerializerJSON00CasNULL() throws IOException {
+	public void testSerializerJSON00CasNULL() throws TechnicalException {
 
 		MonObjet objetEnEntree = null;// new MonObjet();
 

@@ -3,72 +3,98 @@ package com.sirh.mqd.commons.traces.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.google.common.base.Joiner;
-import com.sirh.mqd.commons.exchanges.constante.Constantes;
-import com.sirh.mqd.commons.traces.enums.EnumActionNature;
-import com.sirh.mqd.commons.traces.enums.EnumActionType;
-import com.sirh.mqd.commons.traces.enums.EnumEcranType;
-import com.sirh.mqd.commons.traces.enums.UserActionEnum;
-import com.sirh.mqd.commons.utils.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.base.Joiner;
+import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
+import com.sirh.mqd.commons.utils.DateUtils;
+import com.sirh.mqd.commons.utils.constante.Constantes;
+
+/**
+ * DTO correspondant à un log d'une action IHM réalisée par un utilisateur sur
+ * une page web
+ *
+ * @author alexandre
+ */
 public class LogActionDTO implements Serializable {
 
+	/**
+	 * Generated UID
+	 */
 	private static final long serialVersionUID = -6391762164835901573L;
 
-	private UserActionEnum actionIhm;
+	/**
+	 * Login de l'utilisateur
+	 */
+	private String login;
 
-	private String email;
-
+	/**
+	 * Rôle de l'utilisateur
+	 */
 	private String role;
 
-	private Date dateAuthentification;
+	/**
+	 * Date d'authentification
+	 */
+	private Date authenticationDate;
 
-	private EnumActionType actionType;
+	/**
+	 * Type d'action IHM réalisée par l'utilisateur
+	 */
+	private IHMUserActionEnum actionType;
 
-	private EnumActionNature actionNature;
+	/**
+	 * Résultat de l'action IHM réalisée par l'utilisateur
+	 */
+	private IHMUserResultEnum actionResult;
 
-	private EnumEcranType ecranType;
+	/**
+	 * Nom de la page sur laquelle a eu lieu l'action utilisateur
+	 */
+	private IHMPageNameEnum pageName;
 
-	private String idMetier;
+	/**
+	 * Identifiant métier de l'objet manipulé
+	 */
+	private String businessID;
 
-	private Object obj;
+	/**
+	 * Objet métier initial avant modifications au format JSON
+	 */
+	private String businessObjectInitial;
 
-	private Object objOldValue;
+	/**
+	 * Objet métier après modifications au format JSON
+	 */
+	private String businessObjectModified;
 
 	public LogActionDTO() {
 		super();
 	}
 
-	public LogActionDTO(final UserActionEnum actionIhm, final String email, final String role, final Date dateAuthentification,
-			final EnumActionType actionType, final EnumActionNature actionNature, final EnumEcranType ecranType, final String idMetier,
-			final Object obj, final Object objOldValue) {
-		this();
-		this.actionIhm = actionIhm;
-		this.email = email;
+	public LogActionDTO(final String login, final String role, final Date authenticationDate,
+			final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult, final IHMPageNameEnum pageName,
+			final String businessID, final String businessObjectInitial, final String businessObjetModified) {
+		super();
+		this.login = login;
 		this.role = role;
-		this.dateAuthentification = dateAuthentification;
+		this.authenticationDate = authenticationDate;
 		this.actionType = actionType;
-		this.actionNature = actionNature;
-		this.ecranType = ecranType;
-		this.idMetier = idMetier;
-		this.obj = obj;
-		this.objOldValue = objOldValue;
+		this.actionResult = actionResult;
+		this.pageName = pageName;
+		this.businessID = businessID;
+		this.businessObjectInitial = businessObjectInitial;
+		this.businessObjectModified = businessObjetModified;
 	}
 
-	public UserActionEnum getActionIhm() {
-		return actionIhm;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setActionIhm(final UserActionEnum actionIhm) {
-		this.actionIhm = actionIhm;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(final String email) {
-		this.email = email;
+	public void setLogin(final String login) {
+		this.login = login;
 	}
 
 	public String getRole() {
@@ -79,72 +105,76 @@ public class LogActionDTO implements Serializable {
 		this.role = role;
 	}
 
-	public Date getDateAuthentification() {
-		return dateAuthentification;
+	public Date getAuthenticationDate() {
+		return authenticationDate;
 	}
 
-	public void setDateAuthentification(final Date dateAuthentification) {
-		this.dateAuthentification = dateAuthentification;
+	public void setAuthenticationDate(final Date authenticationDate) {
+		this.authenticationDate = DateUtils.clonerDate(authenticationDate);
 	}
 
-	public EnumActionType getActionType() {
+	public IHMUserActionEnum getActionType() {
 		return actionType;
 	}
 
-	public void setActionType(final EnumActionType actionType) {
+	public void setActionType(final IHMUserActionEnum actionType) {
 		this.actionType = actionType;
 	}
 
-	public EnumActionNature getActionNature() {
-		return actionNature;
+	public IHMUserResultEnum getActionResult() {
+		return actionResult;
 	}
 
-	public void setActionNature(final EnumActionNature actionNature) {
-		this.actionNature = actionNature;
+	public void setActionResult(final IHMUserResultEnum actionResult) {
+		this.actionResult = actionResult;
 	}
 
-	public EnumEcranType getEcranType() {
-		return ecranType;
+	public IHMPageNameEnum getPageName() {
+		return pageName;
 	}
 
-	public void setEcranType(final EnumEcranType ecranType) {
-		this.ecranType = ecranType;
+	public void setPageName(final IHMPageNameEnum pageName) {
+		this.pageName = pageName;
 	}
 
-	public String getIdMetier() {
-		return idMetier;
+	public String getBusinessID() {
+		return businessID;
 	}
 
-	public void setIdMetier(final String idMetier) {
-		this.idMetier = idMetier;
+	public void setBusinessID(final String businessID) {
+		this.businessID = businessID;
 	}
 
-	public Object getObj() {
-		return obj;
+	public String getBusinessObjectInitial() {
+		return businessObjectInitial;
 	}
 
-	public void setObj(final Object obj) {
-		this.obj = obj;
+	public void setBusinessObjectInitial(final String businessObjectInitial) {
+		this.businessObjectInitial = businessObjectInitial;
 	}
 
-	public Object getObjOldValue() {
-		return objOldValue;
+	public String getBusinessObjectModified() {
+		return businessObjectModified;
 	}
 
-	public void setObjOldValue(final Object objOldValue) {
-		this.objOldValue = objOldValue;
+	public void setBusinessObjectModified(final String businessObjectModified) {
+		this.businessObjectModified = businessObjectModified;
 	}
 
 	@Override
 	public String toString() {
-		String dateAuthentificationFormat = DateUtils.formateDateJJMMAAAAhhmmssSSS(this.dateAuthentification);
-		StringBuilder logText = new StringBuilder();
-		logText.append(Constantes.SPACE).append(Constantes.OPEN_SQUARE_BRACKET);
-		Joiner joiner = Joiner.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.OPEN_SQUARE_BRACKET).useForNull(Constantes.DASH);
-		joiner.appendTo(logText, this.actionIhm, this.email, this.role, dateAuthentificationFormat, this.actionType, this.actionNature,
-				this.ecranType, this.idMetier, this.obj, this.objOldValue);
-		logText.append(Constantes.CLOSE_SQUARE_BRACKET);
-		return logText.toString();
+		String authenticationDate = StringUtils.EMPTY;
+		if (this.authenticationDate != null) {
+			authenticationDate = DateUtils.formateDateJJMMAAAAhhmmssSSS(this.authenticationDate);
+		}
+		final StringBuilder logBuilder = new StringBuilder();
+		logBuilder.append(Constantes.SPACE).append(Constantes.OPEN_SQUARE_BRACKET);
+		final Joiner joiner = Joiner.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.OPEN_SQUARE_BRACKET)
+				.useForNull(Constantes.DASH);
+		joiner.appendTo(logBuilder, this.login, this.role, authenticationDate, this.pageName, this.actionType,
+				this.actionResult, this.businessID, this.businessObjectInitial, this.businessObjectModified);
+		logBuilder.append(Constantes.CLOSE_SQUARE_BRACKET);
+		return logBuilder.toString();
 	}
 
 }
