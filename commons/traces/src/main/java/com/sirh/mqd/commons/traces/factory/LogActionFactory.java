@@ -1,4 +1,4 @@
-package com.sirh.mqd.commons.traces.logs;
+package com.sirh.mqd.commons.traces.factory;
 
 import java.io.IOException;
 import java.util.Date;

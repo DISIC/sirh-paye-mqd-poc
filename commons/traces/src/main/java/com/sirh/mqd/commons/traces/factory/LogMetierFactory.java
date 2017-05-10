@@ -1,8 +1,8 @@
-package com.sirh.mqd.commons.traces.logs;
+package com.sirh.mqd.commons.traces.factory;
 
 import java.text.MessageFormat;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.sirh.mqd.commons.traces.dto.LogMetierDTO;
 import com.sirh.mqd.commons.traces.enums.LogMetierEnum;
@@ -37,7 +37,7 @@ public final class LogMetierFactory {
 	 * @return {@link LogMetierDTO} l'objet DTO gérant les logs métiers
 	 */
 	private static LogMetierDTO createBusinessMessage(final LogMetierEnum message, final Object... arguments) {
-		final String libelle = MessageFormat.format(StringEscapeUtils.escapeSql(message.getPattern()), arguments);
+		final String libelle = MessageFormat.format(StringEscapeUtils.escapeJson(message.getPattern()), arguments);
 		return new LogMetierDTO(message.getMode(), message.getModule(), message.getReferentiel(), libelle);
 	}
 

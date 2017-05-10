@@ -1,4 +1,4 @@
-package com.sirh.mqd.commons.traces.logs;
+package com.sirh.mqd.commons.traces.factory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
