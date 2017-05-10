@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.sirh.mqd.reporting</groupId>
+		<groupId>com.sirh.mqd.supplier</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
@@ -12,7 +12,7 @@
 	<artifactId>api</artifactId>
 	<packaging>jar</packaging>
 
-	<name>POC MQD RH Reporting Api</name>
+	<name>POC MQD RH Supplier Api</name>
 	<description>Module d'API contenant le contrat d'interface pour l'exposition des WS.</description>
 
 	<properties>

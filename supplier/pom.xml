@@ -10,11 +10,11 @@
 		<relativePath>../parent/pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.sirh.mqd.reporting</groupId>
+	<groupId>com.sirh.mqd.supplier</groupId>
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
 
-	<name>POC MQD RH Reporting Interface</name>
+	<name>POC MQD RH Supplier Interface</name>
 
 	<!-- Découpage en modules pour centraliser le routage SPRING INTEGRATION -->
 	<modules>

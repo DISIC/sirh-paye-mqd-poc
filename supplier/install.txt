@@ -1,5 +1,5 @@
 
- *** Configuration du composant Reporting ***
+ *** Configuration du composant Supplier ***
 
 Pré-Requis
 
@@ -11,15 +11,15 @@ Lancer la commande
    2.1 - Les fichiers à externaliser présents dans config/template sont filtrés.
 
          LOGBACK
-         -Dlogback.configurationFile="/${workspace.directory}/reporting/target/livraison/local/tomcat/logback.xml"
+         -Dlogback.configurationFile="/${workspace.directory}/supplier/target/livraison/local/tomcat/logback.xml"
 
          APPLICATION
-         -Dapplication.configurationDirectory="/${workspace.directory}/reporting/target/livraison/local/config"
+         -Dapplication.configurationDirectory="/${workspace.directory}/supplier/target/livraison/local/config"
 
    2.2 - Paramétrer les fichiers context.xml (contenant les pools de connexion) et server.xml.
 
 3 - Création des répertoires de LOGS
 Lancer les commandes dans un terminal
 
-   sudo mkdir -p /var/log/mqdrh/reporting
+   sudo mkdir -p /var/log/mqdrh/supplier
    sudo chown -R ${desktop.username}:root /var/log/mqdrh
