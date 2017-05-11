@@ -3,9 +3,11 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.AnomalieDTO;
 import com.sirh.mqd.reporting.core.api.IDossierService;
@@ -19,11 +21,12 @@ import com.sirh.mqd.reporting.webapp.model.AnomalieModel;
  *
  * @author alexandre
  */
-@ManagedBean(name = ViewConstantes.ANOMALIE_BEAN)
+@Named(ViewConstantes.ANOMALIE_BEAN)
 @SessionScoped
 public class AnomalieBean {
 
-	@ManagedProperty(value = "#{" + CoreConstantes.DOSSIER_SERVICE + "}")
+	@Inject
+	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
 	private IDossierService dossierService;
 
 	/**

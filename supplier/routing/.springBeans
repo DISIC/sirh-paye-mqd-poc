@@ -7,7 +7,6 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.sirh.mqd.supplier.routing.SpringApplicationStarter</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

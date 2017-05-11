@@ -9,7 +9,7 @@
 	<configs>
 	</configs>
 	<autoconfigs>
-		<config>src/main/resources/filtered/applicationContext.xml</config>
+		<config>java:com.sirh.mqd.commons.storage.dao.impl.SynchroReferentielsDAO</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

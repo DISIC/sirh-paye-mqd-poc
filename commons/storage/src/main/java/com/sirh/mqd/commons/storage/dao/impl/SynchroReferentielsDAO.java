@@ -2,7 +2,6 @@ package com.sirh.mqd.commons.storage.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -22,7 +21,6 @@ import com.sirh.mqd.commons.utils.DateUtils;
  * @author alexandre
  */
 @Service(PersistenceConstantes.SYNCHRO_REFERENTIELS_DAO)
-@EnableAutoConfiguration
 public class SynchroReferentielsDAO implements ISynchroReferentielsDAO {
 
 	@Autowired
