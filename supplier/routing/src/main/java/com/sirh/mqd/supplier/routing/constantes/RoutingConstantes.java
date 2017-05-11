@@ -8,9 +8,9 @@ package com.sirh.mqd.supplier.routing.constantes;
 public final class RoutingConstantes {
 
 	/**
-	 * Nom du bean reportingBatch
+	 * Nom du bean supplierBatch
 	 */
-	public static final String REPORTING_BATCH = "reportingBatch";
+	public static final String SUPPLIER_BATCH = "supplierBatch";
 
 	/**
 	 * Nom du bean sendFileChannel

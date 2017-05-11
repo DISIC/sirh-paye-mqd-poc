@@ -15,8 +15,8 @@ import com.sirh.mqd.supplier.routing.constantes.RoutingConstantes;
  * Bean permettant de réception des demandes de requete Siri déposées par les
  * batchs d'administration
  */
-@Component(RoutingConstantes.REPORTING_BATCH)
-public class ReportingBatch {
+@Component(RoutingConstantes.SUPPLIER_BATCH)
+public class SupplierBatch {
 
 	/*
 	 * @Autowired

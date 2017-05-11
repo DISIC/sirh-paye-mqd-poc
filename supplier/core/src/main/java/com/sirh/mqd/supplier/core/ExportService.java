@@ -11,7 +11,7 @@ public class ExportService {
 	/*
 	 * @Autowired
 	 * 
-	 * @Qualifier(PersistenceReportingConstantes.ELASTICSEARCH_BC) private
+	 * @Qualifier(PersistenceSupplierConstantes.ELASTICSEARCH_BC) private
 	 * ElasticsearchBC elasticsearchBC;
 	 * 
 	 * public String getTextFile(final Date from, final Date to) {

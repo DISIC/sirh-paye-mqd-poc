@@ -11,6 +11,6 @@
 
 	<!-- FIN du Routage WS Reporting -->
 	
-   <context:component-scan base-package="com.sirh.mqd.reporting.routing.rest" />
+   <context:component-scan base-package="com.sirh.mqd.supplier.routing.rest" />
 
 </beans>

@@ -1,0 +1,12 @@
+# Exemples de configurations :
+# https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml
+
+jsf:
+  PROJECT_STAGE: Production
+  FACELETS_LIBRARIES: /tags/tags.taglib.xml
+  partial:
+    execute: true
+    render: true
+    resetValues: true
+  primefaces:
+    theme: bootstrap

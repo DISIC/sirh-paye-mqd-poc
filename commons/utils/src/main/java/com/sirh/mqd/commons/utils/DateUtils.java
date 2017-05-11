@@ -39,6 +39,11 @@ public final class DateUtils {
 	public static final TimeZone DEFAULT_TIME_ZONE = TimeZone.getTimeZone("UTC");
 
 	/**
+	 * Format de date "mm/aa".
+	 */
+	private static final String DATE_FORMAT_MM_YY = "MM/yy";
+
+	/**
 	 * Format de date "jj/mm/aaaa".
 	 */
 	private static final String DATE_FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
@@ -244,6 +249,18 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Création d'un objet Date à partir du format "mm/aa"
+	 *
+	 * @param date
+	 *            date sous forme de chaîne de caractères
+	 *
+	 * @return date en objet {@link Date}
+	 */
+	public static Date parseDateMMAA(final String date) {
+		return parseDate(date, DATE_FORMAT_MM_YY);
+	}
+
+	/**
 	 * Création d'un objet Date à partir du format "jj/mm/aaaa"
 	 *
 	 * @param date
@@ -251,7 +268,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateJJMMAAAA(final String date) {
+	public static Date parseDateJJMMAAAA(final String date) {
 		return parseDate(date, DATE_FORMAT_DD_MM_YYYY);
 	}
 
@@ -263,7 +280,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateJJMMAAAAhhmmss(final String date) {
+	public static Date parseDateJJMMAAAAhhmmss(final String date) {
 		return parseDate(date, DATE_FORMAT_DD_MM_YYYY_HH_MM_SS);
 	}
 
@@ -275,7 +292,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateJJMMAAAAhhmmssSSS(final String date) {
+	public static Date parseDateJJMMAAAAhhmmssSSS(final String date) {
 		return parseDate(date, DATE_FORMAT_DD_MM_YYYY_HH_MM_SS_SSS);
 	}
 
@@ -287,7 +304,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateAAAAMMJJhhmmssSSS(final String date) {
+	public static Date parseDateAAAAMMJJhhmmssSSS(final String date) {
 		return parseDate(date, DATE_FORMAT_YYYY_MM_DD_HH_MM_SS_SSS);
 	}
 
@@ -299,7 +316,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateAAAAMMJJhhmmss(final String date) {
+	public static Date parseDateAAAAMMJJhhmmss(final String date) {
 		return parseDate(date, DATE_FORMAT_YYYY_MM_DD_T_HH_MM_SS_Z);
 	}
 
@@ -311,7 +328,7 @@ public final class DateUtils {
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseeDateAAAAMMJJhhmmsss(final String date) {
+	public static Date parseDateAAAAMMJJhhmmsss(final String date) {
 		return parseDate(date, DATE_FORMAT_YYYY_MM_DD_T_HH_MM_SSSZ);
 	}
 

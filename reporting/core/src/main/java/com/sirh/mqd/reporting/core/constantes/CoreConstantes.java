@@ -7,6 +7,8 @@ package com.sirh.mqd.reporting.core.constantes;
  */
 public final class CoreConstantes {
 
+	public static final String DOSSIER_SERVICE = "dossierService";
+
 	/**
 	 * Non-constructeur
 	 *

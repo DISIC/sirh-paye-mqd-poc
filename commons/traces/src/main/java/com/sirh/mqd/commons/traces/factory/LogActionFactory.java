@@ -72,7 +72,7 @@ public final class LogActionFactory {
 		final LogActionDTO logAction = createDefaultLogAction(login, role, pageName, actionType, actionResult);
 
 		if (authenticationDate != null) {
-			logAction.setAuthenticationDate(DateUtils.parseeDateJJMMAAAAhhmmss(authenticationDate));
+			logAction.setAuthenticationDate(DateUtils.parseDateJJMMAAAAhhmmss(authenticationDate));
 		}
 
 		String businessJsonInitial = null;

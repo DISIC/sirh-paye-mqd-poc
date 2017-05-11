@@ -66,7 +66,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "2013-02-13T05:21:38Z";
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateAAAAMMJJhhmmss(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateAAAAMMJJhhmmss(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNotNull();
@@ -94,7 +94,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = null;
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateAAAAMMJJhhmmss(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateAAAAMMJJhhmmss(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNull();
@@ -114,7 +114,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "2013-11-15T17:09:00,160+0000";
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateAAAAMMJJhhmmsss(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateAAAAMMJJhhmmsss(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNotNull();
@@ -142,7 +142,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = null;
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateAAAAMMJJhhmmsss(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateAAAAMMJJhhmmsss(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNull();
@@ -194,7 +194,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "13/02/2013";
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateJJMMAAAA(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateJJMMAAAA(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNotNull();
@@ -221,7 +221,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = null;
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateJJMMAAAA(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateJJMMAAAA(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNull();
@@ -237,7 +237,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "azerty";
 
 		// Appel de la méthode
-		DateUtils.parseeDateJJMMAAAA(chaineEnEntree);
+		DateUtils.parseDateJJMMAAAA(chaineEnEntree);
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "30/04/2013 12:30:52";
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateJJMMAAAAhhmmss(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateJJMMAAAAhhmmss(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNotNull();
@@ -267,13 +267,13 @@ public class DateUtilsTest {
 
 	@Test
 	public void testParseeDateJJMMAAAAhhmmss01CasNul() {
-		final Date resultat = DateUtils.parseeDateJJMMAAAAhhmmss(null);
+		final Date resultat = DateUtils.parseDateJJMMAAAAhhmmss(null);
 		Assertions.assertThat(resultat).isNull();
 	}
 
 	@Test(expected = TechnicalException.class)
 	public void testParseeDateJJMMAAAAhhmmss01CasNonParsable() {
-		DateUtils.parseeDateJJMMAAAAhhmmss("azerty");
+		DateUtils.parseDateJJMMAAAAhhmmss("azerty");
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class DateUtilsTest {
 		final String chaineEnEntree = "30/04/2013 12:30:52.025";
 
 		// Appel de la méthode
-		final Date resultat = DateUtils.parseeDateJJMMAAAAhhmmssSSS(chaineEnEntree);
+		final Date resultat = DateUtils.parseDateJJMMAAAAhhmmssSSS(chaineEnEntree);
 
 		// Vérifications
 		Assertions.assertThat(resultat).isNotNull();
@@ -304,13 +304,13 @@ public class DateUtilsTest {
 
 	@Test
 	public void testParseeDateJJMMAAAAhhmmssSSS01CasNul() {
-		final Date resultat = DateUtils.parseeDateJJMMAAAAhhmmssSSS(null);
+		final Date resultat = DateUtils.parseDateJJMMAAAAhhmmssSSS(null);
 		Assertions.assertThat(resultat).isNull();
 	}
 
 	@Test(expected = TechnicalException.class)
 	public void testParseeDateJJMMAAAAhhmmssSSS01CasNonParsable() {
-		DateUtils.parseeDateJJMMAAAAhhmmssSSS("azerty");
+		DateUtils.parseDateJJMMAAAAhhmmssSSS("azerty");
 	}
 
 	@Test

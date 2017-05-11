@@ -10,7 +10,7 @@
 	<context:annotation-config />
 
 	<!-- Package dans lequel se trouvent les services -->
-	<context:component-scan base-package="com.sirh.mqd.reporting.routing" />
+	<context:component-scan base-package="com.sirh.mqd.supplier.routing" />
 	<import resource="classpath:core-context.xml" />
 	<import resource="classpath:reporting-context.xml" />
 	<import resource="classpath:sftp-context.xml" />

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h1>Spring MVC Web with Primefaces</h1>
+	<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
+		widgetVar="anomalieTable"
+		emptyMessage="Aucune anomalie n\'a été trouvé.">
+		<p:column headerText="Ministère">
+			<h:outputText value="#{anomalie.ministere}" />
+		</p:column>
+		<p:column headerText="Clé PAY">
+			<h:outputText value="#{anomalie.payCle}" />
+		</p:column>
+		<p:column headerText="Numéro de dossier">
+			<h:outputText value="#{anomalie.dossierNumero}" />
+		</p:column>
+		<p:column headerText="Gestionnaire DI">
+			<h:outputText value="#{anomalie.diGestionnaire}" />
+		</p:column>
+		<p:column headerText="Code Admin.">
+			<h:outputText value="#{anomalie.adminCode}" />
+		</p:column>
+		<p:column headerText="Code Dpt. Admin.">
+			<h:outputText value="#{anomalie.adminCodeDepartement}" />
+		</p:column>
+		<p:column headerText="Lot de Paie">
+			<h:outputText value="#{anomalie.payLot}" />
+		</p:column>
+		<p:column headerText="Civilité PAY">
+			<h:outputText value="#{anomalie.payCivilite}" />
+		</p:column>
+		<p:column headerText="Prénom PAY">
+			<h:outputText value="#{anomalie.payPrenom}" />
+		</p:column>
+		<p:column headerText="Nom PAY">
+			<h:outputText value="#{anomalie.payNom}" />
+		</p:column>
+		<p:column headerText="Date de naissance PAY">
+			<h:outputText value="#{anomalie.payDateNaissance}">
+				<f:convertDateTime pattern="MM/yy" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Sexe PAY">
+			<h:outputText value="#{anomalie.paySexe}" />
+		</p:column>
+		<p:column headerText="Matricule RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHMatricule}" />
+		</p:column>
+		<p:column headerText="Corps RenoiRH - Code">
+			<h:outputText value="#{anomalie.renoiRHCorpsCode}" />
+		</p:column>
+		<p:column headerText="Corps RenoiRH - Libellé Court">
+			<h:outputText value="#{anomalie.renoiRHCorpsLibelleCourt}" />
+		</p:column>
+		<p:column headerText="Grade RenoiRH - Code">
+			<h:outputText value="#{anomalie.renoiRHGradeCode}" />
+		</p:column>
+		<p:column headerText="Grade RenoiRH - Libellé Court">
+			<h:outputText value="#{anomalie.renoiRHGradeLibelleCourt}" />
+		</p:column>
+		<p:column headerText="Affect. RenoiRH - Code">
+			<h:outputText value="#{anomalie.renoiRHAffectationCode}" />
+		</p:column>
+		<p:column headerText="Affect. RenoiRH - Libellé Court">
+			<h:outputText value="#{anomalie.renoiRHAffectationLibelleCourt}" />
+		</p:column>
+		<p:column headerText="Clé paye RenoiRh - Date de certification">
+			<h:outputText value="#{anomalie.renoiRHDateCertification}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Civilité RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHCivilite}" />
+		</p:column>
+		<p:column headerText="Prénom RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHPrenom}" />
+		</p:column>
+		<p:column headerText="Nom RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHNom}" />
+		</p:column>
+		<p:column headerText="Date de naissance RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHDateNaissance}">
+				<f:convertDateTime pattern="MM/yy" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Sexe RenoiRH">
+			<h:outputText value="#{anomalie.renoiRHSexe}" />
+		</p:column>
+	</p:dataTable>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
 	
-
-	<display-name>Reporting Web Application</display-name>
+	<display-name>Supplier Web Application</display-name>
 	<description>HTTP/REST Services</description>
 
 	<!-- ******************** Paramètres de contexte ******************** -->
@@ -31,7 +31,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>RESTServlet</servlet-name>
-      <url-pattern>/log/*</url-pattern>
+      <url-pattern>/*</url-pattern>
    </servlet-mapping>
 
 	<!-- ******************** Timeout *********************************** -->
