@@ -21,7 +21,7 @@
 	</properties>
 
 	<build>
-		<finalName>reporting</finalName>
+		<finalName>supplier</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
