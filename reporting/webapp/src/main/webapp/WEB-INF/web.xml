@@ -12,6 +12,26 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/applicationContext.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.forceLoadConfiguration</param-name>
+		<param-value>true</param-value>
+	</context-param>
+    <context-param>
+        <param-name>com.sun.faces.enableMissingResourceLibraryDetection</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
 
 	<!-- ******************** Ecouteurs ********************************* -->
 	<!-- Contexte racine de l'application web pour Spring -->
@@ -29,22 +49,12 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
-
-	<!-- ********************* Contexte ********************************* -->
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
-	</context-param>
 
 	<!-- ******************** Timeout *********************************** -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
+
 	<!-- ********************* Autres *********************************** -->
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>

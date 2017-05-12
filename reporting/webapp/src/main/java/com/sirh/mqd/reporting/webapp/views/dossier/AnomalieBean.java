@@ -1,5 +1,6 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -46,8 +47,12 @@ public class AnomalieBean {
 
 	@PostConstruct
 	public void setup() {
-		dossierId = "test";
-		final List<AnomalieDTO> anomalies = dossierService.listerAnomalies(dossierId);
+		// Initialization
+		this.dossierId = "test";
+		this.anomalies = new ArrayList<AnomalieModel>();
+
+		// Supplier
+		final List<AnomalieDTO> anomalies = this.dossierService.listerAnomalies(this.dossierId);
 		for (final AnomalieDTO anomalie : anomalies) {
 			this.anomalies.add(AnomalieModelFactory.createAnomalie(anomalie));
 		}

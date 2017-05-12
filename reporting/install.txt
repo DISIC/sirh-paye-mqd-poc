@@ -23,3 +23,7 @@ Lancer les commandes dans un terminal
 
    sudo mkdir -p /var/log/mqdrh/reporting
    sudo chown -R ${desktop.username}:root /var/log/mqdrh
+
+4 - Accès à l'IHM avec l'adresse suivante :
+
+   http://localhost:8080/reporting/index.xhtml

@@ -44,7 +44,8 @@
 
 		<!-- PRIMEFACES -->
 		<servlet.version>3.1.0</servlet.version>
-		<jsf.version>2.3</jsf.version>
+		<faces.version>2.3</faces.version>
+		<jsf.version>2.2.14</jsf.version>
 		<cdi.version>1.2</cdi.version>
 		<primefaces.version>6.1</primefaces.version>
 		<primefaces.themes.version>1.0.10</primefaces.themes.version>
@@ -283,12 +284,22 @@
 			<dependency>
 				<groupId>javax.faces</groupId>
 				<artifactId>javax.faces-api</artifactId>
-				<version>${jsf.version}</version>
+				<version>${faces.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.enterprise</groupId>
 				<artifactId>cdi-api</artifactId>
 				<version>${cdi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>${jsf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>${jsf.version}</version>
 			</dependency>
 
 			<!--DYNAMIC REPORTS -->
