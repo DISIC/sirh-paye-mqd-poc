@@ -9,13 +9,17 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 		
         <locale-config>
-            <default-locale>fr</default-locale>
+            <default-locale>fr_FR</default-locale>
         </locale-config>
-
+		<!-- Include specific application labels -->
         <resource-bundle>
-            <base-name>messages</base-name>
-            <var>msg</var>
+            <base-name>com.sirh.mqd.reporting.webapp.resources.LabelsBundle</base-name>
+            <var>label</var>
         </resource-bundle>
+        <!-- Override JSF default warning/error messages used by the JSF validation/conversion -->
+        <message-bundle>
+            com.sirh.mqd.reporting.webapp.resources.MessagesBundle
+        </message-bundle>
 	</application>
 
 	<managed-bean>
