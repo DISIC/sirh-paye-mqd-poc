@@ -4,7 +4,7 @@
 "maChaine":"ma SUPER chaine de caracteres",
 "maListe": [
 		{
-			"monNom\":"premier nom",
+			"monNom":"premier nom",
 			"maDecimale":998.01
 		},
 		{
