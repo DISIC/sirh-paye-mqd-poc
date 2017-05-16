@@ -28,6 +28,7 @@ public class AnomalieBean {
 
 	@Inject
 	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
+	
 	private IDossierService dossierService;
 
 	/**
@@ -53,9 +54,13 @@ public class AnomalieBean {
 
 		// Supplier
 		final List<AnomalieDTO> anomalies = this.dossierService.listerAnomalies(this.dossierId);
-		for (final AnomalieDTO anomalie : anomalies) {
-			this.anomalies.add(AnomalieModelFactory.createAnomalie(anomalie));
+		for (int i = 0; i < anomalies.size(); i++) {
+			AnomalieDTO anomalie = anomalies.get(i);
+			this.anomalies.add(AnomalieModelFactory.createAnomalie(i, anomalie));
 		}
+		
+			
+		
 	}
 
 	public List<AnomalieModel> getAnomalies() {

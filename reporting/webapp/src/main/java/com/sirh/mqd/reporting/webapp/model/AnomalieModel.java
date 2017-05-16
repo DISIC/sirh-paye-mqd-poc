@@ -15,6 +15,8 @@ public class AnomalieModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 4531819019987861366L;
 
+	private String numAnomalie;
+	
 	private int ministere;
 
 	private long payCle;
@@ -69,6 +71,14 @@ public class AnomalieModel implements Serializable {
 		super();
 	}
 
+	public String getNumAnomalie() {
+		return numAnomalie;
+	}
+	
+	public void setNumAnomalie(final String numAnomalie) {
+		this.numAnomalie = numAnomalie;
+	}
+	
 	public int getMinistere() {
 		return ministere;
 	}

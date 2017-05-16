@@ -9,5 +9,7 @@ public enum InteractionModuleEnum {
 
 	REPORTING,
 
-	ACQUISITION;
+	SUPPLIER,
+	
+	SCHEDULER;
 }

@@ -18,7 +18,7 @@ public class DossierService implements IDossierService {
 		final List<AnomalieDTO> anomalies = new ArrayList<AnomalieDTO>();
 
 		final AnomalieDTO anomalie1 = new AnomalieDTO();
-
+		
 		anomalie1.setMinistere(256);
 		anomalie1.setPayCle(161027503500227L);
 		anomalie1.setDossierNumero(20);
@@ -48,7 +48,7 @@ public class DossierService implements IDossierService {
 		anomalies.add(anomalie1);
 
 		final AnomalieDTO anomalie2 = new AnomalieDTO();
-
+		
 		anomalie2.setMinistere(256);
 		anomalie2.setPayCle(254087511303184L);
 		anomalie2.setDossierNumero(00);

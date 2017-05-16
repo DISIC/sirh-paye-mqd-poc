@@ -8,7 +8,7 @@ import java.util.Date;
  * @author alexandre
  */
 public class AnomalieDTO {
-
+	
 	private int ministere;
 
 	private long payCle;
@@ -59,10 +59,12 @@ public class AnomalieDTO {
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
+	public String etatCorrection;
+	
 	public AnomalieDTO() {
 		super();
 	}
-
+	
 	public int getMinistere() {
 		return ministere;
 	}
@@ -261,5 +263,13 @@ public class AnomalieDTO {
 
 	public void setRenoiRHMatricule(final String renoiRHMatricule) {
 		this.renoiRHMatricule = renoiRHMatricule;
+	}
+	
+	public String getEtatCorrection() {
+		return etatCorrection;
+	}
+
+	public void setEtatCorrection(String etatCorrection) {
+		this.etatCorrection = etatCorrection;
 	}
 }

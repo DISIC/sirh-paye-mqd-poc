@@ -21,8 +21,9 @@ public final class AnomalieModelFactory {
 				"Création non autorisée d'une instance de : " + AnomalieModelFactory.class.getName());
 	}
 
-	public static AnomalieModel createAnomalie(final AnomalieDTO anomalieDTO) {
+	public static AnomalieModel createAnomalie(final int numero, final AnomalieDTO anomalieDTO) {
 		final AnomalieModel anomalieModel = new AnomalieModel();
+		anomalieModel.setNumAnomalie("Ano" + numero);
 		anomalieModel.setMinistere(anomalieDTO.getMinistere());
 		anomalieModel.setPayCle(anomalieDTO.getPayCle());
 		anomalieModel.setDossierNumero(anomalieDTO.getDossierNumero());

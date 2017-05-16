@@ -10,15 +10,23 @@
 	<h1>Spring MVC Web with Primefaces</h1>
 	<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
 		widgetVar="anomalieTable"
-		emptyMessage="Aucune anomalie n\'a été trouvé.">
-		<p:column headerText="Ministère">
-			<h:outputText value="#{anomalie.ministere}" />
-		</p:column>
-		<p:column headerText="Clé PAY">
-			<h:outputText value="#{anomalie.payCle}" />
+		tableStyle="width: auto; white-space: nowrap; font-size: smaller"
+		emptyMessage="Aucune anomalie n\'a été trouvé."
+		scrollable="true" scrollWidth="1000"
+		frozenColumns="2"
+		paginator="true"
+		> 
+		<p:column headerText="N° Anomalie">
+			<h:outputText value="#{anomalie.numAnomalie}" />
 		</p:column>
 		<p:column headerText="Numéro de dossier">
 			<h:outputText value="#{anomalie.dossierNumero}" />
+		</p:column>
+		<p:column headerText="Ministère">
+			<h:outputText value="#{anomalie.ministere}" />
+		</p:column>
+		<p:column headerText="Clé PAY" style="min-width:150px">
+			<h:outputText value="#{anomalie.payCle}" />
 		</p:column>
 		<p:column headerText="Gestionnaire DI">
 			<h:outputText value="#{anomalie.diGestionnaire}" />
@@ -29,16 +37,16 @@
 		<p:column headerText="Code Dpt. Admin.">
 			<h:outputText value="#{anomalie.adminCodeDepartement}" />
 		</p:column>
-		<p:column headerText="Lot de Paie">
+		<p:column headerText="Lot de Paie" style="min-width:150px">
 			<h:outputText value="#{anomalie.payLot}" />
 		</p:column>
 		<p:column headerText="Civilité PAY">
 			<h:outputText value="#{anomalie.payCivilite}" />
 		</p:column>
-		<p:column headerText="Prénom PAY">
+		<p:column headerText="Prénom PAY" style="min-width:150px">
 			<h:outputText value="#{anomalie.payPrenom}" />
 		</p:column>
-		<p:column headerText="Nom PAY">
+		<p:column headerText="Nom PAY" style="min-width:150px">
 			<h:outputText value="#{anomalie.payNom}" />
 		</p:column>
 		<p:column headerText="Date de naissance PAY">
@@ -55,13 +63,13 @@
 		<p:column headerText="Corps RenoiRH - Code">
 			<h:outputText value="#{anomalie.renoiRHCorpsCode}" />
 		</p:column>
-		<p:column headerText="Corps RenoiRH - Libellé Court">
+		<p:column headerText="Corps RenoiRH - Libellé Court" style="min-width:300px">
 			<h:outputText value="#{anomalie.renoiRHCorpsLibelleCourt}" />
 		</p:column>
 		<p:column headerText="Grade RenoiRH - Code">
 			<h:outputText value="#{anomalie.renoiRHGradeCode}" />
 		</p:column>
-		<p:column headerText="Grade RenoiRH - Libellé Court">
+		<p:column headerText="Grade RenoiRH - Libellé Court" style="min-width:300px">
 			<h:outputText value="#{anomalie.renoiRHGradeLibelleCourt}" />
 		</p:column>
 		<p:column headerText="Affect. RenoiRH - Code">
@@ -81,7 +89,7 @@
 		<p:column headerText="Prénom RenoiRH">
 			<h:outputText value="#{anomalie.renoiRHPrenom}" />
 		</p:column>
-		<p:column headerText="Nom RenoiRH">
+		<p:column headerText="Nom RenoiRH" style="min-width:150px">
 			<h:outputText value="#{anomalie.renoiRHNom}" />
 		</p:column>
 		<p:column headerText="Date de naissance RenoiRH">
@@ -92,6 +100,20 @@
 		<p:column headerText="Sexe RenoiRH">
 			<h:outputText value="#{anomalie.renoiRHSexe}" />
 		</p:column>
+		<!--  <p:column headerText="Etat Correction" style="min-width:150px">
+    		<p:cellEditor>
+            	<h:selectOneMenu value="#{anomalie.etatCorrection}">
+   					<f:selectItem itemValue="Faux_Signalement" itemLabel="Faux Signalement" />
+   					<f:selectItem itemValue="Corrige" itemLabel="Corrigé" />
+   					<f:selectItem itemValue="Demande_assistance" itemLabel="Demande assist." />
+   				</h:selectOneMenu>
+    		</p:cellEditor>
+		</p:column>-->
 	</p:dataTable>
+	<h:selectOneMenu value="#{anomalie.etatCorrection}">
+   			<f:selectItem itemValue="Faux_Signalement" itemLabel="Faux Signalement" />
+   			<f:selectItem itemValue="Corrige" itemLabel="Corrigé" />
+   			<f:selectItem itemValue="Demande_assistance" itemLabel="Demande assist." />
+   	</h:selectOneMenu>
 </body>
 </html>
