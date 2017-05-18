@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition>
+		<c:choose>
+			<c:when test="#{fn:startsWith(facesContext.viewRoot.viewId, '/WEB-INF/')}">
+				<c:set var="viewId" value="#{fn:replace(fn:replace(fn:replace(facesContext.viewRoot.viewId, '/WEB-INF/', ''), '/', '.'), '.xhtml', '')}" />
+			</c:when>
+			<c:when test="#{fn:startsWith(facesContext.viewRoot.viewId, '/')}">
+				<c:set var="viewId" value="#{fn:replace(fn:replace(fn:substringAfter(facesContext.viewRoot.viewId, '/'), '/', '.'), '.xhtml', '')}" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="viewId" value="#{fn:replace(fn:replace(facesContext.viewRoot.viewId, '/', '.'), '.xhtml', '')}" />
+			</c:otherwise>
+		</c:choose>
+		<h3>
+			<h:outputText value="#{titre[viewId]}" styleClass="ui-widget" />
+		</h3>
+	</ui:composition>
+	
+</html>

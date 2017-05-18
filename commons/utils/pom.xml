@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -55,7 +56,11 @@
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
 		<!-- JAVA -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -66,13 +71,13 @@
 			<artifactId>javax.resource-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- SPRINT CONTEXT -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
-		
+
 		<!-- FASTER XML -->
 		<dependency>
 			<groupId>com.fasterxml</groupId>
@@ -88,7 +93,7 @@
 			<groupId>com.googlecode.jcsv</groupId>
 			<artifactId>jcsv</artifactId>
 		</dependency>
-		
+
 		<!-- COMMONS TEST -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

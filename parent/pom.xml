@@ -29,6 +29,7 @@
 		<spring.version>4.3.8.RELEASE</spring.version>
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 		<spring.integration.version>4.3.9.RELEASE</spring.integration.version>
+		<spring.webflow.version>2.4.4.RELEASE</spring.webflow.version>
 
 		<!-- DATABASE CLIENTS -->
 		<spring.data.elasticsearch.version>2.1.3.RELEASE</spring.data.elasticsearch.version>
@@ -65,6 +66,9 @@
 		<commons.configuration.version>2.1.1</commons.configuration.version>
 		<commons.io.version>2.5</commons.io.version>
 		<commons.validator.version>1.6</commons.validator.version>
+		<commons.fileupload.version>1.3.2</commons.fileupload.version>
+		<sun.el.version>1.0</sun.el.version>
+		<xerces.version>2.11.0</xerces.version>
 
 		<!-- 3) Tests library dependency versions -->
 		<junit.version>4.12</junit.version>
@@ -187,10 +191,32 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+			<!-- SPRING WEBFLOW -->
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-webflow</artifactId>
+				<version>${spring.webflow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-faces</artifactId>
+				<version>${spring.webflow.version}</version>
+			</dependency>
+
 			<!-- SPRING SECURITY -->
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
 				<version>${spring.security.version}</version>
 			</dependency>
 
@@ -365,6 +391,11 @@
 				<version>${commons.validator.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons.fileupload.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
@@ -373,6 +404,16 @@
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>${joda.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>${xerces.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.el</groupId>
+				<artifactId>el-ri</artifactId>
+				<version>${sun.el.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.resource</groupId>

@@ -26,10 +26,14 @@
 			<list>
 				<!-- Constantes applicatives -->
 				<value>classpath:properties/constantes</value>
+				<value>classpath:i18n/messages</value>
 				<value>file:${application.configurationDirectory}/reloadable</value>
 			</list>
 		</property>
 	</bean>
 
 	<import resource="classpath:routing-context.xml" />
+	<!-- Gestion de la Sécurité -->
+	<import resource="classpath:security-context.xml" />
+	
 </beans>

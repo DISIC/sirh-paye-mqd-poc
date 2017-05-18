@@ -1,142 +1,145 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-<f:view>
-	<h:head>
-	</h:head>
-	<h:body>
-		<div class="ui-fluid">
-			<h1>Spring MVC Web with Primefaces</h1>
-			<p:panel id="Dossier_X" header="Dossier X" footer="Dossier X"
-				style="margin-bottom:20px">
-				<p:tabView dynamic="true" cache="true">
-					<p:tab title="Detail des anomalies">
-						<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
-							widgetVar="anomalies_table" reflow="true"
-							tableStyle="width: auto; white-space: nowrap; font-size: smaller"
-							emptyMessage="Aucune anomalie n\'a été trouvé." scrollable="true"
-							scrollWidth="1000" frozenColumns="2" paginator="true">
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
-								<h:outputText value="#{anomalie.numAnomalie}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.numero_dossier']}">
-								<h:outputText value="#{anomalie.dossierNumero}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.ministere']}">
-								<h:outputText value="#{anomalie.ministere}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_cle']}"
-								style="min-width:150px">
-								<h:outputText value="#{anomalie.payCle}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_cle_date_certification']}">
-								<h:outputText value="#{anomalie.renoiRHDateCertification}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.gestionnaire_di']}">
-								<h:outputText value="#{anomalie.diGestionnaire}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.code_admin']}">
-								<h:outputText value="#{anomalie.adminCode}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.code_departement_admin']}">
-								<h:outputText value="#{anomalie.adminCodeDepartement}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_lot']}"
-								style="min-width:150px">
-								<h:outputText value="#{anomalie.payLot}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_civilite']}">
-								<h:outputText value="#{anomalie.payCivilite}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_prenom']}"
-								style="min-width:150px">
-								<h:outputText value="#{anomalie.payPrenom}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_nom']}"
-								style="min-width:150px">
-								<h:outputText value="#{anomalie.payNom}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_date_naissance']}">
-								<h:outputText value="#{anomalie.payDateNaissance}">
-									<f:convertDateTime pattern="MM/yy" />
-								</h:outputText>
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.pay_sexe']}">
-								<h:outputText value="#{anomalie.paySexe}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_matricule']}">
-								<h:outputText value="#{anomalie.renoiRHMatricule}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_corps_code']}">
-								<h:outputText value="#{anomalie.renoiRHCorpsCode}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_corps_libelle']}"
-								style="min-width:300px">
-								<h:outputText value="#{anomalie.renoiRHCorpsLibelleCourt}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_grade_code']}">
-								<h:outputText value="#{anomalie.renoiRHGradeCode}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_grade_libelle']}"
-								style="min-width:300px">
-								<h:outputText value="#{anomalie.renoiRHGradeLibelleCourt}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_affectation_code']}">
-								<h:outputText value="#{anomalie.renoiRHAffectationCode}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_affectation_libelle']}">
-								<h:outputText value="#{anomalie.renoiRHAffectationLibelleCourt}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_civilite']}">
-								<h:outputText value="#{anomalie.renoiRHCivilite}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_prenom']}">
-								<h:outputText value="#{anomalie.renoiRHPrenom}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_nom']}"
-								style="min-width:150px">
-								<h:outputText value="#{anomalie.renoiRHNom}" />
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_date_naissance']}">
-								<h:outputText value="#{anomalie.renoiRHDateNaissance}">
-									<f:convertDateTime pattern="MM/yy" />
-								</h:outputText>
-							</p:column>
-							<p:column
-								headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_sexe']}">
-								<h:outputText value="#{anomalie.renoiRHSexe}" />
-							</p:column>
-							<!--  <p:column headerText="Etat Correction" style="min-width:150px">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="zone_config_page">
+		<link rel="stylesheet" type="text/css"
+			href="spring/resources/css/dossiers.css" />
+	</ui:define>
+
+	<ui:define name="zone_contenu">
+		<p:panel id="Dossier_X" header="Dossier X" footer="Dossier X"
+			style="margin-bottom:20px">
+			<p:tabView dynamic="true" cache="true">
+				<p:tab title="Detail des anomalies">
+					<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
+						widgetVar="anomalies_table" reflow="true"
+						tableStyle="width: auto; white-space: nowrap; font-size: smaller"
+						emptyMessage="Aucune anomalie n\'a été trouvé." scrollable="true"
+						scrollWidth="1000" frozenColumns="2" paginator="true">
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
+							<h:outputText value="#{anomalie.numAnomalie}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.numero_dossier']}">
+							<h:outputText value="#{anomalie.dossierNumero}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.ministere']}">
+							<h:outputText value="#{anomalie.ministere}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_cle']}"
+							style="min-width:150px">
+							<h:outputText value="#{anomalie.payCle}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_cle_date_certification']}">
+							<h:outputText value="#{anomalie.renoiRHDateCertification}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.gestionnaire_di']}">
+							<h:outputText value="#{anomalie.diGestionnaire}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.code_admin']}">
+							<h:outputText value="#{anomalie.adminCode}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.code_departement_admin']}">
+							<h:outputText value="#{anomalie.adminCodeDepartement}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_lot']}"
+							style="min-width:150px">
+							<h:outputText value="#{anomalie.payLot}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_civilite']}">
+							<h:outputText value="#{anomalie.payCivilite}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_prenom']}"
+							style="min-width:150px">
+							<h:outputText value="#{anomalie.payPrenom}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_nom']}"
+							style="min-width:150px">
+							<h:outputText value="#{anomalie.payNom}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_date_naissance']}">
+							<h:outputText value="#{anomalie.payDateNaissance}">
+								<f:convertDateTime pattern="MM/yy" />
+							</h:outputText>
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.pay_sexe']}">
+							<h:outputText value="#{anomalie.paySexe}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_matricule']}">
+							<h:outputText value="#{anomalie.renoiRHMatricule}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_corps_code']}">
+							<h:outputText value="#{anomalie.renoiRHCorpsCode}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_corps_libelle']}"
+							style="min-width:300px">
+							<h:outputText value="#{anomalie.renoiRHCorpsLibelleCourt}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_grade_code']}">
+							<h:outputText value="#{anomalie.renoiRHGradeCode}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_grade_libelle']}"
+							style="min-width:300px">
+							<h:outputText value="#{anomalie.renoiRHGradeLibelleCourt}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_affectation_code']}">
+							<h:outputText value="#{anomalie.renoiRHAffectationCode}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_affectation_libelle']}">
+							<h:outputText value="#{anomalie.renoiRHAffectationLibelleCourt}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_civilite']}">
+							<h:outputText value="#{anomalie.renoiRHCivilite}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_prenom']}">
+							<h:outputText value="#{anomalie.renoiRHPrenom}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_nom']}"
+							style="min-width:150px">
+							<h:outputText value="#{anomalie.renoiRHNom}" />
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_date_naissance']}">
+							<h:outputText value="#{anomalie.renoiRHDateNaissance}">
+								<f:convertDateTime pattern="MM/yy" />
+							</h:outputText>
+						</p:column>
+						<p:column
+							headerText="#{label['dossiers.overview.anomalies_table.header.renoirh_sexe']}">
+							<h:outputText value="#{anomalie.renoiRHSexe}" />
+						</p:column>
+						<!--  <p:column headerText="Etat Correction" style="min-width:150px">
 			    		<p:cellEditor>
 			            	<h:selectOneMenu value="#{anomalie.etatCorrection}">
 			   					<f:selectItem itemValue="Faux_Signalement" itemLabel="Faux Signalement" />
@@ -145,35 +148,34 @@
 			   				</h:selectOneMenu>
 			    		</p:cellEditor>
 					</p:column>-->
-						</p:dataTable>
-						<h:selectOneMenu value="#{anomalie.etatCorrection}">
-							<f:selectItem itemValue="Faux_Signalement"
-								itemLabel="Faux Signalement" />
-							<f:selectItem itemValue="Corrige" itemLabel="Corrigé" />
-							<f:selectItem itemValue="Demande_assistance"
-								itemLabel="Demande assist." />
-						</h:selectOneMenu>
-					</p:tab>
-					<p:tab title="Historique">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:outputText value="Prévu pour le sprint 5" />
-						</h:panelGrid>
-					</p:tab>
-					<p:tab title="Synthèse des données">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:outputText value="Prévu pour le sprint 4" />
-						</h:panelGrid>
-					</p:tab>
-				</p:tabView>
-				<p:panel id="horizontal" header="Commentaire" toggleable="true">
+					</p:dataTable>
+					<h:selectOneMenu value="#{anomalie.etatCorrection}">
+						<f:selectItem itemValue="Faux_Signalement"
+							itemLabel="Faux Signalement" />
+						<f:selectItem itemValue="Corrige" itemLabel="Corrigé" />
+						<f:selectItem itemValue="Demande_assistance"
+							itemLabel="Demande assist." />
+					</h:selectOneMenu>
+				</p:tab>
+				<p:tab title="Historique">
 					<h:panelGrid columns="2" cellpadding="10">
-						<h:outputText value="prévu pour le sprint 3" />
+						<h:outputText value="Prévu pour le sprint 5" />
 					</h:panelGrid>
-
-				</p:panel>
+				</p:tab>
+				<p:tab title="Synthèse des données">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputText value="Prévu pour le sprint 4" />
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<p:panel id="horizontal" header="Commentaire" toggleable="true">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="prévu pour le sprint 3" />
+				</h:panelGrid>
 
 			</p:panel>
-		</div>
-	</h:body>
-</f:view>
-</html>
+
+		</p:panel>
+	</ui:define>
+
+</ui:composition>

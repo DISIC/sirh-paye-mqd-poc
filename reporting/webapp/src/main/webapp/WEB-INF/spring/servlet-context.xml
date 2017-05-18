@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:faces="http://www.springframework.org/schema/faces"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.4.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<!-- ************************************** -->
+	<!-- Configuration de la servlet Spring MVC -->
+	<!-- ************************************** -->
+	<!-- Configures the annotation-driven Spring MVC Controller programming model. -->
+	<mvc:annotation-driven />
+
+	<!-- Traitements des ressources de l'application -->
+	<mvc:resources location="classpath:/webresources/" mapping="/resources/**" />
+	
+	<!-- Mapping d'URL sans logique métier -->
+	<mvc:view-controller path="/blank" view-name="login" />
+	<mvc:view-controller path="/accueil" view-name="login" />
+	<mvc:view-controller path="/home" view-name="login" />
+	<mvc:view-controller path="/" view-name="login" />
+	
+	<mvc:view-controller path="/contact" view-name="contact" />
+	<mvc:view-controller path="/plan" view-name="contact" />
+	<mvc:view-controller path="/help" view-name="contact" />
+
+	<!-- Résolution des vues -->
+	<bean id="urlBasedViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.faces.mvc.JsfView" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".xhtml" />
+	</bean>
+
+	<!-- Traitements des ressources JSF 2 -->
+	<faces:resources />
+
+</beans>

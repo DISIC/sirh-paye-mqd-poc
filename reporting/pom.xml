@@ -194,10 +194,28 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
+		<!-- SPRING WEBFLOW -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-faces</artifactId>
+		</dependency>
+
 		<!-- SPRING SECURITY -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
 
 		<!-- SPRING INTEGRATION -->
@@ -258,6 +276,12 @@
 			<artifactId>jsf-api</artifactId>
 		</dependency>
 
+		<!--EL -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+		</dependency>
+
 		<!--DYNAMIC REPORTS -->
 		<dependency>
 			<groupId>net.sourceforge.dynamicreports</groupId>
@@ -274,6 +298,12 @@
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
+		</dependency>
+
+		<!--XML PARSER -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
 		</dependency>
 
 		<!-- COMMONS TEST -->

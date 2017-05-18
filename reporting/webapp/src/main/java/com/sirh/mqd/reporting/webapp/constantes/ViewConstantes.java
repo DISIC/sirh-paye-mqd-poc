@@ -7,6 +7,8 @@ package com.sirh.mqd.reporting.webapp.constantes;
  */
 public final class ViewConstantes {
 
+	public static final String MENU_BEAN = "menuBean";
+
 	public static final String ANOMALIE_BEAN = "anomalieBean";
 
 	/**

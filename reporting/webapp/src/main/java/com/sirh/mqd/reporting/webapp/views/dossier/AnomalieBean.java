@@ -16,6 +16,7 @@ import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
 import com.sirh.mqd.reporting.webapp.factory.AnomalieModelFactory;
 import com.sirh.mqd.reporting.webapp.model.AnomalieModel;
+import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
  * La vue de la page de gestion des anomalies d'un dossier
@@ -24,11 +25,15 @@ import com.sirh.mqd.reporting.webapp.model.AnomalieModel;
  */
 @Named(ViewConstantes.ANOMALIE_BEAN)
 @SessionScoped
-public class AnomalieBean {
+public class AnomalieBean extends GenericBean {
+
+	/**
+	 * Generated UID
+	 */
+	private static final long serialVersionUID = 5601792267047025418L;
 
 	@Inject
 	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
-
 	private IDossierService dossierService;
 
 	/**

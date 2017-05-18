@@ -13,13 +13,14 @@
         </locale-config>
 		<!-- Include specific application labels -->
         <resource-bundle>
-            <base-name>com.sirh.mqd.reporting.webapp.resources.LabelsBundle</base-name>
+            <base-name>com.sirh.mqd.reporting.webapp.resources.LabelSourceBundle</base-name>
             <var>label</var>
         </resource-bundle>
-        <!-- Override JSF default warning/error messages used by the JSF validation/conversion -->
-        <message-bundle>
-            com.sirh.mqd.reporting.webapp.resources.MessagesBundle
-        </message-bundle>
+        <!-- Include specific application messages -->
+        <resource-bundle>
+            <base-name>com.sirh.mqd.reporting.webapp.resources.TitreSourceBundle</base-name>
+            <var>titre</var>
+        </resource-bundle>
 	</application>
 
 	<managed-bean>

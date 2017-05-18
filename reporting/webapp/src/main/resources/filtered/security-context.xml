@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<!-- Enable annotation-based Security in your Application -->
+	<security:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled" />
+
+	<!-- Services d'authentification -->
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="atingaud" password="ati"
+					authorities="ROLE_USER,ROLE_ADMIN" />
+				<security:user name="kgharbi" password="kgh"
+					authorities="ROLE_USER,ROLE_ADMIN" />
+				<security:user name="lambda" password="xxx"
+					authorities="ROLE_USER" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http 
+		auto-config="true"
+		authentication-manager-ref="authenticationManager">
+		<security:form-login 
+			login-page="/login.xhtml"
+			authentication-failure-url="/login.xhtml?error" 
+			default-target-url="/views/dossiers/overview.xhtml?menuId=1"
+			always-use-default-target="true" 
+			login-processing-url="/j_spring_security_check"
+			username-parameter="j_username" 
+			password-parameter="j_password" />
+		<security:logout 
+			logout-success-url="/login.xhtml"
+			logout-url="/j_spring_security_logout"
+			invalidate-session="true" 
+			delete-cookies="JSESSIONID" />
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1" 
+				error-if-maximum-exceeded="true" />
+		</security:session-management>
+
+		<security:anonymous enabled="true"
+			granted-authority="ROLE_ANONYMOUS" />
+
+		<!-- URL des ressources -->
+		<security:intercept-url pattern="/javax.faces.resource/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/spring/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/login.xhtml"
+			access="permitAll" />
+
+		<!-- URL des pages d'accueils -->
+		<security:intercept-url pattern="/*.jsp"
+			access="hasRole('ROLE_ANONYMOUS')" />
+		<security:intercept-url pattern="/*.html"
+			access="hasRole('ROLE_ANONYMOUS')" />
+			
+		<security:intercept-url pattern="/**/*.xhtml"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/j_spring_security_logout"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/views/dossiers/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/views/evenements/**"
+			access="hasRole('ROLE_USER')" />
+			
+		<security:intercept-url pattern="/views/dashboards/**"
+			access="hasRole('ROLE_ADMIN')" />	
+		
+		<security:intercept-url pattern="/views/**"
+			access="hasRole('ROLE_USER')" />
+
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_ANONYMOUS')" />
+
+	</security:http>
+
+</beans>
