@@ -3,7 +3,6 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -36,10 +35,9 @@ public class AnomalieBean extends GenericBean {
 	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
 	private IDossierService dossierService;
 
-	/**
-	 * Identifiant unique du dossier sélectionnée en amont.
-	 */
-	private String dossierId;
+	@Inject
+	@Qualifier(ViewConstantes.DOSSIER_BEAN)
+	private DossierBean dossierBean;
 
 	/**
 	 * Anomalie sélectionnée dans le tableau.
@@ -47,38 +45,40 @@ public class AnomalieBean extends GenericBean {
 	private AnomalieModel selectedAnomalie;
 
 	/**
-	 * Liste des anomalie existantes.
+	 * Liste des anomalies existantes.
 	 */
 	private List<AnomalieModel> anomalies;
 
-	@PostConstruct
 	public void setup() {
 		// Initialization
-		this.dossierId = "test";
 		this.anomalies = new ArrayList<AnomalieModel>();
+	}
 
-		// Supplier
-		final List<AnomalieDTO> anomalies = this.dossierService.listerAnomalies(this.dossierId);
+	public void alimenterAnomalies() {
+		this.anomalies.clear();
+		final List<AnomalieDTO> anomalies = this.dossierService.listerAnomalies(
+				this.dossierBean.getSelectedDossier().getRenoiRHMatricule(),
+				this.dossierBean.getSelectedDossier().getPayLot());
 		for (int i = 0; i < anomalies.size(); i++) {
 			final AnomalieDTO anomalie = anomalies.get(i);
 			this.anomalies.add(AnomalieModelFactory.createAnomalie(i, anomalie));
 		}
 	}
 
-	public List<AnomalieModel> getAnomalies() {
-		return anomalies;
+	public IDossierService getDossierService() {
+		return dossierService;
 	}
 
-	public void setAnomalies(final List<AnomalieModel> anomalies) {
-		this.anomalies = anomalies;
+	public void setDossierService(final IDossierService dossierService) {
+		this.dossierService = dossierService;
 	}
 
-	public String getDossierId() {
-		return dossierId;
+	public DossierBean getDossierBean() {
+		return dossierBean;
 	}
 
-	public void setDossierId(final String dossierId) {
-		this.dossierId = dossierId;
+	public void setDossierBean(final DossierBean dossierBean) {
+		this.dossierBean = dossierBean;
 	}
 
 	public AnomalieModel getSelectedAnomalie() {
@@ -87,5 +87,13 @@ public class AnomalieBean extends GenericBean {
 
 	public void setSelectedAnomalie(final AnomalieModel selectedAnomalie) {
 		this.selectedAnomalie = selectedAnomalie;
+	}
+
+	public List<AnomalieModel> getAnomalies() {
+		return anomalies;
+	}
+
+	public void setAnomalies(final List<AnomalieModel> anomalies) {
+		this.anomalies = anomalies;
 	}
 }

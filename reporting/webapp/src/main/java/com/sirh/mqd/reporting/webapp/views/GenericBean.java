@@ -52,11 +52,6 @@ public class GenericBean implements Serializable {
 	private LoginUtils loginUtils;
 
 	/**
-	 * Identifiant du dossier sélectionné par l'utilisateur
-	 */
-	private String selectedDossier;
-
-	/**
 	 * Constructeur par défaut.
 	 */
 	public GenericBean() {
@@ -84,13 +79,6 @@ public class GenericBean implements Serializable {
 	 */
 	public String getCurrentUsername() {
 		return this.loginUtils.getCurrentUsername();
-	}
-
-	/**
-	 * @return the selectedTenantName
-	 */
-	public String getSelectedDossier() {
-		return selectedDossier;
 	}
 
 	/**

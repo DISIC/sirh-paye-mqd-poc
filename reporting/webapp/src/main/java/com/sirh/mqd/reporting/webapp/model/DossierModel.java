@@ -1,17 +1,21 @@
-package com.sirh.mqd.commons.exchanges.dto.pivot;
+package com.sirh.mqd.reporting.webapp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * DTO correspondant au dossier d'un gestionnaire
+ * Model d'anomalie d'un dossier à manipuler dans la partie Vue
  *
  * @author alexandre
  */
-public class DossierDTO {
+public class DossierModel implements Serializable {
+
+	/**
+	 * Generated UID
+	 */
+	private static final long serialVersionUID = 4531819019987861366L;
 
 	private int ministere;
-
-	private long payCle;
 
 	private int dossierNumero;
 
@@ -22,16 +26,6 @@ public class DossierDTO {
 	private int adminCodeDepartement;
 
 	private String payLot;
-
-	private int payCivilite;
-
-	private String payNom;
-
-	private String payPrenom;
-
-	private int paySexe;
-
-	private Date payDateNaissance; // Format en entrée : "MM/yy"
 
 	private String renoiRHMatricule;
 
@@ -49,17 +43,17 @@ public class DossierDTO {
 
 	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
 
-	private int renoiRHCivilite;
+	private String renoiRHCivilite;
 
 	private String renoiRHNom;
 
 	private String renoiRHPrenom;
 
-	private int renoiRHSexe;
+	private String renoiRHSexe;
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
-	public DossierDTO() {
+	public DossierModel() {
 		super();
 	}
 
@@ -69,14 +63,6 @@ public class DossierDTO {
 
 	public void setMinistere(final int ministere) {
 		this.ministere = ministere;
-	}
-
-	public long getPayCle() {
-		return payCle;
-	}
-
-	public void setPayCle(final long payCle) {
-		this.payCle = payCle;
 	}
 
 	public int getDossierNumero() {
@@ -119,44 +105,12 @@ public class DossierDTO {
 		this.payLot = payLot;
 	}
 
-	public int getPayCivilite() {
-		return payCivilite;
+	public String getRenoiRHMatricule() {
+		return renoiRHMatricule;
 	}
 
-	public void setPayCivilite(final int payCivilite) {
-		this.payCivilite = payCivilite;
-	}
-
-	public String getPayNom() {
-		return payNom;
-	}
-
-	public void setPayNom(final String payNom) {
-		this.payNom = payNom;
-	}
-
-	public String getPayPrenom() {
-		return payPrenom;
-	}
-
-	public void setPayPrenom(final String payPrenom) {
-		this.payPrenom = payPrenom;
-	}
-
-	public int getPaySexe() {
-		return paySexe;
-	}
-
-	public void setPaySexe(final int paySexe) {
-		this.paySexe = paySexe;
-	}
-
-	public Date getPayDateNaissance() {
-		return payDateNaissance;
-	}
-
-	public void setPayDateNaissance(final Date payDateNaissance) {
-		this.payDateNaissance = payDateNaissance;
+	public void setRenoiRHMatricule(final String renoiRHMatricule) {
+		this.renoiRHMatricule = renoiRHMatricule;
 	}
 
 	public String getRenoiRHCorpsCode() {
@@ -215,11 +169,11 @@ public class DossierDTO {
 		this.renoiRHDateCertification = renoiRHDateCertification;
 	}
 
-	public int getRenoiRHCivilite() {
+	public String getRenoiRHCivilite() {
 		return renoiRHCivilite;
 	}
 
-	public void setRenoiRHCivilite(final int renoiRHCivilite) {
+	public void setRenoiRHCivilite(final String renoiRHCivilite) {
 		this.renoiRHCivilite = renoiRHCivilite;
 	}
 
@@ -239,11 +193,11 @@ public class DossierDTO {
 		this.renoiRHPrenom = renoiRHPrenom;
 	}
 
-	public int getRenoiRHSexe() {
+	public String getRenoiRHSexe() {
 		return renoiRHSexe;
 	}
 
-	public void setRenoiRHSexe(final int renoiRHSexe) {
+	public void setRenoiRHSexe(final String renoiRHSexe) {
 		this.renoiRHSexe = renoiRHSexe;
 	}
 
@@ -253,13 +207,5 @@ public class DossierDTO {
 
 	public void setRenoiRHDateNaissance(final Date renoiRHDateNaissance) {
 		this.renoiRHDateNaissance = renoiRHDateNaissance;
-	}
-
-	public String getRenoiRHMatricule() {
-		return renoiRHMatricule;
-	}
-
-	public void setRenoiRHMatricule(final String renoiRHMatricule) {
-		this.renoiRHMatricule = renoiRHMatricule;
 	}
 }

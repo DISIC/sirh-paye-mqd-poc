@@ -3,6 +3,8 @@ package com.sirh.mqd.reporting.webapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.sirh.mqd.commons.utils.DateUtils;
+
 /**
  * Model d'anomalie d'un dossier à manipuler dans la partie Vue
  *
@@ -13,59 +15,25 @@ public class AnomalieModel implements Serializable {
 	/**
 	 * Generated UID
 	 */
-	private static final long serialVersionUID = 4531819019987861366L;
+	private static final long serialVersionUID = -1730791893901496946L;
 
 	private String numAnomalie;
-	
-	private int ministere;
 
-	private long payCle;
+	private String perimetre;
 
-	private int dossierNumero;
+	private String type;
 
-	private int diGestionnaire;
+	private String donneesGA;
 
-	private String adminCode;
+	private String donneesPAY;
 
-	private int adminCodeDepartement;
+	private String modeOperatoire;
 
-	private String payLot;
+	private Date dateEcheance;
 
-	private String payCivilite;
+	private Date dateCloture;
 
-	private String payNom;
-
-	private String payPrenom;
-
-	private String paySexe;
-
-	private Date payDateNaissance; // Format en entrée : "MM/yy"
-
-	private String renoiRHMatricule;
-
-	private String renoiRHCorpsCode;
-
-	private String renoiRHCorpsLibelleCourt;
-
-	private String renoiRHGradeCode;
-
-	private String renoiRHGradeLibelleCourt;
-
-	private String renoiRHAffectationCode;
-
-	private String renoiRHAffectationLibelleCourt;
-
-	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
-
-	private String renoiRHCivilite;
-
-	private String renoiRHNom;
-
-	private String renoiRHPrenom;
-
-	private String renoiRHSexe;
-
-	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
+	private String etatCorrection;
 
 	public AnomalieModel() {
 		super();
@@ -74,208 +42,72 @@ public class AnomalieModel implements Serializable {
 	public String getNumAnomalie() {
 		return numAnomalie;
 	}
-	
+
 	public void setNumAnomalie(final String numAnomalie) {
 		this.numAnomalie = numAnomalie;
 	}
-	
-	public int getMinistere() {
-		return ministere;
+
+	public String getPerimetre() {
+		return perimetre;
 	}
 
-	public void setMinistere(final int ministere) {
-		this.ministere = ministere;
+	public void setPerimetre(final String perimetre) {
+		this.perimetre = perimetre;
 	}
 
-	public long getPayCle() {
-		return payCle;
+	public String getType() {
+		return type;
 	}
 
-	public void setPayCle(final long payCle) {
-		this.payCle = payCle;
+	public void setType(final String type) {
+		this.type = type;
 	}
 
-	public int getDossierNumero() {
-		return dossierNumero;
+	public String getDonneesGA() {
+		return donneesGA;
 	}
 
-	public void setDossierNumero(final int dossierNumero) {
-		this.dossierNumero = dossierNumero;
+	public void setDonneesGA(final String donneesGA) {
+		this.donneesGA = donneesGA;
 	}
 
-	public int getDiGestionnaire() {
-		return diGestionnaire;
+	public String getDonneesPAY() {
+		return donneesPAY;
 	}
 
-	public void setDiGestionnaire(final int diGestionnaire) {
-		this.diGestionnaire = diGestionnaire;
+	public void setDonneesPAY(final String donneesPAY) {
+		this.donneesPAY = donneesPAY;
 	}
 
-	public String getAdminCode() {
-		return adminCode;
+	public String getModeOperatoire() {
+		return modeOperatoire;
 	}
 
-	public void setAdminCode(final String adminCode) {
-		this.adminCode = adminCode;
+	public void setModeOperatoire(final String modeOperatoire) {
+		this.modeOperatoire = modeOperatoire;
 	}
 
-	public int getAdminCodeDepartement() {
-		return adminCodeDepartement;
+	public Date getDateEcheance() {
+		return dateEcheance;
 	}
 
-	public void setAdminCodeDepartement(final int adminCodeDepartement) {
-		this.adminCodeDepartement = adminCodeDepartement;
+	public void setDateEcheance(final Date dateEcheance) {
+		this.dateEcheance = DateUtils.clonerDate(dateEcheance);
 	}
 
-	public String getPayLot() {
-		return payLot;
+	public Date getDateCloture() {
+		return dateCloture;
 	}
 
-	public void setPayLot(final String payLot) {
-		this.payLot = payLot;
+	public void setDateCloture(final Date dateCloture) {
+		this.dateCloture = DateUtils.clonerDate(dateCloture);
 	}
 
-	public String getPayCivilite() {
-		return payCivilite;
+	public String getEtatCorrection() {
+		return etatCorrection;
 	}
 
-	public void setPayCivilite(final String payCivilite) {
-		this.payCivilite = payCivilite;
-	}
-
-	public String getPayNom() {
-		return payNom;
-	}
-
-	public void setPayNom(final String payNom) {
-		this.payNom = payNom;
-	}
-
-	public String getPayPrenom() {
-		return payPrenom;
-	}
-
-	public void setPayPrenom(final String payPrenom) {
-		this.payPrenom = payPrenom;
-	}
-
-	public String getPaySexe() {
-		return paySexe;
-	}
-
-	public void setPaySexe(final String paySexe) {
-		this.paySexe = paySexe;
-	}
-
-	public Date getPayDateNaissance() {
-		return payDateNaissance;
-	}
-
-	public void setPayDateNaissance(final Date payDateNaissance) {
-		this.payDateNaissance = payDateNaissance;
-	}
-
-	public String getRenoiRHMatricule() {
-		return renoiRHMatricule;
-	}
-
-	public void setRenoiRHMatricule(final String renoiRHMatricule) {
-		this.renoiRHMatricule = renoiRHMatricule;
-	}
-
-	public String getRenoiRHCorpsCode() {
-		return renoiRHCorpsCode;
-	}
-
-	public void setRenoiRHCorpsCode(final String renoiRHCorpsCode) {
-		this.renoiRHCorpsCode = renoiRHCorpsCode;
-	}
-
-	public String getRenoiRHCorpsLibelleCourt() {
-		return renoiRHCorpsLibelleCourt;
-	}
-
-	public void setRenoiRHCorpsLibelleCourt(final String renoiRHCorpsLibelleCourt) {
-		this.renoiRHCorpsLibelleCourt = renoiRHCorpsLibelleCourt;
-	}
-
-	public String getRenoiRHGradeCode() {
-		return renoiRHGradeCode;
-	}
-
-	public void setRenoiRHGradeCode(final String renoiRHGradeCode) {
-		this.renoiRHGradeCode = renoiRHGradeCode;
-	}
-
-	public String getRenoiRHGradeLibelleCourt() {
-		return renoiRHGradeLibelleCourt;
-	}
-
-	public void setRenoiRHGradeLibelleCourt(final String renoiRHGradeLibelleCourt) {
-		this.renoiRHGradeLibelleCourt = renoiRHGradeLibelleCourt;
-	}
-
-	public String getRenoiRHAffectationCode() {
-		return renoiRHAffectationCode;
-	}
-
-	public void setRenoiRHAffectationCode(final String renoiRHAffectationCode) {
-		this.renoiRHAffectationCode = renoiRHAffectationCode;
-	}
-
-	public String getRenoiRHAffectationLibelleCourt() {
-		return renoiRHAffectationLibelleCourt;
-	}
-
-	public void setRenoiRHAffectationLibelleCourt(final String renoiRHAffectationLibelleCourt) {
-		this.renoiRHAffectationLibelleCourt = renoiRHAffectationLibelleCourt;
-	}
-
-	public Date getRenoiRHDateCertification() {
-		return renoiRHDateCertification;
-	}
-
-	public void setRenoiRHDateCertification(final Date renoiRHDateCertification) {
-		this.renoiRHDateCertification = renoiRHDateCertification;
-	}
-
-	public String getRenoiRHCivilite() {
-		return renoiRHCivilite;
-	}
-
-	public void setRenoiRHCivilite(final String renoiRHCivilite) {
-		this.renoiRHCivilite = renoiRHCivilite;
-	}
-
-	public String getRenoiRHNom() {
-		return renoiRHNom;
-	}
-
-	public void setRenoiRHNom(final String renoiRHNom) {
-		this.renoiRHNom = renoiRHNom;
-	}
-
-	public String getRenoiRHPrenom() {
-		return renoiRHPrenom;
-	}
-
-	public void setRenoiRHPrenom(final String renoiRHPrenom) {
-		this.renoiRHPrenom = renoiRHPrenom;
-	}
-
-	public String getRenoiRHSexe() {
-		return renoiRHSexe;
-	}
-
-	public void setRenoiRHSexe(final String renoiRHSexe) {
-		this.renoiRHSexe = renoiRHSexe;
-	}
-
-	public Date getRenoiRHDateNaissance() {
-		return renoiRHDateNaissance;
-	}
-
-	public void setRenoiRHDateNaissance(final Date renoiRHDateNaissance) {
-		this.renoiRHDateNaissance = renoiRHDateNaissance;
+	public void setEtatCorrection(final String etatCorrection) {
+		this.etatCorrection = etatCorrection;
 	}
 }

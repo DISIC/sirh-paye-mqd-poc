@@ -25,9 +25,23 @@
 						</p:row>
 						<p:row>
 							<p:column styleClass="centrer">
+								<h:outputFormat value="#{label['contact.libelle.numero']}" escape="false">
+									<f:param value="#{label['contact.libelle.numero.telephone']}" />
+								</h:outputFormat>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="centrer">
 								<h:outputFormat value="#{label['contact.libelle.website']}" escape="false">
 									<f:param value="#{label['contact.libelle.website.address']}" />
 									<f:param value="#{label['contact.libelle.website.address']}" />
+								</h:outputFormat>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="centrer">
+								<h:outputFormat value="#{label['contact.libelle.adresse']}" escape="false">
+									<f:param value="#{label['contact.libelle.adresse.postal']}" />
 								</h:outputFormat>
 							</p:column>
 						</p:row>
