@@ -8,27 +8,33 @@
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="zone_config_page">
-		<link rel="stylesheet" type="text/css" href="spring/resources/css/dossiers.css" />
+		<link rel="stylesheet" type="text/css"
+			href="spring/resources/css/dossiers.css" />
 	</ui:define>
 
 	<ui:define name="zone_contenu">
 		<ui:include src="dossiers.xhtml" />
-		<p:panel id="Dossier_X" header="Dossier X" footer="Dossier X" style="margin-bottom:20px">
-			<p:tabView dynamic="true" cache="true">
-				<p:tab title="Detail des anomalies">
-					<ui:include src="anomalies.xhtml" />
-				</p:tab>
-				<p:tab title="Historique">
-					<ui:include src="historique.xhtml" />
-				</p:tab>
-				<p:tab title="Synthèse des données">
-					<ui:include src="synthese.xhtml" />
-				</p:tab>
-			</p:tabView>
-			<p:panel id="horizontal" header="Commentaire" toggleable="true">
-				<ui:include src="commentaires.xhtml" />
+		<h:panelGroup id="dossierGroup" >
+			<p:panel id="dossier" style="margin-bottom:20px;margin-top:30px"
+				header="Dossier #{dossierBean.selectedDossierMatricule}"
+				footer="Dossier #{dossierBean.selectedDossierMatricule}"
+				rendered="#{dossierBean.tabsDisplayable}">
+				<p:tabView id="ongletsDossier">
+					<p:tab title="Detail des anomalies">
+						<ui:include src="anomalies.xhtml" />
+					</p:tab>
+					<p:tab title="Historique">
+						<ui:include src="historique.xhtml" />
+					</p:tab>
+					<p:tab title="Synthèse des données">
+						<ui:include src="synthese.xhtml" />
+					</p:tab>
+				</p:tabView>
+				<p:panel id="horizontal" header="Commentaire" toggleable="true">
+					<ui:include src="commentaires.xhtml" />
+				</p:panel>
 			</p:panel>
-		</p:panel>
+		</h:panelGroup>
 	</ui:define>
 
 </ui:composition>

@@ -26,6 +26,8 @@
 	<security:http 
 		auto-config="true"
 		authentication-manager-ref="authenticationManager">
+		<security:csrf 
+			disabled="true" />
 		<security:form-login 
 			login-page="/login.xhtml"
 			authentication-failure-url="/login.xhtml?error" 

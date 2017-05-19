@@ -11,51 +11,52 @@
 	</f:metadata>
 
 	<h:form id="formAnomalie">
-		<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
-			id="anomalies_table" reflow="true"
-			emptyMessage="Aucune anomalie n'a été trouvée." 
-			paginator="true">
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
-				<h:outputText value="#{anomalie.numAnomalie}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.perimetre']}">
-				<h:outputText value="#{anomalie.perimetre}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.type']}">
-				<h:outputText value="#{anomalie.type}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.donnees_GA']}">
-				<h:outputText value="#{anomalie.donneesGA}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.donnees_PAY']}">
-				<h:outputText value="#{anomalie.donneesPAY}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.mode_operatoire']}">
-				<h:outputText value="#{anomalie.modeOperatoire}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.date_echeance']}">
-				<h:outputText value="#{anomalie.dateEcheance}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.date_cloture']}">
-				<h:outputText value="#{anomalie.dateCloture}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
-				<h:outputText value="#{anomalie.etatCorrection}" />
-			</p:column>
-		</p:dataTable>
+		<h:panelGroup id="anomaliesGroup">
+			<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}" id="anomaliesTable"
+				widgetVar="anomalies_table" reflow="true"
+				emptyMessage="Aucune anomalie n'a été trouvée." paginator="true">
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
+					<h:outputText value="#{anomalie.numAnomalie}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.perimetre']}">
+					<h:outputText value="#{anomalie.perimetre}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.type']}">
+					<h:outputText value="#{anomalie.type}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.donnees_GA']}">
+					<h:outputText value="#{anomalie.donneesGA}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.donnees_PAY']}">
+					<h:outputText value="#{anomalie.donneesPAY}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.mode_operatoire']}">
+					<h:outputText value="#{anomalie.modeOperatoire}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.date_echeance']}">
+					<h:outputText value="#{anomalie.dateEcheance}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.date_cloture']}">
+					<h:outputText value="#{anomalie.dateCloture}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
+					<h:outputText value="#{anomalie.etatCorrection}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
 	</h:form>
 
 </ui:composition>

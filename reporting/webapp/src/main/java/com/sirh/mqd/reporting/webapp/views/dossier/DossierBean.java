@@ -35,6 +35,10 @@ public class DossierBean extends GenericBean {
 	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
 	private IDossierService dossierService;
 
+	@Inject
+	@Qualifier(ViewConstantes.ANOMALIE_BEAN)
+	private AnomalieBean anomalieBean;
+
 	/**
 	 * Identifiant unique du dossier sélectionnée en amont.
 	 */
@@ -56,12 +60,28 @@ public class DossierBean extends GenericBean {
 		}
 	}
 
+	public boolean isTabsDisplayable() {
+		return this.selectedDossier != null;
+	}
+
+	public String getSelectedDossierMatricule() {
+		return this.selectedDossier.getRenoiRHMatricule();
+	}
+
 	public IDossierService getDossierService() {
 		return dossierService;
 	}
 
 	public void setDossierService(final IDossierService dossierService) {
 		this.dossierService = dossierService;
+	}
+
+	public AnomalieBean getAnomalieBean() {
+		return anomalieBean;
+	}
+
+	public void setAnomalieBean(final AnomalieBean anomalieBean) {
+		this.anomalieBean = anomalieBean;
 	}
 
 	public DossierModel getSelectedDossier() {
