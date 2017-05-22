@@ -522,7 +522,7 @@
 	</issueManagement>
 	<scm>
 		<url>https://github.com/disic/sirh-paye-mqd-poc</url>
-		<connection>scm:git:git://github.com/disic/sirh-paye-mqd-poc.git</connection>
+		<connection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</connection>
 		<developerConnection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
