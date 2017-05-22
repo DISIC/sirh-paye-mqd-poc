@@ -115,7 +115,7 @@
 					<version>2.5.3</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<pushChanges>false</pushChanges>
+						<tagBase>https://github.com/DISIC/sirh-paye-mqd-poc/tags</tagBase>
 					</configuration>
 				</plugin>
 			</plugins>
