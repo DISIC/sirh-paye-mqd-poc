@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<!-- JSF and Spring are integrated -->
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		
+        <locale-config>
+            <default-locale>fr_FR</default-locale>
+        </locale-config>
+		<!-- Include specific application labels -->
+        <resource-bundle>
+            <base-name>com.sirh.mqd.reporting.webapp.resources.LabelSourceBundle</base-name>
+            <var>label</var>
+        </resource-bundle>
+        <!-- Include specific application messages -->
+        <resource-bundle>
+            <base-name>com.sirh.mqd.reporting.webapp.resources.TitreSourceBundle</base-name>
+            <var>titre</var>
+        </resource-bundle>
+	</application>
+
+	<managed-bean>
+		<managed-bean-name>currentDate</managed-bean-name>
+		<managed-bean-class>java.util.Date</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<!-- Configuration of navigation rules -->
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/success.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/pages/error.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

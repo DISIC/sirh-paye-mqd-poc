@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{dossierBean.setup}" />
+	</f:metadata>
+
+	<h:form id="formDossier">
+		<p:dataTable var="dossier" value="#{dossierBean.dossiers}" id="dossiersTable"
+			widgetVar="dossiers_table" reflow="true"
+			emptyMessage="Aucun dossier n'a été trouvé." paginator="true"
+			selectionMode="single" selection="#{dossierBean.selectedDossier}"
+			rowKey="#{dossier.renoiRHMatricule}">
+			<p:ajax event="rowSelect" listener="#{anomalieBean.alimenterAnomalies}" update=":dossierGroup" />
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.numero_dossier']}">
+				<h:outputText value="#{dossier.dossierNumero}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_matricule']}">
+				<h:outputText value="#{dossier.renoiRHMatricule}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.ministere']}">
+				<h:outputText value="#{dossier.ministere}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_civilite']}">
+				<h:outputText value="#{dossier.renoiRHCivilite}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
+				<h:outputText value="#{dossier.renoiRHPrenom}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_nom']}">
+				<h:outputText value="#{dossier.renoiRHNom}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_date_naissance']}">
+				<h:outputText value="#{dossier.renoiRHDateNaissance}">
+					<f:convertDateTime pattern="MM/yy" />
+				</h:outputText>
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_sexe']}">
+				<h:outputText value="#{dossier.renoiRHSexe}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_code']}">
+				<h:outputText value="#{dossier.renoiRHCorpsCode}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_libelle']}">
+				<h:outputText value="#{dossier.renoiRHCorpsLibelleCourt}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_code']}">
+				<h:outputText value="#{dossier.renoiRHGradeCode}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_libelle']}">
+				<h:outputText value="#{dossier.renoiRHGradeLibelleCourt}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_code']}">
+				<h:outputText value="#{dossier.renoiRHAffectationCode}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_libelle']}">
+				<h:outputText value="#{dossier.renoiRHAffectationLibelleCourt}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.gestionnaire_di']}">
+				<h:outputText value="#{dossier.diGestionnaire}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.code_admin']}">
+				<h:outputText value="#{dossier.adminCode}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.code_departement_admin']}">
+				<h:outputText value="#{dossier.adminCodeDepartement}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.pay_lot']}">
+				<h:outputText value="#{dossier.payLot}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.pay_cle_date_certification']}">
+				<h:outputText value="#{dossier.renoiRHDateCertification}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_alertes']}">
+				<h:outputText value="#{dossier.nbAlertes}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_anomalies']}">
+				<h:outputText value="#{dossier.nbAnomalies}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+</ui:composition>

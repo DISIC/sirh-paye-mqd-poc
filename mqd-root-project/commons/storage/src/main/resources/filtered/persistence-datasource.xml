@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.2.xsd">
+
+	<!-- MongoDB Connection -->
+	<mongo:mapping-converter />
+
+	<bean id="mongoClient"
+		class="org.springframework.data.mongodb.core.MongoClientFactoryBean">
+		<property name="host" value="${mongodb.host.address}" />
+		<property name="port" value="${mongodb.host.port}" />
+	</bean>
+
+	<bean id="mongoDbFactory"
+		class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+		<constructor-arg name="mongoClient" ref="mongoClient" />
+		<constructor-arg name="databaseName" value="${mongodb.database.name}" />
+	</bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mongoConverter" ref="mappingConverter" />
+	</bean>
+
+	<bean class="org.springframework.data.mongodb.core.MongoExceptionTranslator" />
+
+	<!-- Use this post processor to translate any MongoExceptions thrown in 
+		@Repository annotated classes -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+</beans>

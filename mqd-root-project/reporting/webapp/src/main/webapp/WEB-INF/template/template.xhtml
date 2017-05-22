@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=8" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<ui:insert name="zone_href">
+				<ui:include src="href.xhtml" />
+			</ui:insert>
+			<title>
+				<ui:insert name="zone_titre">
+					<h:outputText value="#{label['application.name']}" />
+					<h:outputText value=" #{label['header.separator']} " escape="false" />
+					<h:outputText value="#{label['application.version']}" />
+				</ui:insert>
+			</title>
+		</f:facet>
+
+		<ui:insert name="zone_config">
+			<ui:include src="config.xhtml" />
+		</ui:insert>
+
+		<ui:insert name="zone_config_page" />
+	</h:head>
+	<h:body>
+		<div id="page" class="ui-fluid">
+			<ui:insert name="zone_header">
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+			<ui:insert name="zone_menu">
+				<ui:include src="menu.xhtml" />
+			</ui:insert>
+
+			<div id="content">
+				<ui:insert name="zone_titre_page">
+					<ui:include src="titre_page.xhtml" />
+				</ui:insert>
+				<ui:insert name="zone_message">
+					<ui:include src="message.xhtml" />
+				</ui:insert>
+				<ui:insert name="zone_contenu" />
+			</div>
+
+			<ui:insert name="zone_footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div>
+	</h:body>
+</f:view>
+
+</html>

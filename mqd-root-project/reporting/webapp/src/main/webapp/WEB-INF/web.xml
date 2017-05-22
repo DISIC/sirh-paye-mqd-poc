@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>Reporting Web Application</display-name>
+	<description>IHM Services</description>
+
+	<!-- ******************** Paramètres de contexte ******************** -->
+	<!-- Contexte racine de l'application web pour Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.forceLoadConfiguration</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.enableMissingResourceLibraryDetection</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.expressionFactory</param-name>
+		<param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
+		<param-value>*.xhtml</param-value>
+	</context-param>
+
+	<!-- ******************** Ecouteurs ********************************* -->
+	<!-- Contexte racine de l'application web pour Spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- Gestion des sessions avec filtre Spring Security -->
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+
+	<!-- ******************** Filtres *********************************** -->
+	<!-- Sécurité Spring -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Encodage -->
+	<filter>
+		<filter-name>charsetFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>charsetFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Primefaces FileUpload -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<!-- ********************* Servlets ********************************* -->
+	<!-- JSF -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<!-- Spring MVC -->
+	<servlet>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<url-pattern>/spring/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- ******************** Timeout *********************************** -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- ********************* Autres *********************************** -->
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/login.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>com.sun.faces.context.FacesFileNotFoundException</exception-type>
+		<location>/login.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/login.xhtml</location>
+	</error-page>
+
+</web-app>

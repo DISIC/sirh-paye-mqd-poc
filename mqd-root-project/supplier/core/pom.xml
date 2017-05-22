@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sirh.mqd.supplier</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>core</artifactId>
+	<packaging>jar</packaging>
+
+	<name>POC MQD RH Supplier Core</name>
+	<description>Module Core contenant les beans proposant des services contenant la logique métier. 
+	Les exceptions propres au projet et les classes utilitaires peuvent être déplacées dans un composant commun si votre projet est constitué de plusieurs composants.</description>
+
+	<properties>
+		<main.basedir>..</main.basedir>
+	</properties>
+
+	<dependencies>
+
+		<!-- COMMONS STORAGE -->
+		<dependency>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>storage</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

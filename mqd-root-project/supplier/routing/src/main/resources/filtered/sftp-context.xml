@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+	default-autowire="byName">
+	
+	<!-- xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-sftp="http://www.springframework.org/schema/integration/sftp" -->
+	
+	<!-- http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
+		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd -->
+	
+	<!-- 
+	<int:channel id="sendFileChannel" />
+	<int:channel id="resultFileChannel" />
+	<beans:bean id="sftpSessionFactory"	
+		class="org.springframework.integration.sftp.session.DefaultSftpSessionFactory">
+		<beans:property name="host" value="${sftp.host.name}" />
+		<beans:property name="port" value="${sftp.host.port}" />
+		<beans:property name="user" value="${sftp.user.name}" />
+		<beans:property name="password" value="${sftp.user.password}" />
+	</beans:bean>
+	
+	<int-sftp:outbound-gateway id="sftpOutboundAdapter" session-factory="sftpSessionFactory" 
+		command="put"  
+		auto-create-directory="true"
+		expression="payload.getName()"
+		remote-directory="${sftp.repertoire.rapports}"
+		request-channel="sendFileChannel"
+		reply-channel="resultFileChannel"
+		requires-reply="false" />
+		
+	<int-sftp:outbound-channel-adapter id="resultFile" session-factory="sftpSessionFactory" 
+		channel="resultFileChannel"
+		remote-directory="${sftp.repertoire.rapports}" />
+	 -->
+
+</beans>

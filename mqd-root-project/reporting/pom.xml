@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sirh.mqd</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.sirh.mqd.reporting</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+
+	<name>POC MQD RH Reporting Interface</name>
+
+	<!-- Découpage en modules pour centraliser le routage SPRING INTEGRATION -->
+	<modules>
+		<module>api</module>
+		<module>routing</module>
+		<module>core</module>
+		<module>webapp</module>
+	</modules>
+
+	<properties>
+		<main.basedir>.</main.basedir>
+		<delivery.repository>${main.basedir}/target/livraison/${environment}</delivery.repository>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<environment>local</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo</id>
+			<properties>
+				<environment>demo</environment>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+
+		<finalName>${project.artifactId}-${project.version}-${environment}</finalName>
+
+		<!-- Centralisation des fichiers de filtrage du contenu des ressources -->
+		<filters>
+			<filter>${main.basedir}/config/filters/filter.properties</filter>
+		</filters>
+
+		<!-- Création d'un répertoire filtré et non filtré pour éviter la corruption 
+			de fichiers dûe au filtrage -->
+		<resources>
+			<resource>
+				<directory>src/main/resources/filtered</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources/non-filtered</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources/META-INF</directory>
+				<targetPath>META-INF</targetPath>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- Externalisation de certaines ressources copiées dans le répertoire 
+				destination target/config/${environment} -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>config-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${delivery.repository}/config</outputDirectory>
+							<filters>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
+							</filters>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/template</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>tomcat-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${delivery.repository}/tomcat</outputDirectory>
+							<filters>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
+							</filters>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/tomcat</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Configuration du goal eclipse pour générer un projet WTP2.0 basé 
+				sur Spring et Maven -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadJavadocs>true</downloadJavadocs>
+					<downloadSources>true</downloadSources>
+					<wtpversion>2.0</wtpversion>
+					<additionalProjectnatures>
+						<projectNature>org.eclipse.m2e.core.maven2Nature</projectNature>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<!-- COMMONS UTILS -->
+		<dependency>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>utils</artifactId>
+		</dependency>
+
+		<!-- COMMONS TRACE -->
+		<dependency>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>traces</artifactId>
+		</dependency>
+
+		<!-- COMMONS EXCHANGES -->
+		<dependency>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>exchanges</artifactId>
+		</dependency>
+
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!-- SPRING WEBFLOW -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-faces</artifactId>
+		</dependency>
+
+		<!-- SPRING SECURITY -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
+		<!-- SPRING INTEGRATION -->
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-core</artifactId>
+		</dependency>
+
+		<!-- APACHE CXF -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+
+		<!-- PRIMEFACES -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-extensions</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>all-themes</artifactId>
+		</dependency>
+
+		<!-- JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<!-- JSF -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+
+		<!--EL -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+		</dependency>
+
+		<!--DYNAMIC REPORTS -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-adhoc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-googlecharts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+		</dependency>
+
+		<!--XML PARSER -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
+
+		<!-- COMMONS TEST -->
+		<dependency>
+			<groupId>com.sirh.mqd.commons</groupId>
+			<artifactId>test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>
