@@ -38,8 +38,7 @@
 				<h:outputText value="#{dossier.renoiRHPrenom}" />
 			</p:column>
 			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_nom']}"
-				style="min-width:150px">
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_nom']}">
 				<h:outputText value="#{dossier.renoiRHNom}" />
 			</p:column>
 			<p:column
@@ -57,8 +56,7 @@
 				<h:outputText value="#{dossier.renoiRHCorpsCode}" />
 			</p:column>
 			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_libelle']}"
-				style="min-width:300px">
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_libelle']}">
 				<h:outputText value="#{dossier.renoiRHCorpsLibelleCourt}" />
 			</p:column>
 			<p:column
@@ -66,8 +64,7 @@
 				<h:outputText value="#{dossier.renoiRHGradeCode}" />
 			</p:column>
 			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_libelle']}"
-				style="min-width:300px">
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_libelle']}">
 				<h:outputText value="#{dossier.renoiRHGradeLibelleCourt}" />
 			</p:column>
 			<p:column
@@ -91,8 +88,7 @@
 				<h:outputText value="#{dossier.adminCodeDepartement}" />
 			</p:column>
 			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.pay_lot']}"
-				style="min-width:150px">
+				headerText="#{label['dossiers.overview.dossiers_table.header.pay_lot']}">
 				<h:outputText value="#{dossier.payLot}" />
 			</p:column>
 			<p:column
@@ -100,6 +96,14 @@
 				<h:outputText value="#{dossier.renoiRHDateCertification}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_alertes']}">
+				<h:outputText value="#{dossier.nbAlertes}" />
+			</p:column>
+			<p:column
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_anomalies']}">
+				<h:outputText value="#{dossier.nbAnomalies}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

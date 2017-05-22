@@ -87,6 +87,11 @@ public class MenuBean implements Serializable {
 	private MenuModel modelMenu;
 
 	/**
+	 * Page du menu actuellement sélectionnée
+	 */
+	private String currentMenu;
+
+	/**
 	 * Constructeur par défaut
 	 */
 	public MenuBean() {
@@ -102,6 +107,7 @@ public class MenuBean implements Serializable {
 		if (context != null) {
 			this.labelsBundle = context.getApplication().evaluateExpressionGet(context,
 					"#{" + ContextConstantes.LABEL + "}", LabelSourceBundle.class);
+			this.currentMenu = context.getExternalContext().getRequestParameterMap().get(MenuConstantes.ARIANE_ATTR_ID);
 		}
 
 		try {
@@ -225,6 +231,9 @@ public class MenuBean implements Serializable {
 					if (StringUtils.isNotBlank(menuItemUrl)) {
 						menuItem.setUrl(menuItemUrl + "?" + MenuConstantes.ARIANE_ATTR_ID + "=" + menuItemId);
 					}
+					if (StringUtils.isNotBlank(this.currentMenu) && menuItemId.equals(this.currentMenu)) {
+						menuItem.setContainerStyleClass("ui-menuitem-selected");
+					}
 
 					return menuItem;
 				}
@@ -267,6 +276,14 @@ public class MenuBean implements Serializable {
 
 	public void setModelMenu(final MenuModel modelMenu) {
 		this.modelMenu = modelMenu;
+	}
+
+	public String getCurrentMenu() {
+		return currentMenu;
+	}
+
+	public void setCurrentMenu(final String currentMenu) {
+		this.currentMenu = currentMenu;
 	}
 
 	public IMessageSourceBundle getMessagesBundle() {

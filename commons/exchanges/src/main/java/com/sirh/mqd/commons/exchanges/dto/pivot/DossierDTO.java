@@ -59,6 +59,10 @@ public class DossierDTO {
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
+	private int nbAlertes;
+
+	private int nbAnomalies;
+
 	public DossierDTO() {
 		super();
 	}
@@ -261,5 +265,21 @@ public class DossierDTO {
 
 	public void setRenoiRHMatricule(final String renoiRHMatricule) {
 		this.renoiRHMatricule = renoiRHMatricule;
+	}
+
+	public int getNbAlertes() {
+		return nbAlertes;
+	}
+
+	public void setNbAlertes(final int nbAlertes) {
+		this.nbAlertes = nbAlertes;
+	}
+
+	public int getNbAnomalies() {
+		return nbAnomalies;
+	}
+
+	public void setNbAnomalies(final int nbAnomalies) {
+		this.nbAnomalies = nbAnomalies;
 	}
 }

@@ -49,6 +49,8 @@ public class DossierService implements IDossierService {
 		dossier1.setRenoiRHPrenom("Jean-Fabien");
 		dossier1.setRenoiRHSexe(1);
 		dossier1.setRenoiRHDateNaissance(DateUtils.parseDateMMAA("02/61"));
+		dossier1.setNbAlertes(0);
+		dossier1.setNbAnomalies(1);
 
 		dossiers.add(dossier1);
 
@@ -79,6 +81,8 @@ public class DossierService implements IDossierService {
 		dossier2.setRenoiRHPrenom("Dominique");
 		dossier2.setRenoiRHSexe(2);
 		dossier2.setRenoiRHDateNaissance(DateUtils.parseDateMMAA("08/54"));
+		dossier2.setNbAlertes(0);
+		dossier2.setNbAnomalies(2);
 
 		dossiers.add(dossier2);
 

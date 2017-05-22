@@ -12,8 +12,8 @@
 
 	<h:form id="formAnomalie">
 		<h:panelGroup id="anomaliesGroup">
-			<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}" id="anomaliesTable"
-				widgetVar="anomalies_table" reflow="true"
+			<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
+				id="anomaliesTable" widgetVar="anomalies_table" reflow="true"
 				emptyMessage="Aucune anomalie n'a été trouvée." paginator="true">
 				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
@@ -36,10 +36,6 @@
 					<h:outputText value="#{anomalie.donneesPAY}" />
 				</p:column>
 				<p:column
-					headerText="#{label['dossiers.overview.anomalies_table.header.mode_operatoire']}">
-					<h:outputText value="#{anomalie.modeOperatoire}" />
-				</p:column>
-				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.date_echeance']}">
 					<h:outputText value="#{anomalie.dateEcheance}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -52,8 +48,14 @@
 					</h:outputText>
 				</p:column>
 				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.mode_operatoire']}">
+					<h:outputText value="#{anomalie.modeOperatoire}" />
+				</p:column>
+				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
-					<h:outputText value="#{anomalie.etatCorrection}" />
+					<p:selectOneMenu id="listEtatCorrection" value="#{anomalie.etatCorrection}">
+						<f:selectItems value="#{anomalieBean.listeEtatsCorrection}" />
+					</p:selectOneMenu>
 				</p:column>
 			</p:dataTable>
 		</h:panelGroup>

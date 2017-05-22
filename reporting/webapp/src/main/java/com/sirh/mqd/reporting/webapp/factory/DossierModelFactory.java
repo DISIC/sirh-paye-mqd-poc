@@ -62,6 +62,8 @@ public final class DossierModelFactory {
 			break;
 		}
 		dossierModel.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierDTO.getRenoiRHDateNaissance()));
+		dossierModel.setNbAlertes(dossierDTO.getNbAlertes());
+		dossierModel.setNbAnomalies(dossierDTO.getNbAnomalies());
 		return dossierModel;
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -57,6 +58,11 @@ public class DossierBean extends GenericBean {
 		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(this.getCurrentUsername());
 		for (final DossierDTO dossier : dossiers) {
 			this.dossiers.add(DossierModelFactory.createDossier(dossier));
+		}
+
+		final FacesContext facesContext = FacesContext.getCurrentInstance();
+		if (facesContext != null && !facesContext.isPostback()) {
+			this.selectedDossier = null;
 		}
 	}
 

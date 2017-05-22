@@ -12,6 +12,7 @@ import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.AnomalieDTO;
+import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -48,11 +49,20 @@ public class AnomalieBean extends GenericBean {
 	 */
 	private List<AnomalieModel> anomalies;
 
+	/**
+	 * Liste par défaut des états de correction connus.
+	 */
+	private List<String> listeEtatsCorrection;
+
 	public void setup() {
 		// Initialization
+
+		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.anomalies = new ArrayList<AnomalieModel>();
+			this.listeEtatsCorrection = new ArrayList<String>();
+			this.listeEtatsCorrection.addAll(AnomalieEtatEnum.getLibelles());
 		}
 	}
 
@@ -63,7 +73,7 @@ public class AnomalieBean extends GenericBean {
 				selectedDossier.getPayLot());
 		for (int i = 0; i < anomalies.size(); i++) {
 			final AnomalieDTO anomalie = anomalies.get(i);
-			this.anomalies.add(AnomalieModelFactory.createAnomalie(i, anomalie));
+			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(i, anomalie));
 		}
 	}
 
@@ -89,5 +99,13 @@ public class AnomalieBean extends GenericBean {
 
 	public void setAnomalies(final List<AnomalieModel> anomalies) {
 		this.anomalies = anomalies;
+	}
+
+	public List<String> getListeEtatsCorrection() {
+		return listeEtatsCorrection;
+	}
+
+	public void setListeEtatsCorrection(final List<String> listeEtatsCorrection) {
+		this.listeEtatsCorrection = listeEtatsCorrection;
 	}
 }
