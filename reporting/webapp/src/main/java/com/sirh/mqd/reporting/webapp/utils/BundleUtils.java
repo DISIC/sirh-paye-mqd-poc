@@ -1,7 +1,5 @@
 package com.sirh.mqd.reporting.webapp.utils;
 
-import java.util.ResourceBundle;
-
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
