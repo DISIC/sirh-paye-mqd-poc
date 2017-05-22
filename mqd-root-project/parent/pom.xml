@@ -512,10 +512,6 @@
 		<url>https://github.com/disic/sirh-paye-mqd-poc/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
-	<scm>
-		<developerConnection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
 
 	<developers>
 		<developer>
