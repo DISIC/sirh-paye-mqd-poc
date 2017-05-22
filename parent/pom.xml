@@ -3,7 +3,7 @@
 
 	<groupId>com.sirh.mqd</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>POC MQD RH Parent</name>
@@ -523,7 +523,7 @@
 		<url>https://github.com/disic/sirh-paye-mqd-poc</url>
 		<connection>scm:git:git://github.com/disic/sirh-paye-mqd-poc.git</connection>
 		<developerConnection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</developerConnection>
-		<tag>tag-0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<developers>
