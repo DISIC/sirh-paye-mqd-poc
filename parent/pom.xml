@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.sirh.mqd</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>POC MQD RH Parent</name>
@@ -513,7 +514,7 @@
 	</issueManagement>
 	<scm>
 		<developerConnection>scm:git:git@github.com:disic/sirh-paye-mqd-poc.git</developerConnection>
-		<tag>tag-0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<developers>
