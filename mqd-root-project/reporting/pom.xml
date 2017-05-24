@@ -86,21 +86,21 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>config-resources</id>
+						<id>os-resources</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<inherited>false</inherited>
 						<configuration>
-							<outputDirectory>${delivery.repository}/config</outputDirectory>
+							<outputDirectory>${delivery.repository}/os</outputDirectory>
 							<filters>
 								<filter>${basedir}/config/filters/filter.properties</filter>
 								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
 							</filters>
 							<resources>
 								<resource>
-									<directory>${basedir}/config/template</directory>
+									<directory>${basedir}/config/template/os</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -114,14 +114,35 @@
 						</goals>
 						<inherited>false</inherited>
 						<configuration>
-							<outputDirectory>${delivery.repository}/tomcat</outputDirectory>
+							<outputDirectory>${delivery.repository}/tomcat/conf</outputDirectory>
 							<filters>
 								<filter>${basedir}/config/filters/filter.properties</filter>
 								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
 							</filters>
 							<resources>
 								<resource>
-									<directory>${basedir}/config/tomcat</directory>
+									<directory>${basedir}/config/template/tomcat</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>livraison-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${main.basedir}/target</outputDirectory>
+							<filters>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
+							</filters>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/template/livraison</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>

@@ -61,7 +61,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${delivery.repository}/exec</outputDirectory>
+							<outputDirectory>${delivery.repository}/tomcat/webapps</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${project.build.directory}</directory>
@@ -75,6 +75,29 @@
 					</execution>
 				</executions>
 			</plugin>
+	         <!-- PLUGIN Assembly -->
+	         <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-assembly-plugin</artifactId>
+	            <version>2.4</version>
+	            <executions>
+	               <execution>
+	                  <id>make-assembly</id>
+	                  <phase>package</phase>
+	                  <goals>
+	                     <goal>single</goal>
+	                  </goals>
+	               </execution>
+	            </executions>
+	            <configuration>
+	               <appendAssemblyId>false</appendAssemblyId>
+	               <outputDirectory>${main.basedir}/target</outputDirectory>
+	               <finalName>${project.build.finalName}-${project.parent.version}</finalName>
+	               <descriptors>
+	                  <descriptor>${main.basedir}/livraison-description.xml</descriptor>
+	               </descriptors>
+	            </configuration>
+	         </plugin>
 		</plugins>
 	</build>
 

@@ -11,10 +11,10 @@ Lancer la commande
    2.1 - Les fichiers à externaliser présents dans config/template sont filtrés.
 
          LOGBACK
-         -Dlogback.configurationFile="/${workspace.directory}/mqd-root-project/supplier/target/livraison/local/tomcat/logback.xml"
+         -Dlogback.configurationFile="/${workspace.directory}/mqd-root-project/supplier/target/livraison/local/tomcat/conf/mqdrh/logback.xml"
 
          APPLICATION
-         -Dapplication.configurationDirectory="/${workspace.directory}/mqd-root-project/supplier/target/livraison/local/config"
+         -Dapplication.configurationDirectory="/${workspace.directory}/mqd-root-project/supplier/target/livraison/local/tomcat/conf/mqdrh"
 
    2.2 - Paramétrer les fichiers context.xml (contenant les pools de connexion) et server.xml.
 

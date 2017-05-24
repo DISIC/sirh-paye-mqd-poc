@@ -1,0 +1,24 @@
+# Systemd unit file for tomcat
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=${filter.java.home.path}
+Environment=CATALINA_PID=${filter.tomcat.catalina.base.path}/temp/tomcat.pid
+Environment=CATALINA_HOME=${filter.tomcat.catalina.home.path}
+Environment=CATALINA_BASE=${filter.tomcat.catalina.base.path}
+Environment='CATALINA_OPTS=-Dapplication.configurationDirectory=${filter.tomcat.conf.path} -Dlogback.configurationFile=${filter.tomcat.conf.path}/logback.xml'
+Environment='JAVA_OPTS=-server -Djava.awt.headless=true -Dnet.sf.ehcache.skipUpdateCheck=true -Dfile.encoding=UTF-8 -Duser.timezone=UTC -Xms${filter.tomcat.java.memory.size}m -Xmx${filter.tomcat.java.memory.size}m -XX:NewSize=${filter.tomcat.java.new.size}m -XX:MaxNewSize=${filter.tomcat.java.new.size}m -XX:SurvivorRatio=8 -XX:PermSize=${filter.tomcat.java.perm.size}m -XX:MaxPermSize=${filter.tomcat.java.perm.size}m -XX:ParallelGCThreads=2 -XX:+DisableExplicitGC -XX:+DoEscapeAnalysis -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC'
+
+ExecStart=${filter.tomcat.catalina.home.path}/bin/startup.sh
+ExecStop=/bin/kill -15 $MAINPID
+
+User=${filter.tomcat.process.user}
+Group=${filter.tomcat.process.group}
+
+[Install]
+WantedBy=multi-user.target
+
