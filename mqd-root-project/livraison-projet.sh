@@ -59,8 +59,8 @@ scripts_git_tag() {
 ######################################################################################
 scripts_mvn_install() {
 	echo -e "Génération des configurations du projet propres à l'environnement de Démo"
-	cd "$LOCATION/sirh-paye-mqd-poc-tag-$VERSION/mqd-root-project/parent"
-	mvn clean install -P demo
+	cd "$LOCATION/sirh-paye-mqd-poc-tag-$VERSION/mqd-root-project"
+	mvn clean install -Dmaven.test.skip=true -P demo
 }
 
 ######################################################################################

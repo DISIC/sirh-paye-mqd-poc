@@ -77,6 +77,7 @@ cleanup_tomcat() {
 directories_tomcat() {
 	echo -e "Création des arborescences CATALINA_BASE et LOG pour Tomcat."
 	sudo mkdir -p ${filter.tomcat.catalina.base.path}/{bin,conf,logs,temp,webapps,work}
+	sudo mkdir -p ${filter.tomcat.conf.path}
 	sudo mkdir -p ${filter.log.file.path}
 }
 
@@ -84,7 +85,7 @@ directories_tomcat() {
 # Recopie des fichiers de configuration du serveur Tomcat
 ######################################################################################
 scripts_tomcat_delivery() {
-	echo -e "Recopie des fichiers de configuration du serveur Tomcat"
+	echo -e "Recopie des fichiers de configuration du serveur Tomcat."
 	sudo cp -Rf livraison/demo/tomcat/* ${filter.tomcat.conf.path}/
 }
 
@@ -92,7 +93,7 @@ scripts_tomcat_delivery() {
 # Modification des droits sur les répertoires Tomcat
 ######################################################################################
 scripts_tomcat_rights() {
-	echo -e "Modification des droits sur les répertoires Tomcat"
+	echo -e "Modification des droits sur les répertoires Tomcat."
 	sudo chown ${filter.tomcat.process.user}:root -R ${filter.tomcat.catalina.base.path}
 	sudo chmod 755 -R ${filter.tomcat.catalina.base.path}
 		
@@ -106,8 +107,8 @@ scripts_tomcat_rights() {
 # Recopie du service CentOS pour Tomcat
 ######################################################################################
 scripts_tomcat_centos() {
-	echo -e "Recopie des fichiers de configuration du serveur Tomcat"
-	sudo cp -f livraison/os/centos/tomcat_reporting.service /etc/systemd/system/
+	echo -e "Recopie des fichiers de configuration du serveur Tomcat."
+	sudo cp -f livraison/demo/os/centos/tomcat_reporting.service /etc/systemd/system/
 	sudo systemctl daemon-reload
 }
 
@@ -115,7 +116,7 @@ scripts_tomcat_centos() {
 # Démarrage du service Tomcat
 ######################################################################################
 start_tomcat_centos() {
-	echo -e "Démarrage du service Tomcat du composant Reporting"
+	echo -e "Démarrage du service Tomcat du composant Reporting."
 	sudo service tomcat_reporting start
 }
 
