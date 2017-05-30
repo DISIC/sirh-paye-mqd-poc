@@ -1,5 +1,13 @@
 # sirh-paye-mqd-poc
 
-Creation d'une nouvelle version du projet :
+Prérequis
+=====================
 
-mvn -Dtag=tag-{current release version} -DreleaseVersion={current release version} -DdevelopmentVersion={next release version}-SNAPSHOT
+* Java 8
+* Maven 3
+
+Montée de version
+=====================
+
+**Creation d'une nouvelle version du projet :**<br/>
+mvn release:clean release:prepare -Dtag=tag-[CURRENT-RELEASE-VERSION] -DreleaseVersion=[CURRENT-RELEASE-VERSION] -DdevelopmentVersion=[NEXT-RELEASE-VERSION]-SNAPSHOT
