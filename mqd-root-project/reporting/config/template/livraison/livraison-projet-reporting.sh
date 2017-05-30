@@ -86,7 +86,11 @@ directories_tomcat() {
 ######################################################################################
 scripts_tomcat_delivery() {
 	echo -e "Recopie des fichiers de configuration du serveur Tomcat."
-	sudo cp -Rf livraison/demo/tomcat/* ${filter.tomcat.conf.path}/
+	sudo cp -Rf livraison/demo/tomcat/* ${filter.tomcat.catalina.base.path}/
+	sudo rm -Rf ${filter.tomcat.catalina.base.path}/conf/mqdrh
+	
+	sudo mkdir -p ${filter.tomcat.conf.path}
+	sudo cp -Rf livraison/demo/tomcat/conf/mqdrh/* ${filter.tomcat.conf.path}/
 }
 
 ######################################################################################
