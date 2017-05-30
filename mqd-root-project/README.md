@@ -9,5 +9,9 @@ Prérequis
 Montée de version
 =====================
 
-**Creation d'une nouvelle version du projet :**<br/>
-mvn release:clean release:prepare -Dtag=tag-[CURRENT-RELEASE-VERSION] -DreleaseVersion=[CURRENT-RELEASE-VERSION] -DdevelopmentVersion=[NEXT-RELEASE-VERSION]-SNAPSHOT
+**Création d'une nouvelle version du projet :**<br/>
+* mvn release:clean release:prepare -Dtag=tag-[CURRENT-RELEASE-VERSION] -DreleaseVersion=[CURRENT-RELEASE-VERSION] -DdevelopmentVersion=[NEXT-RELEASE-VERSION]-SNAPSHOT
+* mvn release:clean
+
+**Retour arrière si une opération s'est mal déroulée :**<br/>
+* mvn release:rollback

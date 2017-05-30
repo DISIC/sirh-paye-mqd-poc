@@ -28,24 +28,6 @@
 		<delivery.repository>${main.basedir}/target/livraison/${environment}</delivery.repository>
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<environment>local</environment>
-			</properties>
-		</profile>
-		<profile>
-			<id>demo</id>
-			<properties>
-				<environment>demo</environment>
-			</properties>
-		</profile>
-	</profiles>
-
 	<build>
 
 		<finalName>${project.artifactId}-${project.version}-${environment}</finalName>

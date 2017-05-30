@@ -51,7 +51,7 @@ cleanup_project() {
 scripts_git_tag() {
 	echo -e "Téléchargement de la version $VERSION du code source du projet"
 	aria2c -x10 "https://github.com/DISIC/sirh-paye-mqd-poc/archive/tag-$VERSION.zip"
-	unzip "tag-$VERSION.zip" -d "$LOCATION"
+	unzip "sirh-paye-mqd-poc-tag-$VERSION.zip" -d "$LOCATION"
 }
 
 ######################################################################################
@@ -60,7 +60,7 @@ scripts_git_tag() {
 scripts_mvn_install() {
 	echo -e "Génération des configurations du projet propres à l'environnement de Démo"
 	cd "$LOCATION/sirh-paye-mqd-poc-tag-$VERSION/mqd-root-project/parent"
-	mvn clean install -p demo
+	mvn clean install -P demo
 }
 
 ######################################################################################
