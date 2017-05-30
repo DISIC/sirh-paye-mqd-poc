@@ -18,92 +18,54 @@
 			rowKey="#{dossier.renoiRHMatricule}">
 			<p:ajax event="rowSelect" listener="#{anomalieBean.alimenterAnomalies}" update=":dossierGroup" />
 			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.numero_dossier']}">
-				<h:outputText value="#{dossier.dossierNumero}" />
+				headerText="NIR">
+				<h:outputText value="n° non présent dans fichiers de bases" />
 			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHMatricule}" filterMatchMode="contains" sortBy="#{dossier.renoiRHMatricule}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_matricule']}">
 				<h:outputText value="#{dossier.renoiRHMatricule}" />
 			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.ministere']}">
-				<h:outputText value="#{dossier.ministere}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_civilite']}">
-				<h:outputText value="#{dossier.renoiRHCivilite}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
-				<h:outputText value="#{dossier.renoiRHPrenom}" />
-			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHNom}" filterMatchMode="contains" sortBy="#{dossier.renoiRHNom}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_nom']}">
 				<h:outputText value="#{dossier.renoiRHNom}" />
 			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHPrenom}" filterMatchMode="contains" sortBy="#{dossier.renoiRHPrenom}"
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
+				<h:outputText value="#{dossier.renoiRHPrenom}" />
+			</p:column>
+			<p:column filterBy="#{dossier.renoiRHDateNaissance}" filterMatchMode="contains" sortBy="#{dossier.renoiRHDateNaissance}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_date_naissance']}">
 				<h:outputText value="#{dossier.renoiRHDateNaissance}">
 					<f:convertDateTime pattern="MM/yy" />
 				</h:outputText>
 			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_sexe']}">
-				<h:outputText value="#{dossier.renoiRHSexe}" />
-			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="contains" sortBy="#{dossier.renoiRHCorpsCode}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_code']}">
 				<h:outputText value="#{dossier.renoiRHCorpsCode}" />
 			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHCorpsLibelleCourt}" filterMatchMode="contains" sortBy="#{dossier.renoiRHCorpsLibelleCourt}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_libelle']}">
 				<h:outputText value="#{dossier.renoiRHCorpsLibelleCourt}" />
 			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_code']}">
-				<h:outputText value="#{dossier.renoiRHGradeCode}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_grade_libelle']}">
-				<h:outputText value="#{dossier.renoiRHGradeLibelleCourt}" />
-			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHAffectationCode}" filterMatchMode="contains" sortBy="#{dossier.renoiRHAffectationCode}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_code']}">
 				<h:outputText value="#{dossier.renoiRHAffectationCode}" />
 			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.renoiRHAffectationLibelleCourt}" filterMatchMode="contains" sortBy="#{dossier.renoiRHAffectationLibelleCourt}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_libelle']}">
 				<h:outputText value="#{dossier.renoiRHAffectationLibelleCourt}" />
 			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.gestionnaire_di']}">
-				<h:outputText value="#{dossier.diGestionnaire}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.code_admin']}">
-				<h:outputText value="#{dossier.adminCode}" />
-			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.code_departement_admin']}">
-				<h:outputText value="#{dossier.adminCodeDepartement}" />
-			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.payLot}" filterMatchMode="contains" sortBy="#{dossier.payLot}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.pay_lot']}">
 				<h:outputText value="#{dossier.payLot}" />
 			</p:column>
-			<p:column
-				headerText="#{label['dossiers.overview.dossiers_table.header.pay_cle_date_certification']}">
-				<h:outputText value="#{dossier.renoiRHDateCertification}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.nbAlertes}" filterMatchMode="contains" sortBy="#{dossier.nbAlertes}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.nb_alertes']}">
 				<h:outputText value="#{dossier.nbAlertes}" />
 			</p:column>
-			<p:column
+			<p:column filterBy="#{dossier.nbAnomalies}" filterMatchMode="contains" sortBy="#{dossier.nbAnomalies}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.nb_anomalies']}">
-				<h:outputText value="#{dossier.nbAnomalies}" />
+				<h:outputText value="#{dossier.nbAnomalies}" styleClass="#{(dossier.nbAnomalies>1) ? 'red' : 'white'}"/>
 			</p:column>
 		</p:dataTable>
 	</h:form>

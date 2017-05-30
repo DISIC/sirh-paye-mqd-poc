@@ -40,6 +40,10 @@ public class DossierBean extends GenericBean {
 	@Qualifier(ViewConstantes.ANOMALIE_BEAN)
 	private AnomalieBean anomalieBean;
 
+	@Inject
+	@Qualifier(ViewConstantes.HISTORIQUE_BEAN)
+	private HistoriqueBean historiqueBean;
+
 	/**
 	 * Identifiant unique du dossier sélectionnée en amont.
 	 */
@@ -88,6 +92,14 @@ public class DossierBean extends GenericBean {
 
 	public void setAnomalieBean(final AnomalieBean anomalieBean) {
 		this.anomalieBean = anomalieBean;
+	}
+
+	public HistoriqueBean getHistoriqueBean() {
+		return historiqueBean;
+	}
+
+	public void setHistoriqueBean(final HistoriqueBean historiqueBean) {
+		this.historiqueBean = historiqueBean;
 	}
 
 	public DossierModel getSelectedDossier() {

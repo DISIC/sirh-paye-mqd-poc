@@ -6,8 +6,30 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<h:panelGrid columns="1" cellpadding="10">
-		<h:outputText value="Prévu pour le sprint 5" />
-	</h:panelGrid>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{historiqueBean.setup}" />
+	</f:metadata>
+	<h:form id="formHistorique">
+		<p:dataTable var="historique" value="#{historiqueBean.historiques}"
+				id="historiquesTable" widgetVar="historiques_table" reflow="true"
+				emptyMessage="Aucun historique n'a été trouvée." paginator="true">
+				<p:column
+					headerText="#{label['dossiers.overview.historiques_table.header.date']}">
+					<h:outputText value="#{historique.dateHistorique}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.historiques_table.header.utilisateur']}">
+					<h:outputText value="#{historique.utilisateurHistorique}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.historiques_table.header.operation']}">
+					<h:outputText value="#{historique.operationHistorique}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.historiques_table.header.objet']}">
+					<h:outputText value="#{historique.objetHistorique}" />
+				</p:column>
+		</p:dataTable>
+	</h:form>
 
 </ui:composition>

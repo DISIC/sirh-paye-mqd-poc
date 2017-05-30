@@ -16,8 +16,8 @@
 		<ui:include src="dossiers.xhtml" />
 		<h:panelGroup id="dossierGroup" >
 			<p:panel id="dossier" style="margin-bottom:20px;margin-top:30px"
-				header="Dossier #{dossierBean.selectedDossierMatricule}"
-				footer="Dossier #{dossierBean.selectedDossierMatricule}"
+				header="#{dossierBean.selectedDossierMatricule}"
+				footer="#{dossierBean.selectedDossierMatricule}"
 				rendered="#{dossierBean.tabsDisplayable}">
 				<p:tabView id="ongletsDossier">
 					<p:tab title="Detail des anomalies">

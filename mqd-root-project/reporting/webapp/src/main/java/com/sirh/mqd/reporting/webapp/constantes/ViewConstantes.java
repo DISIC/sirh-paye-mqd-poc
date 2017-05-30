@@ -13,6 +13,9 @@ public final class ViewConstantes {
 
 	public static final String ANOMALIE_BEAN = "anomalieBean";
 
+	public static final String HISTORIQUE_BEAN = "historiqueBean";
+
+
 	/**
 	 * Non-constructeur
 	 *
