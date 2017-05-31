@@ -62,6 +62,15 @@ check_delivery_repository() {
 }
 
 ######################################################################################
+# Installation du serveur SFTP
+######################################################################################
+install_sftp_server() {
+	echo -e "Installation du serveur SFTP."
+	sudo chmod +x "livraison/demo/sftp/installation-serveur-sftp.sh"
+	sh ./livraison/demo/sftp/installation-serveur-sftp.sh
+}
+
+######################################################################################
 # Suppression de l'ancienne version de Tomcat
 ######################################################################################
 cleanup_tomcat() {
@@ -126,6 +135,7 @@ start_tomcat_centos() {
 
 check_current_location
 check_delivery_repository
+install_sftp_server
 cleanup_tomcat
 directories_tomcat
 scripts_tomcat_delivery

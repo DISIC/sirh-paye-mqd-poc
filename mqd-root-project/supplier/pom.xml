@@ -110,6 +110,27 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>sftp-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${delivery.repository}/sftp</outputDirectory>
+							<filters>
+								<filter>${basedir}/config/filters/filter.properties</filter>
+								<filter>${basedir}/config/filters/filter-${environment}.properties</filter>
+							</filters>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/template/sftp</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
 						<id>livraison-resources</id>
 						<phase>process-resources</phase>
 						<goals>
