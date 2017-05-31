@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Model d'anomalie d'un dossier à manipuler dans la partie Vue
+ * Model d'historique d'un dossier à manipuler dans la partie Vue
  *
  * @author khalil
  */
@@ -12,9 +12,9 @@ import java.util.Date;
 public class HistoriqueModel implements Serializable {
 
 	/**
-	 * Generated UID
+	 *Generated UID
 	 */
-	private static final long serialVersionUID = -1889898358932694951L;
+	private static final long serialVersionUID = -5596146588590189911L;
 
 	private Date dateHistorique;
 

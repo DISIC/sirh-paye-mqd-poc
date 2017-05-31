@@ -14,27 +14,29 @@
 
 	<ui:define name="zone_contenu">
 		<ui:include src="dossiers.xhtml" />
-		<h:panelGroup id="dossierGroup" >
-			<p:panel id="dossier" style="margin-bottom:20px;margin-top:30px"
-				header="#{dossierBean.selectedDossierMatricule}"
-				footer="#{dossierBean.selectedDossierMatricule}"
-				rendered="#{dossierBean.tabsDisplayable}">
-				<p:tabView id="ongletsDossier">
-					<p:tab title="Detail des anomalies">
-						<ui:include src="anomalies.xhtml" />
-					</p:tab>
-					<p:tab title="Historique">
-						<ui:include src="historique.xhtml" />
-					</p:tab>
-					<p:tab title="Synthèse des données">
-						<ui:include src="synthese.xhtml" />
-					</p:tab>
-				</p:tabView>
-				<p:panel id="horizontal" header="Commentaire" toggleable="true">
-					<ui:include src="commentaires.xhtml" />
+		<div id="dossier_anomalie">
+			<h:panelGroup id="dossierGroup" >
+				<p:panel id="dossier"
+					header="#{dossierBean.selectedDossierMatricule}"
+					footer="#{dossierBean.selectedDossierMatricule}"
+					rendered="#{dossierBean.tabsDisplayable}">
+					<p:tabView id="ongletsDossier">
+						<p:tab title="#{label['dossiers.overview.sous_menu.Detail_des_anomalies']}">
+							<ui:include src="anomalies.xhtml" />
+						</p:tab>
+						<p:tab title="#{label['dossiers.overview.sous_menu.Historique']}">
+							<ui:include src="historique.xhtml" />
+						</p:tab>
+						<p:tab title="#{label['dossiers.overview.sous_menu.Synthese_des_donnees']}">
+							<ui:include src="synthese.xhtml" />
+						</p:tab>
+					</p:tabView>
+					<p:panel id="horizontal" header="Commentaire" toggleable="true">
+						<ui:include src="commentaires.xhtml" />
+					</p:panel>
 				</p:panel>
-			</p:panel>
-		</h:panelGroup>
+			</h:panelGroup>
+		</div>
 	</ui:define>
 
 </ui:composition>

@@ -5,9 +5,29 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-
-	<h:panelGrid columns="1" cellpadding="10">
-		<h:outputText value="Prévu pour le sprint 3" />
-	</h:panelGrid>
+	
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{commentaireBean.setup}" />
+	</f:metadata>
+	
+	<h:form id="formCommentaire">
+		<h:panelGroup id="commentairesGroup">
+    		<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" rows="6" cols="33" />
+		</h:panelGroup>	
+		<p:commandButton value="Submit" update="commentairesGroup" icon="ui-icon-disk" style="background:ffffff" width="50%"/>
+    	<p:commandButton value="Clear" onclick="PF('editor2').clear();" icon="ui-icon-close" styleClass="ui-priority-primary"/>
+ 		<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
+				id="commentairesTable" widgetVar="commentaires_table" reflow="true"
+				emptyMessage="Aucun historique n'a été trouvée.">
+				<p:column width="200"
+					headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
+					<h:outputText value="#{commentaire.dateCreation}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.commentaires_table.commentaire_du_dossier']}">
+					<h:outputText value="#{commentaire.contenu}" />
+				</p:column>
+		</p:dataTable>		
+	</h:form>
 
 </ui:composition>

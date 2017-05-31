@@ -15,6 +15,8 @@ public final class ViewConstantes {
 
 	public static final String HISTORIQUE_BEAN = "historiqueBean";
 
+	public static final String COMMENTAIRE_BEAN = "commentaireBean";
+
 
 	/**
 	 * Non-constructeur

@@ -1,46 +1,36 @@
 package com.sirh.mqd.commons.exchanges.dto.pivot;
 
-import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
-import com.sirh.mqd.commons.exchanges.enums.DossierVersionPapierEnum;
+import java.util.Date;
 
 /**
  * DTO permettant de manipuler les commentaires d'un dossier
  *
- * @author alexandre
+ * @author khalil
  */
 public class CommentaireDTO {
 
-	private String content;
+	private Date dateCreation;
 
-	private DossierVersionPapierEnum etatDossierVersionPapier;
-
-	private DossierAffectationEnum etatDossierAffectation;
+	private String contenu;
 
 	public CommentaireDTO() {
 		super();
 	}
 
-	public String getContent() {
-		return content;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
-	public void setContent(final String content) {
-		this.content = content;
+	public void setDateCreation(final Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
-	public DossierVersionPapierEnum getEtatDossierVersionPapier() {
-		return etatDossierVersionPapier;
+	public String getContenu() {
+		return contenu;
 	}
 
-	public void setEtatDossierVersionPapier(final DossierVersionPapierEnum etatDossierVersionPapier) {
-		this.etatDossierVersionPapier = etatDossierVersionPapier;
+	public void setContenu(final String contenu) {
+		this.contenu = contenu;
 	}
 
-	public DossierAffectationEnum getEtatDossierAffectation() {
-		return etatDossierAffectation;
-	}
-
-	public void setEtatDossierAffectation(final DossierAffectationEnum etatDossierAffectation) {
-		this.etatDossierAffectation = etatDossierAffectation;
-	}
 }
