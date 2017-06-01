@@ -38,24 +38,34 @@ Configurations
 	* Cliquer sur : OK
 6. Se connecter à la VM en super-utilisateur et exécuter la commande suivante :
 
+
 	**Command** : yum install net-tools openssh* openssl-libs vim
+
 
 7. Depuis le répertoire **mqd-root-project** dans le code source du projet, compiler le avec la commande suivante :
 
+
 	**Command** : mvn clean install -Dmaven.test.skip=true
+
 
 8. Copier sur la machine virtuelle le script **installation-serveur-sftp.sh** situé dans le répertoire généré **supplier/target/livraison/local/sftp** du projet :
 
+
 	**Command** : scp -P 2222 installation-serveur-sftp.sh root@localhost:/tmp
+
 
 9. Se connecter à la VM en super-utilisateur et exécuter la commande suivante :
 
-	**Command** : chmod +x installation-serveur-sftp.sh 
+
+	**Command** : chmod +x installation-serveur-sftp.sh
 	**Command** : ./installation-serveur-sftp.s
+
 
 10. Tester l'accès au serveur SFTP sur la machine virtuelle avec la commande suivante :
 
+
 	**Command** : sftp -P 2222 sftpuser-mqdsirh@localhost
+
 
 
 Environnement de Démo
@@ -70,8 +80,10 @@ Configurations
 * Groupe du process Tomcat : tomcat
 * Copier sur le serveur le script **livraison-projet.sh** situé à la racine du code source du projet :
 
+
 	**Command** : scp -P 22 livraison-projet.sh root@:10.200.54.183/tmp
 	N.B. : Demander le mot de passe à un membre de l'équipe si nécessaire
+
 
 
 Installation
