@@ -19,7 +19,7 @@ Configurations
 * Utilisateur du process Tomcat : [YOUR DESKTOP USERNAME]
 * Groupe du process Tomcat : [YOUR DESKTOP GROUPNAME]
 * Installer un serveur SFTP sur une VM CentOS 
-1. Télécharger une image minmaliste de CentOS 7 :
+1. Télécharger une image minimaliste de CentOS 7 :
 
 	**Lien** : http://isoredirect.centos.org/centos/7/isos/x86_64/
 
