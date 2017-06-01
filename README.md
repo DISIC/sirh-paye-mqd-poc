@@ -61,14 +61,16 @@ Configurations
 * Utilisateur du process Tomcat : tomcat
 * Groupe du process Tomcat : tomcat
 * Copier sur le serveur le script **livraison-projet.sh** situé à la racine du code source du projet :
-<pre><code>Commande : scp -P 22 livraison-projet.sh root@:10.200.54.183/tmp</code></pre>
+<pre><code>Commande : scp -P 22 livraison-projet.sh root@10.200.54.183:/tmp</code></pre>
 
 N.B. : Demander le mot de passe à un membre de l'équipe si nécessaire
 
 Installation
 --------------------
 
-<pre><code>Commande : chmod +x livraison-projet.sh
+<pre><code>Commande : ssh -p 22 root@10.200.54.183
+Commande : cd /tmp
+Commande : chmod +x livraison-projet.sh
 Commande : ./livraison-projet.sh [RELEASE-GIT AU FORMAT : X.Y.Z]</code></pre>
 
 N.B. : La liste des RELEASES GIT est disponible à l'adresse suivante :<br/>
