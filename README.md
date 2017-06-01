@@ -43,7 +43,7 @@ Configurations
 8. Copier sur la machine virtuelle le script **installation-serveur-sftp.sh** situé dans le répertoire généré **supplier/target/livraison/local/sftp** du projet :
 <pre><code>Commande : scp -P 2222 installation-serveur-sftp.sh root@localhost:/tmp</code></pre>
 9. Se connecter à la VM en super-utilisateur et exécuter la commande suivante :
-<pre><code>Commande : ssh -P 2222 root@localhost
+<pre><code>Commande : ssh -p 2222 root@localhost
 Commande : cd /tmp
 Commande : chmod +x installation-serveur-sftp.sh
 Commande : ./installation-serveur-sftp.sh</code></pre>
