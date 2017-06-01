@@ -1,4 +1,4 @@
-package com.sirh.mqd.commons.exchanges.dto.pivot;
+package com.sirh.mqd.commons.exchanges.dto.historique;
 
 import java.util.Date;
 

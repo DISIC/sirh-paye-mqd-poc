@@ -1,6 +1,6 @@
 package com.sirh.mqd.reporting.webapp.factory;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.CommentaireDTO;
+import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.webapp.model.CommentaireModel;
 

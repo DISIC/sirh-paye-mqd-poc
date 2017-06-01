@@ -13,5 +13,7 @@
 	<context:component-scan base-package="com.sirh.mqd.supplier.routing" />
 	<import resource="classpath:core-context.xml" />
 	<import resource="classpath:reporting-context.xml" />
+	<import resource="classpath:rest-context.xml" />
 	<import resource="classpath:sftp-context.xml" />
+	<import resource="classpath:pay-context.xml" />
 </beans>

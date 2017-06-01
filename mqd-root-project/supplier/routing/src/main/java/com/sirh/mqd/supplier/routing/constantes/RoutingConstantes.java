@@ -8,6 +8,11 @@ package com.sirh.mqd.supplier.routing.constantes;
 public final class RoutingConstantes {
 
 	/**
+	 * Nom du bean payBean
+	 */
+	public static final String PAY_BEAN = "payBean";
+
+	/**
 	 * Nom du bean supplierBatch
 	 */
 	public static final String SUPPLIER_BATCH = "supplierBatch";

@@ -62,6 +62,14 @@ check_delivery_repository() {
 }
 
 ######################################################################################
+# Création du répertoire local pour récupérer les fichier du serveur SFTP
+######################################################################################
+install_sftp_server() {
+	echo -e "Création du répertoire local pour récupérer les fichier du serveur SFTP."
+	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac}
+}
+
+######################################################################################
 # Installation du serveur SFTP
 ######################################################################################
 install_sftp_server() {

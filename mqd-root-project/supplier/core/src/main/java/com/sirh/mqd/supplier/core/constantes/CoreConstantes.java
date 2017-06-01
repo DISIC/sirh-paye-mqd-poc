@@ -7,6 +7,8 @@ package com.sirh.mqd.supplier.core.constantes;
  */
 public final class CoreConstantes {
 
+	public static final String PAY_SERVICE = "payService";
+
 	public static final String SIRH_MSO_SERVICE = "sirhMsoService";
 
 	public static final String SIRH_DGAC_SERVICE = "sirhDgacService";

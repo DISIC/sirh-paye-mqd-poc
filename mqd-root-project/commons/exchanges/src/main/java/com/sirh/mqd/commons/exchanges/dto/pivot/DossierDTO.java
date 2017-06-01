@@ -1,6 +1,7 @@
 package com.sirh.mqd.commons.exchanges.dto.pivot;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * DTO correspondant au dossier d'un gestionnaire
@@ -23,16 +24,6 @@ public class DossierDTO {
 
 	private String payLot;
 
-	private int payCivilite;
-
-	private String payNom;
-
-	private String payPrenom;
-
-	private int paySexe;
-
-	private Date payDateNaissance; // Format en entrée : "MM/yy"
-
 	private String renoiRHMatricule;
 
 	private String renoiRHCorpsCode;
@@ -47,8 +38,6 @@ public class DossierDTO {
 
 	private String renoiRHAffectationLibelleCourt;
 
-	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
-
 	private int renoiRHCivilite;
 
 	private String renoiRHNom;
@@ -58,6 +47,10 @@ public class DossierDTO {
 	private int renoiRHSexe;
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
+
+	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
+
+	private List<Date> mouvementsCarriere; // Format en entrée : "dd/MM/yyyy"
 
 	private int nbAlertes;
 
@@ -121,46 +114,6 @@ public class DossierDTO {
 
 	public void setPayLot(final String payLot) {
 		this.payLot = payLot;
-	}
-
-	public int getPayCivilite() {
-		return payCivilite;
-	}
-
-	public void setPayCivilite(final int payCivilite) {
-		this.payCivilite = payCivilite;
-	}
-
-	public String getPayNom() {
-		return payNom;
-	}
-
-	public void setPayNom(final String payNom) {
-		this.payNom = payNom;
-	}
-
-	public String getPayPrenom() {
-		return payPrenom;
-	}
-
-	public void setPayPrenom(final String payPrenom) {
-		this.payPrenom = payPrenom;
-	}
-
-	public int getPaySexe() {
-		return paySexe;
-	}
-
-	public void setPaySexe(final int paySexe) {
-		this.paySexe = paySexe;
-	}
-
-	public Date getPayDateNaissance() {
-		return payDateNaissance;
-	}
-
-	public void setPayDateNaissance(final Date payDateNaissance) {
-		this.payDateNaissance = payDateNaissance;
 	}
 
 	public String getRenoiRHCorpsCode() {
@@ -273,6 +226,14 @@ public class DossierDTO {
 
 	public void setNbAlertes(final int nbAlertes) {
 		this.nbAlertes = nbAlertes;
+	}
+
+	public List<Date> getMouvementsCarriere() {
+		return mouvementsCarriere;
+	}
+
+	public void setMouvementsCarriere(final List<Date> mouvementsCarriere) {
+		this.mouvementsCarriere = mouvementsCarriere;
 	}
 
 	public int getNbAnomalies() {

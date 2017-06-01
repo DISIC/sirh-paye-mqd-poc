@@ -11,7 +11,7 @@ import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
  *
  * @author alexandre
  */
-@Service(CoreConstantes.SIRH_MSO_SERVICE)
+@Service(CoreConstantes.SIRH_DGAC_SERVICE)
 public class SirhDgacService {
 
 	// @Autowired

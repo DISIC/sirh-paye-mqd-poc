@@ -13,22 +13,33 @@ import java.util.List;
  */
 public enum AnomalieTypeEnum {
 
-	NOM("Nom"),
+	NOM("Nom", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	PRENOM("Prénom"),
+	PRENOM("Prénom", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	DATE_NAISSANCE("Date de naissance"),
+	DATE_NAISSANCE("Date de naissance", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	CIVILITE("Civilité"),
+	CIVILITE("Civilité", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	SEXE("Sexe");
+	SEXE("Sexe", AnomaliePerimetreEnum.ETAT_CIVIL),
+
+	NB_POINTS("Nombre de points", AnomaliePerimetreEnum.NBI),
+
+	INDICE("Indice", AnomaliePerimetreEnum.CARRIERE),
+
+	GRADE("Grade", AnomaliePerimetreEnum.CARRIERE),
+
+	NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE);
 
 	public static final List<AnomalieTypeEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 
 	private String libelle;
 
-	AnomalieTypeEnum(final String libelle) {
+	private AnomaliePerimetreEnum perimetre;
+
+	AnomalieTypeEnum(final String libelle, final AnomaliePerimetreEnum perimetre) {
 		this.libelle = libelle;
+		this.perimetre = perimetre;
 	}
 
 	public String getLibelle() {
@@ -37,6 +48,14 @@ public enum AnomalieTypeEnum {
 
 	public void setLibelle(final String libelle) {
 		this.libelle = libelle;
+	}
+
+	public AnomaliePerimetreEnum getPerimetre() {
+		return perimetre;
+	}
+
+	public void setPerimetre(final AnomaliePerimetreEnum perimetre) {
+		this.perimetre = perimetre;
 	}
 
 	/**

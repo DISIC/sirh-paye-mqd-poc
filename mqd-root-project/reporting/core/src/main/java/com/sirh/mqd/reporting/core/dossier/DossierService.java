@@ -5,11 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.AnomalieDTO;
+import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
-import com.sirh.mqd.commons.exchanges.enums.AnomaliePerimetreEnum;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.api.IDossierService;
@@ -31,11 +30,6 @@ public class DossierService implements IDossierService {
 		dossier1.setAdminCode("E10");
 		dossier1.setAdminCodeDepartement(075);
 		dossier1.setPayLot("011B-ANT-AC-001");
-		dossier1.setPayCivilite(1);
-		dossier1.setPayNom("DELHAYE");
-		dossier1.setPayPrenom("JEAN FABIEN");
-		dossier1.setPaySexe(1);
-		dossier1.setPayDateNaissance(DateUtils.parseDateMMAA("02/61"));
 		dossier1.setRenoiRHMatricule("MSO000007087");
 		dossier1.setRenoiRHCorpsCode("G1049");
 		dossier1.setRenoiRHCorpsLibelleCourt("CONT NIVE 2 AFFA SOCI ARTI 4 84-16");
@@ -63,11 +57,6 @@ public class DossierService implements IDossierService {
 		dossier2.setAdminCode("E10");
 		dossier2.setAdminCodeDepartement(075);
 		dossier2.setPayLot("011B-ANT-AC-001");
-		dossier2.setPayCivilite(2);
-		dossier2.setPayNom("SIMON-PEIRANO");
-		dossier2.setPayPrenom("DOMINIQUE");
-		dossier2.setPaySexe(2);
-		dossier2.setPayDateNaissance(DateUtils.parseDateMMAA("08/54"));
 		dossier2.setRenoiRHMatricule("MSO000007377");
 		dossier2.setRenoiRHCorpsCode("G959");
 		dossier2.setRenoiRHCorpsLibelleCourt("CONT 78 AFFA SOCI HORS CATE");
@@ -90,16 +79,15 @@ public class DossierService implements IDossierService {
 	}
 
 	@Override
-	public List<AnomalieDTO> listerAnomalies(final String renoiRHMatricule, final String payLot) {
-		final List<AnomalieDTO> anomalies = new ArrayList<AnomalieDTO>();
+	public List<ComparaisonDTO> listerAnomalies(final String renoiRHMatricule, final String payLot) {
+		final List<ComparaisonDTO> anomalies = new ArrayList<ComparaisonDTO>();
 
 		if ("MSO000007087".equals(renoiRHMatricule) && "011B-ANT-AC-001".equals(payLot)) {
 			final DifferenceDTO donnees1 = new DifferenceDTO();
 			donnees1.setDonneeGA("Jean-Fabien");
 			donnees1.setDonneePAY("JEAN FABIEN");
-			final AnomalieDTO anomalie1 = new AnomalieDTO();
+			final ComparaisonDTO anomalie1 = new ComparaisonDTO();
 			anomalie1.setDonnees(donnees1);
-			anomalie1.setPerimetre(AnomaliePerimetreEnum.ETAT_CIVIL);
 			anomalie1.setType(AnomalieTypeEnum.PRENOM);
 			anomalie1.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
 
@@ -108,18 +96,16 @@ public class DossierService implements IDossierService {
 			final DifferenceDTO donnees1 = new DifferenceDTO();
 			donnees1.setDonneeGA("Dominique");
 			donnees1.setDonneePAY("DOMINIQUE");
-			final AnomalieDTO anomalie1 = new AnomalieDTO();
+			final ComparaisonDTO anomalie1 = new ComparaisonDTO();
 			anomalie1.setDonnees(donnees1);
-			anomalie1.setPerimetre(AnomaliePerimetreEnum.ETAT_CIVIL);
 			anomalie1.setType(AnomalieTypeEnum.PRENOM);
 			anomalie1.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
 
 			final DifferenceDTO donnees2 = new DifferenceDTO();
 			donnees2.setDonneeGA("SIMON PEIRANO");
 			donnees2.setDonneePAY("SIMON-PEIRANO");
-			final AnomalieDTO anomalie2 = new AnomalieDTO();
+			final ComparaisonDTO anomalie2 = new ComparaisonDTO();
 			anomalie2.setDonnees(donnees2);
-			anomalie2.setPerimetre(AnomaliePerimetreEnum.ETAT_CIVIL);
 			anomalie2.setType(AnomalieTypeEnum.NOM);
 			anomalie2.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
 

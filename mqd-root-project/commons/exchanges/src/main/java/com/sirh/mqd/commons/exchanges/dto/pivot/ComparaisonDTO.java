@@ -3,7 +3,6 @@ package com.sirh.mqd.commons.exchanges.dto.pivot;
 import java.util.Date;
 
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
-import com.sirh.mqd.commons.exchanges.enums.AnomaliePerimetreEnum;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 
@@ -12,13 +11,13 @@ import com.sirh.mqd.commons.utils.DateUtils;
  *
  * @author alexandre
  */
-public class AnomalieDTO {
+public class ComparaisonDTO {
 
-	private AnomaliePerimetreEnum perimetre;
+	private String payLot;
+
+	private String renoiRHMatricule;
 
 	private AnomalieTypeEnum type;
-
-	private DifferenceDTO donnees;
 
 	private String modeOperatoire;
 
@@ -28,32 +27,26 @@ public class AnomalieDTO {
 
 	private AnomalieEtatEnum etatCorrection;
 
-	public AnomalieDTO() {
+	private DifferenceDTO donnees;
+
+	public ComparaisonDTO() {
 		super();
 	}
 
-	public AnomaliePerimetreEnum getPerimetre() {
-		return perimetre;
+	public String getPayLot() {
+		return payLot;
 	}
 
-	public void setPerimetre(final AnomaliePerimetreEnum perimetre) {
-		this.perimetre = perimetre;
+	public void setPayLot(final String payLot) {
+		this.payLot = payLot;
 	}
 
-	public AnomalieTypeEnum getType() {
-		return type;
+	public String getRenoiRHMatricule() {
+		return renoiRHMatricule;
 	}
 
-	public void setType(final AnomalieTypeEnum type) {
-		this.type = type;
-	}
-
-	public DifferenceDTO getDonnees() {
-		return donnees;
-	}
-
-	public void setDonnees(final DifferenceDTO donnees) {
-		this.donnees = donnees;
+	public void setRenoiRHMatricule(final String renoiRHMatricule) {
+		this.renoiRHMatricule = renoiRHMatricule;
 	}
 
 	public String getModeOperatoire() {
@@ -86,5 +79,21 @@ public class AnomalieDTO {
 
 	public void setEtatCorrection(final AnomalieEtatEnum etatCorrection) {
 		this.etatCorrection = etatCorrection;
+	}
+
+	public AnomalieTypeEnum getType() {
+		return type;
+	}
+
+	public void setType(final AnomalieTypeEnum type) {
+		this.type = type;
+	}
+
+	public DifferenceDTO getDonnees() {
+		return donnees;
+	}
+
+	public void setDonnees(final DifferenceDTO donnees) {
+		this.donnees = donnees;
 	}
 }

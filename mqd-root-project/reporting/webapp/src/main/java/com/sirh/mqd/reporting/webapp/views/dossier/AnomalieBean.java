@@ -11,7 +11,7 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.AnomalieDTO;
+import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
@@ -69,10 +69,10 @@ public class AnomalieBean extends GenericBean {
 	public void alimenterAnomalies(final SelectEvent event) {
 		final DossierModel selectedDossier = (DossierModel) event.getObject();
 		this.anomalies.clear();
-		final List<AnomalieDTO> anomalies = this.dossierService.listerAnomalies(selectedDossier.getRenoiRHMatricule(),
+		final List<ComparaisonDTO> anomalies = this.dossierService.listerAnomalies(selectedDossier.getRenoiRHMatricule(),
 				selectedDossier.getPayLot());
 		for (int i = 0; i < anomalies.size(); i++) {
-			final AnomalieDTO anomalie = anomalies.get(i);
+			final ComparaisonDTO anomalie = anomalies.get(i);
 			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(i, anomalie));
 		}
 	}

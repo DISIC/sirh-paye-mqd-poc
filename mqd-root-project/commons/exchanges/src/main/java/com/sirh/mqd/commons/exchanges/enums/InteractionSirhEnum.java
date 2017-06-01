@@ -7,6 +7,8 @@ package com.sirh.mqd.commons.exchanges.enums;
  */
 public enum InteractionSirhEnum {
 
+	PAY("pay"),
+
 	MSO("mso"),
 
 	DGAC("dgac");
