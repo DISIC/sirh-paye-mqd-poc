@@ -37,36 +37,26 @@ Configurations
 		* Port invité : 22
 	* Cliquer sur : OK
 6. Se connecter à la VM en super-utilisateur et exécuter la commande suivante :
-
-
-	**Command** : yum install net-tools openssh* openssl-libs vim
-
-
+<pre><code>
+Commande : yum install net-tools openssh* openssl-libs vim
+</code></pre>
 7. Depuis le répertoire **mqd-root-project** dans le code source du projet, compiler le avec la commande suivante :
-
-
-	**Command** : mvn clean install -Dmaven.test.skip=true
-
-
+<pre><code>
+Commande : mvn clean install -Dmaven.test.skip=true
+</code></pre>
 8. Copier sur la machine virtuelle le script **installation-serveur-sftp.sh** situé dans le répertoire généré **supplier/target/livraison/local/sftp** du projet :
-
-
-	**Command** : scp -P 2222 installation-serveur-sftp.sh root@localhost:/tmp
-
-
+<pre><code>
+Commande : scp -P 2222 installation-serveur-sftp.sh root@localhost:/tmp
+</code></pre>
 9. Se connecter à la VM en super-utilisateur et exécuter la commande suivante :
-
-
-	**Command** : chmod +x installation-serveur-sftp.sh
-	**Command** : ./installation-serveur-sftp.s
-
-
+<pre><code>
+Commande : chmod +x installation-serveur-sftp.sh
+Commande : ./installation-serveur-sftp.s
+</code></pre>
 10. Tester l'accès au serveur SFTP sur la machine virtuelle avec la commande suivante :
-
-
-	**Command** : sftp -P 2222 sftpuser-mqdsirh@localhost
-
-
+<pre><code>
+Commande : sftp -P 2222 sftpuser-mqdsirh@localhost
+</code></pre>
 
 Environnement de Démo
 =====================
@@ -79,18 +69,18 @@ Configurations
 * Utilisateur du process Tomcat : tomcat
 * Groupe du process Tomcat : tomcat
 * Copier sur le serveur le script **livraison-projet.sh** situé à la racine du code source du projet :
-
-
-	**Command** : scp -P 22 livraison-projet.sh root@:10.200.54.183/tmp
-	N.B. : Demander le mot de passe à un membre de l'équipe si nécessaire
-
-
+<pre><code>
+Commande : scp -P 22 livraison-projet.sh root@:10.200.54.183/tmp
+N.B. : Demander le mot de passe à un membre de l'équipe si nécessaire
+</code></pre>
 
 Installation
 --------------------
 
-	**Command** : chmod +x livraison-projet.sh
-	**Command** : ./livraison-projet.sh [RELEASE-GIT AU FORMAT : X.Y.Z]
+<pre><code>
+Commande : chmod +x livraison-projet.sh
+Commande : ./livraison-projet.sh [RELEASE-GIT AU FORMAT : X.Y.Z]
+</code></pre>
 
 N.B. : La liste des RELEASES GIT est disponible à l'adresse suivante :<br/>
 https://github.com/DISIC/sirh-paye-mqd-poc/releases/
