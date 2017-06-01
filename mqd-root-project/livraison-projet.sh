@@ -88,3 +88,4 @@ cleanup_project
 scripts_git_tag
 scripts_mvn_install
 scripts_reporting_delivery
+scripts_supplier_delivery
