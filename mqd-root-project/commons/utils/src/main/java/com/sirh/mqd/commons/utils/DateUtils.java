@@ -13,6 +13,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Hours;
@@ -343,7 +344,7 @@ public final class DateUtils {
 	 */
 	private static Date parseDate(final String date, final String dateFormat) {
 		Date dateRetour = null;
-		if (null != date) {
+		if (StringUtils.isNotBlank(date)) {
 			final SimpleDateFormat format = new SimpleDateFormat(dateFormat, DEFAULT_LOCALE);
 			format.setTimeZone(DEFAULT_TIME_ZONE);
 			try {

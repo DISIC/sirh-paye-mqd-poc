@@ -10,12 +10,12 @@ public class Constantes {
 	/**
 	 * Constante du dièse
 	 */
-	public static final char DIESE = '#';
+	public static final String DIESE = "#";
 
 	/**
 	 * Constante du guillemet
 	 */
-	public static final char QUOTE = '"';
+	public static final String QUOTE = "\"";
 
 	/**
 	 * Constante d'ouverture d'un crochet

@@ -30,11 +30,11 @@ public final class DossierDTOFactory {
 			final String renoiRHSexe, final String dateMouvementCarriere) {
 		final DossierDTO dossier = new DossierDTO();
 		dossier.setMinistere(Integer.parseInt(ministere));
-		dossier.setPayCle(Long.parseLong(payCle));
+		dossier.setPayCle(payCle);
 		dossier.setDossierNumero(Integer.parseInt(dossierNumero));
 		dossier.setDiGestionnaire(Integer.parseInt(diGestionnaire));
 		dossier.setAdminCode(adminCode);
-		dossier.setAdminCodeDepartement(Integer.parseInt(adminCodeDepartement));
+		dossier.setAdminCodeDepartement(adminCodeDepartement);
 		dossier.setPayLot(payLot);
 		dossier.setRenoiRHMatricule(renoiRHMatricule);
 		dossier.setRenoiRHCorpsCode(renoiRHCorpsCode);

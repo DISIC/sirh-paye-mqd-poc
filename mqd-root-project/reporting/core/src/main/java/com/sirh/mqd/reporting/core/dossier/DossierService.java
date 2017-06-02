@@ -24,11 +24,11 @@ public class DossierService implements IDossierService {
 		final DossierDTO dossier1 = new DossierDTO();
 
 		dossier1.setMinistere(256);
-		dossier1.setPayCle(161027503500227L);
+		dossier1.setPayCle("161027503500227");
 		dossier1.setDossierNumero(20);
 		dossier1.setDiGestionnaire(20);
 		dossier1.setAdminCode("E10");
-		dossier1.setAdminCodeDepartement(075);
+		dossier1.setAdminCodeDepartement("075");
 		dossier1.setPayLot("011B-ANT-AC-001");
 		dossier1.setRenoiRHMatricule("MSO000007087");
 		dossier1.setRenoiRHCorpsCode("G1049");
@@ -51,11 +51,11 @@ public class DossierService implements IDossierService {
 		final DossierDTO dossier2 = new DossierDTO();
 
 		dossier2.setMinistere(256);
-		dossier2.setPayCle(254087511303184L);
+		dossier2.setPayCle("254087511303184");
 		dossier2.setDossierNumero(00);
 		dossier2.setDiGestionnaire(20);
 		dossier2.setAdminCode("E10");
-		dossier2.setAdminCodeDepartement(075);
+		dossier2.setAdminCodeDepartement("075");
 		dossier2.setPayLot("011B-ANT-AC-001");
 		dossier2.setRenoiRHMatricule("MSO000007377");
 		dossier2.setRenoiRHCorpsCode("G959");

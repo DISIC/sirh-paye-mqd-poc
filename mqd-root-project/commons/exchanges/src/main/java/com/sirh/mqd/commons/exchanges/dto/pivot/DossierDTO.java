@@ -1,7 +1,9 @@
 package com.sirh.mqd.commons.exchanges.dto.pivot;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * DTO correspondant au dossier d'un gestionnaire
@@ -12,7 +14,7 @@ public class DossierDTO {
 
 	private int ministere;
 
-	private long payCle;
+	private String payCle;
 
 	private int dossierNumero;
 
@@ -20,7 +22,7 @@ public class DossierDTO {
 
 	private String adminCode;
 
-	private int adminCodeDepartement;
+	private String adminCodeDepartement;
 
 	private String payLot;
 
@@ -58,6 +60,7 @@ public class DossierDTO {
 
 	public DossierDTO() {
 		super();
+		this.mouvementsCarriere = new ArrayList<Date>();
 	}
 
 	public int getMinistere() {
@@ -68,11 +71,11 @@ public class DossierDTO {
 		this.ministere = ministere;
 	}
 
-	public long getPayCle() {
+	public String getPayCle() {
 		return payCle;
 	}
 
-	public void setPayCle(final long payCle) {
+	public void setPayCle(final String payCle) {
 		this.payCle = payCle;
 	}
 
@@ -100,11 +103,11 @@ public class DossierDTO {
 		this.adminCode = adminCode;
 	}
 
-	public int getAdminCodeDepartement() {
+	public String getAdminCodeDepartement() {
 		return adminCodeDepartement;
 	}
 
-	public void setAdminCodeDepartement(final int adminCodeDepartement) {
+	public void setAdminCodeDepartement(final String adminCodeDepartement) {
 		this.adminCodeDepartement = adminCodeDepartement;
 	}
 
@@ -233,7 +236,7 @@ public class DossierDTO {
 	}
 
 	public void setMouvementsCarriere(final List<Date> mouvementsCarriere) {
-		this.mouvementsCarriere = mouvementsCarriere;
+		this.mouvementsCarriere = mouvementsCarriere.stream().collect(Collectors.toList());
 	}
 
 	public int getNbAnomalies() {

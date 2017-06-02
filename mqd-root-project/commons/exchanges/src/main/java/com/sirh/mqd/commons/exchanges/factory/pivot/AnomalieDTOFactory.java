@@ -3,6 +3,7 @@ package com.sirh.mqd.commons.exchanges.factory.pivot;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 
 /**
  * Factory de création des anomalies d'un dossier à partir des fichiers reçus en
@@ -22,13 +23,23 @@ public final class AnomalieDTOFactory {
 				"Création non autorisée d'une instance de : " + AnomalieDTOFactory.class.getName());
 	}
 
-	public static ComparaisonDTO createComparaisonDTO(final AnomalieTypeEnum typeDonnee, final String donneePay,
-			final String donneeRenoiRH) {
+	public static ComparaisonDTO createComparaisonDTO(final String payLot, final String renoiRHMatricule,
+			final AnomalieTypeEnum typeDonnee, final InteractionSirhEnum referentiel, final String donnee) {
 		final DifferenceDTO donnees = new DifferenceDTO();
-		donnees.setDonneePAY(donneePay);
-		donnees.setDonneeGA(donneeRenoiRH);
+		switch (referentiel) {
+		case PAY:
+			donnees.setDonneePAY(donnee);
+			break;
+		case GA:
+			donnees.setDonneeGA(donnee);
+			break;
+		default:
+			break;
+		}
 		final ComparaisonDTO comparaison = new ComparaisonDTO();
 		comparaison.setType(typeDonnee);
+		comparaison.setPayLot(payLot);
+		comparaison.setRenoiRHMatricule(renoiRHMatricule);
 		comparaison.setDonnees(donnees);
 		return comparaison;
 	}

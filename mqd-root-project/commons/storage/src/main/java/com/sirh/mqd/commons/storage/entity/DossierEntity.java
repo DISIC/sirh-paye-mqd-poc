@@ -1,64 +1,117 @@
-package com.sirh.mqd.reporting.webapp.model;
+package com.sirh.mqd.commons.storage.entity;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
 
 /**
- * Model d'anomalie d'un dossier à manipuler dans la partie Vue
+ * Entité des dossiers
  *
  * @author alexandre
  */
-public class DossierModel implements Serializable {
+@Document(collection = DossierConstantes.COLLECTION_NAME)
+@CompoundIndexes({
+		@CompoundIndex(name = "index_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+				+ DossierConstantes.COLONNE_MATRICULE + "': 1}"),
+		@CompoundIndex(name = "index_user_profile_mse", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+				+ DossierConstantes.COLONNE_CORPS_CODE + "': 1}") })
+public class DossierEntity {
 
-	/**
-	 * Generated UID
-	 */
-	private static final long serialVersionUID = 4531819019987861366L;
+	@Id
+	private String id;
 
+	@Field(DossierConstantes.COLONNE_MINISTERE)
 	private int ministere;
 
+	@Field(DossierConstantes.COLONNE_PAY_CLE)
+	private String payCle;
+
+	@Field(DossierConstantes.COLONNE_DOSSIER_NUMERO)
 	private int dossierNumero;
 
+	@Field(DossierConstantes.COLONNE_DI_GESTIONNAIRE)
 	private int diGestionnaire;
 
+	@Field(DossierConstantes.COLONNE_ADMIN_CODE)
 	private String adminCode;
 
+	@Field(DossierConstantes.COLONNE_ADMIN_CODE_DEPARTEMENT)
 	private String adminCodeDepartement;
 
+	@Indexed
+	@Field(DossierConstantes.COLONNE_PAY_LOT)
 	private String payLot;
 
+	@Indexed
+	@Field(DossierConstantes.COLONNE_MATRICULE)
 	private String renoiRHMatricule;
 
+	@Indexed
+	@Field(DossierConstantes.COLONNE_CORPS_CODE)
 	private String renoiRHCorpsCode;
 
+	@Field(DossierConstantes.COLONNE_CORPS_LIBELLE_COURT)
 	private String renoiRHCorpsLibelleCourt;
 
+	@Field(DossierConstantes.COLONNE_GRADE_CODE)
 	private String renoiRHGradeCode;
 
+	@Field(DossierConstantes.COLONNE_GRADE_LIBELLE_COURT)
 	private String renoiRHGradeLibelleCourt;
 
+	@Indexed
+	@Field(DossierConstantes.COLONNE_AFFECTATION_CODE)
 	private String renoiRHAffectationCode;
 
+	@Field(DossierConstantes.COLONNE_AFFECTATION_LIBELLE_COURT)
 	private String renoiRHAffectationLibelleCourt;
 
-	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
+	@Field(DossierConstantes.COLONNE_CIVILITE)
+	private int renoiRHCivilite;
 
-	private String renoiRHCivilite;
-
+	@Field(DossierConstantes.COLONNE_NOM)
 	private String renoiRHNom;
 
+	@Field(DossierConstantes.COLONNE_PRENOM)
 	private String renoiRHPrenom;
 
-	private String renoiRHSexe;
+	@Field(DossierConstantes.COLONNE_SEXE)
+	private int renoiRHSexe;
 
-	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
+	@Field(DossierConstantes.COLONNE_DATE_NAISSANCE)
+	private Date renoiRHDateNaissance; // Format : "01/MM/yyyy"
 
+	@Field(DossierConstantes.COLONNE_PAY_DATE_CERTIFICATION)
+	private Date renoiRHDateCertification; // Format : "dd/MM/yyyy"
+
+	@Field(DossierConstantes.COLONNE_DATES_MOUVEMENTS_CARRIERE)
+	private List<Date> mouvementsCarriere; // Format : "dd/MM/yyyy"
+
+	@Transient
 	private int nbAlertes;
 
+	@Transient
 	private int nbAnomalies;
 
-	public DossierModel() {
+	public DossierEntity() {
 		super();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(final String id) {
+		this.id = id;
 	}
 
 	public int getMinistere() {
@@ -67,6 +120,14 @@ public class DossierModel implements Serializable {
 
 	public void setMinistere(final int ministere) {
 		this.ministere = ministere;
+	}
+
+	public String getPayCle() {
+		return payCle;
+	}
+
+	public void setPayCle(final String payCle) {
+		this.payCle = payCle;
 	}
 
 	public int getDossierNumero() {
@@ -165,19 +226,11 @@ public class DossierModel implements Serializable {
 		this.renoiRHAffectationLibelleCourt = renoiRHAffectationLibelleCourt;
 	}
 
-	public Date getRenoiRHDateCertification() {
-		return renoiRHDateCertification;
-	}
-
-	public void setRenoiRHDateCertification(final Date renoiRHDateCertification) {
-		this.renoiRHDateCertification = renoiRHDateCertification;
-	}
-
-	public String getRenoiRHCivilite() {
+	public int getRenoiRHCivilite() {
 		return renoiRHCivilite;
 	}
 
-	public void setRenoiRHCivilite(final String renoiRHCivilite) {
+	public void setRenoiRHCivilite(final int renoiRHCivilite) {
 		this.renoiRHCivilite = renoiRHCivilite;
 	}
 
@@ -197,11 +250,11 @@ public class DossierModel implements Serializable {
 		this.renoiRHPrenom = renoiRHPrenom;
 	}
 
-	public String getRenoiRHSexe() {
+	public int getRenoiRHSexe() {
 		return renoiRHSexe;
 	}
 
-	public void setRenoiRHSexe(final String renoiRHSexe) {
+	public void setRenoiRHSexe(final int renoiRHSexe) {
 		this.renoiRHSexe = renoiRHSexe;
 	}
 
@@ -211,6 +264,22 @@ public class DossierModel implements Serializable {
 
 	public void setRenoiRHDateNaissance(final Date renoiRHDateNaissance) {
 		this.renoiRHDateNaissance = renoiRHDateNaissance;
+	}
+
+	public Date getRenoiRHDateCertification() {
+		return renoiRHDateCertification;
+	}
+
+	public void setRenoiRHDateCertification(final Date renoiRHDateCertification) {
+		this.renoiRHDateCertification = renoiRHDateCertification;
+	}
+
+	public List<Date> getMouvementsCarriere() {
+		return mouvementsCarriere;
+	}
+
+	public void setMouvementsCarriere(final List<Date> mouvementsCarriere) {
+		this.mouvementsCarriere = mouvementsCarriere;
 	}
 
 	public int getNbAlertes() {
