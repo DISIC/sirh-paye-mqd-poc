@@ -3,6 +3,8 @@ package com.sirh.mqd.reporting.core.dossier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
@@ -10,6 +12,8 @@ import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
+import com.sirh.mqd.commons.storage.bc.DossierBC;
+import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
@@ -17,18 +21,26 @@ import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 @Service(CoreConstantes.DOSSIER_SERVICE)
 public class DossierService implements IDossierService {
 
+	@Autowired
+	@Qualifier(PersistenceConstantes.DOSSIER_BC)
+	private DossierBC dossierBC;
+
 	@Override
-	public List<DossierDTO> listerDossiers(final String userId) {
+	public List<DossierDTO> listerDossiers(final String payLot, final String corpsCode, final String affectationCode) {
+		return dossierBC.listerDossiers(payLot, corpsCode, affectationCode);
+	}
+
+	private List<DossierDTO> mockDossiers() {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 
 		final DossierDTO dossier1 = new DossierDTO();
 
 		dossier1.setMinistere(256);
-		dossier1.setPayCle(161027503500227L);
+		dossier1.setPayCle("161027503500227");
 		dossier1.setDossierNumero(20);
 		dossier1.setDiGestionnaire(20);
 		dossier1.setAdminCode("E10");
-		dossier1.setAdminCodeDepartement(075);
+		dossier1.setAdminCodeDepartement("075");
 		dossier1.setPayLot("011B-ANT-AC-001");
 		dossier1.setRenoiRHMatricule("MSO000007087");
 		dossier1.setRenoiRHCorpsCode("G1049");
@@ -51,11 +63,11 @@ public class DossierService implements IDossierService {
 		final DossierDTO dossier2 = new DossierDTO();
 
 		dossier2.setMinistere(256);
-		dossier2.setPayCle(254087511303184L);
+		dossier2.setPayCle("254087511303184");
 		dossier2.setDossierNumero(00);
 		dossier2.setDiGestionnaire(20);
 		dossier2.setAdminCode("E10");
-		dossier2.setAdminCodeDepartement(075);
+		dossier2.setAdminCodeDepartement("075");
 		dossier2.setPayLot("011B-ANT-AC-001");
 		dossier2.setRenoiRHMatricule("MSO000007377");
 		dossier2.setRenoiRHCorpsCode("G959");
@@ -79,7 +91,11 @@ public class DossierService implements IDossierService {
 	}
 
 	@Override
-	public List<ComparaisonDTO> listerAnomalies(final String renoiRHMatricule, final String payLot) {
+	public List<ComparaisonDTO> listerAnomalies(final String matricule, final String payLot) {
+		return dossierBC.listerAnomalies(payLot, matricule);
+	}
+
+	private List<ComparaisonDTO> mockAnomalies(final String renoiRHMatricule, final String payLot) {
 		final List<ComparaisonDTO> anomalies = new ArrayList<ComparaisonDTO>();
 
 		if ("MSO000007087".equals(renoiRHMatricule) && "011B-ANT-AC-001".equals(payLot)) {
@@ -115,5 +131,4 @@ public class DossierService implements IDossierService {
 
 		return anomalies;
 	}
-
 }

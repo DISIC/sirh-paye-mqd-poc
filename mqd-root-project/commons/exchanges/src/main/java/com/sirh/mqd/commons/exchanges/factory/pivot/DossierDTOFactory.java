@@ -30,11 +30,11 @@ public final class DossierDTOFactory {
 			final String renoiRHSexe, final String dateMouvementCarriere) {
 		final DossierDTO dossier = new DossierDTO();
 		dossier.setMinistere(Integer.parseInt(ministere));
-		dossier.setPayCle(Long.parseLong(payCle));
+		dossier.setPayCle(payCle);
 		dossier.setDossierNumero(Integer.parseInt(dossierNumero));
 		dossier.setDiGestionnaire(Integer.parseInt(diGestionnaire));
 		dossier.setAdminCode(adminCode);
-		dossier.setAdminCodeDepartement(Integer.parseInt(adminCodeDepartement));
+		dossier.setAdminCodeDepartement(adminCodeDepartement);
 		dossier.setPayLot(payLot);
 		dossier.setRenoiRHMatricule(renoiRHMatricule);
 		dossier.setRenoiRHCorpsCode(renoiRHCorpsCode);
@@ -48,8 +48,8 @@ public final class DossierDTOFactory {
 		dossier.setRenoiRHNom(renoiRHNom);
 		dossier.setRenoiRHPrenom(renoiRHPrenom);
 		dossier.setRenoiRHDateNaissance(DateUtils.parseDateMMAA(renoiRHDateNaissance));
-		dossier.setRenoiRHCivilite(Integer.parseInt(renoiRHCivilite));
-		dossier.setRenoiRHSexe(Integer.parseInt(renoiRHSexe));
+		dossier.setRenoiRHCivilite((renoiRHCivilite != null) ? Integer.parseInt(renoiRHCivilite) : null);
+		dossier.setRenoiRHSexe((renoiRHSexe != null) ? Integer.parseInt(renoiRHSexe) : null);
 		dossier.getMouvementsCarriere().add(DateUtils.parseDateJJMMAAAA(dateMouvementCarriere));
 		return dossier;
 	}

@@ -10,11 +10,7 @@ public class DifferenceDTO {
 
 	private String donneePAY;
 
-	private boolean erreurDonneePAY;
-
 	private String donneeGA;
-
-	private boolean erreurDonneeGA;
 
 	public DifferenceDTO() {
 		super();
@@ -34,21 +30,5 @@ public class DifferenceDTO {
 
 	public void setDonneeGA(final String donneeGA) {
 		this.donneeGA = donneeGA;
-	}
-
-	public boolean isErreurDonneePAY() {
-		return erreurDonneePAY;
-	}
-
-	public void setErreurDonneePAY(final boolean erreurDonneePAY) {
-		this.erreurDonneePAY = erreurDonneePAY;
-	}
-
-	public boolean isErreurDonneeGA() {
-		return erreurDonneeGA;
-	}
-
-	public void setErreurDonneeGA(final boolean erreurDonneeGA) {
-		this.erreurDonneeGA = erreurDonneeGA;
 	}
 }

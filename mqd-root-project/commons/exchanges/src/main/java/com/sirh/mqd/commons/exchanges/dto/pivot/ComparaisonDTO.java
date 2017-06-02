@@ -27,10 +27,13 @@ public class ComparaisonDTO {
 
 	private AnomalieEtatEnum etatCorrection;
 
+	private boolean anomalieDonnees;
+
 	private DifferenceDTO donnees;
 
 	public ComparaisonDTO() {
 		super();
+		this.donnees = new DifferenceDTO();
 	}
 
 	public String getPayLot() {
@@ -95,5 +98,13 @@ public class ComparaisonDTO {
 
 	public void setDonnees(final DifferenceDTO donnees) {
 		this.donnees = donnees;
+	}
+
+	public boolean isAnomalieDonnees() {
+		return anomalieDonnees;
+	}
+
+	public void setAnomalieDonnees(final boolean anomalieDonnees) {
+		this.anomalieDonnees = anomalieDonnees;
 	}
 }

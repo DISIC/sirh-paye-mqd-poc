@@ -23,6 +23,29 @@ public final class PersistenceConstantes {
 	public static final String SYNCHRO_REFERENTIELS_TAMPON_BC = "synchroReferentielsBC";
 
 	/**
+	 * Nom du DAO pour les commentaires
+	 */
+	public static final String COMMENTAIRE_DAO = "commentaireDAO";
+
+	/**
+	 * Nom du BC pour les commentaires
+	 */
+	public static final String COMMENTAIRE_BC = "commentaireBC";
+
+
+	
+
+	/**
+	 * Nom du DAO pour la gestion des dossiers et anomalies
+	 */
+	public static final String DOSSIER_DAO = "dossierDAO";
+
+	/**
+	 * Nom du BC pour la gestion des dossiers et anomalies
+	 */
+	public static final String DOSSIER_BC = "dossierBC";
+
+	/**
 	 * Non-constructeur
 	 *
 	 * @throws InstantiationException

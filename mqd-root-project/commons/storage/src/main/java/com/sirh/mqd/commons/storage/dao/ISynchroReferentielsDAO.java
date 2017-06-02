@@ -3,10 +3,8 @@ package com.sirh.mqd.commons.storage.dao;
 import com.sirh.mqd.commons.traces.enums.InteractionRepositoryEnum;
 
 /**
- * @see doc.story.ref307
- *
- *      Interface fournissant l'ensemble des méthodes d'accès à la table de
- *      synchronisation des referentiels dans le tampon
+ * Interface fournissant l'ensemble des méthodes d'accès à la table de
+ * synchronisation des referentiels dans le tampon
  *
  * @author alexandre
  */
