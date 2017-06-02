@@ -33,7 +33,13 @@ public final class AnomalieModelFactory {
 		final DifferenceDTO donnes = anomalieDTO.getDonnees();
 		anomalieModel.setDonneesGA(donnes.getDonneeGA());
 		anomalieModel.setDonneesPAY(donnes.getDonneePAY());
-		anomalieModel.setEtatCorrection(anomalieDTO.getEtatCorrection().getLibelle());
+
+		if (anomalieDTO.getEtatCorrection() != null) {
+			anomalieModel.setEtatCorrection(anomalieDTO.getEtatCorrection().getLibelle());
+		} else {
+			anomalieModel.setEtatCorrection(AnomalieEtatEnum.A_TRAITER.getLibelle());
+		}
+
 		anomalieModel.setModeOperatoire(anomalieDTO.getModeOperatoire());
 		anomalieModel.setPerimetre(anomalieDTO.getType().getPerimetre().getLibelle());
 		anomalieModel.setType(anomalieDTO.getType().getLibelle());

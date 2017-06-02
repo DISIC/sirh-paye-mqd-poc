@@ -15,11 +15,15 @@ public interface IDossierService {
 	/**
 	 * Méthode permettant de lister les dossiers
 	 *
-	 * @param userId
-	 *            identifiant de l'utilisateur
+	 * @param payLot
+	 *            le lot paye associé à l'utilisateur
+	 * @param corpsCode
+	 *            le corps auquel est associé l'utilisateur
+	 * @param affectationCode
+	 *            l'affectation auquel est associé à l'utilisateur
 	 * @return {@link List} des dossiers rattachés à l'utilisateur connecté
 	 */
-	List<DossierDTO> listerDossiers(String userId);
+	List<DossierDTO> listerDossiers(String payLot, final String corpsCode, final String affectationCode);
 
 	/**
 	 * Méthode permettant de lister les anomalies d'un dossier

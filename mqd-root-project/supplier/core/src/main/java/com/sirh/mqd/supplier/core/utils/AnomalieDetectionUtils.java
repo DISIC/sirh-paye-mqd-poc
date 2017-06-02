@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
+import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 
@@ -59,6 +60,12 @@ public final class AnomalieDetectionUtils {
 				.filter((FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_SENSITIVE_DATA_COMPARISON))
 						.or(FILTER_CASE_INSENSITIVE_DATA_TYPES.and(FILTER_CASE_INSENSITIVE_DATA_COMPARISON)))
 				.forEach((anomalie) -> {
+					if (anomalie.getEtatCorrection() != null
+							&& AnomalieEtatEnum.CORRIGE.equals(anomalie.getEtatCorrection())) {
+						anomalie.setEtatCorrection(AnomalieEtatEnum.REOUVERTURE);
+					} else if (anomalie.getEtatCorrection() == null) {
+						anomalie.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
+					}
 					anomalie.setAnomalieDonnees(true);
 				});
 	}

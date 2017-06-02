@@ -63,7 +63,7 @@ public class DossierBean extends GenericBean {
 		this.dossiers = new ArrayList<DossierModel>();
 
 		// Supplier
-		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(this.getCurrentUsername());
+		final List<DossierDTO> dossiers = this.dossierService.listerDossiers("011B-ANT-AC-001", null, null);
 		for (final DossierDTO dossier : dossiers) {
 			this.dossiers.add(DossierModelFactory.createDossier(dossier));
 		}

@@ -138,7 +138,7 @@ public class DossierBC {
 	 *            le matricule du dossier
 	 * @return {@link List} correspondant à une liste de comparaisons
 	 */
-	public List<ComparaisonDTO> listerAnomaliess(final String payLot, final String renoiRHMatricule) {
+	public List<ComparaisonDTO> listerAnomalies(final String payLot, final String renoiRHMatricule) {
 		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectAnomalies(payLot, renoiRHMatricule);
 		return comparaisonsEntities.stream()
 				.map(comparaisonEntity -> AnomalieEntityFactory.createComparaisonDTO(comparaisonEntity))

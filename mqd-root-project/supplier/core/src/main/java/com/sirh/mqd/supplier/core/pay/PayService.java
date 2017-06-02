@@ -263,6 +263,8 @@ public class PayService {
 				default:
 					break;
 				}
+				comparaison.setAnomalieDonnees(false);
+				comparaison.setEtatCorrection(null);
 				comparaisons.add(comparaison);
 			} else {
 				comparaisons.add(donnee);
