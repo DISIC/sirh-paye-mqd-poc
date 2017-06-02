@@ -64,7 +64,7 @@ check_delivery_repository() {
 ######################################################################################
 # Création du répertoire local pour récupérer les fichier du serveur SFTP
 ######################################################################################
-install_sftp_server() {
+directories_sftp() {
 	echo -e "Création du répertoire local pour récupérer les fichier du serveur SFTP."
 	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac}
 }
@@ -144,6 +144,7 @@ start_tomcat_centos() {
 check_current_location
 check_delivery_repository
 install_sftp_server
+directories_sftp
 cleanup_tomcat
 directories_tomcat
 scripts_tomcat_delivery
