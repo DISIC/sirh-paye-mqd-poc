@@ -37,29 +37,37 @@ public final class DossierModelFactory {
 		dossierModel.setRenoiRHAffectationCode(dossierDTO.getRenoiRHAffectationCode());
 		dossierModel.setRenoiRHAffectationLibelleCourt(dossierDTO.getRenoiRHAffectationLibelleCourt());
 		dossierModel.setRenoiRHDateCertification(DateUtils.clonerDate(dossierDTO.getRenoiRHDateCertification()));
-		switch (dossierDTO.getRenoiRHCivilite()) {
-		case 1:
-			dossierModel.setRenoiRHCivilite("Mr");
-			break;
-		case 2:
-			dossierModel.setRenoiRHCivilite("Mme");
-			break;
-		default:
-			dossierModel.setRenoiRHCivilite("?");
-			break;
+		if (dossierDTO.getRenoiRHCivilite() != null) {
+			switch (dossierDTO.getRenoiRHCivilite()) {
+			case 1:
+				dossierModel.setRenoiRHCivilite("Mr");
+				break;
+			case 2:
+				dossierModel.setRenoiRHCivilite("Mme");
+				break;
+			default:
+				dossierModel.setRenoiRHCivilite("?");
+				break;
+			}
+		} else {
+			dossierModel.setRenoiRHCivilite("N/C");
 		}
 		dossierModel.setRenoiRHNom(dossierDTO.getRenoiRHNom());
 		dossierModel.setRenoiRHPrenom(dossierDTO.getRenoiRHPrenom());
-		switch (dossierDTO.getRenoiRHSexe()) {
-		case 1:
-			dossierModel.setRenoiRHSexe("masculin");
-			break;
-		case 2:
-			dossierModel.setRenoiRHSexe("féminin");
-			break;
-		default:
-			dossierModel.setRenoiRHSexe("?");
-			break;
+		if (dossierDTO.getRenoiRHSexe() != null) {
+			switch (dossierDTO.getRenoiRHSexe()) {
+			case 1:
+				dossierModel.setRenoiRHSexe("masculin");
+				break;
+			case 2:
+				dossierModel.setRenoiRHSexe("féminin");
+				break;
+			default:
+				dossierModel.setRenoiRHSexe("?");
+				break;
+			}
+		} else {
+			dossierModel.setRenoiRHSexe("N/C");
 		}
 		dossierModel.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierDTO.getRenoiRHDateNaissance()));
 		dossierModel.setNbAlertes(dossierDTO.getNbAlertes());
