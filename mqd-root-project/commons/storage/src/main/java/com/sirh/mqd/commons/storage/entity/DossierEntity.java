@@ -76,7 +76,7 @@ public class DossierEntity {
 	private String renoiRHAffectationLibelleCourt;
 
 	@Field(DossierConstantes.COLONNE_CIVILITE)
-	private int renoiRHCivilite;
+	private Integer renoiRHCivilite;
 
 	@Field(DossierConstantes.COLONNE_NOM)
 	private String renoiRHNom;
@@ -85,7 +85,7 @@ public class DossierEntity {
 	private String renoiRHPrenom;
 
 	@Field(DossierConstantes.COLONNE_SEXE)
-	private int renoiRHSexe;
+	private Integer renoiRHSexe;
 
 	@Field(DossierConstantes.COLONNE_DATE_NAISSANCE)
 	private Date renoiRHDateNaissance; // Format : "01/MM/yyyy"
@@ -226,11 +226,11 @@ public class DossierEntity {
 		this.renoiRHAffectationLibelleCourt = renoiRHAffectationLibelleCourt;
 	}
 
-	public int getRenoiRHCivilite() {
+	public Integer getRenoiRHCivilite() {
 		return renoiRHCivilite;
 	}
 
-	public void setRenoiRHCivilite(final int renoiRHCivilite) {
+	public void setRenoiRHCivilite(final Integer renoiRHCivilite) {
 		this.renoiRHCivilite = renoiRHCivilite;
 	}
 
@@ -250,11 +250,11 @@ public class DossierEntity {
 		this.renoiRHPrenom = renoiRHPrenom;
 	}
 
-	public int getRenoiRHSexe() {
+	public Integer getRenoiRHSexe() {
 		return renoiRHSexe;
 	}
 
-	public void setRenoiRHSexe(final int renoiRHSexe) {
+	public void setRenoiRHSexe(final Integer renoiRHSexe) {
 		this.renoiRHSexe = renoiRHSexe;
 	}
 
