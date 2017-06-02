@@ -48,8 +48,8 @@ public final class DossierDTOFactory {
 		dossier.setRenoiRHNom(renoiRHNom);
 		dossier.setRenoiRHPrenom(renoiRHPrenom);
 		dossier.setRenoiRHDateNaissance(DateUtils.parseDateMMAA(renoiRHDateNaissance));
-		dossier.setRenoiRHCivilite(Integer.parseInt(renoiRHCivilite));
-		dossier.setRenoiRHSexe(Integer.parseInt(renoiRHSexe));
+		dossier.setRenoiRHCivilite((renoiRHCivilite != null) ? Integer.parseInt(renoiRHCivilite) : null);
+		dossier.setRenoiRHSexe((renoiRHSexe != null) ? Integer.parseInt(renoiRHSexe) : null);
 		dossier.getMouvementsCarriere().add(DateUtils.parseDateJJMMAAAA(dateMouvementCarriere));
 		return dossier;
 	}
