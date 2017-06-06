@@ -39,6 +39,8 @@ public class CommentaireBean extends GenericBean {
 	 */
 	private CommentaireModel selectedCommentaire;
 
+	private String commentaire;
+
 	/**
 	 * Liste des commentaires du dossier.
 	 */
@@ -52,6 +54,9 @@ public class CommentaireBean extends GenericBean {
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.commentaires = new ArrayList<CommentaireModel>();
 		}
+	}
+
+	public void ajouterCommentaire() {
 	}
 
 	public CommentaireModel getSelectedCommentaire() {
@@ -72,6 +77,14 @@ public class CommentaireBean extends GenericBean {
 
 	public void enterNewCommentaire(final CommentaireModel commentaire) {
 		this.commentaires.add(commentaire);
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(final String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 }

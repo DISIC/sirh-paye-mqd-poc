@@ -2,6 +2,8 @@ package com.sirh.mqd.commons.exchanges.dto.commentaire;
 
 import java.util.Date;
 
+import com.sirh.mqd.commons.utils.DateUtils;
+
 /**
  * DTO permettant de manipuler les commentaires d'un dossier
  *
@@ -9,9 +11,15 @@ import java.util.Date;
  */
 public class CommentaireDTO {
 
+	private String payLot;
+
+	private String renoiRHMatricule;
+
 	private Date dateCreation;
 
 	private String contenu;
+
+	private String utilisateur;
 
 	public CommentaireDTO() {
 		super();
@@ -22,7 +30,7 @@ public class CommentaireDTO {
 	}
 
 	public void setDateCreation(final Date dateCreation) {
-		this.dateCreation = dateCreation;
+		this.dateCreation = DateUtils.clonerDate(dateCreation);
 	}
 
 	public String getContenu() {
@@ -33,4 +41,27 @@ public class CommentaireDTO {
 		this.contenu = contenu;
 	}
 
+	public String getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(final String utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public String getPayLot() {
+		return payLot;
+	}
+
+	public void setPayLot(final String payLot) {
+		this.payLot = payLot;
+	}
+
+	public String getRenoiRHMatricule() {
+		return renoiRHMatricule;
+	}
+
+	public void setRenoiRHMatricule(final String renoiRHMatricule) {
+		this.renoiRHMatricule = renoiRHMatricule;
+	}
 }

@@ -25,6 +25,7 @@ public class CommentaireModelFactory {
 		final CommentaireModel commentaireModel = new CommentaireModel();
 		commentaireModel.setDateCreation(DateUtils.clonerDate(commentaireDTO.getDateCreation()));
 		commentaireModel.setContenu(commentaireDTO.getContenu());
+		commentaireModel.setUtilisateur(commentaireDTO.getUtilisateur());
 		return commentaireModel;
 	}
 
@@ -32,6 +33,7 @@ public class CommentaireModelFactory {
 		final CommentaireDTO commentaireDTO = new CommentaireDTO();
 		commentaireDTO.setDateCreation(DateUtils.clonerDate(commentaireModel.getDateCreation()));
 		commentaireDTO.setContenu(commentaireModel.getContenu());
+		commentaireDTO.setUtilisateur(commentaireModel.getUtilisateur());
 		return commentaireDTO;
 	}
 

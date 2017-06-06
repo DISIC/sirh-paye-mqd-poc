@@ -9,6 +9,9 @@ public final class CoreConstantes {
 
 	public static final String DOSSIER_SERVICE = "dossierService";
 
+	public static final String COMMENTAIRE_SERVICE = "commentaireService";
+
+
 	/**
 	 * Non-constructeur
 	 *

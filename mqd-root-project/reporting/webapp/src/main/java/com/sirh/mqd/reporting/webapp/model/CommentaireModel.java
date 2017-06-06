@@ -21,6 +21,8 @@ public class CommentaireModel implements Serializable{
 
 	private String contenu;
 
+	private String utilisateur;
+
 	public CommentaireModel() {
 		super();
 	}
@@ -39,5 +41,13 @@ public class CommentaireModel implements Serializable{
 
 	public void setContenu(final String contenu) {
 		this.contenu = contenu;
+	}
+
+	public String getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(final String utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 }
