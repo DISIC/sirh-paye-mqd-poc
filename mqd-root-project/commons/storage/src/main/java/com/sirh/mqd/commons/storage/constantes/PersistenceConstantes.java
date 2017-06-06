@@ -23,6 +23,7 @@ public final class PersistenceConstantes {
 	public static final String SYNCHRO_REFERENTIELS_TAMPON_BC = "synchroReferentielsBC";
 
 	/**
+<<<<<<< HEAD
 	 * Nom du DAO pour les commentaires
 	 */
 	public static final String COMMENTAIRE_DAO = "commentaireDAO";
@@ -36,6 +37,8 @@ public final class PersistenceConstantes {
 	
 
 	/**
+=======
+>>>>>>> branch 'master' of https://github.com/DISIC/sirh-paye-mqd-poc.git
 	 * Nom du DAO pour la gestion des dossiers et anomalies
 	 */
 	public static final String DOSSIER_DAO = "dossierDAO";

@@ -40,13 +40,13 @@ public class DossierDTO {
 
 	private String renoiRHAffectationLibelleCourt;
 
-	private int renoiRHCivilite;
+	private Integer renoiRHCivilite;
 
 	private String renoiRHNom;
 
 	private String renoiRHPrenom;
 
-	private int renoiRHSexe;
+	private Integer renoiRHSexe;
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
@@ -175,11 +175,11 @@ public class DossierDTO {
 		this.renoiRHDateCertification = renoiRHDateCertification;
 	}
 
-	public int getRenoiRHCivilite() {
+	public Integer getRenoiRHCivilite() {
 		return renoiRHCivilite;
 	}
 
-	public void setRenoiRHCivilite(final int renoiRHCivilite) {
+	public void setRenoiRHCivilite(final Integer renoiRHCivilite) {
 		this.renoiRHCivilite = renoiRHCivilite;
 	}
 
@@ -199,11 +199,11 @@ public class DossierDTO {
 		this.renoiRHPrenom = renoiRHPrenom;
 	}
 
-	public int getRenoiRHSexe() {
+	public Integer getRenoiRHSexe() {
 		return renoiRHSexe;
 	}
 
-	public void setRenoiRHSexe(final int renoiRHSexe) {
+	public void setRenoiRHSexe(final Integer renoiRHSexe) {
 		this.renoiRHSexe = renoiRHSexe;
 	}
 
