@@ -56,9 +56,6 @@ public class CommentaireBean extends GenericBean {
 		}
 	}
 
-	public void ajouterCommentaire() {
-	}
-
 	public CommentaireModel getSelectedCommentaire() {
 		return selectedCommentaire;
 	}

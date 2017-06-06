@@ -26,7 +26,7 @@ public class CommentaireService implements ICommentaireService{
 
 	@Override
 	public void ajouterCommentaire(final CommentaireDTO commentaire) {
-
+		commentaireBC.insererCommentaire(commentaire.getPayLot(), commentaire.getRenoiRHMatricule(), commentaire.getUtilisateur(), commentaire.getContenu());
 	}
 
 }
