@@ -1,15 +1,21 @@
 package com.sirh.mqd.commons.storage.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.MongoConverter;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.DBObject;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
 import com.sirh.mqd.commons.storage.constantes.ComparaisonConstantes;
 import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
@@ -67,7 +73,26 @@ public class DossierDAO implements IDossierDAO {
 
 	@Override
 	public void insertDossier(final DossierEntity dossier) {
-		mongoTemplate.save(dossier);
+		final Query query = new Query();
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(dossier.getPayLot()));
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(dossier.getRenoiRHMatricule()));
+		if (mongoTemplate.exists(query, DossierEntity.class)) {
+			final ObjectMapper mapper = new ObjectMapper();
+			mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+			final MongoConverter converter = mongoTemplate.getConverter();
+			final DBObject dbo = (DBObject) converter.convertToMongoType(dossier);
+
+			final Map<String, Object> map = mapper.convertValue(dbo, Map.class);
+			map.remove(DossierConstantes.COLONNE_ID);
+			final Update update = new Update();
+			for (final Map.Entry<String, Object> entry : map.entrySet()) {
+				update.set(entry.getKey(), entry.getValue());
+			}
+			mongoTemplate.upsert(query, update, DossierEntity.class);
+		} else {
+			mongoTemplate.save(dossier);
+		}
 	}
 
 	@Override

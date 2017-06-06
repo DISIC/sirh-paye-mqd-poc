@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.2.xsd">
 
 	<!-- MongoDB Connection -->
-	<mongo:mapping-converter />
+	<mongo:mapping-converter id="mappingConverter" />
 
 	<bean id="mongoClient"
 		class="org.springframework.data.mongodb.core.MongoClientFactoryBean">

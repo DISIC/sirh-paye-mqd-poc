@@ -12,7 +12,7 @@
 	<h:form id="formHistorique">
 		<p:dataTable var="historique" value="#{historiqueBean.historiques}"
 				id="historiquesTable" widgetVar="historiques_table" reflow="true"
-				emptyMessage="Aucun historique n'a été trouvée." paginator="true">
+				emptyMessage="Aucun historique n'a été trouvé." paginator="true" rows="10" >
 				<p:column
 					headerText="#{label['dossiers.overview.historiques_table.header.date']}">
 					<h:outputText value="#{historique.dateHistorique}" />
