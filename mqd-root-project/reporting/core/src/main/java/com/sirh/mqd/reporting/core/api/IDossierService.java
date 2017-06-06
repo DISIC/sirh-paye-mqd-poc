@@ -2,6 +2,7 @@ package com.sirh.mqd.reporting.core.api;
 
 import java.util.List;
 
+import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 
@@ -35,5 +36,7 @@ public interface IDossierService {
 	 * @return {@link List} des anomalies
 	 */
 	List<ComparaisonDTO> listerAnomalies(String renoiRHMatricule, String payLot);
+
+	List<CommentaireDTO> listerCommentaires(String matricule, String payLot);
 
 }

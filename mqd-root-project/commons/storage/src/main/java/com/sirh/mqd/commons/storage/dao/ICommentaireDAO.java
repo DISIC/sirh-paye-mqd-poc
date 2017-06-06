@@ -32,16 +32,8 @@ public interface ICommentaireDAO {
 	 * Méthode permettant d'ajouter un commentaire à la liste de commantaires
 	 * d'un dossier
 	 *
-	 * @param payLot
-	 *            champ qui permet avec renoiRHMatricule, d'identifier un
-	 *            dossier
-	 * @param renoiRHMatricule
-	 * 			  champ qui permet avec payLot, d'identifier un
-	 *            dossier
-	 * @param utilisateur
-	 * 			  utilisateur ayant saisi le commentaire
 	 * @param commentaire
 	 * 			  commentaire à insérer
 	 */
-	void insertCommentaire(String payLot, String renoiRHMatricule, String utilisateur, String commentaire);
+	void insertCommentaire(CommentaireEntity commentaire);
 }

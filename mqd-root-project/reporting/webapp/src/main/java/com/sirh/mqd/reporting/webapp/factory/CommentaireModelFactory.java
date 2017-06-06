@@ -10,7 +10,7 @@ import com.sirh.mqd.reporting.webapp.model.CommentaireModel;
  * @author khalil
  */
 
-public class CommentaireModelFactory {
+public final class CommentaireModelFactory {
 	/**
 	 * Non-constructeur
 	 *
@@ -29,11 +29,23 @@ public class CommentaireModelFactory {
 		return commentaireModel;
 	}
 
-	public static CommentaireDTO createCommentaireDTO(final CommentaireModel commentaireModel) {
+	public static CommentaireDTO createCommentaireDTO(final CommentaireModel commentaireModel, final String payLot, final String matricule) {
 		final CommentaireDTO commentaireDTO = new CommentaireDTO();
-		commentaireDTO.setDateCreation(DateUtils.clonerDate(commentaireModel.getDateCreation()));
+		commentaireDTO.setDateCreation(DateUtils.getCalendarInstance().getTime());
 		commentaireDTO.setContenu(commentaireModel.getContenu());
 		commentaireDTO.setUtilisateur(commentaireModel.getUtilisateur());
+		commentaireDTO.setPayLot(payLot);
+		commentaireDTO.setRenoiRHMatricule(matricule);
+		return commentaireDTO;
+	}
+
+	public static CommentaireDTO createCommentaireDTO(final String commentaire, final String username, final String payLot, final String matricule) {
+		final CommentaireDTO commentaireDTO = new CommentaireDTO();
+		commentaireDTO.setDateCreation(DateUtils.getCalendarInstance().getTime());
+		commentaireDTO.setContenu(commentaire);
+		commentaireDTO.setUtilisateur(username);
+		commentaireDTO.setPayLot(payLot);
+		commentaireDTO.setRenoiRHMatricule(matricule);
 		return commentaireDTO;
 	}
 

@@ -25,9 +25,9 @@ public interface ICommentaireService {
 	/**
 	 * Méthode permettant d'ajouter un commentaire à un dossier
 	 *
-	 * @param commentaire
+	 * @param commentaireDTO
 	 *            commentaire à ajouter
 	 */
-	void ajouterCommentaire(CommentaireDTO commentaire);
+	void ajouterCommentaire(CommentaireDTO commentaireDTO);
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.utils.constante.Constantes;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
+import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
+import com.sirh.mqd.reporting.webapp.model.DossierModel;
 import com.sirh.mqd.reporting.webapp.utils.JsfUtils;
 import com.sirh.mqd.reporting.webapp.utils.LoginUtils;
+import com.sirh.mqd.reporting.webapp.views.dossier.DossierBean;
 
 /**
  * Classe générique de gestion de l'affichage des fenêtres
@@ -79,6 +83,19 @@ public class GenericBean implements Serializable {
 	 */
 	public String getCurrentUsername() {
 		return this.loginUtils.getCurrentUsername();
+	}
+
+	public DossierModel getCurrentDossier() {
+		DossierModel dossier = null;
+		final FacesContext facesContext = FacesContext.getCurrentInstance();
+		if (facesContext != null) {
+			final DossierBean dossierBean = facesContext.getApplication().evaluateExpressionGet(facesContext,
+					"#{" + ViewConstantes.DOSSIER_BEAN + "}", DossierBean.class);
+			if (dossierBean != null) {
+				dossier = dossierBean.getSelectedDossier();
+			}
+		}
+		return dossier;
 	}
 
 	/**

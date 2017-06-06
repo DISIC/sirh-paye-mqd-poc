@@ -1,7 +1,6 @@
 package com.sirh.mqd.commons.storage.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.sirh.mqd.commons.storage.constantes.CommentaireConstantes;
@@ -44,17 +42,9 @@ public class CommentaireDAO implements ICommentaireDAO {
 	}
 
 	@Override
-	public void insertCommentaire(final String payLot, final String renoiRHMatricule, final String utilisateur, final String commentaire) {
-		if (payLot != null && renoiRHMatricule != null && utilisateur != null && commentaire != null) {
-			final Query query = new Query();
-			final Update update = new Update();
-			final Date dateCreation = new Date();
-			update.addToSet(CommentaireConstantes.PAY_LOT, payLot);
-			update.addToSet(CommentaireConstantes.MATRICULE, renoiRHMatricule);
-			update.addToSet(CommentaireConstantes.GESTIONNAIRE, utilisateur);
-			update.addToSet(CommentaireConstantes.DESCRIPTION, commentaire);
-			update.addToSet(CommentaireConstantes.DATE_CREATION, dateCreation);
-			mongoTemplate.upsert(query, update, CommentaireEntity.class);
+	public void insertCommentaire(final CommentaireEntity commentaire) {
+		if (commentaire != null) {
+			mongoTemplate.save(commentaire);
 		}
 
 	}
