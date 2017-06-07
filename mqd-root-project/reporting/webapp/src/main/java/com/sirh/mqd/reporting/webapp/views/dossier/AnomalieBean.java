@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
@@ -66,8 +65,7 @@ public class AnomalieBean extends GenericBean {
 		}
 	}
 
-	public void alimenterAnomalies(final SelectEvent event) {
-		final DossierModel selectedDossier = (DossierModel) event.getObject();
+	public void alimenterAnomalies(final DossierModel selectedDossier) {
 		this.anomalies.clear();
 		final List<ComparaisonDTO> anomalies = this.dossierService.listerAnomalies(selectedDossier.getRenoiRHMatricule(),
 				selectedDossier.getPayLot());

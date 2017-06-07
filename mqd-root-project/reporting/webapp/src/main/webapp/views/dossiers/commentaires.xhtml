@@ -22,7 +22,9 @@
 				emptyMessage="Aucun historique n'a été trouvée.">
 				<p:column width="200"
 					headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
-					<h:outputText value="#{commentaire.dateCreation}" />
+					<h:outputText value="#{commentaire.dateCreation}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
 				</p:column>
 				<p:column
 					headerText="#{label['dossiers.overview.commentaires_table.commentaire_du_dossier']}">

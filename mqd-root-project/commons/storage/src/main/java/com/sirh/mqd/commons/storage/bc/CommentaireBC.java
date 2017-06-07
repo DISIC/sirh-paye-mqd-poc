@@ -33,7 +33,7 @@ public class CommentaireBC {
 	 * @param payLot
 	 * @return listeCommentaires
 	 */
-	public List<CommentaireDTO> listerCommentaires(final String payLot, final String renoiRHMatricule) {
+	public List<CommentaireDTO> listerCommentaires(final String renoiRHMatricule, final String payLot) {
 		final List<CommentaireEntity> commentaireEntities = this.commentaireDAO.selectCommentairesDossier(payLot,
 				renoiRHMatricule);
 		return commentaireEntities.stream()

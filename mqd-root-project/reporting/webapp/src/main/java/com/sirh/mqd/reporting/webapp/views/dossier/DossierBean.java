@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
@@ -74,6 +75,17 @@ public class DossierBean extends GenericBean {
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.selectedDossier = null;
+		}
+	}
+
+	public void alimenterInformations(final SelectEvent event) {
+		final AnomalieBean anomalieBean = this.jsfUtils.getBean(ViewConstantes.ANOMALIE_BEAN, AnomalieBean.class);
+		if (anomalieBean != null) {
+			anomalieBean.alimenterAnomalies(this.selectedDossier);
+		}
+		final CommentaireBean commentaireBean = this.jsfUtils.getBean(ViewConstantes.COMMENTAIRE_BEAN, CommentaireBean.class);
+		if (commentaireBean != null) {
+			commentaireBean.alimenterCommentaires(this.selectedDossier);
 		}
 	}
 

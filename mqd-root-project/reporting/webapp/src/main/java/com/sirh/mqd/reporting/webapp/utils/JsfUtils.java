@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.sirh.mqd.reporting.api.resources.IMessageSourceBundle;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
+import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
  * Classe utilitaire pour JSF.<br/>
@@ -277,5 +278,14 @@ public class JsfUtils implements Serializable {
 	 */
 	private FacesContext getFacesCurrentInstance() {
 		return FacesContext.getCurrentInstance();
+	}
+
+	public <T extends GenericBean> T getBean(final String beanName, final Class<T> className) {
+		final FacesContext facesContext = getFacesCurrentInstance();
+		if (facesContext != null) {
+			return facesContext.getApplication().evaluateExpressionGet(facesContext,
+					"#{" + beanName + "}", className);
+		}
+		return null;
 	}
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -46,14 +45,14 @@ public class GenericBean implements Serializable {
 	 */
 	@Inject
 	@Qualifier(ContextConstantes.JSF_UTILS)
-	private JsfUtils jsfUtils;
+	protected JsfUtils jsfUtils;
 
 	/**
 	 * Service de gestion de l'affichage des messages dans l'IHM
 	 */
 	@Inject
 	@Qualifier(ContextConstantes.LOGIN_UTILS)
-	private LoginUtils loginUtils;
+	protected LoginUtils loginUtils;
 
 	/**
 	 * Constructeur par défaut.
@@ -87,13 +86,9 @@ public class GenericBean implements Serializable {
 
 	public DossierModel getCurrentDossier() {
 		DossierModel dossier = null;
-		final FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext != null) {
-			final DossierBean dossierBean = facesContext.getApplication().evaluateExpressionGet(facesContext,
-					"#{" + ViewConstantes.DOSSIER_BEAN + "}", DossierBean.class);
-			if (dossierBean != null) {
-				dossier = dossierBean.getSelectedDossier();
-			}
+		final DossierBean dossierBean = this.jsfUtils.getBean(ViewConstantes.DOSSIER_BEAN, DossierBean.class);
+		if (dossierBean != null) {
+			dossier = dossierBean.getSelectedDossier();
 		}
 		return dossier;
 	}

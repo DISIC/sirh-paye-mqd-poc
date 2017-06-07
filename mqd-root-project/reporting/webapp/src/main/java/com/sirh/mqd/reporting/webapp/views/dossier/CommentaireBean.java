@@ -2,6 +2,7 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -52,12 +53,40 @@ public class CommentaireBean extends GenericBean {
 
 	public void setup() {
 		// Initialization
-		this.commentaires = new ArrayList<CommentaireModel>();
+
 		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.commentaires = new ArrayList<CommentaireModel>();
 		}
+	}
+
+	public void alimenterCommentaires(final DossierModel selectedDossier) {
+		listerCommentaires(selectedDossier.getRenoiRHMatricule(),
+				selectedDossier.getPayLot());
+	}
+
+	public void ajouterCommentaire(final ActionEvent actionEvent) {
+		final String username = getCurrentUsername();
+		final DossierModel dossier = getCurrentDossier();
+		if (dossier != null) {
+			final String matricule = dossier.getRenoiRHMatricule();
+			final String payLot = dossier.getPayLot();
+			final CommentaireDTO commentaireDTO = CommentaireModelFactory.createCommentaireDTO(commentaire, username, payLot, matricule);
+			commentaireService.ajouterCommentaire(commentaireDTO);
+			this.listerCommentaires(matricule, payLot);
+
+		} else {
+			// TODO Remonter un message d'erreur
+		}
+	}
+
+	private void listerCommentaires(final String matricule, final String payLot) {
+		final List<CommentaireDTO> commentairesDTO = commentaireService.listerCommentaires(matricule, payLot);
+		this.commentaires = new ArrayList<CommentaireModel>();
+		this.commentaires.addAll(commentairesDTO.stream()
+				.map(commentaireDTO -> CommentaireModelFactory.createCommentaireModel(commentaireDTO))
+				.collect(Collectors.toList()));
 	}
 
 	public CommentaireModel getSelectedCommentaire() {
@@ -76,20 +105,6 @@ public class CommentaireBean extends GenericBean {
 		this.commentaires = commentaires;
 	}
 
-	public void ajouterCommentaire(final ActionEvent actionEvent) {
-		final String username = getCurrentUsername();
-		final DossierModel dossier = getCurrentDossier();
-		if (dossier != null) {
-			final String matricule = dossier.getRenoiRHMatricule();
-			final String payLot = dossier.getPayLot();
-			final CommentaireDTO commentaireDTO = CommentaireModelFactory.createCommentaireDTO(commentaire, username, payLot, matricule);
-			commentaireService.ajouterCommentaire(commentaireDTO);
-		} else {
-			// TODO Remonter un message d'erreur
-		}
-
-	}
-
 	public String getCommentaire() {
 		return commentaire;
 	}
@@ -97,5 +112,4 @@ public class CommentaireBean extends GenericBean {
 	public void setCommentaire(final String commentaire) {
 		this.commentaire = commentaire;
 	}
-
 }
