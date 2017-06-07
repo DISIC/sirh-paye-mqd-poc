@@ -42,15 +42,10 @@ public class CommentaireBC {
 	/**
 	 * Méthode permettant d'insérer un commentaire
 	 *
-	 * @param renoiRHMatricule
-	 * @param payLot
-	 * @param utilisateur
 	 * @param commentaire
 	 */
-	public void insererCommentaire(final String payLot, final String renoiRHMatricule, final String utilisateur, final String commentaire) {
-		commentaireDAO.insertCommentaire(payLot, renoiRHMatricule, utilisateur, commentaire);
+	public void insererCommentaire(final CommentaireDTO commentaire) {
+		final CommentaireEntity entity = CommentaireEntityFactory.createCommentaireEntity(commentaire);
+		commentaireDAO.insertCommentaire(entity);
 	}
-
-
-
 }

@@ -8,16 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.IDossierDAO;
-import com.sirh.mqd.commons.storage.entity.CommentaireEntity;
 import com.sirh.mqd.commons.storage.entity.ComparaisonEntity;
 import com.sirh.mqd.commons.storage.entity.DossierEntity;
 import com.sirh.mqd.commons.storage.factory.AnomalieEntityFactory;
-import com.sirh.mqd.commons.storage.factory.CommentaireEntityFactory;
 import com.sirh.mqd.commons.storage.factory.DossierEntityFactory;
 
 /**
@@ -145,13 +142,6 @@ public class DossierBC {
 		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectAnomalies(payLot, renoiRHMatricule);
 		return comparaisonsEntities.stream()
 				.map(comparaisonEntity -> AnomalieEntityFactory.createComparaisonDTO(comparaisonEntity))
-				.collect(Collectors.toList());
-	}
-
-	public List<CommentaireDTO> listerCommentaires(final String payLot, final String renoiRHMatricule) {
-		final List<CommentaireEntity> commentairesEntities = this.dossierDAO.selectCommentaires(payLot, renoiRHMatricule);
-		return commentairesEntities.stream()
-				.map(commentaireEntity -> CommentaireEntityFactory.createCommentaireDTO(commentaireEntity))
 				.collect(Collectors.toList());
 	}
 }

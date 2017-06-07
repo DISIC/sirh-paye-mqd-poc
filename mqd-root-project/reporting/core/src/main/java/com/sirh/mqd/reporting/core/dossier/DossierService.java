@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
@@ -131,10 +130,5 @@ public class DossierService implements IDossierService {
 		}
 
 		return anomalies;
-	}
-
-	@Override
-	public List<CommentaireDTO> listerCommentaires(final String matricule, final String payLot) {
-		return dossierBC.listerCommentaires(payLot, matricule);
 	}
 }
