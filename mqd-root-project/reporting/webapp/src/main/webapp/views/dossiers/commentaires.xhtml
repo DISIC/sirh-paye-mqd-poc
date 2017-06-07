@@ -11,19 +11,12 @@
 	</f:metadata>
 	
 	<h:form id="formCommentaire">
-<<<<<<< HEAD
 		<div id="commentaire_saisie">
 			<h:panelGroup id="commentairesSaisie">
 	    		<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true" rows="6" cols="33" />
 				<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update="commentairesGroup"/>
 	 		</h:panelGroup>
 	 	</div>
-=======
-		<h:panelGroup>
-    		<p:inputTextarea id="commentaireSaisie" placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true" rows="6" cols="33" />
-			<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages" style="background:#0081c2;color:#ffffff;width:90px;height:40px"/>
- 		</h:panelGroup>
->>>>>>> branch 'master' of https://github.com/DISIC/sirh-paye-mqd-poc.git
  	</h:form>
  	<h:panelGroup id="commentairesGroup">
 	 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
