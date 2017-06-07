@@ -9,7 +9,7 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 		
         <locale-config>
-            <default-locale>fr_FR</default-locale>
+            <default-locale>fr</default-locale>
         </locale-config>
 		<!-- Include specific application labels -->
         <resource-bundle>

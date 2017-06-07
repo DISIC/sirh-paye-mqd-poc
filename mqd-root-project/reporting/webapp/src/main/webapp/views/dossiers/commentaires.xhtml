@@ -11,15 +11,15 @@
 	</f:metadata>
 	
 	<h:form id="formCommentaire">
-		<h:panelGroup id="commentairesSaisie">
-    		<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true" rows="6" cols="33" />
-			<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update="commentairesGroup" style="background:#0081c2;color:#ffffff;width:90px;height:40px"/>
+		<h:panelGroup>
+    		<p:inputTextarea id="commentaireSaisie" placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true" rows="6" cols="33" />
+			<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages" style="background:#0081c2;color:#ffffff;width:90px;height:40px"/>
  		</h:panelGroup>
  	</h:form>
  	<h:panelGroup id="commentairesGroup">
 	 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
 				id="commentairesTable" widgetVar="commentaires_table" reflow="true"
-				emptyMessage="Aucun historique n'a été trouvée.">
+				emptyMessage="Aucun commentaire n'a été trouvé.">
 				<p:column width="200"
 					headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
 					<h:outputText value="#{commentaire.dateCreation}">
