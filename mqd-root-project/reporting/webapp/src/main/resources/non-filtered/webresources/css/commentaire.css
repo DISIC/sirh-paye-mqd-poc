@@ -1,7 +1,14 @@
 
-div#commentaire_saisie {
-	background:#0081c2;
-	color:#ffffff;
+div#commentaire_saisie{
+	width:1750px; 
+	height:80px;
+}
+
+div#commentaire_boutton_submit {
 	width:90px;
 	height:40px;
+}
+
+div#commentaire_marge_entre_boutton_et_liste_commentaires{
+	margin-top:30px;
 }

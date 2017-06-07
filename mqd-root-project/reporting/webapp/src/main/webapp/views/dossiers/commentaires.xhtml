@@ -5,34 +5,40 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-	
+
 	<f:metadata>
 		<f:event type="preRenderView" listener="#{commentaireBean.setup}" />
 	</f:metadata>
 	
+	
 	<h:form id="formCommentaire">
-		<div id="commentaire_saisie">
-			<h:panelGroup id="commentairesSaisie">
-	    		<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true" rows="6" cols="33" />
-				<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update="commentairesGroup"/>
-	 		</h:panelGroup>
-	 	</div>
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/commentaire.css" />
+		<h:panelGroup id="commentaireSaisie">
+			<div id="commentaire_saisie">
+	   			<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true"/>
+			</div>
+			<div id="commentaire_boutton_submit">
+				<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages"/>
+ 			</div>
+ 		</h:panelGroup>
  	</h:form>
  	<h:panelGroup id="commentairesGroup">
-	 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
-				id="commentairesTable" widgetVar="commentaires_table" reflow="true"
-				emptyMessage="Aucun commentaire n'a été trouvé.">
-				<p:column width="200"
-					headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
-					<h:outputText value="#{commentaire.dateCreation}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-					</h:outputText>
-				</p:column>
-				<p:column
-					headerText="#{label['dossiers.overview.commentaires_table.commentaire_du_dossier']}">
-					<h:outputText value="#{commentaire.contenu}" />
-				</p:column>
-		</p:dataTable>	
+ 		<div id="commentaire_marge_entre_boutton_et_liste_commentaires">
+		 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
+					id="commentairesTable" widgetVar="commentaires_table" reflow="true"
+					emptyMessage="Aucun commentaire n'a été trouvé.">
+					<p:column width="200"
+						headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
+						<h:outputText value="#{commentaire.dateCreation}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
+					</p:column>
+					<p:column
+						headerText="#{label['dossiers.overview.commentaires_table.commentaire_du_dossier']}">
+						<h:outputText value="#{commentaire.contenu}" />
+					</p:column>
+			</p:dataTable>
+		</div>	
 	</h:panelGroup>	
 	
 
