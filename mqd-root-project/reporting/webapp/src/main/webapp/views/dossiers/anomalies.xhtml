@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-
+	
 	<f:metadata>
 		<f:event type="preRenderView" listener="#{anomalieBean.setup}" />
 	</f:metadata>
@@ -51,11 +51,15 @@
 					headerText="#{label['dossiers.overview.anomalies_table.header.mode_operatoire']}">
 					<h:outputText value="#{anomalie.modeOperatoire}" />
 				</p:column>
-				<p:column
+				<p:column width="12%"
 					headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
 					<p:selectOneMenu id="listEtatCorrection" value="#{anomalie.etatCorrection}">
 						<f:selectItems value="#{anomalieBean.listeEtatsCorrection}" />
 					</p:selectOneMenu>
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.dernier_correcteur']}">
+						<h:outputText value="" />
 				</p:column>
 			</p:dataTable>
 		</h:panelGroup>

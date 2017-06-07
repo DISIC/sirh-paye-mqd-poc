@@ -18,13 +18,15 @@ public enum AnomalieEtatEnum {
 
 	A_TRAITER(""),
 
-	FAUX_SIGNALEMENT("Faux signalement"),
+	EN_COURS("En cours"),
 
-	CORRIGE("Corrigé"),
+	CORRECTION_EFFECTUEE("Correction effectuée"),
+
+	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire"),
 
 	DEMANDE_ASSISTANCE("Demande d'assistance"),
 
-	REOUVERTURE("Réouverture");
+	SIGNALEMENT_INAPPROPRIE("Signalement inapproprié");
 
 	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
 

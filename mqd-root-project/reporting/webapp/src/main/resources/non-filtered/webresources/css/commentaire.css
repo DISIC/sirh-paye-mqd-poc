@@ -9,6 +9,11 @@ div#commentaire_boutton_submit {
 	height:40px;
 }
 
+div#commentaire_boutton_submit button {
+	background:#0081c2;
+	color:white
+}
+
 div#commentaire_marge_entre_boutton_et_liste_commentaires{
 	margin-top:30px;
 }
