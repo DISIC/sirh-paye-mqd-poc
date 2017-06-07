@@ -3,6 +3,8 @@ package com.sirh.mqd.commons.traces.factory;
 import java.io.IOException;
 import java.util.Date;
 
+import org.slf4j.helpers.Util;
+
 import com.sirh.mqd.commons.traces.dto.LogActionDTO;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
 import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
@@ -41,8 +43,7 @@ public final class LogActionFactory {
 	 * @param actionResult
 	 *            le résultat de l'action réalisée dans l'IHM (e.g. succès,
 	 *            etc...)
-	 * @return {@link LogMeLogActionDTOtierDTO} l'objet DTO gérant les logs
-	 *         d'actions IHM
+	 * @return {@link LogActionDTO} l'objet DTO gérant les logs d'actions IHM
 	 */
 	private static LogActionDTO createDefaultLogAction(final String login, final String role,
 			final IHMPageNameEnum pageName, final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult) {
@@ -50,6 +51,13 @@ public final class LogActionFactory {
 		logAction.setLogin(login);
 		logAction.setRole(role);
 		logAction.setPageName(pageName);
+
+		final Class<?> callingClass = Util.getCallingClass();
+		if (callingClass != null) {
+			logAction.setClassName(callingClass.getName());
+		} else {
+			logAction.setClassName(LogActionFactory.class.getName());
+		}
 
 		if (actionType == null) {
 			logAction.setActionType(IHMUserActionEnum.NONE);

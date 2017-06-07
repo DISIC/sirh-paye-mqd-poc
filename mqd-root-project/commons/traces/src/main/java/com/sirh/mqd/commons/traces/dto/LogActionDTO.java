@@ -26,6 +26,11 @@ public class LogActionDTO implements Serializable {
 	private static final long serialVersionUID = -6391762164835901573L;
 
 	/**
+	 * Nom de la classe appelante
+	 */
+	private String className;
+
+	/**
 	 * Login de l'utilisateur
 	 */
 	private String login;
@@ -161,6 +166,14 @@ public class LogActionDTO implements Serializable {
 		this.businessObjectModified = businessObjectModified;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(final String className) {
+		this.className = className;
+	}
+
 	@Override
 	public String toString() {
 		String authenticationDate = StringUtils.EMPTY;
@@ -172,8 +185,9 @@ public class LogActionDTO implements Serializable {
 		final Joiner joiner = Joiner
 				.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.DASH + Constantes.OPEN_SQUARE_BRACKET)
 				.useForNull(Constantes.DASH);
-		joiner.appendTo(logBuilder, this.login, this.role, authenticationDate, this.pageName, this.actionType,
-				this.actionResult, this.businessID, this.businessObjectInitial, this.businessObjectModified);
+		joiner.appendTo(logBuilder, this.className, this.login, this.role, authenticationDate, this.pageName,
+				this.actionType, this.actionResult, this.businessID, this.businessObjectInitial,
+				this.businessObjectModified);
 		logBuilder.append(Constantes.CLOSE_SQUARE_BRACKET);
 		return logBuilder.toString();
 	}

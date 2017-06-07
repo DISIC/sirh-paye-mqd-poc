@@ -14,7 +14,8 @@ import com.sirh.mqd.commons.storage.entity.CommentaireEntity;
 import com.sirh.mqd.commons.storage.factory.CommentaireEntityFactory;
 
 /**
- * Implémentation du BusinessController permettant de gérer les commentaires dans la base de données.
+ * Implémentation du BusinessController permettant de gérer les commentaires
+ * dans la base de données.
  *
  * @author khalil
  */
@@ -33,24 +34,20 @@ public class CommentaireBC {
 	 * @return listeCommentaires
 	 */
 	public List<CommentaireDTO> listerCommentaires(final String payLot, final String renoiRHMatricule) {
-		final List<CommentaireEntity> commentaireEntities = this.commentaireDAO.selectCommentairesDossier(payLot, renoiRHMatricule);
-
-		return commentaireEntities.stream().map(commentaireEntity -> CommentaireEntityFactory.createCommentaireDTO(commentaireEntity))
+		final List<CommentaireEntity> commentaireEntities = this.commentaireDAO.selectCommentairesDossier(payLot,
+				renoiRHMatricule);
+		return commentaireEntities.stream()
+				.map(commentaireEntity -> CommentaireEntityFactory.createCommentaireDTO(commentaireEntity))
 				.collect(Collectors.toList());
 	}
 
 	/**
 	 * Méthode permettant d'insérer un commentaire
 	 *
-	 * @param renoiRHMatricule
-	 * @param payLot
-	 * @param utilisateur
 	 * @param commentaire
 	 */
-	public void insererCommentaire(final String payLot, final String renoiRHMatricule, final String utilisateur, final String commentaire) {
-		commentaireDAO.insertCommentaire(payLot, renoiRHMatricule, utilisateur, commentaire);
+	public void insererCommentaire(final CommentaireDTO commentaire) {
+		final CommentaireEntity entity = CommentaireEntityFactory.createCommentaireEntity(commentaire);
+		commentaireDAO.insertCommentaire(entity);
 	}
-
-
-
 }

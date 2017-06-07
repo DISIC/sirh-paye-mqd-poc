@@ -21,6 +21,11 @@ public class LogMetierDTO implements Serializable {
 	private static final long serialVersionUID = 4678054629112525685L;
 
 	/**
+	 * Nom de la classe appelante
+	 */
+	private String className;
+
+	/**
 	 * Mode d'intéraction avec le module
 	 */
 	private InteractionModeEnum mode;
@@ -40,9 +45,10 @@ public class LogMetierDTO implements Serializable {
 	 */
 	private String libelle;
 
-	public LogMetierDTO(final InteractionModeEnum mode, final InteractionModuleEnum module,
+	public LogMetierDTO(final String className, final InteractionModeEnum mode, final InteractionModuleEnum module,
 			final InteractionRepositoryEnum referentiel, final String libelle) {
 		super();
+		this.className = className;
 		this.mode = mode;
 		this.composant = module;
 		this.referentiel = referentiel;
@@ -81,6 +87,14 @@ public class LogMetierDTO implements Serializable {
 		this.libelle = libelle;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(final String className) {
+		this.className = className;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder logBuilder = new StringBuilder();
@@ -88,7 +102,8 @@ public class LogMetierDTO implements Serializable {
 		final Joiner joiner = Joiner
 				.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.DASH + Constantes.OPEN_SQUARE_BRACKET)
 				.useForNull(Constantes.DASH);
-		joiner.appendTo(logBuilder, this.mode.name(), this.composant.name(), this.referentiel.name(), this.libelle);
+		joiner.appendTo(logBuilder, this.className, this.mode.name(), this.composant.name(), this.referentiel.name(),
+				this.libelle);
 		logBuilder.append(Constantes.CLOSE_SQUARE_BRACKET);
 		return logBuilder.toString();
 	}

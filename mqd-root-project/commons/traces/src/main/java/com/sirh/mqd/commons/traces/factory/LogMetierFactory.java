@@ -3,6 +3,7 @@ package com.sirh.mqd.commons.traces.factory;
 import java.text.MessageFormat;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.slf4j.helpers.Util;
 
 import com.sirh.mqd.commons.traces.dto.LogMetierDTO;
 import com.sirh.mqd.commons.traces.enums.LogMetierEnum;
@@ -38,7 +39,14 @@ public final class LogMetierFactory {
 	 */
 	private static LogMetierDTO createBusinessMessage(final LogMetierEnum message, final Object... arguments) {
 		final String libelle = MessageFormat.format(StringEscapeUtils.escapeJson(message.getPattern()), arguments);
-		return new LogMetierDTO(message.getMode(), message.getModule(), message.getReferentiel(), libelle);
+
+		String className = LogMetierFactory.class.getName();
+		final Class<?> callingClass = Util.getCallingClass();
+		if (callingClass != null) {
+			className = callingClass.getName();
+		}
+
+		return new LogMetierDTO(className, message.getMode(), message.getModule(), message.getReferentiel(), libelle);
 	}
 
 	/**

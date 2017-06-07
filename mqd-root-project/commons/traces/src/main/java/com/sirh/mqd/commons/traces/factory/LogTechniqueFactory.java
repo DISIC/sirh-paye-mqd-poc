@@ -3,10 +3,13 @@ package com.sirh.mqd.commons.traces.factory;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.slf4j.helpers.Util;
+
 import com.sirh.mqd.commons.traces.dto.LogTechniqueDTO;
 import com.sirh.mqd.commons.traces.enums.ExceptionTypeEnum;
 import com.sirh.mqd.commons.traces.enums.InteractionModuleEnum;
 import com.sirh.mqd.commons.traces.enums.InteractionToolEnum;
+import com.sirh.mqd.commons.utils.GenericUtils;
 
 /**
  * Factory de création des messages d'erreur technique
@@ -26,6 +29,31 @@ public final class LogTechniqueFactory {
 	}
 
 	/**
+	 * Méthode renvoyant le log technique avec les informations obligatoires.
+	 *
+	 * @param technologie
+	 * @param composant
+	 * @param exception
+	 * @return {@link LogTechniqueDTO} le DTO complété du log technique
+	 */
+	private static LogTechniqueDTO createDefaultLogTechnique(final InteractionToolEnum technologie,
+			final InteractionModuleEnum composant, final ExceptionTypeEnum exception) {
+		final LogTechniqueDTO logTechnique = new LogTechniqueDTO();
+
+		final Class<?> callingClass = Util.getCallingClass();
+		if (callingClass != null) {
+			logTechnique.setClassName(callingClass.getName());
+		} else {
+			logTechnique.setClassName(LogTechniqueFactory.class.getName());
+		}
+
+		logTechnique.setTechnologie(technologie);
+		logTechnique.setComposant(composant);
+		logTechnique.setException(exception);
+		return logTechnique;
+	}
+
+	/**
 	 * Méthode permettant de créer un objet {@link LogTechniqueDTO} utilisé pour
 	 * tracer les logs techniques.<br/>
 	 * Le contenu du message doit être un message technique customisé pour cette
@@ -33,19 +61,13 @@ public final class LogTechniqueFactory {
 	 *
 	 * @param technologie
 	 * @param composant
-	 * @param srcClassName
 	 * @param exception
 	 * @param content
 	 * @return {@link LogTechniqueDTO} le DTO complété du log technique
 	 */
 	public static LogTechniqueDTO createLogTechnique(final InteractionToolEnum technologie,
-			final InteractionModuleEnum composant, final String srcClassName, final ExceptionTypeEnum exception,
-			final String content) {
-		final LogTechniqueDTO logTechnique = new LogTechniqueDTO();
-		logTechnique.setTechnologie(technologie);
-		logTechnique.setComposant(composant);
-		logTechnique.setSrcClassName(srcClassName);
-		logTechnique.setException(exception);
+			final InteractionModuleEnum composant, final ExceptionTypeEnum exception, final String content) {
+		final LogTechniqueDTO logTechnique = createDefaultLogTechnique(technologie, composant, exception);
 		logTechnique.setContent(content);
 		return logTechnique;
 	}
@@ -57,19 +79,13 @@ public final class LogTechniqueFactory {
 	 *
 	 * @param technologie
 	 * @param composant
-	 * @param srcClassName
 	 * @param exception
 	 * @param content
 	 * @return {@link LogTechniqueDTO} le DTO complété du log technique
 	 */
 	public static LogTechniqueDTO createLogTechnique(final InteractionToolEnum technologie,
-			final InteractionModuleEnum composant, final String srcClassName, final ExceptionTypeEnum exception,
-			final Throwable content) {
-		final LogTechniqueDTO logTechnique = new LogTechniqueDTO();
-		logTechnique.setTechnologie(technologie);
-		logTechnique.setComposant(composant);
-		logTechnique.setSrcClassName(srcClassName);
-		logTechnique.setException(exception);
+			final InteractionModuleEnum composant, final ExceptionTypeEnum exception, final Throwable content) {
+		final LogTechniqueDTO logTechnique = createDefaultLogTechnique(technologie, composant, exception);
 		if (content != null) {
 			logTechnique.setContent(getExceptionContent(content));
 		}
@@ -84,9 +100,10 @@ public final class LogTechniqueFactory {
 	 * @return String l'exception au format lisible
 	 */
 	private static String getExceptionContent(final Throwable exception) {
+		final Throwable throwable = GenericUtils.retrieveFirstException(exception);
 		final StringWriter sw = new StringWriter();
 		final PrintWriter pw = new PrintWriter(sw);
-		exception.printStackTrace(pw);
+		throwable.printStackTrace(pw);
 		return sw.toString();
 	}
 }

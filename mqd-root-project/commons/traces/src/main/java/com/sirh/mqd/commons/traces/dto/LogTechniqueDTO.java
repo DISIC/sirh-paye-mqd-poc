@@ -22,6 +22,11 @@ public class LogTechniqueDTO implements Serializable {
 	private static final long serialVersionUID = 5566801067528723852L;
 
 	/**
+	 * Nom de la classe appelante
+	 */
+	private String className;
+
+	/**
 	 * Type de la technologie (Ws, Other)
 	 */
 	private InteractionToolEnum technologie;
@@ -30,11 +35,6 @@ public class LogTechniqueDTO implements Serializable {
 	 * Nom du composant applicatif
 	 */
 	private InteractionModuleEnum composant;
-
-	/**
-	 * Le nom de la classe Java associée
-	 */
-	private String srcClassName;
 
 	/**
 	 * Titre du message
@@ -50,13 +50,13 @@ public class LogTechniqueDTO implements Serializable {
 		super();
 	}
 
-	public LogTechniqueDTO(final InteractionToolEnum technologie, final InteractionModuleEnum composant,
-			final String srcClassName, final ExceptionTypeEnum exception, final String content) {
+	public LogTechniqueDTO(final String className, final InteractionToolEnum technologie,
+			final InteractionModuleEnum composant, final ExceptionTypeEnum exception, final String content) {
 		super();
+		this.className = className;
 		this.technologie = technologie;
 		this.composant = composant;
 		this.exception = exception;
-		this.srcClassName = srcClassName;
 		this.content = content;
 	}
 
@@ -76,14 +76,6 @@ public class LogTechniqueDTO implements Serializable {
 		this.composant = composant;
 	}
 
-	public String getSrcClassName() {
-		return srcClassName;
-	}
-
-	public void setSrcClassName(final String srcClassName) {
-		this.srcClassName = srcClassName;
-	}
-
 	public ExceptionTypeEnum getException() {
 		return exception;
 	}
@@ -100,6 +92,14 @@ public class LogTechniqueDTO implements Serializable {
 		this.content = content;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(final String className) {
+		this.className = className;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder logBuilder = new StringBuilder();
@@ -107,7 +107,7 @@ public class LogTechniqueDTO implements Serializable {
 		final Joiner joiner = Joiner
 				.on(Constantes.CLOSE_SQUARE_BRACKET + Constantes.DASH + Constantes.OPEN_SQUARE_BRACKET)
 				.useForNull(Constantes.DASH);
-		joiner.appendTo(logBuilder, this.technologie.name(), this.composant.name(), this.srcClassName,
+		joiner.appendTo(logBuilder, this.className, this.technologie.name(), this.composant.name(),
 				this.exception.getLibelle(), this.content);
 		logBuilder.append(Constantes.CLOSE_SQUARE_BRACKET);
 		return logBuilder.toString();
