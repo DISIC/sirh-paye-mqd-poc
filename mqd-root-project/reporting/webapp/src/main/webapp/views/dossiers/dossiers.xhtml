@@ -17,10 +17,6 @@
 			selectionMode="single" selection="#{dossierBean.selectedDossier}"
 			rowKey="#{dossier.renoiRHMatricule}">
 			<p:ajax event="rowSelect" listener="#{dossierBean.alimenterInformations}" update=":dossierGroup" />
-			<p:column
-				headerText="NIR">
-				<h:outputText value="n° non présent dans fichiers de bases" />
-			</p:column>
 			<p:column filterBy="#{dossier.renoiRHMatricule}" filterMatchMode="contains" sortBy="#{dossier.renoiRHMatricule}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_matricule']}">
 				<h:outputText value="#{dossier.renoiRHMatricule}" />
@@ -32,12 +28,6 @@
 			<p:column filterBy="#{dossier.renoiRHPrenom}" filterMatchMode="contains" sortBy="#{dossier.renoiRHPrenom}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
 				<h:outputText value="#{dossier.renoiRHPrenom}" />
-			</p:column>
-			<p:column filterBy="#{dossier.renoiRHDateNaissance}" filterMatchMode="contains" sortBy="#{dossier.renoiRHDateNaissance}"
-				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_date_naissance']}">
-				<h:outputText value="#{dossier.renoiRHDateNaissance}">
-					<f:convertDateTime pattern="MM/yy" />
-				</h:outputText>
 			</p:column>
 			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="contains" sortBy="#{dossier.renoiRHCorpsCode}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_code']}">
@@ -55,6 +45,15 @@
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_libelle']}">
 				<h:outputText value="#{dossier.renoiRHAffectationLibelleCourt}" />
 			</p:column>
+			<p:column filterBy="#{dossier.renoiRHDateNaissance}" filterMatchMode="contains" sortBy="#{dossier.renoiRHDateNaissance}"
+				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_date_naissance']}">
+				<h:outputText value="#{dossier.renoiRHDateNaissance}">
+					<f:convertDateTime pattern="MM/yy" />
+				</h:outputText>
+			</p:column>	
+			<p:column headerText="#{label['dossiers.overview.dossiers_table.header.nir']}">
+				<h:outputText value="Non fourni dans le fichier des écarts GA-PAY" />
+			</p:column>	
 			<p:column filterBy="#{dossier.payLot}" filterMatchMode="contains" sortBy="#{dossier.payLot}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.pay_lot']}">
 				<h:outputText value="#{dossier.payLot}" />
