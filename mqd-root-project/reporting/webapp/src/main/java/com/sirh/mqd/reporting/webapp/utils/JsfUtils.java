@@ -280,11 +280,21 @@ public class JsfUtils implements Serializable {
 		return FacesContext.getCurrentInstance();
 	}
 
+	/**
+	 * Méthode permettant de récupérer un Bean existant en session ou dans le
+	 * scope de l'application
+	 *
+	 * @param beanName
+	 *            le nom du Bean
+	 * @param className
+	 *            la classe Java du Bean qui doit hériter de la classe
+	 *            GenericBean
+	 * @return le bean attendu ou null s'il n'existe pas dans le contexte JSF
+	 */
 	public <T extends GenericBean> T getBean(final String beanName, final Class<T> className) {
 		final FacesContext facesContext = getFacesCurrentInstance();
 		if (facesContext != null) {
-			return facesContext.getApplication().evaluateExpressionGet(facesContext,
-					"#{" + beanName + "}", className);
+			return facesContext.getApplication().evaluateExpressionGet(facesContext, "#{" + beanName + "}", className);
 		}
 		return null;
 	}
