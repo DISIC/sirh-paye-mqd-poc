@@ -3,6 +3,7 @@ package com.sirh.mqd.supplier.core.pay;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ import com.sirh.mqd.commons.exchanges.factory.pivot.AnomalieDTOFactory;
 import com.sirh.mqd.commons.exchanges.factory.pivot.DossierDTOFactory;
 import com.sirh.mqd.commons.storage.bc.DossierBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
+import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.commons.utils.exception.TechnicalException;
 import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
 import com.sirh.mqd.supplier.core.constantes.PayConstantes;
@@ -104,7 +106,6 @@ public class PayService {
 								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.PAY, lineArray[16]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.GA, lineArray[17]));
-
 					}
 				}
 				i++;
@@ -249,6 +250,7 @@ public class PayService {
 	 */
 	private void stockerComparaisons(final InteractionSirhEnum referentiel, final List<ComparaisonDTO> donnees) {
 		final List<ComparaisonDTO> comparaisons = new ArrayList<ComparaisonDTO>();
+		final Date dateCloture = DateUtils.getCalendarInstance().getTime();
 		donnees.forEach((donnee) -> {
 			final Optional<ComparaisonDTO> nullableComparaison = this.dossierBC.rechercherComparaison(donnee);
 			if (nullableComparaison.isPresent()) {
@@ -263,8 +265,11 @@ public class PayService {
 				default:
 					break;
 				}
+				comparaison.setAnomalieReouverte(false);
 				comparaison.setAnomalieDonnees(false);
-				comparaison.setEtatCorrection(null);
+				if (comparaison.getDateCloture() == null) {
+					comparaison.setDateCloture(dateCloture);
+				}
 				comparaisons.add(comparaison);
 			} else {
 				comparaisons.add(donnee);

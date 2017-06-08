@@ -13,6 +13,8 @@ public final class CoreConstantes {
 
 	public static final String SIRH_DGAC_SERVICE = "sirhDgacService";
 
+	public static final String USER_SERVICE = "userService";
+
 	/**
 	 * Non-constructeur
 	 *

@@ -16,4 +16,5 @@
 	<import resource="classpath:rest-context.xml" />
 	<import resource="classpath:sftp-context.xml" />
 	<import resource="classpath:pay-context.xml" />
+	<import resource="classpath:user-context.xml" />
 </beans>

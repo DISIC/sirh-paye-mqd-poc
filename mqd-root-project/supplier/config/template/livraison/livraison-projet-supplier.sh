@@ -66,7 +66,7 @@ check_delivery_repository() {
 ######################################################################################
 directories_sftp() {
 	echo -e "Création du répertoire local pour récupérer les fichier du serveur SFTP."
-	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac}
+	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac,user}
 }
 
 ######################################################################################
@@ -76,6 +76,15 @@ install_sftp_server() {
 	echo -e "Installation du serveur SFTP."
 	sudo chmod +x "livraison/demo/sftp/installation-serveur-sftp.sh"
 	sh ./livraison/demo/sftp/installation-serveur-sftp.sh
+}
+
+######################################################################################
+# Dépôt sur le serveur SFTP du fichier CSV contenant les identifiants de connexion
+######################################################################################
+drop_default_users_csv_file() {
+	echo -e "Dépôt sur le serveur SFTP du fichier CSV contenant les identifiants de connexion."
+	sudo cp ./Utilisateurs.csv -f "${filter.sftp.directory.path}/user/"
+	sudo chown ${filter.sftp.user.name}:${filter.sftp.group.name} "${filter.sftp.directory.path}/user/Utilisateurs.csv"
 }
 
 ######################################################################################

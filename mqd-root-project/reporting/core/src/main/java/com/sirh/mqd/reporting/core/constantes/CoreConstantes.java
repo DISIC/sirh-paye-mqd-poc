@@ -11,6 +11,7 @@ public final class CoreConstantes {
 
 	public static final String COMMENTAIRE_SERVICE = "commentaireService";
 
+	public static final String USER_SERVICE = "userService";
 
 	/**
 	 * Non-constructeur

@@ -27,6 +27,8 @@ public class ComparaisonDTO {
 
 	private AnomalieEtatEnum etatCorrection;
 
+	private boolean anomalieReouverte;
+
 	private boolean anomalieDonnees;
 
 	private DifferenceDTO donnees;
@@ -98,6 +100,14 @@ public class ComparaisonDTO {
 
 	public void setDonnees(final DifferenceDTO donnees) {
 		this.donnees = donnees;
+	}
+
+	public boolean isAnomalieReouverte() {
+		return anomalieReouverte;
+	}
+
+	public void setAnomalieReouverte(final boolean anomalieReouverte) {
+		this.anomalieReouverte = anomalieReouverte;
 	}
 
 	public boolean isAnomalieDonnees() {

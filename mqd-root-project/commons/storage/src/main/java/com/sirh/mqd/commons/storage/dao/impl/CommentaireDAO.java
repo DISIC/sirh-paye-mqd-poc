@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.storage.constantes.CommentaireConstantes;
+import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.ICommentaireDAO;
 import com.sirh.mqd.commons.storage.entity.CommentaireEntity;
@@ -20,7 +20,6 @@ import com.sirh.mqd.commons.storage.entity.CommentaireEntity;
  *
  * @author khalil
  */
-
 @Service(PersistenceConstantes.COMMENTAIRE_DAO)
 public class CommentaireDAO implements ICommentaireDAO {
 
@@ -30,12 +29,11 @@ public class CommentaireDAO implements ICommentaireDAO {
 
 	@Override
 	public List<CommentaireEntity> selectCommentairesDossier(final String payLot, final String renoiRHMatricule) {
-
-		List<CommentaireEntity> listeCommentaires  = new ArrayList<CommentaireEntity>();
+		List<CommentaireEntity> listeCommentaires = new ArrayList<CommentaireEntity>();
 		if (payLot != null && renoiRHMatricule != null) {
 			final Query query = new Query();
-			query.addCriteria(Criteria.where(CommentaireConstantes.PAY_LOT).is(payLot));
-			query.addCriteria(Criteria.where(CommentaireConstantes.MATRICULE).is(renoiRHMatricule));
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 			listeCommentaires = mongoTemplate.find(query, CommentaireEntity.class);
 		}
 		return listeCommentaires;
@@ -46,6 +44,5 @@ public class CommentaireDAO implements ICommentaireDAO {
 		if (commentaire != null) {
 			mongoTemplate.save(commentaire);
 		}
-
 	}
 }

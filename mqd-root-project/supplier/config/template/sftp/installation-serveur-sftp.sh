@@ -45,7 +45,7 @@ create_user_and_group() {
 ######################################################################################
 create_sftp_project_directories() {
 	echo -e "Création de l'arborescence du répertoire SFTP '${filter.sftp.directory.path}' et affectation des droits."
-	sudo mkdir -p ${filter.sftp.directory.path}/{pay,mso,dgac}
+	sudo mkdir -p ${filter.sftp.directory.path}/{pay,mso,dgac,user}
 	sudo chown -R ${filter.sftp.user.name}:${filter.sftp.group.name} ${filter.sftp.directory.path}
 }
 

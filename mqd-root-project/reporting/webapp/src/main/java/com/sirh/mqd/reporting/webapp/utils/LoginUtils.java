@@ -1,14 +1,17 @@
 package com.sirh.mqd.reporting.webapp.utils;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
+import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
+import com.sirh.mqd.reporting.webapp.model.UserModel;
 
 /**
  * Classe générique de gestion des informations d'authentification de
@@ -25,16 +28,66 @@ public class LoginUtils implements Serializable {
 	 */
 	private static final long serialVersionUID = 6484931640884340862L;
 
-	/**
-	 * @return the currentUsername
-	 */
 	public String getCurrentUsername() {
-		final UserDetails authenticatedUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		if (authenticatedUser != null) {
 			return authenticatedUser.getUsername();
-		} else {
-			return "USER UNDEFINED";
 		}
+		return "USER UNDEFINED";
+	}
+
+	public String getCurrentUserPayLot() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getPayLot();
+		}
+		return "USER UNDEFINED";
+	}
+
+	public String getCurrentUserCorpsCode() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getCorpsCode();
+		}
+		return "USER UNDEFINED";
+	}
+
+	public String getCurrentUserAffectationCode() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getAffectationCode();
+		}
+		return "USER UNDEFINED";
+	}
+
+	public Collection<? extends GrantedAuthority> getRoles() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getAuthorities();
+		}
+		return null;
+	}
+
+	public String getRolesAsString() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getRolesAsString();
+		}
+		return "USER UNDEFINED";
+	}
+
+	public String getDateConnexion() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null && authenticatedUser.getDateAuthentification() != null) {
+			return DateUtils.formateDateJJMMAAAAhhmmss(authenticatedUser.getDateAuthentification());
+		}
+		return "USER UNDEFINED";
 	}
 }

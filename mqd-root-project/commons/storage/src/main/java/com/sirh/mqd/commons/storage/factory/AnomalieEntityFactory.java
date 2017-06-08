@@ -41,6 +41,7 @@ public class AnomalieEntityFactory {
 				comparaison.setEtatCorrection(entity.getAnomalie().getEtatCorrection());
 				comparaison.setModeOperatoire(entity.getAnomalie().getModeOperatoire());
 			}
+			comparaison.setAnomalieReouverte(entity.isAnomalieReouverte());
 
 			final DifferenceDTO donnees = new DifferenceDTO();
 			if (entity.getDonnees() != null) {
@@ -70,6 +71,7 @@ public class AnomalieEntityFactory {
 				anomalie.setModeOperatoire(comparaison.getModeOperatoire());
 				entity.setAnomalie(anomalie);
 			}
+			entity.setAnomalieReouverte(comparaison.isAnomalieReouverte());
 
 			if (comparaison.getDonnees() != null) {
 				final DifferenceEntity donnees = new DifferenceEntity();

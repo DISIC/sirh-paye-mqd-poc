@@ -10,6 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.sirh.mqd.commons.traces.dto.LogActionDTO;
+import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
+import com.sirh.mqd.commons.traces.factory.LogActionFactory;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -52,7 +57,7 @@ public class GenericBean implements Serializable {
 	 */
 	@Inject
 	@Qualifier(ContextConstantes.LOGIN_UTILS)
-	protected LoginUtils loginUtils;
+	private LoginUtils loginUtils;
 
 	/**
 	 * Constructeur par défaut.
@@ -77,11 +82,20 @@ public class GenericBean implements Serializable {
 		this.loginUtils = loginUtils;
 	}
 
-	/**
-	 * @return the currentUsername
-	 */
 	public String getCurrentUsername() {
 		return this.loginUtils.getCurrentUsername();
+	}
+
+	public String getCurrentUserPayLot() {
+		return this.loginUtils.getCurrentUserPayLot();
+	}
+
+	public String getCurrentUserCorpsCode() {
+		return this.loginUtils.getCurrentUserCorpsCode();
+	}
+
+	public String getCurrentUserAffectationCode() {
+		return this.loginUtils.getCurrentUserAffectationCode();
 	}
 
 	public DossierModel getCurrentDossier() {
@@ -93,9 +107,6 @@ public class GenericBean implements Serializable {
 		return dossier;
 	}
 
-	/**
-	 * @return the keyAllValueSelected
-	 */
 	public String getKeyAllValueSelected() {
 		return KEY_ALL_VALUE_SELECTED;
 	}
@@ -111,7 +122,7 @@ public class GenericBean implements Serializable {
 		boolean notFirst = false;
 		for (final String attribut : attributsManquants) {
 			if (notFirst) {
-				attributsManquantsMsg.append(", ");
+				attributsManquantsMsg.append(Constantes.COMMA).append(Constantes.SPACE);
 			} else {
 				notFirst = true;
 			}
@@ -123,7 +134,17 @@ public class GenericBean implements Serializable {
 		LOGGER.error(logErrorMsg.toString());
 
 		final String[] attributsManquantsMsgArray = { attributsManquantsMsg.toString() };
-		this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR, "error.functionnal.mandatoryFields",
+		this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR, "error.functional.mandatory.fields",
 				attributsManquantsMsgArray);
+	}
+
+	public LogActionDTO computeLogActionDTO(final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult,
+			final IHMPageNameEnum pageName, final String businessID, final Object businessObjetInitial,
+			final Object businessObjetModified) {
+		final String login = this.loginUtils.getCurrentUsername();
+		final String role = this.loginUtils.getRolesAsString();
+		final String authenticationDate = this.loginUtils.getDateConnexion();
+		return LogActionFactory.createLogAction(login, role, authenticationDate, actionType, actionResult, pageName,
+				businessID, businessObjetInitial, businessObjetModified);
 	}
 }

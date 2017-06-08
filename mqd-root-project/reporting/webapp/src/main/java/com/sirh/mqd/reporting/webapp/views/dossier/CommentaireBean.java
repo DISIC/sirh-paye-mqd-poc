@@ -12,9 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
+import com.sirh.mqd.commons.traces.IFacadeLogs;
+import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
+import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
+import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
+import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.api.ICommentaireService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -41,11 +48,18 @@ public class CommentaireBean extends GenericBean {
 	@Qualifier(CoreConstantes.COMMENTAIRE_SERVICE)
 	private ICommentaireService commentaireService;
 
+	@Inject
+	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	private IFacadeLogs logger;
+
 	/**
 	 * Commentaire sélectionné dans le tableau.
 	 */
 	private CommentaireModel selectedCommentaire;
 
+	/**
+	 * Commentaire saisi par l'utilisateur
+	 */
 	private String commentaire;
 
 	/**
@@ -64,6 +78,7 @@ public class CommentaireBean extends GenericBean {
 	}
 
 	public void alimenterCommentaires(final DossierModel selectedDossier) {
+		this.commentaire = StringUtils.EMPTY;
 		listerCommentaires(selectedDossier.getRenoiRHMatricule(), selectedDossier.getPayLot());
 	}
 
@@ -73,19 +88,27 @@ public class CommentaireBean extends GenericBean {
 		if (dossier != null) {
 			final String matricule = dossier.getRenoiRHMatricule();
 			final String payLot = dossier.getPayLot();
-			final CommentaireDTO commentaireDTO = CommentaireModelFactory.createCommentaireDTO(commentaire, username,
-					payLot, matricule);
+			final CommentaireDTO commentaireDTO = CommentaireModelFactory.createCommentaireDTO(this.commentaire,
+					username, payLot, matricule);
 			this.commentaireService.ajouterCommentaire(commentaireDTO);
-			this.listerCommentaires(matricule, payLot);
-			this.commentaire = StringUtils.EMPTY;
+			this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.SUCCESS,
+					IHMPageNameEnum.COMMENTAIRE, DateUtils.formateDateJJMMAAAAhhmmss(commentaireDTO.getDateCreation()),
+					commentaireDTO, null));
+
+			alimenterCommentaires(dossier);
 		} else {
+			this.logger.logAction(Level.ERROR,
+					computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.ERROR,
+							IHMPageNameEnum.COMMENTAIRE,
+							DateUtils.formateDateJJMMAAAAhhmmss(DateUtils.getCalendarInstance().getTime()),
+							this.commentaire, null));
 			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
 					"view.dossiers.commentaires.erreur.no.dossier.selected");
 		}
 	}
 
 	private void listerCommentaires(final String matricule, final String payLot) {
-		final List<CommentaireDTO> commentairesDTO = commentaireService.listerCommentaires(matricule, payLot);
+		final List<CommentaireDTO> commentairesDTO = this.commentaireService.listerCommentaires(matricule, payLot);
 		this.commentaires = new ArrayList<CommentaireModel>();
 		this.commentaires.addAll(commentairesDTO.stream()
 				.map(commentaireDTO -> CommentaireModelFactory.createCommentaireModel(commentaireDTO))

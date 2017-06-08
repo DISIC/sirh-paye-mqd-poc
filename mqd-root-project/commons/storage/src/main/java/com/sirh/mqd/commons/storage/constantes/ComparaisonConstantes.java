@@ -13,6 +13,8 @@ public final class ComparaisonConstantes {
 
 	public static final String COLONNE_TYPE_DONNEE = "type_donnee";
 
+	public static final String COLONNE_ANOMALIE_REOUVERTE = "anomalie_reouverte";
+
 	public static final String COLONNE_ANOMALIE = "anomalie";
 
 	public static final String COLONNE_ANOMALIE_MODE_OPERATOIRE = "correction_mode_operatoire";

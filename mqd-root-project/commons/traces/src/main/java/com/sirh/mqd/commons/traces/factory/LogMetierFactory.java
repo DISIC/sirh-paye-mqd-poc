@@ -3,10 +3,10 @@ package com.sirh.mqd.commons.traces.factory;
 import java.text.MessageFormat;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.slf4j.helpers.Util;
 
 import com.sirh.mqd.commons.traces.dto.LogMetierDTO;
 import com.sirh.mqd.commons.traces.enums.LogMetierEnum;
+import com.sirh.mqd.commons.traces.utils.TracesUtils;
 
 /**
  * Factory de création des messages métier.
@@ -41,7 +41,7 @@ public final class LogMetierFactory {
 		final String libelle = MessageFormat.format(StringEscapeUtils.escapeJson(message.getPattern()), arguments);
 
 		String className = LogMetierFactory.class.getName();
-		final Class<?> callingClass = Util.getCallingClass();
+		final Class<?> callingClass = TracesUtils.getClassCallingLogMetierFactory();
 		if (callingClass != null) {
 			className = callingClass.getName();
 		}

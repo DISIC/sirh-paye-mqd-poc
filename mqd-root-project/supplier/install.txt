@@ -27,5 +27,5 @@ Lancer les commandes dans un terminal
 4 - Création des répertoires du serveur SFTP
 Lancer les commandes dans un terminal
 
-   sudo mkdir -p /var/data/sirh-paye-mqd-poc/{pay,mso,dgac}
+   sudo mkdir -p /var/data/sirh-paye-mqd-poc/{pay,mso,dgac,user}
    sudo chown -R ${desktop.username}:root /var/data/sirh-paye-mqd-poc

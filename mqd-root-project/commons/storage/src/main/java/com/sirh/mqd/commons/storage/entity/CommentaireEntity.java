@@ -9,33 +9,37 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.sirh.mqd.commons.storage.constantes.CommentaireConstantes;
+import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
+
 /**
  * Entité des commentaires
  *
- * @author khalil
+ * @author alexandre
  */
-@Document(collection = "commentaires")
-@CompoundIndexes({@CompoundIndex(name = "index_commentaires_dossier", def = "{'pay_lot' : 1, 'matricule' : 1}")})
+@Document(collection = CommentaireConstantes.COLLECTION_NAME)
+@CompoundIndexes({ @CompoundIndex(name = "index_commentaire_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT
+		+ "' : 1, '" + DossierConstantes.COLONNE_MATRICULE + "' : 1}") })
 public class CommentaireEntity {
 
 	@Id
 	private String id;
 
 	@Indexed
-	@Field("pay_lot")
+	@Field(DossierConstantes.COLONNE_PAY_LOT)
 	private String payLot;
 
 	@Indexed
-	@Field("matricule")
+	@Field(DossierConstantes.COLONNE_MATRICULE)
 	private String renoiRHMatricule;
 
-	@Field("date_creation")
+	@Field(CommentaireConstantes.COLONNE_DATE_CREATION)
 	private Date dateCreation;
 
-	@Field("desciption")
+	@Field(CommentaireConstantes.COLONNE_DESCRIPTION)
 	private String contenu;
 
-	@Field("gestionnaire")
+	@Field(CommentaireConstantes.COLONNE_GESTIONNAIRE)
 	private String utilisateur;
 
 	public CommentaireEntity() {

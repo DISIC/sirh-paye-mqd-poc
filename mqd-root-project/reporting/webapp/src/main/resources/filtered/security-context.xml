@@ -11,15 +11,8 @@
 
 	<!-- Services d'authentification -->
 	<security:authentication-manager id="authenticationManager">
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="atingaud" password="ati"
-					authorities="ROLE_USER,ROLE_ADMIN" />
-				<security:user name="kgharbi" password="kgh"
-					authorities="ROLE_USER,ROLE_ADMIN" />
-				<security:user name="lambda" password="xxx"
-					authorities="ROLE_USER" />
-			</security:user-service>
+		<security:authentication-provider user-service-ref="userDetailsService" >
+			<security:password-encoder hash="bcrypt" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 

@@ -63,6 +63,17 @@ public final class ContextConstantes {
 	public static final String AUTHENTIFICATION_MANAGER = "authenticationManager";
 
 	/**
+	 * Nom du Listener gérant les événements d'authentication avec succès
+	 */
+	public static final String AUTHENTIFICATION_SUCCESS_LISTERNER = "authenticationSuccessListener";
+
+	/**
+	 * Nom du Service Spring Security de gestion des habilitations des
+	 * utilisateurs
+	 */
+	public static final String USER_DETAILS_SERVICE = "userDetailsService";
+
+	/**
 	 * X Correliation id à diffuser pour les appels de WS
 	 */
 	public static final String HEADER_CORRELATION_ID = "X-CORRELATIONID";
