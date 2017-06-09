@@ -26,6 +26,18 @@ public class AnomalieEntity {
 	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_ETAT)
 	private AnomalieEtatEnum etatCorrection;
 
+	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_LOGIN)
+	private String responsableLogin;
+
+	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_NOM)
+	private String responsableNom;
+
+	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_PRENOM)
+	private String responsablePrenom;
+
+	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_DATE_MODIFICATION)
+	private Date dateModification;
+
 	public AnomalieEntity() {
 		super();
 	}
@@ -60,5 +72,37 @@ public class AnomalieEntity {
 
 	public void setEtatCorrection(final AnomalieEtatEnum etatCorrection) {
 		this.etatCorrection = etatCorrection;
+	}
+
+	public String getResponsableLogin() {
+		return responsableLogin;
+	}
+
+	public void setResponsableLogin(final String responsableLogin) {
+		this.responsableLogin = responsableLogin;
+	}
+
+	public String getResponsableNom() {
+		return responsableNom;
+	}
+
+	public void setResponsableNom(final String responsableNom) {
+		this.responsableNom = responsableNom;
+	}
+
+	public String getResponsablePrenom() {
+		return responsablePrenom;
+	}
+
+	public void setResponsablePrenom(final String responsablePrenom) {
+		this.responsablePrenom = responsablePrenom;
+	}
+
+	public Date getDateModification() {
+		return dateModification;
+	}
+
+	public void setDateModification(final Date dateModification) {
+		this.dateModification = dateModification;
 	}
 }

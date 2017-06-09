@@ -153,4 +153,14 @@ public class DossierBC {
 				.map(comparaisonEntity -> AnomalieEntityFactory.createComparaisonDTO(comparaisonEntity))
 				.collect(Collectors.toList());
 	}
+
+	/**
+	 * Méthode permettant de modifier l'état de correction d'une anomalie
+	 *
+	 * @param anomalie
+	 *            l'anomalie à mettre à jour
+	 */
+	public void modifierAnomalie(final ComparaisonDTO anomalie) {
+		this.dossierDAO.updateAnomalie(AnomalieEntityFactory.createComparaisonEntity(anomalie));
+	}
 }

@@ -31,6 +31,12 @@ public final class UserConstantes {
 
 	public static final String COLONNE_CREDENTIALS_NON_EXPIRED = "credentials_non_expired";
 
+	public static final String COLONNE_PRENOM = "prenom";
+
+	public static final String COLONNE_NOM = "nom";
+
+	public static final String COLONNE_PAY_GESTIONNAIRE_CODE = "pay_gestionnaire_code";
+
 	/**
 	 * Non-constructeur
 	 *

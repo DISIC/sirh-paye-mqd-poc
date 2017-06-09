@@ -159,4 +159,34 @@ public class DossierDAO implements IDossierDAO {
 	public void deleteAlerte(final AlerteEntity entity) {
 		mongoTemplate.remove(entity);
 	}
+
+	@Override
+	public void updateAnomalie(final ComparaisonEntity entity) {
+		if (entity != null && entity.getAnomalie() != null) {
+			final Query query = new Query();
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getRenoiRHMatricule()));
+			query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
+			final Update update = new Update();
+			update.set(
+					ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+							+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_MODIFICATION,
+					entity.getAnomalie().getDateModification());
+			update.set(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+					+ ComparaisonConstantes.COLONNE_ANOMALIE_ETAT, entity.getAnomalie().getEtatCorrection());
+			update.set(
+					ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+							+ ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_LOGIN,
+					entity.getAnomalie().getResponsableLogin());
+			update.set(
+					ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+							+ ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_PRENOM,
+					entity.getAnomalie().getResponsablePrenom());
+			update.set(
+					ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+							+ ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_NOM,
+					entity.getAnomalie().getResponsableNom());
+			mongoTemplate.updateFirst(query, update, ComparaisonEntity.class);
+		}
+	}
 }

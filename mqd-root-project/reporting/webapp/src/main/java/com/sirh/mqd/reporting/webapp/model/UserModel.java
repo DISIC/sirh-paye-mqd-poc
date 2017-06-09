@@ -22,22 +22,32 @@ public class UserModel extends User {
 	 */
 	private static final long serialVersionUID = -4609340482509932498L;
 
+	private final String prenom;
+
+	private final String nom;
+
 	private String payLot;
 
 	private String corpsCode;
 
 	private String affectationCode;
 
+	private final String payGestionnaireCode;
+
 	private Date dateAuthentification;
 
-	public UserModel(final String username, final String password, final String payLot, final String corpsCode,
-			final String affectationCode, final Date dateAuthentification, final boolean enabled,
-			final boolean accountNonExpired, final boolean credentialsNonExpired, final boolean accountNonLocked,
+	public UserModel(final String username, final String password, final String prenom, final String nom,
+			final String payLot, final String corpsCode, final String affectationCode, final String payGestionnaireCode,
+			final Date dateAuthentification, final boolean enabled, final boolean accountNonExpired,
+			final boolean credentialsNonExpired, final boolean accountNonLocked,
 			final Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.prenom = prenom;
+		this.nom = nom;
 		this.payLot = payLot;
 		this.corpsCode = corpsCode;
 		this.affectationCode = affectationCode;
+		this.payGestionnaireCode = payGestionnaireCode;
 		this.dateAuthentification = DateUtils.clonerDate(dateAuthentification);
 	}
 
@@ -65,12 +75,24 @@ public class UserModel extends User {
 		this.affectationCode = affectationCode;
 	}
 
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public String getPayGestionnaireCode() {
+		return payGestionnaireCode;
+	}
+
 	public Date getDateAuthentification() {
 		return dateAuthentification;
 	}
 
 	public void setDateAuthentification(final Date dateAuthentification) {
-		this.dateAuthentification = dateAuthentification;
+		this.dateAuthentification = DateUtils.clonerDate(dateAuthentification);
 	}
 
 	/**

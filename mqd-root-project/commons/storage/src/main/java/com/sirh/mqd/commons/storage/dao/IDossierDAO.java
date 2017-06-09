@@ -38,4 +38,6 @@ public interface IDossierDAO {
 	int countAlerte(AlerteEntity entity);
 
 	void deleteAlerte(AlerteEntity entity);
+
+	void updateAnomalie(ComparaisonEntity entity);
 }

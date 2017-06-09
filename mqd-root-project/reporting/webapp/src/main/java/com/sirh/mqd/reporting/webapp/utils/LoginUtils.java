@@ -37,6 +37,24 @@ public class LoginUtils implements Serializable {
 		return "USER UNDEFINED";
 	}
 
+	public String getCurrentUserLastname() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getNom();
+		}
+		return "USER UNDEFINED";
+	}
+
+	public String getCurrentUserFirstname() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getPrenom();
+		}
+		return "USER UNDEFINED";
+	}
+
 	public String getCurrentUserPayLot() {
 		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();

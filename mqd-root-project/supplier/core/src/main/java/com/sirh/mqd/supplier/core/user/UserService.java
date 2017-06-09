@@ -47,7 +47,8 @@ public class UserService {
 				if (i > 1) {
 					final String[] lineArray = UserUtils.splitUtilisateursData(line);
 					userBC.ajouterUtilisateur(UserDTOFactory.createUserDTO(lineArray[0], lineArray[1], lineArray[2],
-							lineArray[3], lineArray[4], UserUtils.createListeRoles(lineArray[5])));
+							lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[7],
+							UserUtils.createListeRoles(lineArray[8])));
 				}
 				i++;
 			}
