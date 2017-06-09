@@ -83,13 +83,15 @@ public class CommentaireBean extends GenericBean {
 	}
 
 	public void ajouterCommentaire(final ActionEvent actionEvent) {
-		final String username = getCurrentUsername();
+		final String userLogin = this.getCurrentUsername();
+		final String userPrenom = this.getCurrentUserFirstname();
+		final String userNom = this.getCurrentUserLastname();
 		final DossierModel dossier = getCurrentDossier();
 		if (dossier != null) {
 			final String matricule = dossier.getRenoiRHMatricule();
 			final String payLot = dossier.getPayLot();
 			final CommentaireDTO commentaireDTO = CommentaireModelFactory.createCommentaireDTO(this.commentaire,
-					username, payLot, matricule);
+					userLogin, userPrenom, userNom, payLot, matricule);
 			this.commentaireService.ajouterCommentaire(commentaireDTO);
 			this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.SUCCESS,
 					IHMPageNameEnum.COMMENTAIRE, DateUtils.formateDateJJMMAAAAhhmmss(commentaireDTO.getDateCreation()),

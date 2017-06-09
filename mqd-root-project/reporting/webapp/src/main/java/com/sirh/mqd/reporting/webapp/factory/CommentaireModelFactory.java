@@ -25,25 +25,33 @@ public final class CommentaireModelFactory {
 		final CommentaireModel commentaireModel = new CommentaireModel();
 		commentaireModel.setDateCreation(DateUtils.clonerDate(commentaireDTO.getDateCreation()));
 		commentaireModel.setContenu(commentaireDTO.getContenu());
-		commentaireModel.setUtilisateur(commentaireDTO.getUtilisateur());
+		commentaireModel.setAuteurLogin(commentaireDTO.getAuteurLogin());
+		commentaireModel.setAuteurNom(commentaireDTO.getAuteurNom());
+		commentaireModel.setAuteurPrenom(commentaireDTO.getAuteurPrenom());
 		return commentaireModel;
 	}
 
-	public static CommentaireDTO createCommentaireDTO(final CommentaireModel commentaireModel, final String payLot, final String matricule) {
+	public static CommentaireDTO createCommentaireDTO(final CommentaireModel commentaireModel, final String payLot,
+			final String matricule) {
 		final CommentaireDTO commentaireDTO = new CommentaireDTO();
 		commentaireDTO.setDateCreation(DateUtils.getCalendarInstance().getTime());
 		commentaireDTO.setContenu(commentaireModel.getContenu());
-		commentaireDTO.setUtilisateur(commentaireModel.getUtilisateur());
+		commentaireDTO.setAuteurLogin(commentaireModel.getAuteurLogin());
+		commentaireDTO.setAuteurNom(commentaireModel.getAuteurNom());
+		commentaireDTO.setAuteurPrenom(commentaireModel.getAuteurPrenom());
 		commentaireDTO.setPayLot(payLot);
 		commentaireDTO.setRenoiRHMatricule(matricule);
 		return commentaireDTO;
 	}
 
-	public static CommentaireDTO createCommentaireDTO(final String commentaire, final String username, final String payLot, final String matricule) {
+	public static CommentaireDTO createCommentaireDTO(final String commentaire, final String username,
+			final String prenom, final String nom, final String payLot, final String matricule) {
 		final CommentaireDTO commentaireDTO = new CommentaireDTO();
 		commentaireDTO.setDateCreation(DateUtils.getCalendarInstance().getTime());
 		commentaireDTO.setContenu(commentaire);
-		commentaireDTO.setUtilisateur(username);
+		commentaireDTO.setAuteurLogin(username);
+		commentaireDTO.setAuteurNom(nom);
+		commentaireDTO.setAuteurPrenom(prenom);
 		commentaireDTO.setPayLot(payLot);
 		commentaireDTO.setRenoiRHMatricule(matricule);
 		return commentaireDTO;

@@ -13,9 +13,13 @@ public final class CommentaireConstantes {
 
 	public static final String COLONNE_DATE_CREATION = "date_creation";
 
-	public static final String COLONNE_GESTIONNAIRE = "gestionnaire";
-
 	public static final String COLONNE_DESCRIPTION = "description";
+
+	public static final String COLONNE_AUTEUR_LOGIN = "auteur_login";
+
+	public static final String COLONNE_AUTEUR_NOM = "auteur_nom";
+
+	public static final String COLONNE_AUTEUR_PRENOM = "auteur_prenom";
 
 	/**
 	 * Non-constructeur

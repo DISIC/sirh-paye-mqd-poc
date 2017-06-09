@@ -3,6 +3,8 @@ package com.sirh.mqd.reporting.webapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.WordUtils;
+
 import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
@@ -10,7 +12,7 @@ import com.sirh.mqd.commons.utils.DateUtils;
  *
  * @author khalil
  */
-public class CommentaireModel implements Serializable{
+public class CommentaireModel implements Serializable {
 
 	/**
 	 * Generated UID
@@ -21,7 +23,11 @@ public class CommentaireModel implements Serializable{
 
 	private String contenu;
 
-	private String utilisateur;
+	private String auteurLogin;
+
+	private String auteurNom;
+
+	private String auteurPrenom;
 
 	public CommentaireModel() {
 		super();
@@ -43,11 +49,27 @@ public class CommentaireModel implements Serializable{
 		this.contenu = contenu;
 	}
 
-	public String getUtilisateur() {
-		return utilisateur;
+	public String getAuteurLogin() {
+		return auteurLogin;
 	}
 
-	public void setUtilisateur(final String utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setAuteurLogin(final String auteurLogin) {
+		this.auteurLogin = auteurLogin;
+	}
+
+	public String getAuteurNom() {
+		return auteurNom.toUpperCase();
+	}
+
+	public void setAuteurNom(final String auteurNom) {
+		this.auteurNom = auteurNom;
+	}
+
+	public String getAuteurPrenom() {
+		return WordUtils.capitalizeFully(auteurPrenom, new char[] { '-', ' ' });
+	}
+
+	public void setAuteurPrenom(final String auteurPrenom) {
+		this.auteurPrenom = auteurPrenom;
 	}
 }

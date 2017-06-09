@@ -13,12 +13,8 @@
 	<h:form id="formCommentaire">
 		<link rel="stylesheet" type="text/css" href="spring/resources/css/commentaire.css" />
 		<h:panelGroup id="commentaireSaisie">
-			<div id="commentaire_saisie">
-	   			<p:inputTextarea placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true"/>
-			</div>
-			<div id="commentaire_boutton_submit">
-				<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages"/>
- 			</div>
+	   		<p:inputTextarea id="commentaire_saisie" placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true"/>
+			<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" styleClass="ui-priority-primary" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages"/>
  		</h:panelGroup>
  	</h:form>
  	<h:panelGroup id="commentairesGroup">
@@ -31,6 +27,10 @@
 						<h:outputText value="#{commentaire.dateCreation}">
 							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 						</h:outputText>
+					</p:column>
+					<p:column
+						headerText="#{label['dossiers.overview.commentaires_table.auteur']}">
+						<h:outputText value="#{commentaire.auteurPrenom} #{commentaire.auteurNom}" />
 					</p:column>
 					<p:column
 						headerText="#{label['dossiers.overview.commentaires_table.commentaire_du_dossier']}">
