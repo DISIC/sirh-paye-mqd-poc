@@ -13,7 +13,7 @@ import com.sirh.mqd.reporting.core.api.ICommentaireService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 
 @Service(CoreConstantes.COMMENTAIRE_SERVICE)
-public class CommentaireService implements ICommentaireService{
+public class CommentaireService implements ICommentaireService {
 
 	@Autowired
 	@Qualifier(PersistenceConstantes.COMMENTAIRE_BC)

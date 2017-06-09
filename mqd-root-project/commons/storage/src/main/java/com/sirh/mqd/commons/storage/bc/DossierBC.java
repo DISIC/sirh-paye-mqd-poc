@@ -12,8 +12,10 @@ import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.IDossierDAO;
+import com.sirh.mqd.commons.storage.entity.AlerteEntity;
 import com.sirh.mqd.commons.storage.entity.ComparaisonEntity;
 import com.sirh.mqd.commons.storage.entity.DossierEntity;
+import com.sirh.mqd.commons.storage.factory.AlerteEntityFactory;
 import com.sirh.mqd.commons.storage.factory.AnomalieEntityFactory;
 import com.sirh.mqd.commons.storage.factory.DossierEntityFactory;
 
@@ -62,13 +64,12 @@ public class DossierBC {
 			final String renoiRHAffectationCode) {
 		final List<DossierEntity> dossierEntities = this.dossierDAO.selectDossiers(payLot, renoiRHCorpsCode,
 				renoiRHAffectationCode);
-
 		dossierEntities.forEach((dossierEntity) -> {
 			dossierEntity.setNbAnomalies(this.dossierDAO.countAnomaliesDossier(dossierEntity.getPayLot(),
 					dossierEntity.getRenoiRHMatricule()));
-			dossierEntity.setNbAlertes(0);
+			dossierEntity.setNbAlertes(this.dossierDAO.countAlertesDossier(dossierEntity.getPayLot(),
+					dossierEntity.getRenoiRHMatricule()));
 		});
-
 		return dossierEntities.stream().map(dossierEntity -> DossierEntityFactory.createDossierDTO(dossierEntity))
 				.collect(Collectors.toList());
 	}
@@ -108,6 +109,14 @@ public class DossierBC {
 	 */
 	public void insererComparaison(final ComparaisonDTO comparaison) {
 		this.dossierDAO.insertComparaison(AnomalieEntityFactory.createComparaisonEntity(comparaison));
+		final AlerteEntity entity = AlerteEntityFactory.createAlerteEntity(comparaison.getPayLot(),
+				comparaison.getRenoiRHMatricule(), comparaison.getType());
+		final boolean existAlerte = this.dossierDAO.countAlerte(entity) > 0;
+		if (!comparaison.isAnomalieReouverte() && existAlerte) {
+			this.dossierDAO.deleteAlerte(entity);
+		} else if (comparaison.isAnomalieReouverte() && !existAlerte) {
+			this.dossierDAO.insertAlerte(entity);
+		}
 	}
 
 	/**

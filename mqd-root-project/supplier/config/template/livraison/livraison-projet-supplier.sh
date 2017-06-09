@@ -66,7 +66,17 @@ check_delivery_repository() {
 ######################################################################################
 directories_sftp() {
 	echo -e "Création du répertoire local pour récupérer les fichier du serveur SFTP."
-	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac}
+	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac,user}
+	sudo chown ${filter.tomcat.process.user}:root -R ${filter.repo.root.path}
+}
+
+######################################################################################
+# Dépôt sur le serveur SFTP du fichier CSV contenant les identifiants de connexion
+######################################################################################
+drop_default_users_csv_file() {
+	echo -e "Dépôt sur le serveur SFTP du fichier CSV contenant les identifiants de connexion."
+	sudo cp ./Utilisateurs.csv -f "${filter.sftp.directory.path}/user/"
+	sudo chown ${filter.sftp.user.name}:${filter.sftp.group.name} "${filter.sftp.directory.path}/user/Utilisateurs.csv"
 }
 
 ######################################################################################
@@ -145,6 +155,7 @@ check_current_location
 check_delivery_repository
 install_sftp_server
 directories_sftp
+drop_default_users_csv_file
 cleanup_tomcat
 directories_tomcat
 scripts_tomcat_delivery

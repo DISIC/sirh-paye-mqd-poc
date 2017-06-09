@@ -1,37 +1,21 @@
 package com.sirh.mqd.commons.storage.constantes;
 
 /**
- * Liste des constantes utilisées dans commentaire
+ * Liste des constantes utilisées dans la persistence
  *
- * @author khalil
+ * @author alexandre
  */
 public final class CommentaireConstantes {
 
-	/**
-	 * Nom du document Date de la collection Commentaire
-	 */
-	public static final String DATE_CREATION = "dateCreation";
+	public static final String COLLECTION_NAME = "commentaires";
 
-	/**
-	 * Nom du document PayLot de la collection Commentaire
-	 */
-	public static final String PAY_LOT = "payLot";
+	public static final String COLONNE_ID = "_id";
 
-	/**
-	 * Nom du document RenoiRHMatricule de la collection Commentaire
-	 */
-	public static final String MATRICULE = "renoiRHMatricule";
+	public static final String COLONNE_DATE_CREATION = "date_creation";
 
-	/**
-	 * Nom du document Utilisateur de la collection Commentaire
-	 */
-	public static final String GESTIONNAIRE = "utilisateur";
+	public static final String COLONNE_GESTIONNAIRE = "gestionnaire";
 
-	/**
-	 * Nom du document Commentaire de la collection Commentaire
-	 */
-	public static final String DESCRIPTION = "commentaire";
-
+	public static final String COLONNE_DESCRIPTION = "description";
 
 	/**
 	 * Non-constructeur

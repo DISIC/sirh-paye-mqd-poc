@@ -52,6 +52,10 @@
 		<param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
 		<param-value>*.xhtml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
 	<!-- ******************** Ecouteurs ********************************* -->
 	<!-- Contexte racine de l'application web pour Spring -->

@@ -21,8 +21,10 @@ import com.sirh.mqd.commons.storage.constantes.ComparaisonConstantes;
 import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.IDossierDAO;
+import com.sirh.mqd.commons.storage.entity.AlerteEntity;
 import com.sirh.mqd.commons.storage.entity.ComparaisonEntity;
 import com.sirh.mqd.commons.storage.entity.DossierEntity;
+import com.sirh.mqd.commons.utils.constante.Constantes;
 
 /**
  * Implémentation du DAO permettant l'accès à la table de synchronisation des
@@ -51,6 +53,8 @@ public class DossierDAO implements IDossierDAO {
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
+		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(false));
 		return Math.toIntExact(mongoTemplate.count(query, ComparaisonEntity.class));
 	}
 
@@ -116,6 +120,8 @@ public class DossierDAO implements IDossierDAO {
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
+		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(false));
 		return mongoTemplate.find(query, ComparaisonEntity.class);
 	}
 
@@ -129,6 +135,28 @@ public class DossierDAO implements IDossierDAO {
 
 	@Override
 	public int countAlertesDossier(final String payLot, final String renoiRHMatricule) {
-		return 0;
+		final Query query = new Query();
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
+		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
+	}
+
+	@Override
+	public void insertAlerte(final AlerteEntity alerte) {
+		mongoTemplate.save(alerte);
+	}
+
+	@Override
+	public int countAlerte(final AlerteEntity entity) {
+		final Query query = new Query();
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getRenoiRHMatricule()));
+		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
+		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
+	}
+
+	@Override
+	public void deleteAlerte(final AlerteEntity entity) {
+		mongoTemplate.remove(entity);
 	}
 }

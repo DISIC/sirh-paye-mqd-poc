@@ -3,12 +3,11 @@ package com.sirh.mqd.commons.traces.factory;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.slf4j.helpers.Util;
-
 import com.sirh.mqd.commons.traces.dto.LogTechniqueDTO;
 import com.sirh.mqd.commons.traces.enums.ExceptionTypeEnum;
 import com.sirh.mqd.commons.traces.enums.InteractionModuleEnum;
 import com.sirh.mqd.commons.traces.enums.InteractionToolEnum;
+import com.sirh.mqd.commons.traces.utils.TracesUtils;
 import com.sirh.mqd.commons.utils.GenericUtils;
 
 /**
@@ -40,7 +39,7 @@ public final class LogTechniqueFactory {
 			final InteractionModuleEnum composant, final ExceptionTypeEnum exception) {
 		final LogTechniqueDTO logTechnique = new LogTechniqueDTO();
 
-		final Class<?> callingClass = Util.getCallingClass();
+		final Class<?> callingClass = TracesUtils.getClassCallingLogTechniqueFactory();
 		if (callingClass != null) {
 			logTechnique.setClassName(callingClass.getName());
 		} else {

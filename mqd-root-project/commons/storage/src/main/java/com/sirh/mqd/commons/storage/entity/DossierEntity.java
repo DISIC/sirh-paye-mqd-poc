@@ -20,10 +20,10 @@ import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
  */
 @Document(collection = DossierConstantes.COLLECTION_NAME)
 @CompoundIndexes({
-	@CompoundIndex(name = "index_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
-			+ DossierConstantes.COLONNE_MATRICULE + "': 1}"),
-	@CompoundIndex(name = "index_user_profile_mse", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
-			+ DossierConstantes.COLONNE_CORPS_CODE + "': 1}") })
+		@CompoundIndex(name = "index_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+				+ DossierConstantes.COLONNE_MATRICULE + "': 1}"),
+		@CompoundIndex(name = "index_user_profile_mse", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+				+ DossierConstantes.COLONNE_CORPS_CODE + "': 1}") })
 public class DossierEntity {
 
 	@Id
@@ -51,7 +51,6 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_PAY_LOT)
 	private String payLot;
 
-	@Indexed
 	@Field(DossierConstantes.COLONNE_MATRICULE)
 	private String renoiRHMatricule;
 

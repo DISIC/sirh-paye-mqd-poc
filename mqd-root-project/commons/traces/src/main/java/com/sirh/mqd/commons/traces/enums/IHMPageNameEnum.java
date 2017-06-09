@@ -9,5 +9,15 @@ public enum IHMPageNameEnum {
 
 	ACCUEIL,
 
+	DOSSIER,
+
+	ANOMALIE,
+
+	COMMENTAIRE,
+
+	HISTORIQUE,
+
+	SYNTHESE,
+
 	AUTHENTIFICATION;
 }

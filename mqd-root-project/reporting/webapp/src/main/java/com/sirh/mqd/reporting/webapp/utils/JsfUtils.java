@@ -5,12 +5,20 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
+import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Component;
 
+import com.sirh.mqd.commons.traces.IFacadeLogs;
+import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
+import com.sirh.mqd.commons.traces.enums.ExceptionTypeEnum;
+import com.sirh.mqd.commons.traces.enums.InteractionModuleEnum;
+import com.sirh.mqd.commons.traces.enums.InteractionToolEnum;
+import com.sirh.mqd.commons.traces.factory.LogTechniqueFactory;
 import com.sirh.mqd.reporting.api.resources.IMessageSourceBundle;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
@@ -44,34 +52,11 @@ public class JsfUtils implements Serializable {
 	private IMessageSourceBundle bundle;
 
 	/**
-	 * Service technique de gestion des messages
+	 * Logger
 	 */
-	// @Autowired
-	// @Qualifier(ContextConstantes.MESSAGE)
-	// private IMessageSourceBundle bundle;
-
-	/**
-	 * Ajout d'un message global d'information (
-	 * {@link FacesMessage#SEVERITY_INFO}) au contexte JSF courant par code.
-	 * <p>
-	 * Le code permet de chercher les deux attributs d'un message JSF :
-	 * <ul>
-	 * <li>summary : le résumé du message correspond à la valeur de la propriété
-	 * <i>code.summary</i>. Par défaut, elle prend la valeur <i>[code]</i>.</li>
-	 * <li>detail : le détail du message correspond à la valeur de la propriété
-	 * <i>code</i>. Par défaut, voir le comportement du service de gestion des
-	 * messages {@link bundle#getMessage}.</li>
-	 * </ul>
-	 * </p>
-	 *
-	 * @param code
-	 *            Propriété associée
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessageByCode(final String code) {
-		final String[] s = getSummaryAndDetailFromCode(code, null);
-		getFacesCurrentInstance().addMessage(null, new FacesMessage(s[0], s[1]));
-	}
+	@Inject
+	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	private IFacadeLogs logger;
 
 	/**
 	 * Ajout d'un message global au contexte JSF courant par code.
@@ -93,7 +78,7 @@ public class JsfUtils implements Serializable {
 	 * @see FacesContext#addMessage(String, FacesMessage)
 	 */
 	public void addMessageByCode(final Severity severity, final String code) {
-		final String[] s = getSummaryAndDetailFromCode(code, null);
+		final String[] s = getSummaryAndDetailFromCode(severity, code, null);
 		getFacesCurrentInstance().addMessage(null, new FacesMessage(severity, s[0], s[1]));
 	}
 
@@ -119,33 +104,8 @@ public class JsfUtils implements Serializable {
 	 * @see FacesContext#addMessage(String, FacesMessage)
 	 */
 	public void addMessageByCode(final Severity severity, final String code, final String clientId) {
-		final String[] s = getSummaryAndDetailFromCode(code, null);
+		final String[] s = getSummaryAndDetailFromCode(severity, code, null);
 		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(severity, s[0], s[1]));
-	}
-
-	/**
-	 * Ajout d'un message global d'information (
-	 * {@link FacesMessage#SEVERITY_INFO}) au contexte JSF courant par code.
-	 * <p>
-	 * Le code permet de chercher les deux attributs d'un message JSF :
-	 * <ul>
-	 * <li>summary : le résumé du message correspond à la valeur de la propriété
-	 * <i>code.summary</i>. Par défaut, elle prend la valeur <i>[code]</i>.</li>
-	 * <li>detail : le détail du message correspond à la valeur de la propriété
-	 * <i>code</i>. Par défaut, voir le comportement du service de gestion des
-	 * messages {@link bundle#getMessage}.</li>
-	 * </ul>
-	 * </p>
-	 *
-	 * @param code
-	 *            Propriété associée
-	 * @param arguments
-	 *            Arguments éventuels du message
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessageByCode(final String code, final Object[] arguments) {
-		final String[] s = getSummaryAndDetailFromCode(code, arguments);
-		getFacesCurrentInstance().addMessage(null, new FacesMessage(s[0], s[1]));
 	}
 
 	/**
@@ -170,7 +130,7 @@ public class JsfUtils implements Serializable {
 	 * @see FacesContext#addMessage(String, FacesMessage)
 	 */
 	public void addMessageByCode(final Severity severity, final String code, final Object[] arguments) {
-		final String[] s = getSummaryAndDetailFromCode(code, arguments);
+		final String[] s = getSummaryAndDetailFromCode(severity, code, arguments);
 		getFacesCurrentInstance().addMessage(null, new FacesMessage(severity, s[0], s[1]));
 	}
 
@@ -199,7 +159,7 @@ public class JsfUtils implements Serializable {
 	 */
 	public void addMessageByCode(final Severity severity, final String code, final Object[] arguments,
 			final String clientId) {
-		final String[] s = getSummaryAndDetailFromCode(code, arguments);
+		final String[] s = getSummaryAndDetailFromCode(severity, code, arguments);
 		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(severity, s[0], s[1]));
 	}
 
@@ -251,13 +211,15 @@ public class JsfUtils implements Serializable {
 	/**
 	 * Construction des attributs JSF du message accédé par code.
 	 *
+	 * @param severity
+	 *            Niveau de sévérité du message
 	 * @param code
 	 *            La propriété du message
 	 * @param arguments
 	 *            Les arguments éventuels du message
 	 * @return String[] [résumé, détail]
 	 */
-	private String[] getSummaryAndDetailFromCode(final String code, final Object[] arguments) {
+	private String[] getSummaryAndDetailFromCode(final Severity severity, final String code, final Object[] arguments) {
 		final String[] s = new String[2];
 		// Résumé
 		try {
@@ -267,6 +229,11 @@ public class JsfUtils implements Serializable {
 		}
 		// Détail
 		s[1] = messagesBundle.getMessage(code, arguments);
+
+		if (FacesMessage.SEVERITY_ERROR.equals(severity) || FacesMessage.SEVERITY_FATAL.equals(severity)) {
+			this.logger.logTechnique(Level.ERROR, LogTechniqueFactory.createLogTechnique(InteractionToolEnum.IHM,
+					InteractionModuleEnum.REPORTING, ExceptionTypeEnum.APPLICATION_EXCEPTION, s[1]));
+		}
 
 		return s;
 	}

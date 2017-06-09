@@ -13,17 +13,6 @@ public final class PersistenceConstantes {
 	public static final String MONGO_TEMPLATE = "mongoTemplate";
 
 	/**
-	 * Nom du DAO pour la synchronisation des referentiels
-	 */
-	public static final String SYNCHRO_REFERENTIELS_DAO = "synchroReferentielsDAO";
-
-	/**
-	 * Nom du BC pour la synchronisation des referentiels
-	 */
-	public static final String SYNCHRO_REFERENTIELS_TAMPON_BC = "synchroReferentielsBC";
-
-	/**
-<<<<<<< HEAD
 	 * Nom du DAO pour les commentaires
 	 */
 	public static final String COMMENTAIRE_DAO = "commentaireDAO";
@@ -33,12 +22,7 @@ public final class PersistenceConstantes {
 	 */
 	public static final String COMMENTAIRE_BC = "commentaireBC";
 
-
-	
-
 	/**
-=======
->>>>>>> branch 'master' of https://github.com/DISIC/sirh-paye-mqd-poc.git
 	 * Nom du DAO pour la gestion des dossiers et anomalies
 	 */
 	public static final String DOSSIER_DAO = "dossierDAO";
@@ -47,6 +31,16 @@ public final class PersistenceConstantes {
 	 * Nom du BC pour la gestion des dossiers et anomalies
 	 */
 	public static final String DOSSIER_BC = "dossierBC";
+
+	/**
+	 * Nom du DAO pour la gestion des accès utilisateurs
+	 */
+	public static final String USER_DAO = "userDAO";
+
+	/**
+	 * Nom du BC pour la gestion des accès utilisateurs
+	 */
+	public static final String USER_BC = "userBC";
 
 	/**
 	 * Non-constructeur

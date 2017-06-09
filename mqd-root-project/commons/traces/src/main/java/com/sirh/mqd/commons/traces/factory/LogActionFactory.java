@@ -1,14 +1,12 @@
 package com.sirh.mqd.commons.traces.factory;
 
-import java.io.IOException;
 import java.util.Date;
-
-import org.slf4j.helpers.Util;
 
 import com.sirh.mqd.commons.traces.dto.LogActionDTO;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
 import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
 import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
+import com.sirh.mqd.commons.traces.utils.TracesUtils;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.commons.utils.JsonUtils;
 
@@ -52,7 +50,7 @@ public final class LogActionFactory {
 		logAction.setRole(role);
 		logAction.setPageName(pageName);
 
-		final Class<?> callingClass = Util.getCallingClass();
+		final Class<?> callingClass = TracesUtils.getClassCallingLogActionFactory();
 		if (callingClass != null) {
 			logAction.setClassName(callingClass.getName());
 		} else {
@@ -75,8 +73,7 @@ public final class LogActionFactory {
 
 	public static LogActionDTO createLogAction(final String login, final String role, final String authenticationDate,
 			final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult, final IHMPageNameEnum pageName,
-			final String businessID, final Object businessObjetInitial, final Object businessObjetModified)
-			throws IOException {
+			final String businessID, final Object businessObjetInitial, final Object businessObjetModified) {
 		final LogActionDTO logAction = createDefaultLogAction(login, role, pageName, actionType, actionResult);
 
 		if (authenticationDate != null) {
@@ -100,8 +97,7 @@ public final class LogActionFactory {
 
 	public static LogActionDTO createLogAction(final String login, final String role, final Date authenticationDate,
 			final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult, final IHMPageNameEnum pageName,
-			final String businessID, final Object businessObjetInitial, final Object businessObjetModified)
-			throws IOException {
+			final String businessID, final Object businessObjetInitial, final Object businessObjetModified) {
 		final LogActionDTO logAction = createDefaultLogAction(login, role, pageName, actionType, actionResult);
 
 		if (authenticationDate != null) {
@@ -125,14 +121,14 @@ public final class LogActionFactory {
 
 	public static LogActionDTO createLogAction(final String login, final String role, final String authenticationDate,
 			final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult, final IHMPageNameEnum pageName,
-			final String businessID, final Object businessObjetInitial) throws IOException {
+			final String businessID, final Object businessObjetInitial) {
 		return createLogAction(login, role, authenticationDate, actionType, actionResult, pageName, businessID,
 				businessObjetInitial, null);
 	}
 
 	public static LogActionDTO createLogAction(final String login, final String role, final Date authenticationDate,
 			final IHMUserActionEnum actionType, final IHMUserResultEnum actionResult, final IHMPageNameEnum pageName,
-			final String businessID, final Object businessObjetInitial) throws IOException {
+			final String businessID, final Object businessObjetInitial) {
 		return createLogAction(login, role, authenticationDate, actionType, actionResult, pageName, businessID,
 				businessObjetInitial, null);
 	}

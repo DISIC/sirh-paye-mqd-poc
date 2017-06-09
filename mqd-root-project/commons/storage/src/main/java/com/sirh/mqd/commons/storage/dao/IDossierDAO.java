@@ -3,6 +3,7 @@ package com.sirh.mqd.commons.storage.dao;
 import java.util.List;
 
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
+import com.sirh.mqd.commons.storage.entity.AlerteEntity;
 import com.sirh.mqd.commons.storage.entity.ComparaisonEntity;
 import com.sirh.mqd.commons.storage.entity.DossierEntity;
 
@@ -31,4 +32,10 @@ public interface IDossierDAO {
 	int countAnomaliesDossier(String payLot, String renoiRHMatricule);
 
 	int countAlertesDossier(String payLot, String renoiRHMatricule);
+
+	void insertAlerte(AlerteEntity alerte);
+
+	int countAlerte(AlerteEntity entity);
+
+	void deleteAlerte(AlerteEntity entity);
 }
