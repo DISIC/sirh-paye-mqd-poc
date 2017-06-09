@@ -39,8 +39,14 @@ public class CommentaireEntity {
 	@Field(CommentaireConstantes.COLONNE_DESCRIPTION)
 	private String contenu;
 
-	@Field(CommentaireConstantes.COLONNE_GESTIONNAIRE)
-	private String utilisateur;
+	@Field(CommentaireConstantes.COLONNE_AUTEUR_LOGIN)
+	private String auteurLogin;
+
+	@Field(CommentaireConstantes.COLONNE_AUTEUR_NOM)
+	private String auteurNom;
+
+	@Field(CommentaireConstantes.COLONNE_AUTEUR_PRENOM)
+	private String auteurPrenom;
 
 	public CommentaireEntity() {
 		super();
@@ -70,14 +76,6 @@ public class CommentaireEntity {
 		this.contenu = contenu;
 	}
 
-	public String getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(final String utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
 	public String getPayLot() {
 		return payLot;
 	}
@@ -92,5 +90,29 @@ public class CommentaireEntity {
 
 	public void setRenoiRHMatricule(final String renoiRHMatricule) {
 		this.renoiRHMatricule = renoiRHMatricule;
+	}
+
+	public String getAuteurLogin() {
+		return auteurLogin;
+	}
+
+	public void setAuteurLogin(final String auteurLogin) {
+		this.auteurLogin = auteurLogin;
+	}
+
+	public String getAuteurNom() {
+		return auteurNom;
+	}
+
+	public void setAuteurNom(final String auteurNom) {
+		this.auteurNom = auteurNom;
+	}
+
+	public String getAuteurPrenom() {
+		return auteurPrenom;
+	}
+
+	public void setAuteurPrenom(final String auteurPrenom) {
+		this.auteurPrenom = auteurPrenom;
 	}
 }

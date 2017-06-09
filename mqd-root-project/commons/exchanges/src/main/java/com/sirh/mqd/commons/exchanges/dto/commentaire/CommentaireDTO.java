@@ -19,7 +19,11 @@ public class CommentaireDTO {
 
 	private String contenu;
 
-	private String utilisateur;
+	private String auteurLogin;
+
+	private String auteurNom;
+
+	private String auteurPrenom;
 
 	public CommentaireDTO() {
 		super();
@@ -41,12 +45,28 @@ public class CommentaireDTO {
 		this.contenu = contenu;
 	}
 
-	public String getUtilisateur() {
-		return utilisateur;
+	public String getAuteurLogin() {
+		return auteurLogin;
 	}
 
-	public void setUtilisateur(final String utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setAuteurLogin(final String auteurLogin) {
+		this.auteurLogin = auteurLogin;
+	}
+
+	public String getAuteurNom() {
+		return auteurNom;
+	}
+
+	public void setAuteurNom(final String auteurNom) {
+		this.auteurNom = auteurNom;
+	}
+
+	public String getAuteurPrenom() {
+		return auteurPrenom;
+	}
+
+	public void setAuteurPrenom(final String auteurPrenom) {
+		this.auteurPrenom = auteurPrenom;
 	}
 
 	public String getPayLot() {

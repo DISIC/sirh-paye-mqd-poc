@@ -26,7 +26,9 @@ public class CommentaireEntityFactory {
 			commentaire = new CommentaireDTO();
 			commentaire.setContenu(entity.getContenu());
 			commentaire.setDateCreation(entity.getDateCreation());
-			commentaire.setUtilisateur(entity.getUtilisateur());
+			commentaire.setAuteurLogin(entity.getAuteurLogin());
+			commentaire.setAuteurNom(entity.getAuteurNom());
+			commentaire.setAuteurPrenom(entity.getAuteurPrenom());
 			commentaire.setPayLot(entity.getPayLot());
 			commentaire.setRenoiRHMatricule(entity.getRenoiRHMatricule());
 		}
@@ -39,11 +41,12 @@ public class CommentaireEntityFactory {
 			entity = new CommentaireEntity();
 			entity.setContenu(commentaire.getContenu());
 			entity.setDateCreation(commentaire.getDateCreation());
-			entity.setUtilisateur(commentaire.getUtilisateur());
+			entity.setAuteurLogin(commentaire.getAuteurLogin());
+			entity.setAuteurNom(commentaire.getAuteurNom());
+			entity.setAuteurPrenom(commentaire.getAuteurPrenom());
 			entity.setPayLot(commentaire.getPayLot());
 			entity.setRenoiRHMatricule(commentaire.getRenoiRHMatricule());
 		}
 		return entity;
 	}
 }
-
