@@ -147,6 +147,18 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Transformation d'un objet Date au format "mm/aa"
+	 *
+	 * @param date
+	 *            la date à parser
+	 *
+	 * @return la date au format mm/aa
+	 */
+	public static String formateDateMMAA(final Date date) {
+		return formateDate(date, DATE_FORMAT_MM_YY);
+	}
+
+	/**
 	 * Transformation d'un objet Date au format "eeee jj mmmm aaaa"
 	 *
 	 * @param date
