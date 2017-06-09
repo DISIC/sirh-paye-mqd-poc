@@ -70,9 +70,9 @@ public final class DossierModelFactory {
 			dossierModel.setRenoiRHSexe("N/C");
 		}
 		dossierModel.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierDTO.getRenoiRHDateNaissance()));
+		dossierModel.setRenoiRHDateNaissanceAsString(DateUtils.formateDateMMAA(dossierDTO.getRenoiRHDateNaissance()));
 		dossierModel.setNbAlertes(dossierDTO.getNbAlertes());
 		dossierModel.setNbAnomalies(dossierDTO.getNbAnomalies());
 		return dossierModel;
 	}
-
 }

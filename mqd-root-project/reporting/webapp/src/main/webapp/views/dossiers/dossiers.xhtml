@@ -45,7 +45,7 @@
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_affectation_libelle']}">
 				<h:outputText value="#{dossier.renoiRHAffectationLibelleCourt}" />
 			</p:column>
-			<p:column filterBy="#{dossier.renoiRHDateNaissance}" filterMatchMode="contains" sortBy="#{dossier.renoiRHDateNaissance}"
+			<p:column filterBy="#{dossier.renoiRHDateNaissanceAsString}" filterMatchMode="contains" sortBy="#{dossier.renoiRHDateNaissance}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_date_naissance']}">
 				<h:outputText value="#{dossier.renoiRHDateNaissance}">
 					<f:convertDateTime pattern="MM/yy" />

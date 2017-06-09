@@ -53,6 +53,8 @@ public class DossierModel implements Serializable {
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
+	private String renoiRHDateNaissanceAsString; // Format en entrée : "MM/yy"
+
 	private int nbAlertes;
 
 	private int nbAnomalies;
@@ -227,5 +229,13 @@ public class DossierModel implements Serializable {
 
 	public void setNbAnomalies(final int nbAnomalies) {
 		this.nbAnomalies = nbAnomalies;
+	}
+
+	public String getRenoiRHDateNaissanceAsString() {
+		return renoiRHDateNaissanceAsString;
+	}
+
+	public void setRenoiRHDateNaissanceAsString(final String renoiRHDateNaissanceAsString) {
+		this.renoiRHDateNaissanceAsString = renoiRHDateNaissanceAsString;
 	}
 }
