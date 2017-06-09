@@ -27,11 +27,16 @@ public class UserEntityFactory {
 			user = new UserDTO();
 			user.setUsername(entity.getUsername());
 			user.setPassword(entity.getPassword());
+
+			user.setPrenom(entity.getPrenom());
+			user.setNom(entity.getNom());
+
 			user.setAuthenticationDate(DateUtils.clonerDate(entity.getAuthenticationDate()));
 
 			user.setPayLot(entity.getPayLot());
 			user.setAffectationCode(entity.getAffectationCode());
 			user.setCorpsCode(entity.getCorpsCode());
+			user.setPayGestionnaireCode(entity.getPayGestionnaireCode());
 
 			user.setAccountNonExpired(entity.isAccountNonExpired());
 			user.setAccountNonLocked(entity.isAccountNonLocked());
@@ -48,11 +53,16 @@ public class UserEntityFactory {
 			entity = new UserEntity();
 			entity.setUsername(user.getUsername());
 			entity.setPassword(user.getPassword());
+
+			entity.setPrenom(user.getPrenom());
+			entity.setNom(user.getNom());
+
 			entity.setAuthenticationDate(DateUtils.clonerDate(user.getAuthenticationDate()));
 
 			entity.setPayLot(user.getPayLot());
 			entity.setAffectationCode(user.getAffectationCode());
 			entity.setCorpsCode(user.getCorpsCode());
+			entity.setPayGestionnaireCode(user.getPayGestionnaireCode());
 
 			entity.setAccountNonExpired(user.isAccountNonExpired());
 			entity.setAccountNonLocked(user.isAccountNonLocked());

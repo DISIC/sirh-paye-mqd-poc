@@ -40,6 +40,11 @@ public class AnomalieEntityFactory {
 				comparaison.setDateEcheance(entity.getAnomalie().getDateEcheance());
 				comparaison.setEtatCorrection(entity.getAnomalie().getEtatCorrection());
 				comparaison.setModeOperatoire(entity.getAnomalie().getModeOperatoire());
+
+				comparaison.setResponsableNom(entity.getAnomalie().getResponsableNom());
+				comparaison.setResponsableLogin(entity.getAnomalie().getResponsableLogin());
+				comparaison.setResponsablePrenom(entity.getAnomalie().getResponsablePrenom());
+				comparaison.setDateModification(entity.getAnomalie().getDateModification());
 			}
 			comparaison.setAnomalieReouverte(entity.isAnomalieReouverte());
 
@@ -69,6 +74,12 @@ public class AnomalieEntityFactory {
 				anomalie.setDateEcheance(comparaison.getDateEcheance());
 				anomalie.setEtatCorrection(comparaison.getEtatCorrection());
 				anomalie.setModeOperatoire(comparaison.getModeOperatoire());
+
+				anomalie.setResponsableNom(comparaison.getResponsableNom());
+				anomalie.setResponsableLogin(comparaison.getResponsableLogin());
+				anomalie.setResponsablePrenom(comparaison.getResponsablePrenom());
+				anomalie.setDateModification(comparaison.getDateModification());
+
 				entity.setAnomalie(anomalie);
 			}
 			entity.setAnomalieReouverte(comparaison.isAnomalieReouverte());

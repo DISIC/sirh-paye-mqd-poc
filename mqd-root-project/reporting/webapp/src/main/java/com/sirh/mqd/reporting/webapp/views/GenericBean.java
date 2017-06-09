@@ -86,6 +86,14 @@ public class GenericBean implements Serializable {
 		return this.loginUtils.getCurrentUsername();
 	}
 
+	public String getCurrentUserLastname() {
+		return this.loginUtils.getCurrentUserLastname();
+	}
+
+	public String getCurrentUserFirstname() {
+		return this.loginUtils.getCurrentUserFirstname();
+	}
+
 	public String getCurrentUserPayLot() {
 		return this.loginUtils.getCurrentUserPayLot();
 	}

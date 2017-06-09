@@ -29,11 +29,14 @@ public final class UserDTOFactory {
 				"Création non autorisée d'une instance de : " + UserDTOFactory.class.getName());
 	}
 
-	public static UserDTO createUserDTO(final String email, final String password, final String payLot,
-			final String renoiRHCorpsCode, final String renoiRHAffectationCode, final List<RoleEnum> roles) {
+	public static UserDTO createUserDTO(final String email, final String password, final String prenom,
+			final String nom, final String payLot, final String renoiRHCorpsCode, final String renoiRHAffectationCode,
+			final String payGestionnaireCode, final List<RoleEnum> roles) {
 		final UserDTO user = new UserDTO();
 		user.setUsername(email);
 		user.setPassword(PASSWORD_ENCODER.encode(password));
+		user.setPrenom(prenom);
+		user.setNom(nom);
 
 		if (StringUtils.isNotBlank(payLot)) {
 			user.setPayLot(payLot);
@@ -43,6 +46,9 @@ public final class UserDTOFactory {
 		}
 		if (StringUtils.isNotBlank(renoiRHAffectationCode)) {
 			user.setAffectationCode(renoiRHAffectationCode);
+		}
+		if (StringUtils.isNotBlank(payGestionnaireCode)) {
+			user.setPayGestionnaireCode(payGestionnaireCode);
 		}
 		user.setAuthenticationDate(null);
 

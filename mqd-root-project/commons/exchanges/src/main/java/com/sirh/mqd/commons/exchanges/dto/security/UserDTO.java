@@ -16,11 +16,17 @@ public class UserDTO {
 
 	private String password;
 
+	private String prenom;
+
+	private String nom;
+
 	private String payLot;
 
 	private String corpsCode;
 
 	private String affectationCode;
+
+	private String payGestionnaireCode;
 
 	private Date authenticationDate;
 
@@ -84,6 +90,30 @@ public class UserDTO {
 
 	public void setAffectationCode(final String affectationCode) {
 		this.affectationCode = affectationCode;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(final String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(final String nom) {
+		this.nom = nom;
+	}
+
+	public String getPayGestionnaireCode() {
+		return payGestionnaireCode;
+	}
+
+	public void setPayGestionnaireCode(final String payGestionnaireCode) {
+		this.payGestionnaireCode = payGestionnaireCode;
 	}
 
 	public boolean isAccountNonExpired() {

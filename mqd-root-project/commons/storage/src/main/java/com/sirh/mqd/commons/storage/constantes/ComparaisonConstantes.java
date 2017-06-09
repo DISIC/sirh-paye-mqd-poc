@@ -31,6 +31,14 @@ public final class ComparaisonConstantes {
 
 	public static final String COLONNE_DONNEES_GA = "renoirh";
 
+	public static final String COLONNE_ANOMALIE_RESPONSABLE_LOGIN = "correction_responsable_login";
+
+	public static final String COLONNE_ANOMALIE_RESPONSABLE_NOM = "correction_responsable_nom";
+
+	public static final String COLONNE_ANOMALIE_RESPONSABLE_PRENOM = "correction_responsable_prenom";
+
+	public static final String COLONNE_ANOMALIE_DATE_MODIFICATION = "correction_date_modification";
+
 	/**
 	 * Non-constructeur
 	 *

@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-	
+
 	<f:metadata>
 		<f:event type="preRenderView" listener="#{anomalieBean.setup}" />
 	</f:metadata>
@@ -14,7 +14,8 @@
 		<h:panelGroup id="anomaliesGroup">
 			<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
 				id="anomaliesTable" widgetVar="anomalies_table" reflow="true"
-				emptyMessage="Aucune anomalie n'a été trouvée." paginator="true" rows="10" >
+				emptyMessage="Aucune anomalie n'a été trouvée." paginator="true"
+				rows="10">
 				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
 					<h:outputText value="#{anomalie.numAnomalie}" />
@@ -53,13 +54,21 @@
 				</p:column>
 				<p:column width="12%"
 					headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
-					<p:selectOneMenu id="listEtatCorrection" value="#{anomalie.etatCorrection}">
+					<p:selectOneMenu id="listEtatCorrection"
+						value="#{anomalie.etatCorrection}">
 						<f:selectItems value="#{anomalieBean.listeEtatsCorrection}" />
 					</p:selectOneMenu>
 				</p:column>
 				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.dernier_correcteur']}">
-						<h:outputText value="" />
+					<h:outputText value="#{anomalie.responsablePrenom} #{anomalie.responsableNom}" />
+				</p:column>
+				<p:column
+					headerText="#{label['dossiers.overview.anomalies_table.header.actions']}">
+					<p:commandButton action="#{anomalieBean.modifierEtatCorrection}" update=":ongletsDossier:formAnomalie:anomaliesGroup :messages" icon="ui-icon-check" 
+						value="#{label['dossiers.overview.anomalies_table.header.actions.button']}">
+						<f:setPropertyActionListener value="#{anomalie}" target="#{anomalieBean.selectedAnomalie}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:panelGroup>

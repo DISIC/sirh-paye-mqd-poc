@@ -31,6 +31,14 @@ public class ComparaisonDTO {
 
 	private boolean anomalieDonnees;
 
+	private String responsableLogin;
+
+	private String responsableNom;
+
+	private String responsablePrenom;
+
+	private Date dateModification;
+
 	private DifferenceDTO donnees;
 
 	public ComparaisonDTO() {
@@ -116,5 +124,37 @@ public class ComparaisonDTO {
 
 	public void setAnomalieDonnees(final boolean anomalieDonnees) {
 		this.anomalieDonnees = anomalieDonnees;
+	}
+
+	public String getResponsableLogin() {
+		return responsableLogin;
+	}
+
+	public void setResponsableLogin(final String responsableLogin) {
+		this.responsableLogin = responsableLogin;
+	}
+
+	public String getResponsableNom() {
+		return responsableNom;
+	}
+
+	public void setResponsableNom(final String responsableNom) {
+		this.responsableNom = responsableNom;
+	}
+
+	public String getResponsablePrenom() {
+		return responsablePrenom;
+	}
+
+	public void setResponsablePrenom(final String responsablePrenom) {
+		this.responsablePrenom = responsablePrenom;
+	}
+
+	public Date getDateModification() {
+		return dateModification;
+	}
+
+	public void setDateModification(final Date dateModification) {
+		this.dateModification = DateUtils.clonerDate(dateModification);
 	}
 }

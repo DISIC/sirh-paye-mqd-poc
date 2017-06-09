@@ -25,6 +25,12 @@ public class UserEntity {
 	@Field(UserConstantes.COLONNE_PASSWORD)
 	private String password;
 
+	@Field(UserConstantes.COLONNE_PRENOM)
+	private String prenom;
+
+	@Field(UserConstantes.COLONNE_NOM)
+	private String nom;
+
 	@Field(UserConstantes.COLONNE_DATE_AUTHENTIFICATION)
 	private Date authenticationDate;
 
@@ -36,6 +42,9 @@ public class UserEntity {
 
 	@Field(UserConstantes.COLONNE_AFFECTATION_CODE)
 	private String affectationCode;
+
+	@Field(UserConstantes.COLONNE_PAY_GESTIONNAIRE_CODE)
+	private String payGestionnaireCode;
 
 	@Field(UserConstantes.COLONNE_ACCOUNT_ENABLED)
 	private boolean enabled;
@@ -142,5 +151,29 @@ public class UserEntity {
 
 	public void setCredentialsNonExpired(final boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(final String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(final String nom) {
+		this.nom = nom;
+	}
+
+	public String getPayGestionnaireCode() {
+		return payGestionnaireCode;
+	}
+
+	public void setPayGestionnaireCode(final String payGestionnaireCode) {
+		this.payGestionnaireCode = payGestionnaireCode;
 	}
 }

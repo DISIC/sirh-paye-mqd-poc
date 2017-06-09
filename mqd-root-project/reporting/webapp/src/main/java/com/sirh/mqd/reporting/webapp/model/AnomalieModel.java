@@ -3,6 +3,8 @@ package com.sirh.mqd.reporting.webapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.WordUtils;
+
 import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
@@ -34,6 +36,16 @@ public class AnomalieModel implements Serializable {
 	private Date dateCloture;
 
 	private String etatCorrection;
+
+	private String responsableLogin;
+
+	private String responsableNom;
+
+	private String responsablePrenom;
+
+	private Date dateModification;
+
+	private boolean anomalieReouverte;
 
 	public AnomalieModel() {
 		super();
@@ -109,5 +121,45 @@ public class AnomalieModel implements Serializable {
 
 	public void setEtatCorrection(final String etatCorrection) {
 		this.etatCorrection = etatCorrection;
+	}
+
+	public String getResponsableLogin() {
+		return responsableLogin;
+	}
+
+	public void setResponsableLogin(final String responsableLogin) {
+		this.responsableLogin = responsableLogin;
+	}
+
+	public String getResponsableNom() {
+		return responsableNom.toUpperCase();
+	}
+
+	public void setResponsableNom(final String responsableNom) {
+		this.responsableNom = responsableNom;
+	}
+
+	public String getResponsablePrenom() {
+		return WordUtils.capitalizeFully(responsablePrenom, new char[] { '-', ' ' });
+	}
+
+	public void setResponsablePrenom(final String responsablePrenom) {
+		this.responsablePrenom = responsablePrenom;
+	}
+
+	public Date getDateModification() {
+		return dateModification;
+	}
+
+	public void setDateModification(final Date dateModification) {
+		this.dateModification = DateUtils.clonerDate(dateModification);
+	}
+
+	public boolean isAnomalieReouverte() {
+		return anomalieReouverte;
+	}
+
+	public void setAnomalieReouverte(final boolean anomalieReouverte) {
+		this.anomalieReouverte = anomalieReouverte;
 	}
 }

@@ -35,4 +35,12 @@ public interface IDossierService {
 	 * @return {@link List} des anomalies
 	 */
 	List<ComparaisonDTO> listerAnomalies(String renoiRHMatricule, String payLot);
+
+	/**
+	 * Méthode permettant de modifier l'état de correction d'une anomalie
+	 *
+	 * @param anomalie
+	 *            l'anomalie à mettre à jour
+	 */
+	void modifierAnomalie(ComparaisonDTO anomalie);
 }

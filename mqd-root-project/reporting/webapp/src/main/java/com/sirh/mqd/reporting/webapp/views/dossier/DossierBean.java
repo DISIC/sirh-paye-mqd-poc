@@ -64,11 +64,6 @@ public class DossierBean extends GenericBean {
 		this.dossiers = new ArrayList<DossierModel>();
 
 		// Supplier
-		// TODO : Pour utiliser les données brutes de test sans jeu de données
-		// en base :
-		// - appeler la méthode mockDossiers dans la méthode listerDossiers
-		// - appeler la méthode mockAnomalies dans la méthode listerAnomalies
-
 		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(getCurrentUserPayLot(),
 				getCurrentUserCorpsCode(), getCurrentUserAffectationCode());
 		for (final DossierDTO dossier : dossiers) {
