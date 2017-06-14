@@ -21,6 +21,13 @@
 
 	<dependencies>
 
+		<!-- API -->
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>api</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
 		<!-- COMMONS STORAGE -->
 		<dependency>
 			<groupId>com.sirh.mqd.commons</groupId>
