@@ -3,6 +3,7 @@ package com.sirh.mqd.supplier.core.utils;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,11 +24,24 @@ public final class AnomalieDetectionUtils {
 
 	private static final String CSV_FILE_PAY_SEPARATOR = "\",\"";
 
-	private static final Pattern UNDESIRABLES = Pattern.compile("[^a-zA-Z]+");
+	private static final Pattern DATA_NON_ALPHABETIC_PATTERN = Pattern.compile("[^a-zA-Z]+");
 	// OU spécifier les caractères à escaper "[[](){},.;-'!?<>%]"
 
+	private static final Pattern DATA_BETWEEN_BRACKETS_PATTERN = Pattern.compile("\\(.*?\\)");
+
 	private static final Function<String, String> FUNCTION_REPLACE_SPECIAL_CHAR = (data) -> data != null
-			? UNDESIRABLES.matcher(data).replaceAll(Constantes.SPACE) : null;
+			? DATA_NON_ALPHABETIC_PATTERN.matcher(data).replaceAll(Constantes.SPACE) : null;
+
+	private static final Function<String, String> FUNCTION_FORMAT_DATA_BETWEEN_BRACKETS = (data) -> {
+		String payGrade = data;
+		if (data != null) {
+			final Matcher matcher = DATA_BETWEEN_BRACKETS_PATTERN.matcher(data);
+			if (matcher.find()) {
+				payGrade = matcher.group().substring(1, matcher.group().length() - 1);
+			}
+		}
+		return payGrade;
+	};
 
 	private static final Function<String, String> FUNCTION_TRUNCATE_TO_15_CHAR = (data) -> data != null
 			? 15 > data.length() ? data : data.substring(0, 15) : null;
@@ -45,13 +59,17 @@ public final class AnomalieDetectionUtils {
 			anomalie) -> (FUNCTION_CASE_SENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),
 					anomalie.getDonnees().getDonneeGA()));
 
-	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_15_CHAR_DATA_COMPARISON = (
+	private static final Predicate<ComparaisonDTO> FILTER_CASE_SENSITIVE_DATA_COMPARISON_GA_BETWEEN_BRACKETS = (
+			anomalie) -> (FUNCTION_CASE_SENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),
+					FUNCTION_FORMAT_DATA_BETWEEN_BRACKETS.apply(anomalie.getDonnees().getDonneeGA())));
+
+	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_DATA_COMPARISON_PAY_15_CHAR_LIMITATION = (
 			anomalie) -> (FUNCTION_CASE_INSENSITIVE_COMPARISON.apply(
 					FUNCTION_REPLACE_SPECIAL_CHAR.apply(anomalie.getDonnees().getDonneePAY()),
 					FUNCTION_TRUNCATE_TO_15_CHAR
 							.apply(FUNCTION_REPLACE_SPECIAL_CHAR.apply(anomalie.getDonnees().getDonneeGA()))));
 
-	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_20_CHAR_DATA_COMPARISON = (
+	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_DATA_COMPARISON_PAY_20_CHAR_LIMITATION = (
 			anomalie) -> (FUNCTION_CASE_INSENSITIVE_COMPARISON.apply(
 					FUNCTION_REPLACE_SPECIAL_CHAR.apply(anomalie.getDonnees().getDonneePAY()),
 					FUNCTION_TRUNCATE_TO_20_CHAR
@@ -61,6 +79,9 @@ public final class AnomalieDetectionUtils {
 			anomalie) -> (AnomalieTypeEnum.NOM.equals(anomalie.getType())
 					|| AnomalieTypeEnum.PRENOM.equals(anomalie.getType()));
 
+	private static final Predicate<ComparaisonDTO> FILTER_CASE_CARRIERE_GRADE_DATA_TYPES = (
+			anomalie) -> (AnomalieTypeEnum.GRADE.equals(anomalie.getType()));
+
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_TRUNCATE_20_CHAR_DATA_TYPES = (
 			anomalie) -> (AnomalieTypeEnum.NOM.equals(anomalie.getType()));
 
@@ -68,8 +89,7 @@ public final class AnomalieDetectionUtils {
 			anomalie) -> (AnomalieTypeEnum.PRENOM.equals(anomalie.getType()));
 
 	private static final Predicate<ComparaisonDTO> FILTER_UNSUPPORTED_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.GRADE.equals(anomalie.getType())
-					|| AnomalieTypeEnum.NIVEAU_ECHELON.equals(anomalie.getType())
+			anomalie) -> (AnomalieTypeEnum.NIVEAU_ECHELON.equals(anomalie.getType())
 					|| AnomalieTypeEnum.ABSENCE.equals(anomalie.getType()));
 
 	/**
@@ -92,13 +112,15 @@ public final class AnomalieDetectionUtils {
 	 *            anomalies
 	 */
 	public static void verifierPresenceAnomalie(final List<ComparaisonDTO> comparaisons) {
-		comparaisons.stream()
-				.filter(FILTER_UNSUPPORTED_DATA_TYPES.negate()).filter(
-						(FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_SENSITIVE_DATA_COMPARISON))
+		comparaisons.stream().filter(FILTER_UNSUPPORTED_DATA_TYPES.negate())
+				.filter((FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_CARRIERE_GRADE_DATA_TYPES.negate())
+						.and(FILTER_CASE_SENSITIVE_DATA_COMPARISON)).or(
+								FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_CARRIERE_GRADE_DATA_TYPES)
+										.and(FILTER_CASE_SENSITIVE_DATA_COMPARISON_GA_BETWEEN_BRACKETS))
 								.or(FILTER_CASE_INSENSITIVE_DATA_TYPES.and(FILTER_CASE_TRUNCATE_15_CHAR_DATA_TYPES)
-										.and(FILTER_CASE_INSENSITIVE_15_CHAR_DATA_COMPARISON))
+										.and(FILTER_CASE_INSENSITIVE_DATA_COMPARISON_PAY_15_CHAR_LIMITATION))
 								.or(FILTER_CASE_INSENSITIVE_DATA_TYPES.and(FILTER_CASE_TRUNCATE_20_CHAR_DATA_TYPES)
-										.and(FILTER_CASE_INSENSITIVE_20_CHAR_DATA_COMPARISON)))
+										.and(FILTER_CASE_INSENSITIVE_DATA_COMPARISON_PAY_20_CHAR_LIMITATION)))
 				.forEach((anomalie) -> {
 					if (anomalie.getEtatCorrection() != null
 							&& AnomalieEtatEnum.CORRECTION_EFFECTUEE.equals(anomalie.getEtatCorrection())) {
