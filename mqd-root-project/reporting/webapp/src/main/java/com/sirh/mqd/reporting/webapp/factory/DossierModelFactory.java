@@ -36,6 +36,8 @@ public final class DossierModelFactory {
 		dossierModel.setRenoiRHGradeLibelleCourt(dossierDTO.getRenoiRHGradeLibelleCourt());
 		dossierModel.setRenoiRHAffectationCode(dossierDTO.getRenoiRHAffectationCode());
 		dossierModel.setRenoiRHAffectationLibelleCourt(dossierDTO.getRenoiRHAffectationLibelleCourt());
+		dossierModel.setRenoiRHModaliteServiceCode(dossierDTO.getRenoiRHModaliteServiceCode());
+		dossierModel.setRenoiRHModaliteServiceLibelleLong(dossierDTO.getRenoiRHModaliteServiceLibelleLong());
 		dossierModel.setRenoiRHDateCertification(DateUtils.clonerDate(dossierDTO.getRenoiRHDateCertification()));
 		if (dossierDTO.getRenoiRHCivilite() != null) {
 			switch (dossierDTO.getRenoiRHCivilite()) {

@@ -27,7 +27,8 @@ public final class DossierDTOFactory {
 			final String renoiRHGradeCode, final String renoiRHGradeLibelleCourt, final String renoiRHAffectationCode,
 			final String renoiRHAffectationLibelleCourt, final String renoiRHDateCertification, final String renoiRHNom,
 			final String renoiRHPrenom, final String renoiRHDateNaissance, final String renoiRHCivilite,
-			final String renoiRHSexe, final String dateMouvementCarriere) {
+			final String renoiRHSexe, final String dateMouvementCarriere, final String renoiRHModaliteServiceCode,
+			final String renoiRHModaliteServiceLibelleLong) {
 		final DossierDTO dossier = new DossierDTO();
 		dossier.setMinistere(Integer.parseInt(ministere));
 		dossier.setPayCle(payCle);
@@ -43,6 +44,8 @@ public final class DossierDTOFactory {
 		dossier.setRenoiRHGradeLibelleCourt(renoiRHGradeLibelleCourt);
 		dossier.setRenoiRHAffectationCode(renoiRHAffectationCode);
 		dossier.setRenoiRHAffectationLibelleCourt(renoiRHAffectationLibelleCourt);
+		dossier.setRenoiRHModaliteServiceCode(renoiRHModaliteServiceCode);
+		dossier.setRenoiRHModaliteServiceLibelleLong(renoiRHModaliteServiceLibelleLong);
 
 		dossier.setRenoiRHDateCertification(DateUtils.parseDateJJMMAAAA(renoiRHDateCertification));
 		dossier.setRenoiRHNom(renoiRHNom);

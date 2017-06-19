@@ -66,7 +66,7 @@ public class CommentaireModel implements Serializable {
 	}
 
 	public String getAuteurPrenom() {
-		return WordUtils.capitalizeFully(auteurPrenom, new char[] { '-', ' ' });
+		return WordUtils.capitalizeFully(auteurPrenom, new char[] { '-', ' ', '\'' });
 	}
 
 	public void setAuteurPrenom(final String auteurPrenom) {

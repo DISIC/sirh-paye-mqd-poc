@@ -140,7 +140,7 @@ public class AnomalieModel implements Serializable {
 	}
 
 	public String getResponsablePrenom() {
-		return WordUtils.capitalizeFully(responsablePrenom, new char[] { '-', ' ' });
+		return WordUtils.capitalizeFully(responsablePrenom, new char[] { '-', ' ', '\'' });
 	}
 
 	public void setResponsablePrenom(final String responsablePrenom) {

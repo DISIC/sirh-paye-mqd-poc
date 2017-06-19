@@ -53,6 +53,10 @@ public final class DossierConstantes {
 
 	public static final String COLONNE_DATES_MOUVEMENTS_CARRIERE = "dates_mouvements_carriere";
 
+	public static final String COLONNE_MODALITE_SERVICE_CODE = "modalite_service_code";
+
+	public static final String COLONNE_MODALITE_SERVICE_LIBELLE_LONG = "modalite_service_libelle_long";
+
 	/**
 	 * Non-constructeur
 	 *

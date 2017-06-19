@@ -74,6 +74,12 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_AFFECTATION_LIBELLE_COURT)
 	private String renoiRHAffectationLibelleCourt;
 
+	@Field(DossierConstantes.COLONNE_MODALITE_SERVICE_CODE)
+	private String renoiRHModaliteServiceCode;
+
+	@Field(DossierConstantes.COLONNE_MODALITE_SERVICE_LIBELLE_LONG)
+	private String renoiRHModaliteServiceLibelleLong;
+
 	@Field(DossierConstantes.COLONNE_CIVILITE)
 	private Integer renoiRHCivilite;
 
@@ -295,5 +301,21 @@ public class DossierEntity {
 
 	public void setNbAnomalies(final int nbAnomalies) {
 		this.nbAnomalies = nbAnomalies;
+	}
+
+	public String getRenoiRHModaliteServiceCode() {
+		return renoiRHModaliteServiceCode;
+	}
+
+	public void setRenoiRHModaliteServiceCode(final String renoiRHModaliteServiceCode) {
+		this.renoiRHModaliteServiceCode = renoiRHModaliteServiceCode;
+	}
+
+	public String getRenoiRHModaliteServiceLibelleLong() {
+		return renoiRHModaliteServiceLibelleLong;
+	}
+
+	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
+		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
 	}
 }

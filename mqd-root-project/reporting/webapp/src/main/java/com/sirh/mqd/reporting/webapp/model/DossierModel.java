@@ -41,6 +41,10 @@ public class DossierModel implements Serializable {
 
 	private String renoiRHAffectationLibelleCourt;
 
+	private String renoiRHModaliteServiceCode;
+
+	private String renoiRHModaliteServiceLibelleLong;
+
 	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
 
 	private String renoiRHCivilite;
@@ -237,5 +241,21 @@ public class DossierModel implements Serializable {
 
 	public void setRenoiRHDateNaissanceAsString(final String renoiRHDateNaissanceAsString) {
 		this.renoiRHDateNaissanceAsString = renoiRHDateNaissanceAsString;
+	}
+
+	public String getRenoiRHModaliteServiceCode() {
+		return renoiRHModaliteServiceCode;
+	}
+
+	public void setRenoiRHModaliteServiceCode(final String renoiRHModaliteServiceCode) {
+		this.renoiRHModaliteServiceCode = renoiRHModaliteServiceCode;
+	}
+
+	public String getRenoiRHModaliteServiceLibelleLong() {
+		return renoiRHModaliteServiceLibelleLong;
+	}
+
+	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
+		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
 	}
 }

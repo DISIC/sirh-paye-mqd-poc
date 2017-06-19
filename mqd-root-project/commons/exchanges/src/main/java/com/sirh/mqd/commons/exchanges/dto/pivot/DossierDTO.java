@@ -40,6 +40,10 @@ public class DossierDTO {
 
 	private String renoiRHAffectationLibelleCourt;
 
+	private String renoiRHModaliteServiceCode;
+
+	private String renoiRHModaliteServiceLibelleLong;
+
 	private Integer renoiRHCivilite;
 
 	private String renoiRHNom;
@@ -245,5 +249,21 @@ public class DossierDTO {
 
 	public void setNbAnomalies(final int nbAnomalies) {
 		this.nbAnomalies = nbAnomalies;
+	}
+
+	public String getRenoiRHModaliteServiceCode() {
+		return renoiRHModaliteServiceCode;
+	}
+
+	public void setRenoiRHModaliteServiceCode(final String renoiRHModaliteServiceCode) {
+		this.renoiRHModaliteServiceCode = renoiRHModaliteServiceCode;
+	}
+
+	public String getRenoiRHModaliteServiceLibelleLong() {
+		return renoiRHModaliteServiceLibelleLong;
+	}
+
+	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
+		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
 	}
 }
