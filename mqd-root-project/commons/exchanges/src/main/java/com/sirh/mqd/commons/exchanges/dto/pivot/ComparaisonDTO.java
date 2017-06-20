@@ -23,7 +23,7 @@ public class ComparaisonDTO {
 
 	private Date dateEcheance;
 
-	private Date dateCloture;
+//	private Date dateCloture;
 
 	private AnomalieEtatEnum etatCorrection;
 
@@ -78,13 +78,13 @@ public class ComparaisonDTO {
 		this.dateEcheance = DateUtils.clonerDate(dateEcheance);
 	}
 
-	public Date getDateCloture() {
-		return dateCloture;
-	}
+//	public Date getDateCloture() {
+//		return dateCloture;
+//	}
 
-	public void setDateCloture(final Date dateCloture) {
-		this.dateCloture = DateUtils.clonerDate(dateCloture);
-	}
+//	public void setDateCloture(final Date dateCloture) {
+//		this.dateCloture = DateUtils.clonerDate(dateCloture);
+//	}
 
 	public AnomalieEtatEnum getEtatCorrection() {
 		return etatCorrection;

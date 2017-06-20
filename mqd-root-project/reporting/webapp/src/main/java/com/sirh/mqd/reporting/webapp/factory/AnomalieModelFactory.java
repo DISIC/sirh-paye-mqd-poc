@@ -27,10 +27,10 @@ public final class AnomalieModelFactory {
 				"Création non autorisée d'une instance de : " + AnomalieModelFactory.class.getName());
 	}
 
-	public static AnomalieModel createAnomalieModel(final int numero, final ComparaisonDTO anomalieDTO) {
+	public static AnomalieModel createAnomalieModel(final ComparaisonDTO anomalieDTO) {
 		final AnomalieModel anomalieModel = new AnomalieModel();
-		anomalieModel.setNumAnomalie("Ano" + Constantes.SPACE + numero);
-		anomalieModel.setDateCloture(DateUtils.clonerDate(anomalieDTO.getDateCloture()));
+		//anomalieModel.setNumAnomalie("Ano" + Constantes.SPACE + numero);
+		//anomalieModel.setDateCloture(DateUtils.clonerDate(anomalieDTO.getDateCloture()));
 		anomalieModel.setDateEcheance(DateUtils.clonerDate(anomalieDTO.getDateEcheance()));
 		final DifferenceDTO donnes = anomalieDTO.getDonnees();
 		anomalieModel.setDonneesGA(donnes.getDonneeGA());
@@ -74,7 +74,7 @@ public final class AnomalieModelFactory {
 		anomalieDTO.setPayLot(dossierPayLot);
 		anomalieDTO.setRenoiRHMatricule(dossierMatricule);
 
-		anomalieDTO.setDateCloture(DateUtils.clonerDate(anomalieModel.getDateCloture()));
+//		anomalieDTO.setDateCloture(DateUtils.clonerDate(anomalieModel.getDateCloture()));
 		anomalieDTO.setDateEcheance(DateUtils.clonerDate(anomalieModel.getDateEcheance()));
 
 		final DifferenceDTO donnesDTO = new DifferenceDTO();

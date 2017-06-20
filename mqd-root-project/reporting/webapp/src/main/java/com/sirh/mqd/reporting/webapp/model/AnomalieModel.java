@@ -19,7 +19,7 @@ public class AnomalieModel implements Serializable {
 	 */
 	private static final long serialVersionUID = -1730791893901496946L;
 
-	private String numAnomalie;
+	//private String numAnomalie;
 
 	private String perimetre;
 
@@ -33,7 +33,7 @@ public class AnomalieModel implements Serializable {
 
 	private Date dateEcheance;
 
-	private Date dateCloture;
+//	private Date dateCloture;
 
 	private String etatCorrection;
 
@@ -51,13 +51,13 @@ public class AnomalieModel implements Serializable {
 		super();
 	}
 
-	public String getNumAnomalie() {
-		return numAnomalie;
-	}
+//	public String getNumAnomalie() {
+//		return numAnomalie;
+//	}
 
-	public void setNumAnomalie(final String numAnomalie) {
-		this.numAnomalie = numAnomalie;
-	}
+//	public void setNumAnomalie(final String numAnomalie) {
+//		this.numAnomalie = numAnomalie;
+//	}
 
 	public String getPerimetre() {
 		return perimetre;
@@ -107,13 +107,13 @@ public class AnomalieModel implements Serializable {
 		this.dateEcheance = DateUtils.clonerDate(dateEcheance);
 	}
 
-	public Date getDateCloture() {
-		return dateCloture;
-	}
-
-	public void setDateCloture(final Date dateCloture) {
-		this.dateCloture = DateUtils.clonerDate(dateCloture);
-	}
+//	public Date getDateCloture() {
+//		return dateCloture;
+//	}
+//
+//	public void setDateCloture(final Date dateCloture) {
+//		this.dateCloture = DateUtils.clonerDate(dateCloture);
+//	}
 
 	public String getEtatCorrection() {
 		return etatCorrection;
