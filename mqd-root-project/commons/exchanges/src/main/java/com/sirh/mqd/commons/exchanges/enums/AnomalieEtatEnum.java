@@ -18,7 +18,7 @@ public enum AnomalieEtatEnum {
 
 	A_TRAITER(""),
 
-	EN_COURS("En cours"),
+	CORRECTION_EN_COURS("Correction en cours"),
 
 	CORRECTION_EFFECTUEE("Correction effectuée"),
 
