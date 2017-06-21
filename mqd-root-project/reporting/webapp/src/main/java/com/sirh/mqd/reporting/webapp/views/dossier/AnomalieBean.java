@@ -83,7 +83,7 @@ public class AnomalieBean extends GenericBean {
 				.listerAnomalies(selectedDossier.getRenoiRHMatricule(), selectedDossier.getPayLot());
 		for (int i = 0; i < anomalies.size(); i++) {
 			final ComparaisonDTO anomalie = anomalies.get(i);
-			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(i, anomalie));
+			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(anomalie));
 		}
 	}
 

@@ -39,6 +39,8 @@ public class DossierEntityFactory {
 			dossier.setRenoiRHGradeLibelleCourt(entity.getRenoiRHGradeLibelleCourt());
 			dossier.setRenoiRHAffectationCode(entity.getRenoiRHAffectationCode());
 			dossier.setRenoiRHAffectationLibelleCourt(entity.getRenoiRHAffectationLibelleCourt());
+			dossier.setRenoiRHModaliteServiceCode(entity.getRenoiRHModaliteServiceCode());
+			dossier.setRenoiRHModaliteServiceLibelleLong(entity.getRenoiRHModaliteServiceLibelleLong());
 			dossier.setRenoiRHDateCertification(DateUtils.clonerDate(entity.getRenoiRHDateCertification()));
 			dossier.setRenoiRHCivilite(entity.getRenoiRHCivilite());
 			dossier.setRenoiRHNom(entity.getRenoiRHNom());
@@ -70,6 +72,8 @@ public class DossierEntityFactory {
 			entity.setRenoiRHGradeLibelleCourt(dossier.getRenoiRHGradeLibelleCourt());
 			entity.setRenoiRHAffectationCode(dossier.getRenoiRHAffectationCode());
 			entity.setRenoiRHAffectationLibelleCourt(dossier.getRenoiRHAffectationLibelleCourt());
+			entity.setRenoiRHModaliteServiceCode(dossier.getRenoiRHModaliteServiceCode());
+			entity.setRenoiRHModaliteServiceLibelleLong(dossier.getRenoiRHModaliteServiceLibelleLong());
 			entity.setRenoiRHDateCertification(DateUtils.clonerDate(dossier.getRenoiRHDateCertification()));
 			entity.setRenoiRHCivilite(dossier.getRenoiRHCivilite());
 			entity.setRenoiRHNom(dossier.getRenoiRHNom());

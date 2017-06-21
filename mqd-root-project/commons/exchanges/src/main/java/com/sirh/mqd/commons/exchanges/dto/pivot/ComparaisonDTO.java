@@ -23,8 +23,6 @@ public class ComparaisonDTO {
 
 	private Date dateEcheance;
 
-	private Date dateCloture;
-
 	private AnomalieEtatEnum etatCorrection;
 
 	private boolean anomalieReouverte;
@@ -76,14 +74,6 @@ public class ComparaisonDTO {
 
 	public void setDateEcheance(final Date dateEcheance) {
 		this.dateEcheance = DateUtils.clonerDate(dateEcheance);
-	}
-
-	public Date getDateCloture() {
-		return dateCloture;
-	}
-
-	public void setDateCloture(final Date dateCloture) {
-		this.dateCloture = DateUtils.clonerDate(dateCloture);
 	}
 
 	public AnomalieEtatEnum getEtatCorrection() {

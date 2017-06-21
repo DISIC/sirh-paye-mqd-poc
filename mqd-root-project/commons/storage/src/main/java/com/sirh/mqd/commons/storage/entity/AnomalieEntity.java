@@ -20,9 +20,6 @@ public class AnomalieEntity {
 	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_DATE_ECHEANCE)
 	private Date dateEcheance;
 
-	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE)
-	private Date dateCloture;
-
 	@Field(ComparaisonConstantes.COLONNE_ANOMALIE_ETAT)
 	private AnomalieEtatEnum etatCorrection;
 
@@ -56,14 +53,6 @@ public class AnomalieEntity {
 
 	public void setDateEcheance(final Date dateEcheance) {
 		this.dateEcheance = dateEcheance;
-	}
-
-	public Date getDateCloture() {
-		return dateCloture;
-	}
-
-	public void setDateCloture(final Date dateCloture) {
-		this.dateCloture = dateCloture;
 	}
 
 	public AnomalieEtatEnum getEtatCorrection() {

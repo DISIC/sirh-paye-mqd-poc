@@ -36,7 +36,6 @@ public class AnomalieEntityFactory {
 
 			if (entity.getAnomalie() != null) {
 				comparaison.setAnomalieDonnees(true);
-				comparaison.setDateCloture(entity.getAnomalie().getDateCloture());
 				comparaison.setDateEcheance(entity.getAnomalie().getDateEcheance());
 				comparaison.setEtatCorrection(entity.getAnomalie().getEtatCorrection());
 				comparaison.setModeOperatoire(entity.getAnomalie().getModeOperatoire());
@@ -70,7 +69,6 @@ public class AnomalieEntityFactory {
 
 			if (comparaison.isAnomalieDonnees()) {
 				final AnomalieEntity anomalie = new AnomalieEntity();
-				anomalie.setDateCloture(comparaison.getDateCloture());
 				anomalie.setDateEcheance(comparaison.getDateEcheance());
 				anomalie.setEtatCorrection(comparaison.getEtatCorrection());
 				anomalie.setModeOperatoire(comparaison.getModeOperatoire());

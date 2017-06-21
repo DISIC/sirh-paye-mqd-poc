@@ -25,6 +25,34 @@ public enum AnomalieTypeEnum {
 
 	NB_POINTS("Nombre de points", AnomaliePerimetreEnum.NBI),
 
+	ABSENCE("Absence", AnomaliePerimetreEnum.ABSENCE),
+
+	NUMERO_VOIE("Numéro de voie", AnomaliePerimetreEnum.ADRESSE),
+
+	COMPLEMENT_NUMERO_VOIE("Bis/Ter", AnomaliePerimetreEnum.ADRESSE),
+
+	TYPE_VOIE("Type de voie", AnomaliePerimetreEnum.ADRESSE),
+
+	NOM_VOIE("Nom de voie", AnomaliePerimetreEnum.ADRESSE),
+
+	CODE_POSTAL("Code postal", AnomaliePerimetreEnum.ADRESSE),
+
+	COMMUNE("Commune", AnomaliePerimetreEnum.ADRESSE),
+
+	COMPLEMENT_ADRESSE("Complément d'adresse", AnomaliePerimetreEnum.ADRESSE),
+
+	MODE_PAIEMENT("Mode de paiement", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+
+	IBAN("IBAN", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+
+	BIC_SWIFT("BIC/SWIFT", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+
+	NB_ENFANTS("Nombre d'enfants", AnomaliePerimetreEnum.ENFANT),
+
+	DATE_FIN_FONCTION("Date de fin de fonction", AnomaliePerimetreEnum.POSITION),
+
+	MODALITE("Modalité", AnomaliePerimetreEnum.TEMPS_TRAVAIL),
+
 	INDICE("Indice", AnomaliePerimetreEnum.CARRIERE),
 
 	GRADE("Grade", AnomaliePerimetreEnum.CARRIERE),
