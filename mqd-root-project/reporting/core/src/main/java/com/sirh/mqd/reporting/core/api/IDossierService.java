@@ -43,4 +43,5 @@ public interface IDossierService {
 	 *            l'anomalie à mettre à jour
 	 */
 	void modifierAnomalie(ComparaisonDTO anomalie);
+
 }

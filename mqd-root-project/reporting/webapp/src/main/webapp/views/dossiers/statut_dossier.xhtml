@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{statutDossierBean.setup}" />
+	</f:metadata>
+
+	<h:form id="formStatutDossier">
+		<h:panelGrid id="statutDossierGroup" columns="2" cellpadding="15">
+			<p:outputLabel for="disponibilite" value="Dossier papier:" />
+			<p:selectOneRadio id="disponibilite" value="#{statutDossierBean.selectedDisponibilite}">
+				<f:selectItems value="#{statutDossierBean.listeDisponibilites}" var="dispo" itemLabel="#{dispo}" itemValue="#{dispo}" />
+			</p:selectOneRadio>
+			<p:outputLabel for="disponibilite" value="Affecter le dossier à la sous-direction:" />
+			<p:selectOneMenu id="affectation" value="#{statutDossierBean.selectedAffectation}">
+				<f:selectItems value="#{statutDossierBean.listeAffectations}" var="affectation" itemLabel="#{affectation}" itemValue="#{affectation}" />
+			</p:selectOneMenu>
+		</h:panelGrid>
+		<p:commandButton action="#{statutDossierBean.modifierStatutDossier}"  update=":formStatutDossier:statutDossierGroup "
+			value="#{label['dossiers.overview.anomalies_table.header.actions.button']}" styleClass="ui-priority-primary">
+			<f:setPropertyActionListener value="#{statutDossier}" target="#{statutDossierBean.statutDossier}" />
+		</p:commandButton>
+	</h:form>	
+</ui:composition>

@@ -5,7 +5,7 @@ import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.webapp.model.CommentaireModel;
 
 /**
- * Factory de création des anomalies d'un dossier à manipuler côté IHM.
+ * Factory de création des commentaires d'un dossier à manipuler côté IHM.
  *
  * @author khalil
  */

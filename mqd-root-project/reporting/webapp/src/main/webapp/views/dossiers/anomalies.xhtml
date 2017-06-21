@@ -17,10 +17,6 @@
 				emptyMessage="Aucune anomalie n'a été trouvée." paginator="true"
 				rows="10">
 				<p:column
-					headerText="#{label['dossiers.overview.anomalies_table.header.numero']}">
-					<h:outputText value="#{anomalie.numAnomalie}" />
-				</p:column>
-				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.perimetre']}">
 					<h:outputText value="#{anomalie.perimetre}" />
 				</p:column>
@@ -39,12 +35,6 @@
 				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.date_echeance']}">
 					<h:outputText value="#{anomalie.dateEcheance}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				<p:column
-					headerText="#{label['dossiers.overview.anomalies_table.header.date_cloture']}">
-					<h:outputText value="#{anomalie.dateCloture}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>

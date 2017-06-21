@@ -49,6 +49,10 @@ public class DossierBean extends GenericBean {
 	@Qualifier(ViewConstantes.COMMENTAIRE_BEAN)
 	private CommentaireBean commentaireBean;
 
+	@Inject
+	@Qualifier(ViewConstantes.STATUT_DOSSIER_BEAN)
+	private StatutDossierBean statutDossierBean;
+
 	/**
 	 * Identifiant unique du dossier sélectionnée en amont.
 	 */
@@ -76,7 +80,7 @@ public class DossierBean extends GenericBean {
 		}
 	}
 
-	public void alimenterInformations(final SelectEvent event) {
+	public void afficherInformationsDossier(final SelectEvent event) {
 		final AnomalieBean anomalieBean = this.jsfUtils.getBean(ViewConstantes.ANOMALIE_BEAN, AnomalieBean.class);
 		if (anomalieBean != null) {
 			anomalieBean.alimenterAnomalies(this.selectedDossier);
@@ -85,6 +89,11 @@ public class DossierBean extends GenericBean {
 				CommentaireBean.class);
 		if (commentaireBean != null) {
 			commentaireBean.alimenterCommentaires(this.selectedDossier);
+		}
+		final StatutDossierBean statutDossierBean = this.jsfUtils.getBean(ViewConstantes.STATUT_DOSSIER_BEAN,
+				StatutDossierBean.class);
+		if (statutDossierBean != null) {
+			statutDossierBean.alimenterStatutDossier(this.selectedDossier);
 		}
 	}
 
@@ -126,6 +135,14 @@ public class DossierBean extends GenericBean {
 
 	public void setCommentaireBean(final CommentaireBean commentaireBean) {
 		this.commentaireBean = commentaireBean;
+	}
+
+	public StatutDossierBean getStatutDossierBean() {
+		return statutDossierBean;
+	}
+
+	public void setStatutDossierBean(final StatutDossierBean statutDossierBean) {
+		this.statutDossierBean = statutDossierBean;
 	}
 
 	public DossierModel getSelectedDossier() {

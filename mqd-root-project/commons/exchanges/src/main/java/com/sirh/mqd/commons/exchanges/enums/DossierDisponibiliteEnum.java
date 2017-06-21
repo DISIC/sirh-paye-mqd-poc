@@ -14,22 +14,24 @@ import org.apache.commons.collections4.CollectionUtils;
  *
  * @author khalil
  */
-public enum DossierAffectationEnum {
+public enum DossierDisponibiliteEnum {
 
-	A_TRAITER(""),
+	DISPONIBLE_DANS_LE_SERVICE("Disponible dans le service"),
 
-	NON_AFFECTE("Non Affecté"),
+	DISPONIBLE_DANS_UN_AUTRE_SERVICE("Disponible dans un autre service"),
 
-	AFFECTE("Affecté");
+	DEMANDE_AUX_ARCHIVES("Demandé aux archives"),
+
+	INACESSIBLE_OU_PERDU("Inacessible ou perdu");
 
 	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
 
-	public static final List<DossierAffectationEnum> CACHE_ENUMS = Collections
+	public static final List<DossierDisponibiliteEnum> CACHE_ENUMS = Collections
 			.unmodifiableList(Arrays.asList(values()));
 
 	private String libelle;
 
-	DossierAffectationEnum(final String libelle) {
+	DossierDisponibiliteEnum(final String libelle) {
 		this.libelle = libelle;
 	}
 
@@ -47,28 +49,28 @@ public enum DossierAffectationEnum {
 	 * @param libelle
 	 *            prend comme valeurs un des libellés des énumérations.
 	 */
-	public static DossierAffectationEnum enumOf(final String libelle) {
-		final Iterator<DossierAffectationEnum> iter = CACHE_ENUMS.iterator();
+	public static DossierDisponibiliteEnum enumOf(final String libelle) {
+		final Iterator<DossierDisponibiliteEnum> iter = CACHE_ENUMS.iterator();
 		while (iter.hasNext()) {
-			final DossierAffectationEnum etat = iter.next();
+			final DossierDisponibiliteEnum etat = iter.next();
 			if (libelle.equals(etat.getLibelle())) {
 				return etat;
 			}
 		}
 		throw new IllegalArgumentException(
-				"Impossible de convertir un élément de AffectationDossierEnum à partir du libellé : '" + libelle + "'");
+				"Impossible de convertir un élément de StatutDossierEnum à partir du libellé : '" + libelle + "'");
 	}
 
 	/**
-	 * Méthode permettant de récupérer la liste des libellées pour les
-	 * affectations possibles d'un dossier.
+	 * Méthode permettant de récupérer la liste des libellées pour les statuts
+	 * possibles d'un dossier.
 	 *
-	 * @return {@link List} des libellés des affectation dossiers existants
+	 * @return {@link List} des libellés des status dossiers existants
 	 */
 
 	public static List<String> getLibelles() {
 		if (CollectionUtils.isEmpty(CACHE_LIBELLES)) {
-			for (final DossierAffectationEnum libelle : values()) {
+			for (final DossierDisponibiliteEnum libelle : values()) {
 				CACHE_LIBELLES.add(libelle.getLibelle());
 			}
 		}

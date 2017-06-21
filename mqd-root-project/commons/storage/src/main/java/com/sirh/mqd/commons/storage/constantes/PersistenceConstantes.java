@@ -43,6 +43,17 @@ public final class PersistenceConstantes {
 	public static final String USER_BC = "userBC";
 
 	/**
+	 * Nom du DAO pour le statut dossier
+	 */
+	public static final String STATUT_DOSSIER_DAO = "statutDossierDAO";
+
+	/**
+	 * Nom du BC pour le statut dossier
+	 */
+	public static final String STATUT_DOSSIER_BC = "statutDossierBC";
+
+
+	/**
 	 * Non-constructeur
 	 *
 	 * @throws InstantiationException

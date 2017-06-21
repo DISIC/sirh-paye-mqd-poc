@@ -13,6 +13,8 @@ public final class CoreConstantes {
 
 	public static final String USER_SERVICE = "userService";
 
+	public static final String STATUT_DOSSIER_SERVICE = "statutDossierService";
+
 	/**
 	 * Non-constructeur
 	 *

@@ -15,6 +15,8 @@ public enum IHMPageNameEnum {
 
 	COMMENTAIRE,
 
+	STATUT_DOSSIER,
+
 	HISTORIQUE,
 
 	SYNTHESE,
