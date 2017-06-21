@@ -24,9 +24,7 @@ public enum AnomalieEtatEnum {
 
 	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire"),
 
-	DEMANDE_ASSISTANCE("Demande d'assistance"),
-
-	SIGNALEMENT_INAPPROPRIE("Signalement inapproprié");
+	DEMANDE_ASSISTANCE("Demande d'assistance");
 
 	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
 

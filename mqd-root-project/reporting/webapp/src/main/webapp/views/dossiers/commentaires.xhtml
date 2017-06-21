@@ -22,14 +22,15 @@
 		 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
 					id="commentairesTable" widgetVar="commentaires_table" reflow="true"
 					emptyMessage="Aucun commentaire n'a été trouvé.">
+					<p:ajax event="sort" />
 					<p:column width="200"
-						headerText="#{label['dossiers.overview.commentaires_table.date_creation']}">
+						headerText="#{label['dossiers.overview.commentaires_table.date_creation']}" >
 						<h:outputText value="#{commentaire.dateCreation}">
 							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 						</h:outputText>
 					</p:column>
 					<p:column
-						headerText="#{label['dossiers.overview.commentaires_table.auteur']}">
+						headerText="#{label['dossiers.overview.commentaires_table.auteur']}" >
 						<h:outputText value="#{commentaire.auteurPrenom} #{commentaire.auteurNom}" />
 					</p:column>
 					<p:column
