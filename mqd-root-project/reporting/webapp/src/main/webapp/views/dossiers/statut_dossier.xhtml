@@ -21,7 +21,7 @@
 				<f:selectItems value="#{statutDossierBean.listeAffectations}" var="affectation" itemLabel="#{affectation}" itemValue="#{affectation}" />
 			</p:selectOneMenu>
 		</h:panelGrid>
-		<p:commandButton action="#{statutDossierBean.modifierStatutDossier}"  update=":formStatutDossier:statutDossierGroup "
+		<p:commandButton action="#{statutDossierBean.modifierStatutDossier}"  update=":formStatutDossier:statutDossierGroup :messages"
 			value="#{label['dossiers.overview.anomalies_table.header.actions.button']}" styleClass="ui-priority-primary">
 			<f:setPropertyActionListener value="#{statutDossier}" target="#{statutDossierBean.statutDossier}" />
 		</p:commandButton>
