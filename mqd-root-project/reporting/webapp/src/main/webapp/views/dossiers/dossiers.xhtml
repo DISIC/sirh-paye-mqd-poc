@@ -21,7 +21,7 @@
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_matricule']}">
 				<h:outputText value="#{dossier.renoiRHMatricule}" />
 			</p:column>
-			<p:column filterBy="#{dossier.renoiRHNom}" filterMatchMode="contains" sortBy="#{dossier.renoiRHNom}"
+			<p:column filterBy="#{dossier.renoiRHNom}" filterMatchMode="startsWith"  sortBy="#{dossier.renoiRHNom}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_nom']}">
 				<h:outputText value="#{dossier.renoiRHNom}" />
 			</p:column>
@@ -29,7 +29,7 @@
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
 				<h:outputText value="#{dossier.renoiRHPrenom}" />
 			</p:column>
-			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="contains" sortBy="#{dossier.renoiRHCorpsCode}"
+			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="exact" sortBy="#{dossier.renoiRHCorpsCode}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_code']}">
 				<h:outputText value="#{dossier.renoiRHCorpsCode}" />
 			</p:column>

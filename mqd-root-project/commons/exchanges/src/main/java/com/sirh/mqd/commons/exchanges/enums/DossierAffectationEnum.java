@@ -18,9 +18,19 @@ public enum DossierAffectationEnum {
 
 	AUCUNE_INFORMATION(""),
 
-	AFFECTATION_1("Non Affecté"),
+	AFFECTATION_1("SD2B"),
 
-	AFFECTATION_2("Affecté");
+	AFFECTATION_2("SD2C"),
+
+	AFFECTATION_3("SD2D"),
+
+	AFFECTATION_4("SD2E"),
+
+	AFFECTATION_5("SD2F"),
+
+	AFFECTATION_6("SD2G"),
+
+	AFFECTATION_7("SD2H");
 
 	public static final List<DossierAffectationEnum> CACHE_DISPLAYABLE_ENUMS = new ArrayList<DossierAffectationEnum>();
 
