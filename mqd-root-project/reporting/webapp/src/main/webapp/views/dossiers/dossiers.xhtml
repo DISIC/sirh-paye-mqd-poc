@@ -29,7 +29,7 @@
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_prenom']}">
 				<h:outputText value="#{dossier.renoiRHPrenom}" />
 			</p:column>
-			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="exact" sortBy="#{dossier.renoiRHCorpsCode}"
+			<p:column filterBy="#{dossier.renoiRHCorpsCode}" filterMatchMode="contains" sortBy="#{dossier.renoiRHCorpsCode}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_corps_code']}">
 				<h:outputText value="#{dossier.renoiRHCorpsCode}" />
 			</p:column>
