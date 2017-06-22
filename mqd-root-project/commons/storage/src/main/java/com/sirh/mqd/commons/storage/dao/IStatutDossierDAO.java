@@ -14,24 +14,23 @@ import com.sirh.mqd.commons.storage.entity.StatutDossierEntity;
 public interface IStatutDossierDAO {
 
 	/**
-	 * Méthode permettant de select le statut d'un dossier
+	 * Méthode permettant de récupérer les statuts d'un dossier
 	 *
+	 * @param renoiRHMatricule
+	 *            champ qui permet avec payLot, d'identifier un dossier
 	 * @param payLot
 	 *            champ qui permet avec renoiRHMatricule, d'identifier un
 	 *            dossier
-	 * @param renoiRHMatricule
-	 *            champ qui permet avec payLot, d'identifier un dossier
 	 * @return StatutDossierEntity correspondant au statut du dossier
 	 */
 	StatutDossierEntity selectStatutDossier(String renoiRHMatricule, String payLot);
 
 	/**
-	 * Méthode permettant de modifier le statut d'un dossier
-	 *
+	 * Méthode permettant de modifier les statuts d'un dossier
 	 *
 	 * @param statutDossierEntity
 	 *            statut du dossier à modifier
 	 */
-	void modifyStatutDossier(StatutDossierEntity statutDossierEntity);
+	void updateStatutDossier(StatutDossierEntity statutDossierEntity);
 
 }

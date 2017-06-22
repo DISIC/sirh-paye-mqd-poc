@@ -1,6 +1,8 @@
 package com.sirh.mqd.reporting.webapp.factory;
 
 import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
+import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;
 import com.sirh.mqd.reporting.webapp.model.StatutDossierModel;
 
 /**
@@ -8,8 +10,8 @@ import com.sirh.mqd.reporting.webapp.model.StatutDossierModel;
  *
  * @author khalil
  */
-
 public final class StatutDossierModelFactory {
+
 	/**
 	 * Non-constructeur
 	 *
@@ -37,8 +39,8 @@ public final class StatutDossierModelFactory {
 		return statutDossierDTO;
 	}
 
-	public static StatutDossierDTO createStatutDossierDTO(final String disponibilite, final String affectation,
-			final String payLot, final String matricule) {
+	public static StatutDossierDTO createStatutDossierDTO(final DossierDisponibiliteEnum disponibilite,
+			final DossierAffectationEnum affectation, final String payLot, final String matricule) {
 		final StatutDossierDTO statutDossierDTO = new StatutDossierDTO();
 		statutDossierDTO.setDisponibilite(disponibilite);
 		statutDossierDTO.setAffectation(affectation);

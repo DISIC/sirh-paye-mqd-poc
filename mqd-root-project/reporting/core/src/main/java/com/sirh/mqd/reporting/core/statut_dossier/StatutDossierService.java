@@ -25,7 +25,7 @@ public class StatutDossierService implements IStatutDossierService {
 	}
 
 	@Override
-	public Optional<StatutDossierDTO> genererStatutDossier(final String renoiRHMatricule, final String payLot) {
-		return statutDossierBC.recupererStatutDossier(renoiRHMatricule, payLot);
+	public Optional<StatutDossierDTO> rechercherStatutDossier(final String renoiRHMatricule, final String payLot) {
+		return statutDossierBC.rechercherStatutDossier(renoiRHMatricule, payLot);
 	}
 }

@@ -51,50 +51,53 @@ public class StatutDossierBean extends GenericBean {
 	private IFacadeLogs logger;
 
 	/**
-	 * Statut d'un dossier sélectionné dans le tableau.
+	 * Statut initial d'un dossier avant modifications.
 	 */
-	private StatutDossierModel statutDossier;
+	private StatutDossierDTO statutDossierInitial;
 
 	/**
 	 * Liste par défaut des disponibilités d'un dossier connus.
 	 */
-	private List<String> listeDisponibilites;
+	private List<DossierDisponibiliteEnum> listeDisponibilites;
 
 	/**
 	 * Liste par défaut des affectations d'un dossier connus.
 	 */
-	private List<String> listeAffectations;
+	private List<DossierAffectationEnum> listeAffectations;
 
 	/**
 	 * disponibilité sélectionné du dossier.
 	 */
-	private String selectedDisponibilite;
+	private DossierDisponibiliteEnum selectedDisponibilite;
 
 	/**
 	 * affectation sélectionné du dossier.
 	 */
-	private String selectedAffectation;
+	private DossierAffectationEnum selectedAffectation;
 
 	public void setup() {
 		// Initialization
-		this.listeDisponibilites = new ArrayList<String>();
-		this.listeDisponibilites.addAll(DossierDisponibiliteEnum.getLibelles());
-		this.listeAffectations = new ArrayList<String>();
-		this.listeAffectations.addAll(DossierAffectationEnum.getLibelles());
+		this.listeDisponibilites = new ArrayList<DossierDisponibiliteEnum>();
+		this.listeDisponibilites.addAll(DossierDisponibiliteEnum.getEnumAffichables());
+		this.listeAffectations = new ArrayList<DossierAffectationEnum>();
+		this.listeAffectations.addAll(DossierAffectationEnum.getEnumAffichables());
 
 		// Supplier
 	}
 
 	protected void alimenterStatutDossier(final DossierModel selectedDossier) {
 		final Optional<StatutDossierDTO> statutDossierDTO = this.statutDossierService
-				.genererStatutDossier(selectedDossier.getRenoiRHMatricule(), selectedDossier.getPayLot());
+				.rechercherStatutDossier(selectedDossier.getRenoiRHMatricule(), selectedDossier.getPayLot());
 		if (statutDossierDTO.isPresent()) {
-			this.statutDossier = StatutDossierModelFactory.createStatutDossierModel(statutDossierDTO.get());
-			this.selectedDisponibilite = this.statutDossier.getDisponibilite();
-			this.selectedAffectation = this.statutDossier.getAffectation();
+			this.statutDossierInitial = statutDossierDTO.get();
+			final StatutDossierModel statutDossier = StatutDossierModelFactory
+					.createStatutDossierModel(this.statutDossierInitial);
+			this.selectedDisponibilite = statutDossier.getDisponibilite();
+			this.selectedAffectation = statutDossier.getAffectation();
 		} else {
-			this.selectedDisponibilite = "";
-			this.selectedAffectation = DossierAffectationEnum.A_TRAITER.getLibelle();
+			this.statutDossierInitial = null;
+			this.selectedDisponibilite = DossierDisponibiliteEnum.AUCUNE_INFORMATION;
+			this.selectedAffectation = DossierAffectationEnum.AUCUNE_INFORMATION;
 		}
 	}
 
@@ -106,66 +109,58 @@ public class StatutDossierBean extends GenericBean {
 					selectedDossier.getRenoiRHMatricule());
 			this.statutDossierService.modifierStatutDossier(statutDossierDTO);
 
-			this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.MODIFICATION,
-					IHMUserResultEnum.SUCCESS, IHMPageNameEnum.STATUT_DOSSIER, null, statutDossierDTO, null));
+			this.logger.logAction(Level.INFO,
+					computeLogActionDTO(IHMUserActionEnum.MODIFICATION, IHMUserResultEnum.SUCCESS,
+							IHMPageNameEnum.STATUT_DOSSIER, null, this.statutDossierInitial, statutDossierDTO));
 
-			final DossierModel dossier = getCurrentDossier();
-			alimenterStatutDossier(dossier);
+			alimenterStatutDossier(selectedDossier);
 
 			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_INFO,
-					"view.dossiers.statut_dossier.update.status.success");
+					"view.dossiers.statut_dossier.update.status.success",
+					new Object[] { selectedDossier.getRenoiRHMatricule() });
 		} else {
 			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
 					"view.dossiers.statut_dossier.erreur.no.dossier.selected");
 		}
 	}
 
-	public StatutDossierModel getStatutDossier() {
-		return statutDossier;
+	public StatutDossierDTO getStatutDossierInitial() {
+		return statutDossierInitial;
 	}
 
-	public void setStatutDossierModel(final StatutDossierModel statutDossier) {
-		this.statutDossier = statutDossier;
+	public void setStatutDossierInitial(final StatutDossierDTO statutDossierInitial) {
+		this.statutDossierInitial = statutDossierInitial;
 	}
 
-	public String getSelectedDisponibilite() {
-		return selectedDisponibilite;
-	}
-
-	public void setSelectedDisponibilite(final String selectedDisponibilite) {
-		this.selectedDisponibilite = selectedDisponibilite;
-	}
-
-	public String getSelectedAffectation() {
-		return selectedAffectation;
-	}
-
-	public void setSelectedAffectation(final String selectedAffectation) {
-		this.selectedAffectation = selectedAffectation;
-	}
-
-	public void setStatutDossier(final StatutDossierModel statutDossier) {
-		this.statutDossier = statutDossier;
-	}
-
-	public void setListeAffectations(final List<String> listeAffectations) {
-		this.listeAffectations = listeAffectations;
-	}
-
-	public List<String> getListeDisponibilites() {
+	public List<DossierDisponibiliteEnum> getListeDisponibilites() {
 		return listeDisponibilites;
 	}
 
-	public void setListeDisponibilites(final List<String> listeDisponibilites) {
+	public void setListeDisponibilites(final List<DossierDisponibiliteEnum> listeDisponibilites) {
 		this.listeDisponibilites = listeDisponibilites;
 	}
 
-	public List<String> getListeAffectations() {
+	public List<DossierAffectationEnum> getListeAffectations() {
 		return listeAffectations;
 	}
 
-	public void setListeAffectation(final List<String> listeAffectations) {
+	public void setListeAffectations(final List<DossierAffectationEnum> listeAffectations) {
 		this.listeAffectations = listeAffectations;
 	}
 
+	public DossierDisponibiliteEnum getSelectedDisponibilite() {
+		return selectedDisponibilite;
+	}
+
+	public void setSelectedDisponibilite(final DossierDisponibiliteEnum selectedDisponibilite) {
+		this.selectedDisponibilite = selectedDisponibilite;
+	}
+
+	public DossierAffectationEnum getSelectedAffectation() {
+		return selectedAffectation;
+	}
+
+	public void setSelectedAffectation(final DossierAffectationEnum selectedAffectation) {
+		this.selectedAffectation = selectedAffectation;
+	}
 }

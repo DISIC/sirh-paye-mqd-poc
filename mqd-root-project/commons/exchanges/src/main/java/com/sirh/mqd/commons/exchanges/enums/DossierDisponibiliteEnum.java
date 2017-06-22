@@ -16,15 +16,17 @@ import org.apache.commons.collections4.CollectionUtils;
  */
 public enum DossierDisponibiliteEnum {
 
-	DISPONIBLE_DANS_LE_SERVICE("Disponible dans le service"),
+	AUCUNE_INFORMATION(""),
 
-	DISPONIBLE_DANS_UN_AUTRE_SERVICE("Disponible dans un autre service"),
+	DISPONIBILITE_1("Disponible dans le service"),
 
-	DEMANDE_AUX_ARCHIVES("Demandé aux archives"),
+	DISPONIBILITE_2("Disponible dans un autre service"),
 
-	INACESSIBLE_OU_PERDU("Inacessible ou perdu");
+	DISPONIBILITE_3("Demandé aux archives"),
 
-	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
+	DISPONIBILITE_4("Inacessible ou perdu");
+
+	public static final List<DossierDisponibiliteEnum> CACHE_DISPLAYABLE_ENUMS = new ArrayList<DossierDisponibiliteEnum>();
 
 	public static final List<DossierDisponibiliteEnum> CACHE_ENUMS = Collections
 			.unmodifiableList(Arrays.asList(values()));
@@ -62,18 +64,19 @@ public enum DossierDisponibiliteEnum {
 	}
 
 	/**
-	 * Méthode permettant de récupérer la liste des libellées pour les statuts
-	 * possibles d'un dossier.
+	 * Méthode permettant de récupérer la liste des libellées affichables pour
+	 * les statuts possibles d'un dossier.
 	 *
 	 * @return {@link List} des libellés des status dossiers existants
 	 */
-
-	public static List<String> getLibelles() {
-		if (CollectionUtils.isEmpty(CACHE_LIBELLES)) {
+	public static List<DossierDisponibiliteEnum> getEnumAffichables() {
+		if (CollectionUtils.isEmpty(CACHE_DISPLAYABLE_ENUMS)) {
 			for (final DossierDisponibiliteEnum libelle : values()) {
-				CACHE_LIBELLES.add(libelle.getLibelle());
+				if (!AUCUNE_INFORMATION.equals(libelle)) {
+					CACHE_DISPLAYABLE_ENUMS.add(libelle);
+				}
 			}
 		}
-		return CACHE_LIBELLES;
+		return CACHE_DISPLAYABLE_ENUMS;
 	}
 }

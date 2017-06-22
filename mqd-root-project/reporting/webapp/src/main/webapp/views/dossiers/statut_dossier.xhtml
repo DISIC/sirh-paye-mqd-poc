@@ -12,18 +12,16 @@
 
 	<h:form id="formStatutDossier">
 		<h:panelGrid id="statutDossierGroup" columns="2" cellpadding="15">
-			<p:outputLabel for="disponibilite" value="Dossier papier:" />
+			<p:outputLabel for="disponibilite" value="#{label['dossiers.statut_dossier.form.disponibilite.label']}" />
 			<p:selectOneRadio id="disponibilite" value="#{statutDossierBean.selectedDisponibilite}">
-				<f:selectItems value="#{statutDossierBean.listeDisponibilites}" var="dispo" itemLabel="#{dispo}" itemValue="#{dispo}" />
+				<f:selectItems value="#{statutDossierBean.listeDisponibilites}" var="dispo" itemLabel="#{dispo.libelle}" itemValue="#{dispo}" />
 			</p:selectOneRadio>
-			<p:outputLabel for="disponibilite" value="Affecter le dossier à la sous-direction:" />
+			<p:outputLabel for="disponibilite" value="#{label['dossiers.statut_dossier.form.affectation.label']}" />
 			<p:selectOneMenu id="affectation" value="#{statutDossierBean.selectedAffectation}">
-				<f:selectItems value="#{statutDossierBean.listeAffectations}" var="affectation" itemLabel="#{affectation}" itemValue="#{affectation}" />
+				<f:selectItems value="#{statutDossierBean.listeAffectations}" var="affectation" itemLabel="#{affectation.libelle}" itemValue="#{affectation}" />
 			</p:selectOneMenu>
 		</h:panelGrid>
-		<p:commandButton action="#{statutDossierBean.modifierStatutDossier}"  update=":formStatutDossier:statutDossierGroup :messages"
-			value="#{label['dossiers.overview.anomalies_table.header.actions.button']}" styleClass="ui-priority-primary">
-			<f:setPropertyActionListener value="#{statutDossier}" target="#{statutDossierBean.statutDossier}" />
-		</p:commandButton>
+		<p:commandButton action="#{statutDossierBean.modifierStatutDossier}" update=":formStatutDossier:statutDossierGroup :messages"
+			value="#{label['dossiers.statut_dossier.form.actions.button']}" styleClass="ui-priority-primary" />
 	</h:form>	
 </ui:composition>

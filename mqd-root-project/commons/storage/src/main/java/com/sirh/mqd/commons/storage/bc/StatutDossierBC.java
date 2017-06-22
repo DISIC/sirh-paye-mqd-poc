@@ -33,7 +33,7 @@ public class StatutDossierBC {
 	 * @return {@link StatutDossierDTO} correspondant au statut du dossier
 	 *         contenant les informations issues de la base de données
 	 */
-	public Optional<StatutDossierDTO> recupererStatutDossier(final String renoiRHMatricule, final String payLot) {
+	public Optional<StatutDossierDTO> rechercherStatutDossier(final String renoiRHMatricule, final String payLot) {
 		final StatutDossierEntity statutDossierEntity = this.statutDossierDAO.selectStatutDossier(renoiRHMatricule,
 				payLot);
 		return Optional.ofNullable(StatutDossierEntityFactory.createStatutDossierDTO(statutDossierEntity));
@@ -42,11 +42,11 @@ public class StatutDossierBC {
 	/**
 	 * Méthode permettant de modifier le statut d'un dossier
 	 *
-	 * @param renoiRHMatricule
-	 * @param payLot
+	 * @param statutDossierDTO
+	 *            les statuts du dossier à enregistrer
 	 */
 	public void modifierStatutDossier(final StatutDossierDTO statutDossierDTO) {
 		final StatutDossierEntity entity = StatutDossierEntityFactory.createStatutDossierEntity(statutDossierDTO);
-		statutDossierDAO.modifyStatutDossier(entity);
+		statutDossierDAO.updateStatutDossier(entity);
 	}
 }

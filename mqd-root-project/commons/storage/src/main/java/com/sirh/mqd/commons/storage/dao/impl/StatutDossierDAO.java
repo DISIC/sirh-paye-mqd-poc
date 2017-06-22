@@ -37,7 +37,7 @@ public class StatutDossierDAO implements IStatutDossierDAO {
 	}
 
 	@Override
-	public void modifyStatutDossier(final StatutDossierEntity statutDossierEntity) {
+	public void updateStatutDossier(final StatutDossierEntity statutDossierEntity) {
 		if (statutDossierEntity != null) {
 			mongoTemplate.save(statutDossierEntity);
 		}

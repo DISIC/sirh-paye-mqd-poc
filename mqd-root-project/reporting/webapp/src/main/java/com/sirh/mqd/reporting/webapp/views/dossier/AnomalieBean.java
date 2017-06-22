@@ -105,12 +105,11 @@ public class AnomalieBean extends GenericBean {
 								DateUtils.formateDateJJMMAAAAhhmmss(comparaisonDTO.getDateModification()),
 								comparaisonDTO, null));
 
-				final DossierModel dossier = getCurrentDossier();
-				alimenterAnomalies(dossier);
+				alimenterAnomalies(selectedDossier);
 
 				this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_INFO,
 						"view.dossiers.anomalies.update.status.success",
-						new Object[] { comparaisonDTO.getType().getLibelle(), dossier.getRenoiRHMatricule() });
+						new Object[] { comparaisonDTO.getType().getLibelle(), selectedDossier.getRenoiRHMatricule() });
 			} else {
 				this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
 						"view.dossiers.anomalies.erreur.no.anomalie.selected");

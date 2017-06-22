@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
+import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;
 import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
 import com.sirh.mqd.commons.storage.constantes.StatutDossierConstantes;
 
@@ -32,10 +34,10 @@ public class StatutDossierEntity {
 	private String renoiRHMatricule;
 
 	@Field(StatutDossierConstantes.COLONNE_DISPONIBILITE)
-	private String disponibilite;
+	private DossierDisponibiliteEnum disponibilite;
 
 	@Field(StatutDossierConstantes.COLONNE_AFFECTATION)
-	private String affectation;
+	private DossierAffectationEnum affectation;
 
 	public StatutDossierEntity() {
 		super();
@@ -65,19 +67,19 @@ public class StatutDossierEntity {
 		this.renoiRHMatricule = renoiRHMatricule;
 	}
 
-	public String getDisponibilite() {
+	public DossierDisponibiliteEnum getDisponibilite() {
 		return disponibilite;
 	}
 
-	public void setDisponibilite(final String disponibilite) {
+	public void setDisponibilite(final DossierDisponibiliteEnum disponibilite) {
 		this.disponibilite = disponibilite;
 	}
 
-	public String getAffectation() {
+	public DossierAffectationEnum getAffectation() {
 		return affectation;
 	}
 
-	public void setAffectation(final String affectation) {
+	public void setAffectation(final DossierAffectationEnum affectation) {
 		this.affectation = affectation;
 	}
 }

@@ -1,5 +1,7 @@
 package com.sirh.mqd.commons.exchanges.dto.statut_dossier;
 
+import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
+import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;
 
 /**
  * DTO permettant de manipuler les statut d'un dossier
@@ -12,28 +14,28 @@ public class StatutDossierDTO {
 
 	private String renoiRHMatricule;
 
-	private String disponibilite;
+	private DossierDisponibiliteEnum disponibilite;
 
-	private String affectation;
-
-	public String getDisponibilite() {
-		return disponibilite;
-	}
-
-	public void setDisponibilite(final String disponibilite) {
-		this.disponibilite = disponibilite;
-	}
-
-	public String getAffectation() {
-		return affectation;
-	}
-
-	public void setAffectation(final String affectation) {
-		this.affectation = affectation;
-	}
+	private DossierAffectationEnum affectation;
 
 	public StatutDossierDTO() {
 		super();
+	}
+
+	public DossierDisponibiliteEnum getDisponibilite() {
+		return disponibilite;
+	}
+
+	public void setDisponibilite(final DossierDisponibiliteEnum disponibilite) {
+		this.disponibilite = disponibilite;
+	}
+
+	public DossierAffectationEnum getAffectation() {
+		return affectation;
+	}
+
+	public void setAffectation(final DossierAffectationEnum affectation) {
+		this.affectation = affectation;
 	}
 
 	public String getPayLot() {

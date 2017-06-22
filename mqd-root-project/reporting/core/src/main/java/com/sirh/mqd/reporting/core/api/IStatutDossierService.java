@@ -14,22 +14,19 @@ public interface IStatutDossierService {
 	/**
 	 * Méthode permettant de modifier les statuts d'un dossier
 	 *
-	 * @param renoiRHMatricule
-	 *            matricule renoiRH
-	 *
-	 * @param payLot
-	 *            lot PAY
+	 * @param statutDossierDTO
+	 *            les statuts du dossier à enregistrer
 	 */
 	void modifierStatutDossier(StatutDossierDTO statutDossierDTO);
 
 	/**
-	 * Méthode permettant de génerer les statuts d'un dossier
+	 * Méthode permettant de rechercher les statuts d'un dossier
 	 *
 	 * @param renoiRHMatricule
 	 *            matricule renoiRH
 	 * @param payLot
 	 *            lot PAY
 	 */
-	Optional<StatutDossierDTO> genererStatutDossier(String renoiRHMatricule, String payLot);
+	Optional<StatutDossierDTO> rechercherStatutDossier(String renoiRHMatricule, String payLot);
 
 }

@@ -16,13 +16,13 @@ import org.apache.commons.collections4.CollectionUtils;
  */
 public enum DossierAffectationEnum {
 
-	A_TRAITER(""),
+	AUCUNE_INFORMATION(""),
 
-	NON_AFFECTE("Non Affecté"),
+	AFFECTATION_1("Non Affecté"),
 
-	AFFECTE("Affecté");
+	AFFECTATION_2("Affecté");
 
-	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
+	public static final List<DossierAffectationEnum> CACHE_DISPLAYABLE_ENUMS = new ArrayList<DossierAffectationEnum>();
 
 	public static final List<DossierAffectationEnum> CACHE_ENUMS = Collections
 			.unmodifiableList(Arrays.asList(values()));
@@ -60,18 +60,17 @@ public enum DossierAffectationEnum {
 	}
 
 	/**
-	 * Méthode permettant de récupérer la liste des libellées pour les
-	 * affectations possibles d'un dossier.
+	 * Méthode permettant de récupérer la liste des libellées affichables pour
+	 * les statuts possibles d'un dossier.
 	 *
-	 * @return {@link List} des libellés des affectation dossiers existants
+	 * @return {@link List} des libellés des status dossiers existants
 	 */
-
-	public static List<String> getLibelles() {
-		if (CollectionUtils.isEmpty(CACHE_LIBELLES)) {
+	public static List<DossierAffectationEnum> getEnumAffichables() {
+		if (CollectionUtils.isEmpty(CACHE_DISPLAYABLE_ENUMS)) {
 			for (final DossierAffectationEnum libelle : values()) {
-				CACHE_LIBELLES.add(libelle.getLibelle());
+				CACHE_DISPLAYABLE_ENUMS.add(libelle);
 			}
 		}
-		return CACHE_LIBELLES;
+		return CACHE_DISPLAYABLE_ENUMS;
 	}
 }
