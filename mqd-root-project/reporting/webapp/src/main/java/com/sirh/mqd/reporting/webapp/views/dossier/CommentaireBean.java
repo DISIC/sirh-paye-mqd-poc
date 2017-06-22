@@ -115,9 +115,6 @@ public class CommentaireBean extends GenericBean {
 		this.commentaires.addAll(commentairesDTO.stream()
 				.map(commentaireDTO -> CommentaireModelFactory.createCommentaireModel(commentaireDTO))
 				.collect(Collectors.toList()));
-		this.commentaires.sort((c1, c2) -> {
-			return c2.getDateCreation().compareTo(c1.getDateCreation());
-		});
 	}
 
 	public CommentaireModel getSelectedCommentaire() {

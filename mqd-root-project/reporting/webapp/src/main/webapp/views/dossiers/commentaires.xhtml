@@ -19,10 +19,10 @@
  	</h:form>
  	<h:panelGroup id="commentairesGroup">
  		<div id="commentaire_marge_entre_boutton_et_liste_commentaires">
-		 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}"
+		 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}" 
+		 			sortBy="#{commentaire.dateCreation}" sortOrder="descending" sortMode="single" 
 					id="commentairesTable" widgetVar="commentaires_table" reflow="true"
 					emptyMessage="Aucun commentaire n'a été trouvé.">
-					<p:ajax event="sort" />
 					<p:column width="200"
 						headerText="#{label['dossiers.overview.commentaires_table.date_creation']}" >
 						<h:outputText value="#{commentaire.dateCreation}">

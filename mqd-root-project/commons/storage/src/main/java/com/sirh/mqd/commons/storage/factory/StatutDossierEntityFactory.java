@@ -1,6 +1,6 @@
 package com.sirh.mqd.commons.storage.factory;
 
-import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 import com.sirh.mqd.commons.storage.entity.StatutDossierEntity;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 

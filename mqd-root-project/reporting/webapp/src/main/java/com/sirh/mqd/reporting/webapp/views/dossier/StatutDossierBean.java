@@ -12,7 +12,7 @@ import javax.inject.Named;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
 import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;
 import com.sirh.mqd.commons.traces.IFacadeLogs;

@@ -1,6 +1,6 @@
 package com.sirh.mqd.reporting.webapp.factory;
 
-import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
 import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;
 import com.sirh.mqd.reporting.webapp.model.StatutDossierModel;

@@ -1,4 +1,4 @@
-package com.sirh.mqd.reporting.core.statut_dossier;
+package com.sirh.mqd.reporting.core.statutdossier;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 import com.sirh.mqd.commons.storage.bc.StatutDossierBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.reporting.core.api.IStatutDossierService;

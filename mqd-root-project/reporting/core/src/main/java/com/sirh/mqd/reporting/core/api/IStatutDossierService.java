@@ -2,7 +2,7 @@ package com.sirh.mqd.reporting.core.api;
 
 import java.util.Optional;
 
-import com.sirh.mqd.commons.exchanges.dto.statut_dossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 
 /**
  * Service de gestion des statuts d'un dossier
