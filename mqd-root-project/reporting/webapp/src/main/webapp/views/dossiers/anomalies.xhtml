@@ -55,7 +55,7 @@
 				</p:column>
 				<p:column
 					headerText="#{label['dossiers.overview.anomalies_table.header.actions']}">
-					<p:commandButton action="#{anomalieBean.modifierEtatCorrection}" update=":ongletsDossier:formAnomalie:anomaliesGroup :messages" icon="ui-icon-check" 
+					<p:commandButton action="#{anomalieBean.modifierEtatCorrection}" update=":ongletsDossier:formAnomalie:anomaliesGroup :messages" 
 						value="#{label['dossiers.overview.anomalies_table.header.actions.button']}">
 						<f:setPropertyActionListener value="#{anomalie}" target="#{anomalieBean.selectedAnomalie}" />
 					</p:commandButton>
