@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{calendrierGestionBean.setup}" />
+	</f:metadata>
+
+	<h:form id="formCalendrierGestion">
+	    <p:growl id="messages" showDetail="true" />
+	 
+	    <h:panelGrid columnClasses="value">
+	        <h3>Lazy Schedule</h3>
+	        <p:schedule value="#{calendrierGestionBean.eventModel}" />
+	    </h:panelGrid> 
+	</h:form>	
+</ui:composition>

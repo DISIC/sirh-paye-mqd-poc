@@ -14,10 +14,10 @@
 
 	<ui:define name="zone_contenu">
 
-		<h:panelGrid columns="1" cellpadding="10">
-			<h:outputText value="Prévu pour le sprint 6" />
-		</h:panelGrid>
-
+		<h:panelGroup id="evenements" >
+			<p:panel id="calendrierGestion" header="#{label['evenement.overview.sous_menu.calendrier_gestion']}">
+				<ui:include src="calendrier_gestion.xhtml" />
+			</p:panel>
+		</h:panelGroup>
 	</ui:define>
-
 </ui:composition>

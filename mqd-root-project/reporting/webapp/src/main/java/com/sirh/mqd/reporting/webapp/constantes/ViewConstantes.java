@@ -19,6 +19,7 @@ public final class ViewConstantes {
 
 	public static final String STATUT_DOSSIER_BEAN = "statutDossierBean";
 
+	public static final String CALENDRIER_GESTION_BEAN = "calendrierGestionBean";
 
 	/**
 	 * Non-constructeur
