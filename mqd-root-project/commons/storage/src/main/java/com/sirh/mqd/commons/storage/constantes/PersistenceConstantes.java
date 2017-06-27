@@ -52,6 +52,15 @@ public final class PersistenceConstantes {
 	 */
 	public static final String STATUT_DOSSIER_BC = "statutDossierBC";
 
+	/**
+	 * Nom du DAO pour event calendrier gestion
+	 */
+	public static final String EVENT_CALENDRIER_GESTION_DAO = "eventCalendrierGestionDAO";
+
+	/**
+	 * Nom du BC pour event calendrier gestion
+	 */
+	public static final String EVENT_CALENDRIER_GESTION_BC = "eventCalendrierGestionBC";
 
 	/**
 	 * Non-constructeur

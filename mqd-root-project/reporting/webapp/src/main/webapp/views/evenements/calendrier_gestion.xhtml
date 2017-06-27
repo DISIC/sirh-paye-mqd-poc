@@ -11,11 +11,34 @@
 	</f:metadata>
 
 	<h:form id="formCalendrierGestion">
-	    <p:growl id="messages" showDetail="true" />
-	 
 	    <h:panelGrid columnClasses="value">
-	        <h3>Lazy Schedule</h3>
-	        <p:schedule value="#{calendrierGestionBean.eventModel}" />
+	        <h3 style="margin-top: 0">Calendrier Gestion</h3>
+	        <p:schedule id="schedule" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="GMT+2">
+
+	            <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+	            <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+	            <p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
+	            <p:ajax event="eventResize" listener="#{calendrierGestionBean.onEventResize}" update="messages" />
+	 
+       		 </p:schedule>
+       		 <p:dialog widgetVar="eventDialog" header="Détails Évènement" showEffect="clip" hideEffect="clip">
+		        <h:panelGrid id="eventDetails" columns="2">
+		            <p:outputLabel for="title" value="Évènement:" />
+		            <p:inputText id="title" value="#{calendrierGestionBean.event.title}" required="true" />
+		 
+		            <p:outputLabel for="from" value="Début:" />
+		            <p:calendar id="from" value="#{calendrierGestionBean.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+		 
+		            <p:outputLabel for="to" value="Échéance:" />
+		            <p:calendar id="to" value="#{calendrierGestionBean.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+		 
+		            <p:outputLabel for="allDay" value="Toute la journée:" />
+		            <h:selectBooleanCheckbox id="allDay" value="#{calendrierGestionBean.event.allDay}" />
+		 
+		            <p:commandButton type="reset" value="Annuler" />
+		            <p:commandButton id="addButton" value="Valider" actionListener="#{calendrierGestionBean.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+		        </h:panelGrid>
+   			 </p:dialog>
 	    </h:panelGrid> 
 	</h:form>	
 </ui:composition>
