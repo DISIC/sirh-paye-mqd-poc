@@ -1,5 +1,6 @@
 package com.sirh.mqd.commons.storage.factory;
 
+import com.google.common.base.Joiner;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
@@ -95,11 +96,8 @@ public class AnomalieEntityFactory {
 	private static String generateEntityId(final String payLot, final String renoiRHMatricule,
 			final AnomalieTypeEnum typeDonnee) {
 		final StringBuilder builder = new StringBuilder();
-		builder.append(payLot);
-		builder.append(Constantes.DASH);
-		builder.append(renoiRHMatricule);
-		builder.append(Constantes.DASH);
-		builder.append(typeDonnee.name());
+		final Joiner joiner = Joiner.on(Constantes.DASH).useForNull(Constantes.MONGO_COLLECTION_ID_DEFAULT_VALUE);
+		joiner.appendTo(builder, payLot, renoiRHMatricule, typeDonnee.name());
 		return builder.toString();
 	}
 }

@@ -26,7 +26,7 @@ import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.commons.utils.exception.TechnicalException;
 import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
 import com.sirh.mqd.supplier.core.constantes.PayConstantes;
-import com.sirh.mqd.supplier.core.utils.AnomalieDetectionUtils;
+import com.sirh.mqd.supplier.core.utils.AnomalieDetectionMSOUtils;
 
 /**
  * Classe de service pour gérer les données GA-PAY
@@ -68,9 +68,6 @@ public class PayService {
 		case PayConstantes.CSV_FILE_NBI:
 			importNBIData(payload);
 			break;
-		case PayConstantes.CSV_FILE_PARAM_RAPPORT:
-			// On ne fait rien
-			break;
 		case PayConstantes.CSV_FILE_POSITION:
 			importPositionData(payload);
 			break;
@@ -78,7 +75,6 @@ public class PayService {
 			importTempsTravailData(payload);
 			break;
 		default:
-			// On ne fait rien
 			break;
 		}
 	}
@@ -87,33 +83,29 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 19) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, lineArray[16], lineArray[17]));
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.MODALITE, InteractionSirhEnum.PAY, lineArray[18]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.MODALITE, InteractionSirhEnum.GA, lineArray[19]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -125,18 +117,17 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 18) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
@@ -146,15 +137,12 @@ public class PayService {
 						// Aucune date trouvée
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.DATE_FIN_FONCTION, InteractionSirhEnum.PAY, lineArray[17]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.DATE_FIN_FONCTION, InteractionSirhEnum.GA, lineArray[18]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -171,11 +159,11 @@ public class PayService {
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (StringUtils.isNotBlank(lineArray[0])) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
@@ -195,18 +183,17 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 18) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
@@ -214,19 +201,12 @@ public class PayService {
 						// Colonne : Nombre d'enfants SFT PAY
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NB_ENFANTS, InteractionSirhEnum.PAY, lineArray[16]));
-						// TODO : Quelle colonne prendre en compte pour RenoiRH
-						// ?
-						// - Nombre d'enfants SFT RenoiRH
-						// - Nombre total d'enfants RenoiRH
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NB_ENFANTS, InteractionSirhEnum.GA, lineArray[18]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -238,41 +218,33 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 21) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.MODE_PAIEMENT, InteractionSirhEnum.PAY, lineArray[16]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.MODE_PAIEMENT, InteractionSirhEnum.GA, lineArray[17]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.IBAN, InteractionSirhEnum.PAY, lineArray[18]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.IBAN, InteractionSirhEnum.GA, lineArray[19]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.BIC_SWIFT, InteractionSirhEnum.PAY, lineArray[20]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.BIC_SWIFT, InteractionSirhEnum.GA, lineArray[21]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -284,57 +256,41 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 29) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NUMERO_VOIE, InteractionSirhEnum.PAY, lineArray[16]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NUMERO_VOIE, InteractionSirhEnum.GA, lineArray[17]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.COMPLEMENT_NUMERO_VOIE, InteractionSirhEnum.PAY, lineArray[18]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMPLEMENT_NUMERO_VOIE, InteractionSirhEnum.GA, lineArray[19]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.TYPE_VOIE, InteractionSirhEnum.PAY, lineArray[20]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.TYPE_VOIE, InteractionSirhEnum.GA, lineArray[21]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NOM_VOIE, InteractionSirhEnum.PAY, lineArray[22]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NOM_VOIE, InteractionSirhEnum.GA, lineArray[23]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.CODE_POSTAL, InteractionSirhEnum.PAY, lineArray[24]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.CODE_POSTAL, InteractionSirhEnum.GA, lineArray[25]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.COMMUNE, InteractionSirhEnum.PAY, lineArray[26]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMMUNE, InteractionSirhEnum.GA, lineArray[27]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.COMPLEMENT_ADRESSE, InteractionSirhEnum.PAY, lineArray[28]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMPLEMENT_ADRESSE, InteractionSirhEnum.GA, lineArray[29]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -346,18 +302,17 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 17) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
@@ -366,15 +321,12 @@ public class PayService {
 						// Les informations sont toutes différentes.
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.ABSENCE, InteractionSirhEnum.PAY, lineArray[16]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.ABSENCE, InteractionSirhEnum.GA, lineArray[17]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -386,33 +338,29 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 17) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, null, null, null));
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.PAY, lineArray[16]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.GA, lineArray[17]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -424,18 +372,17 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 26) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15],
 								lineArray[16], lineArray[18], lineArray[20], lineArray[22], lineArray[24],
@@ -443,31 +390,20 @@ public class PayService {
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NOM, InteractionSirhEnum.PAY, lineArray[17]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NOM, InteractionSirhEnum.GA, lineArray[18]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.PRENOM, InteractionSirhEnum.PAY, lineArray[19]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.PRENOM, InteractionSirhEnum.GA, lineArray[20]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.DATE_NAISSANCE, InteractionSirhEnum.PAY, lineArray[21]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.DATE_NAISSANCE, InteractionSirhEnum.GA, lineArray[22]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.CIVILITE, InteractionSirhEnum.PAY, lineArray[23]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.CIVILITE, InteractionSirhEnum.GA, lineArray[24]));
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.SEXE, InteractionSirhEnum.PAY, lineArray[25]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.SEXE, InteractionSirhEnum.GA, lineArray[26]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -479,18 +415,17 @@ public class PayService {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsPAY = new ArrayList<ComparaisonDTO>();
-		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
 			scanner = new Scanner(payload);
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (i > 2) {
-					final String[] lineArray = AnomalieDetectionUtils.splitPAYData(line);
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
 					// La dernière ligne du tableau correspond à des calculs
 					// EXCEL : On ne la traite pas.
 					if (lineArray.length > 22) {
-						dossiers.add(DossierDTOFactory.createDossierDTO(lineArray[0], lineArray[1], lineArray[2],
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
 								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
 								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
 								null, null, null, null, lineArray[16], null, null));
@@ -499,27 +434,20 @@ public class PayService {
 						// Les informations sont toutes différentes.
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.GRADE, InteractionSirhEnum.PAY, lineArray[17]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.GRADE, InteractionSirhEnum.GA, lineArray[18]));
 
 						// TODO : Comment détecter un écart sur ces données ?
 						// Les informations sont toutes différentes.
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.NIVEAU_ECHELON, InteractionSirhEnum.PAY, lineArray[19]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NIVEAU_ECHELON, InteractionSirhEnum.GA, lineArray[20]));
 
 						comparaisonsPAY.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
 								AnomalieTypeEnum.INDICE, InteractionSirhEnum.PAY, lineArray[21]));
-						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.INDICE, InteractionSirhEnum.GA, lineArray[22]));
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
-			this.stockerComparaisons(InteractionSirhEnum.GA, comparaisonsGA);
-			this.stockerComparaisons(InteractionSirhEnum.PAY, comparaisonsPAY);
+			this.stockerComparaisons(comparaisonsPAY);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -543,28 +471,17 @@ public class PayService {
 	 * Méthode permettant de stocker en base de données les comparaisons de
 	 * données potentiellement en anomalie.
 	 *
-	 * @param referentiel
-	 *            le référentiel d'où sont issues les données à comparer
 	 * @param comparaisons
 	 *            liste des données en entrée potentiellement en anomalie
 	 */
-	private void stockerComparaisons(final InteractionSirhEnum referentiel, final List<ComparaisonDTO> donnees) {
+	private void stockerComparaisons(final List<ComparaisonDTO> donnees) {
 		final List<ComparaisonDTO> comparaisons = new ArrayList<ComparaisonDTO>();
 		final Date dateCloture = DateUtils.getCalendarInstance().getTime();
 		donnees.forEach((donnee) -> {
 			final Optional<ComparaisonDTO> nullableComparaison = this.dossierBC.rechercherComparaison(donnee);
 			if (nullableComparaison.isPresent()) {
 				final ComparaisonDTO comparaison = nullableComparaison.get();
-				switch (referentiel) {
-				case PAY:
-					comparaison.getDonnees().setDonneePAY(donnee.getDonnees().getDonneePAY());
-					break;
-				case GA:
-					comparaison.getDonnees().setDonneeGA(donnee.getDonnees().getDonneeGA());
-					break;
-				default:
-					break;
-				}
+				comparaison.getDonnees().setDonneePAY(donnee.getDonnees().getDonneePAY());
 				comparaison.setAnomalieReouverte(false);
 				comparaison.setAnomalieDonnees(false);
 				if (comparaison.getDateCloture() == null) {
@@ -575,7 +492,7 @@ public class PayService {
 				comparaisons.add(donnee);
 			}
 		});
-		AnomalieDetectionUtils.verifierPresenceAnomalie(comparaisons);
+		AnomalieDetectionMSOUtils.verifierPresenceAnomalie(comparaisons);
 		comparaisons.forEach((anomalie) -> {
 			this.dossierBC.insererComparaison(anomalie);
 		});

@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.sirh.mqd.commons.storage.constantes.ComparaisonConstantes;
 
 /**
- * Entité des données de synthèse issues des différentes source en entrée (SIRH,
- * PAY, etc...)
+ * Entité des données de synthèse issues des différentes source en entrée (SIRH
+ * ou PAY)
  *
  * @author alexandre
  */

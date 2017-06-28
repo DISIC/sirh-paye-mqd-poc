@@ -13,6 +13,16 @@ public final class RoutingConstantes {
 	public static final String PAY_BEAN = "payBean";
 
 	/**
+	 * Nom du bean dgacBean
+	 */
+	public static final String DGAC_BEAN = "dgacBean";
+
+	/**
+	 * Nom du bean msoBean
+	 */
+	public static final String MSO_BEAN = "msoBean";
+
+	/**
 	 * Nom du bean userBean
 	 */
 	public static final String USER_BEAN = "userBean";

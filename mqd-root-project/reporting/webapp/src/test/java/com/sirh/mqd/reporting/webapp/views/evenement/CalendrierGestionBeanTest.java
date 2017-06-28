@@ -1,4 +1,4 @@
-package com.sirh.mqd.reporting.webapp.views.evenement.tests;
+package com.sirh.mqd.reporting.webapp.views.evenement;
 
 import static org.junit.Assert.assertEquals;
 

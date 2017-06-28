@@ -13,7 +13,7 @@ import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.exchanges.factory.pivot.AnomalieDTOFactory;
 import com.sirh.mqd.commons.utils.DateUtils;
 
-public class AnomalieDetectionUtilsTest {
+public class AnomalieDetectionMSOUtilsTest {
 
 	private static final String PAY_LOT = "000A-ANT-SD-000";
 
@@ -165,7 +165,7 @@ public class AnomalieDetectionUtilsTest {
 		this.comparaisons.add(this.comparaisonUnsupportedTypeNouvelle);
 
 		// When
-		AnomalieDetectionUtils.verifierPresenceAnomalie(this.comparaisons);
+		AnomalieDetectionMSOUtils.verifierPresenceAnomalie(this.comparaisons);
 
 		// Then
 		Assertions.assertThat(this.comparaisons).isNotNull();
@@ -184,7 +184,7 @@ public class AnomalieDetectionUtilsTest {
 		this.comparaisons.add(this.comparaisonUnsupportedTypeNouvelle);
 
 		// When
-		AnomalieDetectionUtils.verifierPresenceAnomalie(this.comparaisons);
+		AnomalieDetectionMSOUtils.verifierPresenceAnomalie(this.comparaisons);
 
 		// Then
 		Assertions.assertThat(this.comparaisons).isNotNull();

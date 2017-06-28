@@ -1,5 +1,6 @@
 package com.sirh.mqd.commons.storage.factory;
 
+import com.google.common.base.Joiner;
 import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
 import com.sirh.mqd.commons.storage.entity.StatutDossierEntity;
 import com.sirh.mqd.commons.utils.constante.Constantes;
@@ -48,10 +49,8 @@ public class StatutDossierEntityFactory {
 
 	private static String generateEntityId(final String payLot, final String renoiRHMatricule) {
 		final StringBuilder builder = new StringBuilder();
-		builder.append(payLot);
-		builder.append(Constantes.DASH);
-		builder.append(renoiRHMatricule);
-		builder.append(Constantes.DASH);
+		final Joiner joiner = Joiner.on(Constantes.DASH).useForNull(Constantes.MONGO_COLLECTION_ID_DEFAULT_VALUE);
+		joiner.appendTo(builder, payLot, renoiRHMatricule);
 		return builder.toString();
 	}
 }

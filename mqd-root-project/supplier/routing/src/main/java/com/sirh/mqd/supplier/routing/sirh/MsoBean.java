@@ -1,11 +1,9 @@
-package com.sirh.mqd.supplier.routing.pay;
+package com.sirh.mqd.supplier.routing.sirh;
 
 import java.io.File;
-import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
@@ -13,29 +11,22 @@ import org.springframework.stereotype.Component;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
-import com.sirh.mqd.supplier.core.pay.PayService;
+import com.sirh.mqd.supplier.core.sirh.SirhMsoService;
 import com.sirh.mqd.supplier.routing.constantes.RoutingConstantes;
 
 /**
  * Bean permettant de réceptionner et de manipuler des fichiers CSV déposés sur
  * le serveur SFTP
  */
-@Component(RoutingConstantes.PAY_BEAN)
-public class PayBean {
+@Component(RoutingConstantes.MSO_BEAN)
+public class MsoBean {
 
-	@Autowired
-	@Qualifier(CoreConstantes.PAY_SERVICE)
-	private PayService payService;
-
-	/*
-	 * @Autowired
-	 *
-	 * @Qualifier(RoutingConstantes.SEND_FILE_CHANNEL) private MessageChannel
-	 * sendFile;
+	/**
+	 * Service de gestion des inputs du SIRH MSO
 	 */
-
-	@Value("#{application}")
-	private Properties applicationProperties;
+	@Autowired
+	@Qualifier(CoreConstantes.SIRH_MSO_SERVICE)
+	private SirhMsoService sirhMsoService;
 
 	@Autowired
 	@Qualifier(ConstantesTraces.FACADE_LOGS)
@@ -50,6 +41,6 @@ public class PayBean {
 	 *
 	 */
 	public void manageCSVFile(final Message<File> message) throws MessagingException {
-		this.payService.storeCSVData(message.getHeaders().getTimestamp(), message.getPayload());
+		this.sirhMsoService.storeCSVData(message.getHeaders().getTimestamp(), message.getPayload());
 	}
 }

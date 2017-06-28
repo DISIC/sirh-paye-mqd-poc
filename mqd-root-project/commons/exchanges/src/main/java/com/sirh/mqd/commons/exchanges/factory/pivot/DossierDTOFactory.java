@@ -21,39 +21,69 @@ public final class DossierDTOFactory {
 				"Création non autorisée d'une instance de : " + DossierDTOFactory.class.getName());
 	}
 
-	public static DossierDTO createDossierDTO(final String ministere, final String payCle, final String dossierNumero,
-			final String diGestionnaire, final String adminCode, final String adminCodeDepartement, final String payLot,
-			final String renoiRHMatricule, final String renoiRHCorpsCode, final String renoiRHCorpsLibelleCourt,
-			final String renoiRHGradeCode, final String renoiRHGradeLibelleCourt, final String renoiRHAffectationCode,
-			final String renoiRHAffectationLibelleCourt, final String renoiRHDateCertification, final String renoiRHNom,
-			final String renoiRHPrenom, final String renoiRHDateNaissance, final String renoiRHCivilite,
-			final String renoiRHSexe, final String dateMouvementCarriere, final String renoiRHModaliteServiceCode,
-			final String renoiRHModaliteServiceLibelleLong) {
+	public static DossierDTO createDossierDTOFromMSO(final String ministere, final String payCle,
+			final String dossierNumero, final String diGestionnaire, final String adminCode,
+			final String adminCodeDepartement, final String payLot, final String matricule, final String corpsCode,
+			final String corpsLibelleCourt, final String gradeCode, final String gradeLibelleCourt,
+			final String affectationCode, final String affectationLibelleCourt, final String dateCertificationPay,
+			final String nom, final String prenom, final String dateNaissance, final String civilite, final String sexe,
+			final String dateMouvementCarriere, final String modaliteServiceCode,
+			final String modaliteServiceLibelleLong) {
 		final DossierDTO dossier = new DossierDTO();
-		dossier.setMinistere(Integer.parseInt(ministere));
+		dossier.setMinistere((ministere != null) ? Integer.parseInt(ministere) : null);
 		dossier.setPayCle(payCle);
-		dossier.setDossierNumero(Integer.parseInt(dossierNumero));
-		dossier.setDiGestionnaire(Integer.parseInt(diGestionnaire));
+		dossier.setDossierNumero((dossierNumero != null) ? Integer.parseInt(dossierNumero) : null);
+		dossier.setDiGestionnaire((diGestionnaire != null) ? Integer.parseInt(diGestionnaire) : null);
 		dossier.setAdminCode(adminCode);
 		dossier.setAdminCodeDepartement(adminCodeDepartement);
 		dossier.setPayLot(payLot);
-		dossier.setRenoiRHMatricule(renoiRHMatricule);
-		dossier.setRenoiRHCorpsCode(renoiRHCorpsCode);
-		dossier.setRenoiRHCorpsLibelleCourt(renoiRHCorpsLibelleCourt);
-		dossier.setRenoiRHGradeCode(renoiRHGradeCode);
-		dossier.setRenoiRHGradeLibelleCourt(renoiRHGradeLibelleCourt);
-		dossier.setRenoiRHAffectationCode(renoiRHAffectationCode);
-		dossier.setRenoiRHAffectationLibelleCourt(renoiRHAffectationLibelleCourt);
-		dossier.setRenoiRHModaliteServiceCode(renoiRHModaliteServiceCode);
-		dossier.setRenoiRHModaliteServiceLibelleLong(renoiRHModaliteServiceLibelleLong);
+		dossier.setRenoiRHMatricule(matricule);
+		dossier.setRenoiRHCorpsCode(corpsCode);
+		dossier.setRenoiRHCorpsLibelleCourt(corpsLibelleCourt);
+		dossier.setRenoiRHGradeCode(gradeCode);
+		dossier.setRenoiRHGradeLibelleCourt(gradeLibelleCourt);
+		dossier.setRenoiRHAffectationCode(affectationCode);
+		dossier.setRenoiRHAffectationLibelleCourt(affectationLibelleCourt);
+		dossier.setRenoiRHModaliteServiceCode(modaliteServiceCode);
+		dossier.setRenoiRHModaliteServiceLibelleLong(modaliteServiceLibelleLong);
 
-		dossier.setRenoiRHDateCertification(DateUtils.parseDateJJMMAAAA(renoiRHDateCertification));
-		dossier.setRenoiRHNom(renoiRHNom);
-		dossier.setRenoiRHPrenom(renoiRHPrenom);
-		dossier.setRenoiRHDateNaissance(DateUtils.parseDateMMAA(renoiRHDateNaissance));
-		dossier.setRenoiRHCivilite((renoiRHCivilite != null) ? Integer.parseInt(renoiRHCivilite) : null);
-		dossier.setRenoiRHSexe((renoiRHSexe != null) ? Integer.parseInt(renoiRHSexe) : null);
+		dossier.setRenoiRHDateCertification(DateUtils.parseDateJJMMAAAA(dateCertificationPay));
+		dossier.setRenoiRHNom(nom);
+		dossier.setRenoiRHPrenom(prenom);
+		dossier.setRenoiRHDateNaissance(DateUtils.parseDateMMAA(dateNaissance));
+		dossier.setRenoiRHCivilite((civilite != null) ? Integer.parseInt(civilite) : null);
+		dossier.setRenoiRHSexe((sexe != null) ? Integer.parseInt(sexe) : null);
 		dossier.getMouvementsCarriere().add(DateUtils.parseDateJJMMAAAA(dateMouvementCarriere));
+		return dossier;
+	}
+
+	public static DossierDTO createDossierDTOFromDGAC(final String ministere, final String dossierNumero,
+			final String matricule, final String corpsCode, final String corpsLibelleCourt, final String gradeCode,
+			final String gradeLibelleCourt, final String affectationCode, final String affectationLibelleCourt,
+			final String nom, final String prenom, final String dateNaissance, final String dateMouvementCarriere,
+			final String nir, final String codeGestionnaire, final String codeTG, final String temoinDossierPrincipal) {
+		final DossierDTO dossier = new DossierDTO();
+		dossier.setMinistere((ministere != null) ? Integer.parseInt(ministere.trim()) : null);
+		dossier.setDossierNumero((dossierNumero != null) ? Integer.parseInt(dossierNumero.trim()) : null);
+		dossier.setNir(nir);
+		dossier.setCodeGestionnaire(codeGestionnaire);
+		dossier.setCodeTG(codeTG);
+		dossier.setTemoinDossierPrincipal(
+				(temoinDossierPrincipal != null) ? Integer.parseInt(temoinDossierPrincipal.trim()) : null);
+		dossier.setRenoiRHMatricule(matricule.trim());
+		dossier.setRenoiRHCorpsCode(corpsCode);
+		dossier.setRenoiRHCorpsLibelleCourt(corpsLibelleCourt);
+		dossier.setRenoiRHGradeCode(gradeCode);
+		dossier.setRenoiRHGradeLibelleCourt(gradeLibelleCourt);
+		dossier.setRenoiRHAffectationCode(affectationCode);
+		dossier.setRenoiRHAffectationLibelleCourt(affectationLibelleCourt);
+
+		dossier.setRenoiRHNom(nom);
+		dossier.setRenoiRHPrenom(prenom);
+		dossier.setRenoiRHDateNaissance(
+				(dateNaissance != null) ? DateUtils.parseDGACDateAAAAMMJJhhmmss(dateNaissance.trim()) : null);
+		dossier.getMouvementsCarriere().add((dateMouvementCarriere != null)
+				? DateUtils.parseDGACDateAAAAMMJJhhmmss(dateMouvementCarriere.trim()) : null);
 		return dossier;
 	}
 }

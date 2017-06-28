@@ -20,9 +20,11 @@ import com.sirh.mqd.supplier.api.FunctionTwoParameters;
  *
  * @author alexandre
  */
-public final class AnomalieDetectionUtils {
+public final class AnomalieDetectionMSOUtils {
 
 	private static final String CSV_FILE_PAY_SEPARATOR = "\",\"";
+
+	private static final String CSV_FILE_MSO_SEPARATOR = "\",\"";
 
 	private static final Pattern DATA_NON_ALPHABETIC_PATTERN = Pattern.compile("[^a-zA-Z]+");
 	// OU spécifier les caractères à escaper "[[](){},.;-'!?<>%]"
@@ -98,9 +100,9 @@ public final class AnomalieDetectionUtils {
 	 * @throws InstantiationException
 	 *             si tentative d'appel de ce constructeur.
 	 */
-	public AnomalieDetectionUtils() throws InstantiationException {
+	public AnomalieDetectionMSOUtils() throws InstantiationException {
 		throw new InstantiationException(
-				"Création non autorisée d'une instance de : " + AnomalieDetectionUtils.class.getName());
+				"Création non autorisée d'une instance de : " + AnomalieDetectionMSOUtils.class.getName());
 	}
 
 	/**
@@ -144,6 +146,23 @@ public final class AnomalieDetectionUtils {
 	 */
 	public static String[] splitPAYData(final String line) {
 		final String[] lineArray = line.split(CSV_FILE_PAY_SEPARATOR);
+		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
+		final int lastIndex = lineArray.length - 1;
+		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
+		return lineArray;
+	}
+
+	/**
+	 * Méthode permettant de diviser une chaîne de caractères issue d'un fichier
+	 * MSO dont les données sont séparées par des virgules et dont les données
+	 * sont entourées de guillements
+	 *
+	 * @param line
+	 *            la ligne à découper
+	 * @return {@link Array} tableau des données
+	 */
+	public static String[] splitMSOData(final String line) {
+		final String[] lineArray = line.split(CSV_FILE_MSO_SEPARATOR);
 		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
 		final int lastIndex = lineArray.length - 1;
 		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);

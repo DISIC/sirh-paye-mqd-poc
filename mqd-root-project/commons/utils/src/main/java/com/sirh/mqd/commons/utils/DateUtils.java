@@ -100,6 +100,11 @@ public final class DateUtils {
 	private static final String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 	/**
+	 * Format de date "aaaa-mm-jj-hh.mm.ss"
+	 */
+	private static final String DATE_FORMAT_DGAC_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd-HH.mm.ss";
+
+	/**
 	 * Format d'entrée pour un horaire "hh:mm"
 	 */
 	public static final String INPUT_FORMAT = "HH:mm";
@@ -231,6 +236,18 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Transformation d'un objet Date au format "aaaa-mm-jj-hh.mm.ss"
+	 *
+	 * @param date
+	 *            la date à parser
+	 *
+	 * @return la date au format aaaa-mm-jj-hh.mm.ss
+	 */
+	public static String formateDGACDateAAAAMMJJhhmmss(final Date date) {
+		return formateDate(date, DATE_FORMAT_DGAC_YYYY_MM_DD_HH_MM_SS);
+	}
+
+	/**
 	 * Transformation d'un objet Date au format "aaaa-mm-jj hh:mm:ss.sss"
 	 *
 	 * @param date
@@ -307,6 +324,18 @@ public final class DateUtils {
 	 */
 	public static Date parseDateJJMMAAAAhhmmssSSS(final String date) {
 		return parseDate(date, DATE_FORMAT_DD_MM_YYYY_HH_MM_SS_SSS);
+	}
+
+	/**
+	 * Création d'un objet Date à partir du format "aaaa-mm-jj-hh.mm.ss"
+	 *
+	 * @param date
+	 *            date sous forme de chaîne de caractères
+	 *
+	 * @return date en objet {@link Date}
+	 */
+	public static Date parseDGACDateAAAAMMJJhhmmss(final String date) {
+		return parseDate(date, DATE_FORMAT_DGAC_YYYY_MM_DD_HH_MM_SS);
 	}
 
 	/**

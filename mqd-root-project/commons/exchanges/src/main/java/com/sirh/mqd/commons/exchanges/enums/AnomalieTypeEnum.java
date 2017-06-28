@@ -17,6 +17,8 @@ public enum AnomalieTypeEnum {
 
 	PRENOM("Prénom", AnomaliePerimetreEnum.ETAT_CIVIL),
 
+	INSEE("INSEE", AnomaliePerimetreEnum.ETAT_CIVIL),
+
 	DATE_NAISSANCE("Date de naissance", AnomaliePerimetreEnum.ETAT_CIVIL),
 
 	CIVILITE("Civilité", AnomaliePerimetreEnum.ETAT_CIVIL),
@@ -27,6 +29,8 @@ public enum AnomalieTypeEnum {
 
 	ABSENCE("Absence", AnomaliePerimetreEnum.ABSENCE),
 
+	VOIE("Voie", AnomaliePerimetreEnum.ADRESSE),
+
 	NUMERO_VOIE("Numéro de voie", AnomaliePerimetreEnum.ADRESSE),
 
 	COMPLEMENT_NUMERO_VOIE("Bis/Ter", AnomaliePerimetreEnum.ADRESSE),
@@ -36,6 +40,8 @@ public enum AnomalieTypeEnum {
 	NOM_VOIE("Nom de voie", AnomaliePerimetreEnum.ADRESSE),
 
 	CODE_POSTAL("Code postal", AnomaliePerimetreEnum.ADRESSE),
+
+	CODE_PAYS("Code pays", AnomaliePerimetreEnum.ADRESSE),
 
 	COMMUNE("Commune", AnomaliePerimetreEnum.ADRESSE),
 
@@ -57,7 +63,9 @@ public enum AnomalieTypeEnum {
 
 	GRADE("Grade", AnomaliePerimetreEnum.CARRIERE),
 
-	NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE);
+	NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE),
+
+	PENSION("Pension", AnomaliePerimetreEnum.PENSION);
 
 	public static final List<AnomalieTypeEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 

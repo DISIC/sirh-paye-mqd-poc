@@ -12,19 +12,27 @@ import java.util.stream.Collectors;
  */
 public class DossierDTO {
 
-	private int ministere;
+	private Integer ministere;
 
 	private String payCle;
 
-	private int dossierNumero;
+	private Integer dossierNumero;
 
-	private int diGestionnaire;
+	private Integer diGestionnaire;
+
+	private String codeGestionnaire;
 
 	private String adminCode;
 
 	private String adminCodeDepartement;
 
 	private String payLot;
+
+	private String nir;
+
+	private String codeTG;
+
+	private Integer temoinDossierPrincipal;
 
 	private String renoiRHMatricule;
 
@@ -67,11 +75,11 @@ public class DossierDTO {
 		this.mouvementsCarriere = new ArrayList<Date>();
 	}
 
-	public int getMinistere() {
+	public Integer getMinistere() {
 		return ministere;
 	}
 
-	public void setMinistere(final int ministere) {
+	public void setMinistere(final Integer ministere) {
 		this.ministere = ministere;
 	}
 
@@ -83,19 +91,19 @@ public class DossierDTO {
 		this.payCle = payCle;
 	}
 
-	public int getDossierNumero() {
+	public Integer getDossierNumero() {
 		return dossierNumero;
 	}
 
-	public void setDossierNumero(final int dossierNumero) {
+	public void setDossierNumero(final Integer dossierNumero) {
 		this.dossierNumero = dossierNumero;
 	}
 
-	public int getDiGestionnaire() {
+	public Integer getDiGestionnaire() {
 		return diGestionnaire;
 	}
 
-	public void setDiGestionnaire(final int diGestionnaire) {
+	public void setDiGestionnaire(final Integer diGestionnaire) {
 		this.diGestionnaire = diGestionnaire;
 	}
 
@@ -265,5 +273,37 @@ public class DossierDTO {
 
 	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
 		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
+	}
+
+	public String getNir() {
+		return nir;
+	}
+
+	public void setNir(final String nir) {
+		this.nir = nir;
+	}
+
+	public String getCodeGestionnaire() {
+		return codeGestionnaire;
+	}
+
+	public void setCodeGestionnaire(final String codeGestionnaire) {
+		this.codeGestionnaire = codeGestionnaire;
+	}
+
+	public String getCodeTG() {
+		return codeTG;
+	}
+
+	public void setCodeTG(final String codeTG) {
+		this.codeTG = codeTG;
+	}
+
+	public Integer getTemoinDossierPrincipal() {
+		return temoinDossierPrincipal;
+	}
+
+	public void setTemoinDossierPrincipal(final Integer temoinDossierPrincipal) {
+		this.temoinDossierPrincipal = temoinDossierPrincipal;
 	}
 }

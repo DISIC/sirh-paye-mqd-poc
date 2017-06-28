@@ -29,7 +29,7 @@ public final class ComparaisonConstantes {
 
 	public static final String COLONNE_DONNEES_PAY = "pay";
 
-	public static final String COLONNE_DONNEES_GA = "renoirh";
+	public static final String COLONNE_DONNEES_GA = "ga";
 
 	public static final String COLONNE_ANOMALIE_RESPONSABLE_LOGIN = "correction_responsable_login";
 

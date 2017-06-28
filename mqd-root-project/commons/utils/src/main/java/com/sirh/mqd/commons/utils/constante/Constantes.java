@@ -150,6 +150,11 @@ public class Constantes {
 	public static final String END_REGEX = "$";
 
 	/**
+	 * Database Id default value
+	 */
+	public static final String MONGO_COLLECTION_ID_DEFAULT_VALUE = "ANY";
+
+	/**
 	 * Regex de format des heures (hh:mm) <br>
 	 *
 	 * pour les heures : <br>

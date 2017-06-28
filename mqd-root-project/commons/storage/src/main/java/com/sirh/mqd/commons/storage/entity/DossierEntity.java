@@ -30,16 +30,16 @@ public class DossierEntity {
 	private String id;
 
 	@Field(DossierConstantes.COLONNE_MINISTERE)
-	private int ministere;
+	private Integer ministere;
 
 	@Field(DossierConstantes.COLONNE_PAY_CLE)
 	private String payCle;
 
 	@Field(DossierConstantes.COLONNE_DOSSIER_NUMERO)
-	private int dossierNumero;
+	private Integer dossierNumero;
 
 	@Field(DossierConstantes.COLONNE_DI_GESTIONNAIRE)
-	private int diGestionnaire;
+	private Integer diGestionnaire;
 
 	@Field(DossierConstantes.COLONNE_ADMIN_CODE)
 	private String adminCode;
@@ -119,11 +119,11 @@ public class DossierEntity {
 		this.id = id;
 	}
 
-	public int getMinistere() {
+	public Integer getMinistere() {
 		return ministere;
 	}
 
-	public void setMinistere(final int ministere) {
+	public void setMinistere(final Integer ministere) {
 		this.ministere = ministere;
 	}
 
@@ -135,19 +135,19 @@ public class DossierEntity {
 		this.payCle = payCle;
 	}
 
-	public int getDossierNumero() {
+	public Integer getDossierNumero() {
 		return dossierNumero;
 	}
 
-	public void setDossierNumero(final int dossierNumero) {
+	public void setDossierNumero(final Integer dossierNumero) {
 		this.dossierNumero = dossierNumero;
 	}
 
-	public int getDiGestionnaire() {
+	public Integer getDiGestionnaire() {
 		return diGestionnaire;
 	}
 
-	public void setDiGestionnaire(final int diGestionnaire) {
+	public void setDiGestionnaire(final Integer diGestionnaire) {
 		this.diGestionnaire = diGestionnaire;
 	}
 

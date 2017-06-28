@@ -9,8 +9,6 @@ public enum InteractionSirhEnum {
 
 	PAY("pay"),
 
-	GA("renoirh"),
-
 	MSO("mso"),
 
 	DGAC("dgac");
