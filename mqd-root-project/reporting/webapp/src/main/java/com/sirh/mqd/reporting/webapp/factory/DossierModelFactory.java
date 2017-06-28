@@ -23,54 +23,15 @@ public final class DossierModelFactory {
 
 	public static DossierModel createDossier(final DossierDTO dossierDTO) {
 		final DossierModel dossierModel = new DossierModel();
-		dossierModel.setMinistere(dossierDTO.getMinistere());
-		dossierModel.setDossierNumero(dossierDTO.getDossierNumero());
-		dossierModel.setDiGestionnaire(dossierDTO.getDiGestionnaire());
-		dossierModel.setAdminCode(dossierDTO.getAdminCode());
-		dossierModel.setAdminCodeDepartement(dossierDTO.getAdminCodeDepartement());
 		dossierModel.setPayLot(dossierDTO.getPayLot());
+		dossierModel.setNir(dossierDTO.getNir());
 		dossierModel.setRenoiRHMatricule(dossierDTO.getRenoiRHMatricule());
 		dossierModel.setRenoiRHCorpsCode(dossierDTO.getRenoiRHCorpsCode());
 		dossierModel.setRenoiRHCorpsLibelleCourt(dossierDTO.getRenoiRHCorpsLibelleCourt());
-		dossierModel.setRenoiRHGradeCode(dossierDTO.getRenoiRHGradeCode());
-		dossierModel.setRenoiRHGradeLibelleCourt(dossierDTO.getRenoiRHGradeLibelleCourt());
 		dossierModel.setRenoiRHAffectationCode(dossierDTO.getRenoiRHAffectationCode());
 		dossierModel.setRenoiRHAffectationLibelleCourt(dossierDTO.getRenoiRHAffectationLibelleCourt());
-		dossierModel.setRenoiRHModaliteServiceCode(dossierDTO.getRenoiRHModaliteServiceCode());
-		dossierModel.setRenoiRHModaliteServiceLibelleLong(dossierDTO.getRenoiRHModaliteServiceLibelleLong());
-		dossierModel.setRenoiRHDateCertification(DateUtils.clonerDate(dossierDTO.getRenoiRHDateCertification()));
-		if (dossierDTO.getRenoiRHCivilite() != null) {
-			switch (dossierDTO.getRenoiRHCivilite()) {
-			case 1:
-				dossierModel.setRenoiRHCivilite("Mr");
-				break;
-			case 2:
-				dossierModel.setRenoiRHCivilite("Mme");
-				break;
-			default:
-				dossierModel.setRenoiRHCivilite("?");
-				break;
-			}
-		} else {
-			dossierModel.setRenoiRHCivilite("N/C");
-		}
 		dossierModel.setRenoiRHNom(dossierDTO.getRenoiRHNom());
 		dossierModel.setRenoiRHPrenom(dossierDTO.getRenoiRHPrenom());
-		if (dossierDTO.getRenoiRHSexe() != null) {
-			switch (dossierDTO.getRenoiRHSexe()) {
-			case 1:
-				dossierModel.setRenoiRHSexe("masculin");
-				break;
-			case 2:
-				dossierModel.setRenoiRHSexe("féminin");
-				break;
-			default:
-				dossierModel.setRenoiRHSexe("?");
-				break;
-			}
-		} else {
-			dossierModel.setRenoiRHSexe("N/C");
-		}
 		dossierModel.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierDTO.getRenoiRHDateNaissance()));
 		dossierModel.setRenoiRHDateNaissanceAsString(DateUtils.formateDateMMAA(dossierDTO.getRenoiRHDateNaissance()));
 		dossierModel.setNbAlertes(dossierDTO.getNbAlertes());

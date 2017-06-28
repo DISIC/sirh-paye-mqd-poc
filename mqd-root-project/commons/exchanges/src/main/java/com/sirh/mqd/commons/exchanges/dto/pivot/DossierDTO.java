@@ -30,7 +30,7 @@ public class DossierDTO {
 
 	private String nir;
 
-	private String codeTG;
+	private String tgCode;
 
 	private Integer temoinDossierPrincipal;
 
@@ -291,12 +291,12 @@ public class DossierDTO {
 		this.codeGestionnaire = codeGestionnaire;
 	}
 
-	public String getCodeTG() {
-		return codeTG;
+	public String getTgCode() {
+		return tgCode;
 	}
 
-	public void setCodeTG(final String codeTG) {
-		this.codeTG = codeTG;
+	public void setTgCode(final String tgCode) {
+		this.tgCode = tgCode;
 	}
 
 	public Integer getTemoinDossierPrincipal() {

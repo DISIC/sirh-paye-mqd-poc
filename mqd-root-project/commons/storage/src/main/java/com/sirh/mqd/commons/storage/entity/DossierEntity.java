@@ -101,6 +101,15 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_DATES_MOUVEMENTS_CARRIERE)
 	private List<Date> mouvementsCarriere; // Format : "dd/MM/yyyy"
 
+	@Field(DossierConstantes.COLONNE_NIR)
+	private String nir;
+
+	@Field(DossierConstantes.COLONNE_TG_CODE)
+	private String tgCode;
+
+	@Field(DossierConstantes.COLONNE_TEMOIN_DOSSIER_PRINCIPAL)
+	private Integer temoinDossierPrincipal;
+
 	@Transient
 	private int nbAlertes;
 
@@ -317,5 +326,29 @@ public class DossierEntity {
 
 	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
 		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
+	}
+
+	public String getNir() {
+		return nir;
+	}
+
+	public void setNir(final String nir) {
+		this.nir = nir;
+	}
+
+	public String getTgCode() {
+		return tgCode;
+	}
+
+	public void setTgCode(final String tgCode) {
+		this.tgCode = tgCode;
+	}
+
+	public Integer getTemoinDossierPrincipal() {
+		return temoinDossierPrincipal;
+	}
+
+	public void setTemoinDossierPrincipal(final Integer temoinDossierPrincipal) {
+		this.temoinDossierPrincipal = temoinDossierPrincipal;
 	}
 }

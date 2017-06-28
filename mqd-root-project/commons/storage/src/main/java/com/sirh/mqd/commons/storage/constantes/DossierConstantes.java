@@ -57,6 +57,12 @@ public final class DossierConstantes {
 
 	public static final String COLONNE_MODALITE_SERVICE_LIBELLE_LONG = "modalite_service_libelle_long";
 
+	public static final String COLONNE_NIR = "nir";
+
+	public static final String COLONNE_TG_CODE = "tg_code";
+
+	public static final String COLONNE_TEMOIN_DOSSIER_PRINCIPAL = "dossier_principal";
+
 	/**
 	 * Non-constructeur
 	 *

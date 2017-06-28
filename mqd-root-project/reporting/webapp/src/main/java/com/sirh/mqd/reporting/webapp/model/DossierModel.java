@@ -15,17 +15,9 @@ public class DossierModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 4531819019987861366L;
 
-	private int ministere;
-
-	private int dossierNumero;
-
-	private int diGestionnaire;
-
-	private String adminCode;
-
-	private String adminCodeDepartement;
-
 	private String payLot;
+
+	private String nir;
 
 	private String renoiRHMatricule;
 
@@ -33,27 +25,13 @@ public class DossierModel implements Serializable {
 
 	private String renoiRHCorpsLibelleCourt;
 
-	private String renoiRHGradeCode;
-
-	private String renoiRHGradeLibelleCourt;
-
 	private String renoiRHAffectationCode;
 
 	private String renoiRHAffectationLibelleCourt;
 
-	private String renoiRHModaliteServiceCode;
-
-	private String renoiRHModaliteServiceLibelleLong;
-
-	private Date renoiRHDateCertification; // Format en entrée : "dd/MM/yyyy"
-
-	private String renoiRHCivilite;
-
 	private String renoiRHNom;
 
 	private String renoiRHPrenom;
-
-	private String renoiRHSexe;
 
 	private Date renoiRHDateNaissance; // Format en entrée : "MM/yy"
 
@@ -65,46 +43,6 @@ public class DossierModel implements Serializable {
 
 	public DossierModel() {
 		super();
-	}
-
-	public int getMinistere() {
-		return ministere;
-	}
-
-	public void setMinistere(final int ministere) {
-		this.ministere = ministere;
-	}
-
-	public int getDossierNumero() {
-		return dossierNumero;
-	}
-
-	public void setDossierNumero(final int dossierNumero) {
-		this.dossierNumero = dossierNumero;
-	}
-
-	public int getDiGestionnaire() {
-		return diGestionnaire;
-	}
-
-	public void setDiGestionnaire(final int diGestionnaire) {
-		this.diGestionnaire = diGestionnaire;
-	}
-
-	public String getAdminCode() {
-		return adminCode;
-	}
-
-	public void setAdminCode(final String adminCode) {
-		this.adminCode = adminCode;
-	}
-
-	public String getAdminCodeDepartement() {
-		return adminCodeDepartement;
-	}
-
-	public void setAdminCodeDepartement(final String adminCodeDepartement) {
-		this.adminCodeDepartement = adminCodeDepartement;
 	}
 
 	public String getPayLot() {
@@ -139,22 +77,6 @@ public class DossierModel implements Serializable {
 		this.renoiRHCorpsLibelleCourt = renoiRHCorpsLibelleCourt;
 	}
 
-	public String getRenoiRHGradeCode() {
-		return renoiRHGradeCode;
-	}
-
-	public void setRenoiRHGradeCode(final String renoiRHGradeCode) {
-		this.renoiRHGradeCode = renoiRHGradeCode;
-	}
-
-	public String getRenoiRHGradeLibelleCourt() {
-		return renoiRHGradeLibelleCourt;
-	}
-
-	public void setRenoiRHGradeLibelleCourt(final String renoiRHGradeLibelleCourt) {
-		this.renoiRHGradeLibelleCourt = renoiRHGradeLibelleCourt;
-	}
-
 	public String getRenoiRHAffectationCode() {
 		return renoiRHAffectationCode;
 	}
@@ -171,22 +93,6 @@ public class DossierModel implements Serializable {
 		this.renoiRHAffectationLibelleCourt = renoiRHAffectationLibelleCourt;
 	}
 
-	public Date getRenoiRHDateCertification() {
-		return renoiRHDateCertification;
-	}
-
-	public void setRenoiRHDateCertification(final Date renoiRHDateCertification) {
-		this.renoiRHDateCertification = renoiRHDateCertification;
-	}
-
-	public String getRenoiRHCivilite() {
-		return renoiRHCivilite;
-	}
-
-	public void setRenoiRHCivilite(final String renoiRHCivilite) {
-		this.renoiRHCivilite = renoiRHCivilite;
-	}
-
 	public String getRenoiRHNom() {
 		return renoiRHNom;
 	}
@@ -201,14 +107,6 @@ public class DossierModel implements Serializable {
 
 	public void setRenoiRHPrenom(final String renoiRHPrenom) {
 		this.renoiRHPrenom = renoiRHPrenom;
-	}
-
-	public String getRenoiRHSexe() {
-		return renoiRHSexe;
-	}
-
-	public void setRenoiRHSexe(final String renoiRHSexe) {
-		this.renoiRHSexe = renoiRHSexe;
 	}
 
 	public Date getRenoiRHDateNaissance() {
@@ -243,19 +141,11 @@ public class DossierModel implements Serializable {
 		this.renoiRHDateNaissanceAsString = renoiRHDateNaissanceAsString;
 	}
 
-	public String getRenoiRHModaliteServiceCode() {
-		return renoiRHModaliteServiceCode;
+	public String getNir() {
+		return nir;
 	}
 
-	public void setRenoiRHModaliteServiceCode(final String renoiRHModaliteServiceCode) {
-		this.renoiRHModaliteServiceCode = renoiRHModaliteServiceCode;
-	}
-
-	public String getRenoiRHModaliteServiceLibelleLong() {
-		return renoiRHModaliteServiceLibelleLong;
-	}
-
-	public void setRenoiRHModaliteServiceLibelleLong(final String renoiRHModaliteServiceLibelleLong) {
-		this.renoiRHModaliteServiceLibelleLong = renoiRHModaliteServiceLibelleLong;
+	public void setNir(final String nir) {
+		this.nir = nir;
 	}
 }

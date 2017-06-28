@@ -51,6 +51,9 @@ public class DossierEntityFactory {
 			dossier.setMouvementsCarriere(entity.getMouvementsCarriere());
 			dossier.setNbAlertes(entity.getNbAlertes());
 			dossier.setNbAnomalies(entity.getNbAnomalies());
+			dossier.setNir(entity.getNir());
+			dossier.setTgCode(entity.getTgCode());
+			dossier.setTemoinDossierPrincipal(entity.getTemoinDossierPrincipal());
 		}
 		return dossier;
 	}
@@ -84,6 +87,9 @@ public class DossierEntityFactory {
 			entity.setMouvementsCarriere(dossier.getMouvementsCarriere());
 			entity.setNbAlertes(dossier.getNbAlertes());
 			entity.setNbAnomalies(dossier.getNbAnomalies());
+			entity.setNir(dossier.getNir());
+			entity.setTgCode(dossier.getTgCode());
+			entity.setTemoinDossierPrincipal(dossier.getTemoinDossierPrincipal());
 		}
 		return entity;
 	}
