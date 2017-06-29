@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang.LocaleUtils;
+import org.apache.commons.lang3.LocaleUtils;
 
 import com.sirh.mqd.reporting.api.resources.ILabelSourceBundle;
 

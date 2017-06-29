@@ -3,7 +3,7 @@ package com.sirh.mqd.reporting.webapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 import com.sirh.mqd.commons.utils.DateUtils;
 
