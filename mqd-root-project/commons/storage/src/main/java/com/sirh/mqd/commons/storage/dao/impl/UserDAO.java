@@ -16,7 +16,7 @@ import com.sirh.mqd.commons.storage.dao.IUserDAO;
 import com.sirh.mqd.commons.storage.entity.UserEntity;
 
 /**
- * Implémentation du DAO permettant l'accès à la table Commentaire
+ * Implémentation du DAO permettant l'accès à la table Utilisateurs
  *
  * @author alexandre
  */
@@ -43,7 +43,6 @@ public class UserDAO implements IUserDAO {
 		if (user != null) {
 			mongoTemplate.save(user);
 		}
-
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.sirh.mqd.commons.storage.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -32,7 +33,9 @@ public class CommentaireDAO implements ICommentaireDAO {
 		List<CommentaireEntity> listeCommentaires = new ArrayList<CommentaireEntity>();
 		if (payLot != null && renoiRHMatricule != null) {
 			final Query query = new Query();
-			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+			if (StringUtils.isNotBlank(payLot)) {
+				query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+			}
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 			listeCommentaires = mongoTemplate.find(query, CommentaireEntity.class);
 		}

@@ -27,8 +27,7 @@ import com.sirh.mqd.commons.storage.entity.DossierEntity;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 
 /**
- * Implémentation du DAO permettant l'accès à la table de synchronisation des
- * referentiels
+ * Implémentation du DAO permettant l'accès à la table des Dossiers
  *
  * @author alexandre
  */
@@ -42,7 +41,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public DossierEntity selectDossier(final String payLot, final String renoiRHMatricule) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		return mongoTemplate.findOne(query, DossierEntity.class);
 	}
@@ -50,7 +51,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public int countAnomaliesDossier(final String payLot, final String renoiRHMatricule) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
@@ -76,9 +79,12 @@ public class DossierDAO implements IDossierDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void insertDossier(final DossierEntity dossier) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(dossier.getPayLot()));
+		if (StringUtils.isNotBlank(dossier.getPayLot())) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(dossier.getPayLot()));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(dossier.getRenoiRHMatricule()));
 		if (mongoTemplate.exists(query, DossierEntity.class)) {
 			final ObjectMapper mapper = new ObjectMapper();
@@ -103,7 +109,9 @@ public class DossierDAO implements IDossierDAO {
 	public ComparaisonEntity selectComparaison(final String payLot, final String renoiRHMatricule,
 			final AnomalieTypeEnum typeDonnee) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(typeDonnee));
 		return mongoTemplate.findOne(query, ComparaisonEntity.class);
@@ -117,7 +125,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public List<ComparaisonEntity> selectAnomalies(final String payLot, final String renoiRHMatricule) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
@@ -128,7 +138,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public List<ComparaisonEntity> selectComparaisons(final String payLot, final String renoiRHMatricule) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		return mongoTemplate.find(query, ComparaisonEntity.class);
 	}
@@ -136,7 +148,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public int countAlertesDossier(final String payLot, final String renoiRHMatricule) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
 		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
 	}
@@ -149,7 +163,9 @@ public class DossierDAO implements IDossierDAO {
 	@Override
 	public int countAlerte(final AlerteEntity entity) {
 		final Query query = new Query();
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+		if (StringUtils.isNotBlank(entity.getPayLot())) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getRenoiRHMatricule()));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
 		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
@@ -164,7 +180,9 @@ public class DossierDAO implements IDossierDAO {
 	public void updateAnomalie(final ComparaisonEntity entity) {
 		if (entity != null && entity.getAnomalie() != null) {
 			final Query query = new Query();
-			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+			if (StringUtils.isNotBlank(entity.getPayLot())) {
+				query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+			}
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getRenoiRHMatricule()));
 			query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
 			final Update update = new Update();
