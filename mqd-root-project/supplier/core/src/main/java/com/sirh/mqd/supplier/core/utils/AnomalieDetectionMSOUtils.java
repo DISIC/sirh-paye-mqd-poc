@@ -32,7 +32,7 @@ public final class AnomalieDetectionMSOUtils {
 	private static final Pattern DATA_BETWEEN_BRACKETS_PATTERN = Pattern.compile("\\(.*?\\)");
 
 	private static final Function<String, String> FUNCTION_REPLACE_SPECIAL_CHAR = (data) -> data != null
-			? DATA_NON_ALPHABETIC_PATTERN.matcher(data).replaceAll(Constantes.SPACE).trim() : null;
+			? StringUtils.normalizeSpace(DATA_NON_ALPHABETIC_PATTERN.matcher(data).replaceAll(Constantes.SPACE)) : null;
 
 	private static final Function<String, String> FUNCTION_FORMAT_DATA_BETWEEN_BRACKETS = (data) -> {
 		String payGrade = data;

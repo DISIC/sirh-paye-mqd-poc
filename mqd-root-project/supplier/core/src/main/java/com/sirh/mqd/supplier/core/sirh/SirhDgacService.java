@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -145,9 +146,12 @@ public class SirhDgacService {
 						// Ministère : 9
 						// Code gestionnaire : 10
 						// Temoin dossier principal : 11
-						dossiers.add(DossierDTOFactory.createDossierDTOFromDGAC(lineArray[9], lineArray[7],
-								lineArray[0], null, null, null, null, null, null, lineArray[3], lineArray[4], null,
-								null, lineArray[1], lineArray[10], lineArray[8], lineArray[11]));
+						if (StringUtils.isNotBlank(lineArray[11])
+								&& String.valueOf(1) == StringUtils.normalizeSpace(lineArray[11])) {
+							dossiers.add(DossierDTOFactory.createDossierDTOFromDGAC(lineArray[9], lineArray[7],
+									lineArray[0], null, null, null, null, null, null, lineArray[3], lineArray[4], null,
+									null, lineArray[1], lineArray[10], lineArray[8], lineArray[11]));
+						}
 					}
 				}
 				i++;

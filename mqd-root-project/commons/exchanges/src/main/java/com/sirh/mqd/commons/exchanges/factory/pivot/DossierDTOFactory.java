@@ -1,5 +1,7 @@
 package com.sirh.mqd.commons.exchanges.factory.pivot;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.utils.DateUtils;
 
@@ -63,14 +65,15 @@ public final class DossierDTOFactory {
 			final String nom, final String prenom, final String dateNaissance, final String dateMouvementCarriere,
 			final String nir, final String codeGestionnaire, final String codeTG, final String temoinDossierPrincipal) {
 		final DossierDTO dossier = new DossierDTO();
-		dossier.setMinistere((ministere != null) ? Integer.parseInt(ministere.trim()) : null);
-		dossier.setDossierNumero((dossierNumero != null) ? Integer.parseInt(dossierNumero.trim()) : null);
+		dossier.setMinistere((ministere != null) ? Integer.parseInt(StringUtils.normalizeSpace(ministere)) : null);
+		dossier.setDossierNumero(
+				(dossierNumero != null) ? Integer.parseInt(StringUtils.normalizeSpace(dossierNumero)) : null);
 		dossier.setNir(nir);
 		dossier.setCodeGestionnaire(codeGestionnaire);
 		dossier.setTgCode(codeTG);
-		dossier.setTemoinDossierPrincipal(
-				(temoinDossierPrincipal != null) ? Integer.parseInt(temoinDossierPrincipal.trim()) : null);
-		dossier.setRenoiRHMatricule(matricule.trim());
+		dossier.setTemoinDossierPrincipal((temoinDossierPrincipal != null)
+				? Integer.parseInt(StringUtils.normalizeSpace(temoinDossierPrincipal)) : null);
+		dossier.setRenoiRHMatricule(StringUtils.normalizeSpace(matricule));
 		dossier.setRenoiRHCorpsCode(corpsCode);
 		dossier.setRenoiRHCorpsLibelleCourt(corpsLibelleCourt);
 		dossier.setRenoiRHGradeCode(gradeCode);
@@ -80,10 +83,10 @@ public final class DossierDTOFactory {
 
 		dossier.setRenoiRHNom(nom);
 		dossier.setRenoiRHPrenom(prenom);
-		dossier.setRenoiRHDateNaissance(
-				(dateNaissance != null) ? DateUtils.parseDGACDateAAAAMMJJhhmmss(dateNaissance.trim()) : null);
+		dossier.setRenoiRHDateNaissance((dateNaissance != null)
+				? DateUtils.parseDGACDateAAAAMMJJhhmmss(StringUtils.normalizeSpace(dateNaissance)) : null);
 		dossier.getMouvementsCarriere().add((dateMouvementCarriere != null)
-				? DateUtils.parseDGACDateAAAAMMJJhhmmss(dateMouvementCarriere.trim()) : null);
+				? DateUtils.parseDGACDateAAAAMMJJhhmmss(StringUtils.normalizeSpace(dateMouvementCarriere)) : null);
 		return dossier;
 	}
 }

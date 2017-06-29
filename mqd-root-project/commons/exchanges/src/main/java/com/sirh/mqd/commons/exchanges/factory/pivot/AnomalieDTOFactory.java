@@ -1,5 +1,7 @@
 package com.sirh.mqd.commons.exchanges.factory.pivot;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
@@ -36,8 +38,8 @@ public final class AnomalieDTOFactory {
 		}
 		final ComparaisonDTO comparaison = new ComparaisonDTO();
 		comparaison.setType(typeDonnee);
-		comparaison.setPayLot((payLot != null) ? payLot.trim() : null);
-		comparaison.setRenoiRHMatricule((matricule != null) ? matricule.trim() : null);
+		comparaison.setPayLot((payLot != null) ? StringUtils.normalizeSpace(payLot) : null);
+		comparaison.setRenoiRHMatricule((matricule != null) ? StringUtils.normalizeSpace(matricule) : null);
 		comparaison.setDonnees(donnees);
 		return comparaison;
 	}

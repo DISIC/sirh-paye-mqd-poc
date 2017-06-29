@@ -23,7 +23,8 @@ public final class AnomalieDetectionDGACUtils {
 	private static final String CSV_FILE_DGAC_SEPARATOR = ";";
 
 	private static final FunctionTwoParameters<String, String, Boolean> FUNCTION_CASE_SENSITIVE_COMPARISON = (data1,
-			data2) -> data1 != null && data2 != null && !data1.trim().equals(data2.trim());
+			data2) -> data1 != null && data2 != null
+					&& !StringUtils.normalizeSpace(data1).equals(StringUtils.normalizeSpace(data2));
 
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_SENSITIVE_DATA_COMPARISON = (
 			anomalie) -> (FUNCTION_CASE_SENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),

@@ -263,7 +263,7 @@ public class MenuBean implements Serializable {
 	 */
 	private boolean isAccessGranted(final String roles) {
 		for (final String role : roles.split(ROLES_SEPARATOR)) {
-			if (this.authorities.contains(role.trim())) {
+			if (this.authorities.contains(StringUtils.normalizeSpace(role))) {
 				return true;
 			}
 		}
