@@ -5,9 +5,60 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+	<h:form>
+	    <p:growl id="msgs" showDetail="true" />
+       	<h:outputLabel value="#{label['dossiers.overview.synthese_table.header.fiche_synthese_agent']}" />
+		<p:panel id="donnees_personnelles" header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}" style="margin-bottom:20px">
+	        
+	        
+	        <h:panelGrid columns="2" cellpadding="5">
+	         	<h:outputLabel value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
 
-	<h:panelGrid columns="1" cellpadding="10">
-		<h:outputText value="Prévu pour le sprint 4" />
-	</h:panelGrid>
+	        </h:panelGrid>
+	        
+	        
+			<!-- <p:dataGrid var="" value="#{SyntheseBean.dossierDTO}" columns="3" layout="grid"
+	        rows="16" paginator="false" id="cars">
+			    <f:facet name="header" value="#{label['dossiers.overview.synthese_table.header.fiche_synthese_agent']}" />
+				
+				<f:facet name="header">
+		            Cars for Sale
+		        </f:facet>
+		 
+		        <p:panel header="#{car.id}" style="text-align:center">
+		            <h:panelGrid columns="1" style="width:100%">
+		                <p:graphicImage name="demo/images/car/#{car.brand}.gif"/> 
+		 
+		                <h:outputText value="#{car.year}" />
+		 
+		                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+		                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+		                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
+		                </p:commandLink>
+		            </h:panelGrid>
+		        </p:panel>
+				
+				
+				<p:panel id="donnees_personnelles" header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}" style="margin-bottom:20px">
+			        <h:panelGrid columns="2" cellpadding="5">
+		         		<h:outputLabel value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
+		       			<h:outputLabel value="#{syntheseBean.commentaire}" />
+		        		
+		
+			        </h:panelGrid>
+			    </p:panel>
+	        </p:dataGrid> -->
+	        
+	        
+	        
+	    </p:panel>	    
+	 
+	    <p:panel id="situation_actuelle" header="#{label['dossiers.overview.synthese_table.header.situaltion_actuelle']}" toggleable="true" toggleOrientation="horizontal">
+	        <h:panelGrid columns="2" cellpadding="10">
+	            
+	        </h:panelGrid>
+	    </p:panel>
+	</h:form>
 
 </ui:composition>

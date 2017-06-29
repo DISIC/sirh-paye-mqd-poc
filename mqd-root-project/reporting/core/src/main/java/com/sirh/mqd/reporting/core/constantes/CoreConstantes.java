@@ -17,6 +17,8 @@ public final class CoreConstantes {
 
 	public static final String CALENDRIER_GESTION_SERVICE = "calendrierGestionService";
 
+	public static final String SYNTHESE_SERVICE = "syntheseService"
+
 	/**
 	 * Non-constructeur
 	 *
