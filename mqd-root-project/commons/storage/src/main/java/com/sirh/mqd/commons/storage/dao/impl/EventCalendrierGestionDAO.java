@@ -1,6 +1,8 @@
 package com.sirh.mqd.commons.storage.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,6 +40,15 @@ public class EventCalendrierGestionDAO implements IEventCalendrierGestionDAO {
 			eventCalendrierGestion = mongoTemplate.findOne(query, EventCalendrierGestionEntity.class);
 		}
 		return eventCalendrierGestion;
+	}
+
+	@Override
+	public List<EventCalendrierGestionEntity> selectEventsCalendrierGestion() {
+		List<EventCalendrierGestionEntity> listeEventsCalendrierGestion = new ArrayList<EventCalendrierGestionEntity>();
+		// Comment on pourrait gérer la cas où la liste est nulle?
+		final Query query = new Query();
+		listeEventsCalendrierGestion = mongoTemplate.find(query, EventCalendrierGestionEntity.class);
+		return listeEventsCalendrierGestion;
 	}
 
 	@Override

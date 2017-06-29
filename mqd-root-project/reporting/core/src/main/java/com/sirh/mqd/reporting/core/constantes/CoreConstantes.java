@@ -15,7 +15,7 @@ public final class CoreConstantes {
 
 	public static final String STATUT_DOSSIER_SERVICE = "statutDossierService";
 
-	public static final String EVENT_CALENDRIER_GESTION = "eventCalendrierGestion";
+	public static final String CALENDRIER_GESTION_SERVICE = "calendrierGestionService";
 
 	/**
 	 * Non-constructeur

@@ -1,7 +1,9 @@
 package com.sirh.mqd.reporting.webapp.factory;
 
+import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.ScheduleEvent;
+
 import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
-import com.sirh.mqd.reporting.webapp.model.EventCalendrierGestionModel;
 
 /**
  * Factory de création du calendrier gestion à manipuler côté IHM.
@@ -20,32 +22,31 @@ public final class EventCalendrierGestionModelFactory {
 				"Création non autorisée d'une instance de : " + EventCalendrierGestionModelFactory.class.getName());
 	}
 
-	public static EventCalendrierGestionModel createEventCalendrierGestionModel(
+	public static DefaultScheduleEvent createEventCalendrierGestionModel(
 			final EventCalendrierGestionDTO eventCalendrierGestionDTO) {
-		final EventCalendrierGestionModel eventCalendrierGestionModel = new EventCalendrierGestionModel();
-		eventCalendrierGestionModel.setEvenement(eventCalendrierGestionDTO.getEvenement());
-		eventCalendrierGestionModel.setType(eventCalendrierGestionDTO.getType());
-		eventCalendrierGestionModel.setDebut(eventCalendrierGestionDTO.getDebut());
-		eventCalendrierGestionModel.setEcheance(eventCalendrierGestionDTO.getEcheance());
-		eventCalendrierGestionModel.setActeurs(eventCalendrierGestionDTO.getActeurs());
-		eventCalendrierGestionModel.setCorps(eventCalendrierGestionDTO.getCorps());
-		eventCalendrierGestionModel.setService(eventCalendrierGestionDTO.getService());
-		eventCalendrierGestionModel.setCouleur(eventCalendrierGestionDTO.getCouleur());
-
-		return eventCalendrierGestionModel;
+		final DefaultScheduleEvent event = new DefaultScheduleEvent();
+		event.setTitle(eventCalendrierGestionDTO.getEvenement());
+		event.setStartDate(eventCalendrierGestionDTO.getDebut());
+		event.setEndDate(eventCalendrierGestionDTO.getEcheance());
+		event.setData(eventCalendrierGestionDTO);
+		return event;
 	}
 
-	public static EventCalendrierGestionDTO createEventCalendrierGestionDTO(
-			final EventCalendrierGestionModel eventCalendrierGestionModel) {
+	public static EventCalendrierGestionDTO createEventCalendrierGestionDTO(final ScheduleEvent event) {
 		final EventCalendrierGestionDTO eventCalendrierGestionDTO = new EventCalendrierGestionDTO();
-		eventCalendrierGestionDTO.setEvenement(eventCalendrierGestionModel.getEvenement());
-		eventCalendrierGestionDTO.setType(eventCalendrierGestionModel.getType());
-		eventCalendrierGestionDTO.setDebut(eventCalendrierGestionModel.getDebut());
-		eventCalendrierGestionDTO.setEcheance(eventCalendrierGestionModel.getEcheance());
-		eventCalendrierGestionDTO.setActeurs(eventCalendrierGestionModel.getActeurs());
-		eventCalendrierGestionDTO.setCorps(eventCalendrierGestionModel.getCorps());
-		eventCalendrierGestionDTO.setService(eventCalendrierGestionModel.getService());
-		eventCalendrierGestionDTO.setCouleur(eventCalendrierGestionModel.getCouleur());
+		eventCalendrierGestionDTO.setEvenement(event.getTitle());
+		// eventCalendrierGestionDTO.setType(((EventCalendrierGestionDTO)
+		// event.getData()).getType());
+		eventCalendrierGestionDTO.setDebut(event.getStartDate());
+		eventCalendrierGestionDTO.setEcheance(event.getEndDate());
+		// eventCalendrierGestionDTO.setActeurs(((EventCalendrierGestionModel)
+		// event.getData()).getActeurs());
+		// eventCalendrierGestionDTO.setCorps(((EventCalendrierGestionModel)
+		// event.getData()).getCorps());
+		// eventCalendrierGestionDTO.setService(((EventCalendrierGestionModel)
+		// event.getData()).getService());
+		// eventCalendrierGestionDTO.setCouleur(((EventCalendrierGestionModel)
+		// event.getData()).getCouleur());
 
 		return eventCalendrierGestionDTO;
 	}

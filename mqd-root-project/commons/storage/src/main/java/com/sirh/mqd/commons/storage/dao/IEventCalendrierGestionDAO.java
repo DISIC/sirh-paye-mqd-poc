@@ -1,6 +1,7 @@
 package com.sirh.mqd.commons.storage.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
 
@@ -16,7 +17,7 @@ import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
 public interface IEventCalendrierGestionDAO {
 
 	/**
-	 * Méthode permettant de récupérer les infos d'un evenement
+	 * Méthode permettant de récupérer les infos d'UN evenement
 	 *
 	 * @param evenement
 	 *            champ contenant le libellé de l'evenement
@@ -27,6 +28,16 @@ public interface IEventCalendrierGestionDAO {
 	 * @return EventCalendrierGestionEntity correspondant à l'évènement
 	 */
 	EventCalendrierGestionEntity selectEventCalendrierGestion(String evenement, Date debut, Date echeance);
+
+	/**
+	 * Méthode permettant de de récupérer les infos de TOUS les evenements
+	 *
+	 * sous forme de liste
+	 *
+	 * @return List<EventCalendrierGestionDTO> correspondant à tous les
+	 *         évènements existants
+	 */
+	List<EventCalendrierGestionEntity> selectEventsCalendrierGestion();
 
 	/**
 	 * Méthode permettant de mettre à jour ou de créer un evenement

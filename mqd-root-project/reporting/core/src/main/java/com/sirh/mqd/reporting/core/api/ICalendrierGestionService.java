@@ -18,4 +18,12 @@ public interface ICalendrierGestionService {
 	 */
 	List<EventCalendrierGestionDTO> listerEventCalendrierGestion();
 
+	/**
+	 * Méthode permettant d'ajouter un evenement au calendrier gestion
+	 *
+	 * @param eventCalendrierGestionDTO
+	 *            evenement à ajouter
+	 */
+	void ajouterEventCalendrierGestion(EventCalendrierGestionDTO eventCalendrierGestionDTO);
+
 }

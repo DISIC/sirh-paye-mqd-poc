@@ -1,7 +1,9 @@
 package com.sirh.mqd.commons.storage.bc;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,6 +44,27 @@ public class EventCalendrierGestionBC {
 				.selectEventCalendrierGestion(evenement, debut, echeance);
 		return Optional.ofNullable(
 				EventCalendrierGestionEntityFactory.createEventCalendrierGestionDTO(eventCalendrierGestionEntity));
+	}
+
+	/**
+	 * Méthode permettant de lister les evenements du calendrier gestion
+	 *
+	 * @return {@link List} correspondant à tous les evenements d'un calendrier
+	 *         gestion présents dans la base de donnée
+	 */
+	public void listerEventCalendrierGestion(final EventCalendrierGestionDTO eventCalendrierGestionDTO) {
+		final EventCalendrierGestionEntity entity = EventCalendrierGestionEntityFactory
+				.createEventCalendrierGestionEntity(eventCalendrierGestionDTO);
+		eventCalendrierGestionDAO.upsertCalendrierGestion(entity);
+	}
+
+	public List<EventCalendrierGestionDTO> listerEventCalendrierGestion() {
+		final List<EventCalendrierGestionEntity> eventCalendrierGestionEntities = this.eventCalendrierGestionDAO
+				.selectEventsCalendrierGestion();
+		return eventCalendrierGestionEntities.stream()
+				.map(eventCalendrierGestionEntity -> EventCalendrierGestionEntityFactory
+						.createEventCalendrierGestionDTO(eventCalendrierGestionEntity))
+				.collect(Collectors.toList());
 	}
 
 	/**
