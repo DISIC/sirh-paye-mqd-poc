@@ -21,4 +21,5 @@
 	<import resource="classpath:mso-context.xml" />
 	<import resource="classpath:dgac-context.xml" />
 	<import resource="classpath:user-context.xml" />
+	<import resource="classpath:calendrier-context.xml" />
 </beans>

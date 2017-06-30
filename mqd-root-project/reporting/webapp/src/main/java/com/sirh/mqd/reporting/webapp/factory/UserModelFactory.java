@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.sirh.mqd.commons.exchanges.dto.security.UserDTO;
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.reporting.webapp.model.UserModel;
 
 /**
@@ -37,6 +38,7 @@ public final class UserModelFactory {
 			final String affectationCode = user.getAffectationCode();
 			final String gestionnaireCode = user.getGestionnaireCode();
 			final String service = user.getService();
+			final InteractionSirhEnum ministere = InteractionSirhEnum.enumOf(user.getMinistere());
 			final Date dateAuthentification = user.getAuthenticationDate();
 			final boolean enabled = user.isEnabled();
 			final boolean accountNonExpired = user.isAccountNonExpired();
@@ -44,7 +46,7 @@ public final class UserModelFactory {
 			final boolean accountNonLocked = user.isAccountNonLocked();
 			final List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getRolesAsStrings());
 			return new UserModel(username, encryptPassword, prenom, nom, payLot, corpsCode, affectationCode,
-					gestionnaireCode, service, dateAuthentification, enabled, accountNonExpired,
+					gestionnaireCode, service, ministere, dateAuthentification, enabled, accountNonExpired,
 					credentialsNonExpired, accountNonLocked, authorities);
 		}
 		return null;

@@ -38,6 +38,11 @@ public final class RoutingConstantes {
 	public static final String SEND_FILE_CHANNEL = "sendFileChannel";
 
 	/**
+	 * Nom du bean calendrierGestionBean
+	 */
+	public static final String CALENDRIER_GESTION_BEAN = "calendrierGestionBean";
+
+	/**
 	 * Non-constructeur
 	 *
 	 * @throws InstantiationException

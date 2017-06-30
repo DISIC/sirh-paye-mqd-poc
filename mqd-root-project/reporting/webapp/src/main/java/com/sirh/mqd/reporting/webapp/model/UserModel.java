@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import com.google.common.base.Joiner;
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 
@@ -36,13 +37,15 @@ public class UserModel extends User {
 
 	private String service;
 
+	private InteractionSirhEnum ministere;
+
 	private Date dateAuthentification;
 
 	public UserModel(final String username, final String password, final String prenom, final String nom,
 			final String payLot, final String corpsCode, final String affectationCode, final String gestionnaireCode,
-			final String service, final Date dateAuthentification, final boolean enabled,
-			final boolean accountNonExpired, final boolean credentialsNonExpired, final boolean accountNonLocked,
-			final Collection<? extends GrantedAuthority> authorities) {
+			final String service, final InteractionSirhEnum ministere, final Date dateAuthentification,
+			final boolean enabled, final boolean accountNonExpired, final boolean credentialsNonExpired,
+			final boolean accountNonLocked, final Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.prenom = prenom;
 		this.nom = nom;
@@ -51,6 +54,7 @@ public class UserModel extends User {
 		this.affectationCode = affectationCode;
 		this.gestionnaireCode = gestionnaireCode;
 		this.service = service;
+		this.ministere = ministere;
 		this.dateAuthentification = DateUtils.clonerDate(dateAuthentification);
 	}
 
@@ -100,6 +104,14 @@ public class UserModel extends User {
 
 	public void setService(final String service) {
 		this.service = service;
+	}
+
+	public InteractionSirhEnum getMinistere() {
+		return ministere;
+	}
+
+	public void setMinistere(final InteractionSirhEnum ministere) {
+		this.ministere = ministere;
 	}
 
 	public Date getDateAuthentification() {

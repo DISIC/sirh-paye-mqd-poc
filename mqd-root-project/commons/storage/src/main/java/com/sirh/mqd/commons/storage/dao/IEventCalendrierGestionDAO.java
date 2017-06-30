@@ -1,8 +1,8 @@
 package com.sirh.mqd.commons.storage.dao;
 
-import java.util.Date;
 import java.util.List;
 
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
 
 /**
@@ -19,25 +19,24 @@ public interface IEventCalendrierGestionDAO {
 	/**
 	 * Méthode permettant de récupérer les infos d'UN evenement
 	 *
-	 * @param evenement
-	 *            champ contenant le libellé de l'evenement
-	 * @param debut
-	 *            date de début de l'évènement
-	 * @param echeance
-	 *            date de fin de l'évènement
+	 * @param id
+	 *            identité de l'événement
 	 * @return EventCalendrierGestionEntity correspondant à l'évènement
 	 */
-	EventCalendrierGestionEntity selectEventCalendrierGestion(String evenement, Date debut, Date echeance);
+	EventCalendrierGestionEntity selectEventCalendrierGestion(String id);
 
 	/**
-	 * Méthode permettant de de récupérer les infos de TOUS les evenements
+	 * Méthode permettant de de récupérer les infos de TOUS les evenements sous
+	 * forme de liste
 	 *
-	 * sous forme de liste
-	 *
+	 * @param referentiel
+	 *            le sirh
+	 * @param service
+	 *            le service associé à l'événement
 	 * @return List<EventCalendrierGestionDTO> correspondant à tous les
 	 *         évènements existants
 	 */
-	List<EventCalendrierGestionEntity> selectEventsCalendrierGestion();
+	List<EventCalendrierGestionEntity> selectEventsCalendrierGestion(InteractionSirhEnum referentiel, String service);
 
 	/**
 	 * Méthode permettant de mettre à jour ou de créer un evenement

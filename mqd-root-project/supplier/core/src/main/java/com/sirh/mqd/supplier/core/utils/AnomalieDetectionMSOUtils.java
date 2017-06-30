@@ -145,7 +145,7 @@ public final class AnomalieDetectionMSOUtils {
 	 * @return {@link Array} tableau des données
 	 */
 	public static String[] splitPAYData(final String line) {
-		final String[] lineArray = line.split(CSV_FILE_PAY_SEPARATOR);
+		final String[] lineArray = line.split(CSV_FILE_PAY_SEPARATOR, -1);
 		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
 		final int lastIndex = lineArray.length - 1;
 		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
@@ -162,7 +162,7 @@ public final class AnomalieDetectionMSOUtils {
 	 * @return {@link Array} tableau des données
 	 */
 	public static String[] splitMSOData(final String line) {
-		final String[] lineArray = line.split(CSV_FILE_MSO_SEPARATOR);
+		final String[] lineArray = line.split(CSV_FILE_MSO_SEPARATOR, -1);
 		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
 		final int lastIndex = lineArray.length - 1;
 		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
