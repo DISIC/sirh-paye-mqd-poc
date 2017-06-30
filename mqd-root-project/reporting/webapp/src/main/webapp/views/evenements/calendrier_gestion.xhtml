@@ -11,17 +11,20 @@
 	</f:metadata>
 
 	<h:form id="formCalendrierGestion">
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/evenement.css" />
 		<p:growl id="messages" showDetail="true" />
 		
 	    <h:panelGrid columnClasses="value">
-	        <p:schedule id="schedule" rows= "1" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="GMT+2">
-
-	            <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-	            <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-	            <p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
-	            <p:ajax event="eventResize" listener="#{calendrierGestionBean.onEventResize}" update="messages" />
-	 
-       		</p:schedule>
+	   		<div id="calendrier_gestion_toolbar">
+		        <p:schedule id="schedule" rows= "1" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="GMT+2">
+	
+		            <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+		            <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+		            <p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
+		            <p:ajax event="eventResize" listener="#{calendrierGestionBean.onEventResize}" update="messages" />
+		 
+	       		</p:schedule>
+       		</div>	
        	</h:panelGrid>
        	
        	<p:dialog widgetVar="eventDialog" header="Détails Évènement" showEffect="clip" hideEffect="clip">
@@ -52,10 +55,10 @@
 					<f:selectItems itemValue="red" styleClass="background-color:red" />
 				</p:selectOneMenu>
 		 
-		        <p:outputLabel for="allDay" value="Toute la journée: " />
+		        <p:outputLabel for="allDay" value="#{label['evenement.overview.calendrier_gestion.event.form.journee.label']}" />
 		        <h:selectBooleanCheckbox id="allDay" value="#{calendrierGestionBean.event.allDay}" />
 		 
-		        <p:commandButton id="addButton" value="Valider" actionListener="#{calendrierGestionBean.ajouterModifierEvenement}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+		        <p:commandButton id="addButton" value="#{label['evenement.overview.calendrier_gestion.event.form.bouton_valider.label']}" actionListener="#{calendrierGestionBean.ajouterModifierEvenement}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
 		    </h:panelGrid>
    		</p:dialog>   
 	</h:form>	
