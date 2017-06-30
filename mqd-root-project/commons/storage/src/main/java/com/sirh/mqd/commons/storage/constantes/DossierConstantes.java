@@ -63,6 +63,8 @@ public final class DossierConstantes {
 
 	public static final String COLONNE_TEMOIN_DOSSIER_PRINCIPAL = "dossier_principal";
 
+	public static final String COLONNE_GESTIONNAIRE_CODE = "gestionnaire_code";
+
 	/**
 	 * Non-constructeur
 	 *

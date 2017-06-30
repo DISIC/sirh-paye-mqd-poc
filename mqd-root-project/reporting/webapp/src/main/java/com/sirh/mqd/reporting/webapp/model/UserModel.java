@@ -32,14 +32,16 @@ public class UserModel extends User {
 
 	private String affectationCode;
 
-	private final String payGestionnaireCode;
+	private String gestionnaireCode;
+
+	private String service;
 
 	private Date dateAuthentification;
 
 	public UserModel(final String username, final String password, final String prenom, final String nom,
-			final String payLot, final String corpsCode, final String affectationCode, final String payGestionnaireCode,
-			final Date dateAuthentification, final boolean enabled, final boolean accountNonExpired,
-			final boolean credentialsNonExpired, final boolean accountNonLocked,
+			final String payLot, final String corpsCode, final String affectationCode, final String gestionnaireCode,
+			final String service, final Date dateAuthentification, final boolean enabled,
+			final boolean accountNonExpired, final boolean credentialsNonExpired, final boolean accountNonLocked,
 			final Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.prenom = prenom;
@@ -47,7 +49,8 @@ public class UserModel extends User {
 		this.payLot = payLot;
 		this.corpsCode = corpsCode;
 		this.affectationCode = affectationCode;
-		this.payGestionnaireCode = payGestionnaireCode;
+		this.gestionnaireCode = gestionnaireCode;
+		this.service = service;
 		this.dateAuthentification = DateUtils.clonerDate(dateAuthentification);
 	}
 
@@ -83,8 +86,20 @@ public class UserModel extends User {
 		return nom;
 	}
 
-	public String getPayGestionnaireCode() {
-		return payGestionnaireCode;
+	public String getGestionnaireCode() {
+		return gestionnaireCode;
+	}
+
+	public void setGestionnaireCode(final String gestionnaireCode) {
+		this.gestionnaireCode = gestionnaireCode;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(final String service) {
+		this.service = service;
 	}
 
 	public Date getDateAuthentification() {

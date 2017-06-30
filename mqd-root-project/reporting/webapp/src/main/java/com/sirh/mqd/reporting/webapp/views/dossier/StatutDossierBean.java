@@ -116,8 +116,7 @@ public class StatutDossierBean extends GenericBean {
 			alimenterStatutDossier(selectedDossier);
 
 			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_INFO,
-					"view.dossiers.statut_dossier.update.status.success",
-					new Object[] { selectedDossier.getRenoiRHMatricule() });
+					"view.dossiers.statut_dossier.update.status.success", selectedDossier.getRenoiRHMatricule());
 		} else {
 			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
 					"view.dossiers.statut_dossier.erreur.no.dossier.selected");

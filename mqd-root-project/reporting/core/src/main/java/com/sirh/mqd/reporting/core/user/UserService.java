@@ -1,6 +1,7 @@
 package com.sirh.mqd.reporting.core.user;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +21,7 @@ public class UserService implements IUserService {
 	private UserBC userBC;
 
 	@Override
-	public UserDTO rechercherUtilisateur(final String username) {
+	public Optional<UserDTO> rechercherUtilisateur(final String username) {
 		return userBC.rechercherUtilisateur(username);
 	}
 
@@ -32,5 +33,15 @@ public class UserService implements IUserService {
 	@Override
 	public void modifierDateDerniereConnexion(final String username, final Date lastConnection) {
 		userBC.modifierDateDerniereConnexion(username, lastConnection);
+	}
+
+	@Override
+	public void modifierMotDePasse(final String username, final String password) {
+		userBC.modifierMotDePasse(username, password);
+	}
+
+	@Override
+	public Optional<UserDTO> rechercherUtilisateurAvecMotDePasse(final String username) {
+		return userBC.rechercherUtilisateurAvecMotDePasse(username);
 	}
 }

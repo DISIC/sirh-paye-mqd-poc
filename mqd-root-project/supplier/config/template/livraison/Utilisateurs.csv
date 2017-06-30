@@ -1,9 +1,51 @@
-
-"Email","Password","Prénom","Nom","Lot de Paie","Corps RenoiRH - Code","Affect. RenoiRH - Code","Gestionnaire Paie - Code","Role Admin"
-"atingaud@octo.com","ati","Alexandre","TINGAUD","011B-ANT-AC-001","","","","X"
-"kgharbi@octo.com","kgh","Khalil","GHARBI","011B-ANT-AC-001","","","","X"
-"mglainard@octo.com","mgl","Maxime","GUILBAUD-LAINARD","011B-ANT-AC-001","","","","X"
-"lambda@octo.com","xxx","User","LAMBDA","011B-ANT-AC-001","","","",""
-"g1@octo.com","g1","Gestionnaire","GROUPE 1","011B-ANT-AC-001","G1049","","","X"
-"g2@octo.com","g2","Gestionnaire","GROUPE 2","","G1049","","","X"
-"g3@octo.com","g3","Gestionnaire","GROUPE 3","","","011C130001","","X"
+|||||||||||||
+Ministère|Utilisateur|Prénom|Nom|Email|Login|Password|Code gestionnaire paye (DGAC)|Lot de paye|Corps (code) |Affectation administrative (code)|Rôle|Service (si rôle pilotage)|Commentaire
+MSO|Julie BOUFFET|Julie|BOUFFET|julie.bouffet@sg.social.gouv.fr|jbouffet||||||Pilotage|SD2F|G939; G1040; G951; G672; G25; G461; G940; G673; E444; G1012
+MSO| Marie-Paule CASANOVA| Marie-Paule|CASANOVA|marie-paule.casanova@sg.social.gouv.fr|mcasanova||||G857||Gestionnaire||
+MSO|Jean-Claude DAVID-TRACAZ|Jean-Claude|DAVID-TRACAZ|jean-claude.david-tracaz@sg.social.gouv.fr|jcdavid|||||011J320001|Gestionnaire||
+MSO|Isabelle DELEURY|Isabelle|DELEURY|isabelle.deleury@sg.social.gouv.fr|ideleury|||011F-ATTA_CA-01||011T110001|Gestionnaire||
+MSO|Vannary GENEST|Vannary|GENEST|vannary.genest@sg.social.gouv.fr|vgenest||||||Pilotage|SD2B|Utiliser la correspondance CORS-Bureau pour determiner le périmêtre
+MSO|Marie-Françoise LAURENT|Marie-Françoise|LAURENT|marie-francoise.laurent@sg.social.gouv.fr|mlaurent||||G1104|011C130001|Gestionnaire||
+MSO|Serge PAGNUCCO|Serge|PAGNUCCO|serge.pagnucco@sg.social.gouv.fr|spagnucco||||||Pilotage|SD2E|Utiliser la correspondance CORS-Bureau pour determiner le périmêtre
+MSO|Catherine TARTARY|Catherine|TARTARY|catherine.tartary@sg.social.gouv.fr|ctartary|||011C-IASS-00001|||Gestionnaire||IAS
+Equipe DINSIC|Claire OROSCO |Claire |OROSCO |claire.orosco@modernisation.gouv.fr|corosco|cor|||||Pilotage|SD2F|
+Equipe DINSIC|Arnaud CHAMEROIS |Arnaud |CHAMEROIS |arnaud.chamerois@modernisation.gouv.fr|achamerois|ach|||||Pilotage|SD2F|
+Equipe DINSIC|Matthias FERAGA|Matthias|FERAGA|mferaga@octo.com|mferaga|mfe|||||Pilotage|SD2F|
+Equipe DINSIC|Khalil GHARBI|Khalil|GHARBI|kgharbi@octo.com|kgharbi|kgh||011B-ANT-AC-001|||Gestionnaire||
+Equipe DINSIC|Maxime GUILBAUD-LAINARD|Maxime|GUILBAUD-LAINARD|mglainard@octo.com|mglainard|mgl||011B-ANT-AC-001|||Gestionnaire||
+Equipe DINSIC|Alexandre TINGAUD|Alexandre|TINGAUD|atingaud@octo.com|atingaud|ati||011B-ANT-AC-001|||Gestionnaire||
+Tests|Gestionnaire GROUPE 1|Gestionnaire|GROUPE 1|g1@octo.com|G1|g1||011B-ANT-AC-001|G1049||Gestionnaire||
+Tests|Gestionnaire GROUPE 2|Gestionnaire|GROUPE 2|g2@octo.com|G2|g2|||G1049||Gestionnaire||
+Tests|Gestionnaire GROUPE 3|Gestionnaire|GROUPE 3|g3@octo.com|G3|g3||||011C130001|Gestionnaire||
+Tests|Gestionnaire GROUPE 4|Gestionnaire|GROUPE 4|g4@octo.com|G4|g4|91075||||Gestionnaire||
+DGAC|Françoise BALAGUER|Françoise|BALAGUER|francoise.balaguer@aviation-civile.gouv.fr|fbalaguer||||G437||Gestionnaire||
+DGAC|Amina BIHI|Amina|BIHI|amina.bihi@aviation-civile.gouv.fr|abihi||||G1146||Gestionnaire||
+DGAC|Sabrina IVANCIC|Sabrina|IVANCIC|sabrina.ivancic@aviation-civile.gouv.fr|sivancic||||G437||Gestionnaire||
+DGAC|Vincent LAMY|Vincent|LAMY|vincent.lamy@aviation-civile.gouv.fr|vlamy437||||G437||Gestionnaire||
+DGAC|Vincent LAMY|Vincent|LAMY|vincent.lamy@aviation-civile.gouv.fr|vlamy1146||||G1146||Gestionnaire||
+DGAC|Vincent LAMY|Vincent|LAMY|vincent.lamy@aviation-civile.gouv.fr|vlamy||||||Pilotage|TOUS|Tous corps
+DGAC|Nadège MARTIN|Nadège|MARTIN|nadege.martin@aviation-civile.gouv.fr|nmartin437||||G437||Gestionnaire||
+DGAC|Nadège MARTIN|Nadège|MARTIN|nadege.martin@aviation-civile.gouv.fr|nmartin1146||||G1146||Gestionnaire||
+DGAC|Nadège MARTIN|Nadège|MARTIN|nadege.martin@aviation-civile.gouv.fr|nmartin||||||Pilotage|TOUS|Tous corps
+DGAC|Aude SKORZEWSKI|Aude|SKORZEWSKI|aude.skorzewski@aviation-civile.gouv.fr|askorzewski||||G437||Gestionnaire||
+DGAC|Christelle SOGLO|Christelle|SOGLO|christelle.soglo@aviation-civile.gouv.fr|csoglo437||||G437||Gestionnaire||
+DGAC|Christelle SOGLO|Christelle|SOGLO|christelle.soglo@aviation-civile.gouv.fr|csoglo1146||||G1146||Gestionnaire||
+DGAC|Christelle SOGLO|Christelle|SOGLO|christelle.soglo@aviation-civile.gouv.fr|csoglo||||||Pilotage|TOUS|Tous corps
+DGAC|Ludwig VALLOIS|Ludwig|VALLOIS|ludwig.vallois@aviation-civile.gouv.fr|lvallois437||||G437||Gestionnaire||
+DGAC|Ludwig VALLOIS|Ludwig|VALLOIS|ludwig.vallois@aviation-civile.gouv.fr|lvallois1146||||G1146||Gestionnaire||
+DGAC|Ludwig VALLOIS|Ludwig|VALLOIS|ludwig.vallois@aviation-civile.gouv.fr|lvallois||||||Pilotage|TOUS|Tous corps
+DGAC|Cédrine VITALI|Cédrine|VITALI|cedrine.vitali@aviation-civile.gouv.fr|cvitali437||||G437||Gestionnaire||
+DGAC|Cédrine VITALI|Cédrine|VITALI|cedrine.vitali@aviation-civile.gouv.fr|cvitali1146||||G1146||Gestionnaire||
+DGAC|Cédrine VITALI|Cédrine|VITALI|cedrine.vitali@aviation-civile.gouv.fr|cvitali||||||Pilotage|TOUS|Tous corps
+DGAC|Pascal BOQUEHO|Pascal|BOQUEHO|pascal.boqueho@aviation-civile.gouv.fr|pboqueho437||||G437||Gestionnaire||
+DGAC|Pascal BOQUEHO|Pascal|BOQUEHO|pascal.boqueho@aviation-civile.gouv.fr|pboqueho1146||||G1146||Gestionnaire||
+DGAC|Pascal BOQUEHO|Pascal|BOQUEHO|pascal.boqueho@aviation-civile.gouv.fr|pboqueho||||||Pilotage|TOUS|Tous corps
+DGAC|Victor WAGENAAR|Victor|WAGENAAR|victor.wagenaar@aviation-civile.gouv.fr|vwagenaar437||||G437||Gestionnaire||
+DGAC|Victor WAGENAAR|Victor|WAGENAAR|victor.wagenaar@aviation-civile.gouv.fr|vwagenaar1146||||G1146||Gestionnaire||
+DGAC|Victor WAGENAAR|Victor|WAGENAAR|victor.wagenaar@aviation-civile.gouv.fr|vwagenaar||||||Pilotage|TOUS|Tous corps
+DGAC|Anne-Elisabeth BEIX|Anne-Elisabeth|BEIX|anne-elisabeth.beix@aviation-civile.gouv.fr|aebeix437||||G437||Gestionnaire||
+DGAC|Anne-Elisabeth BEIX|Anne-Elisabeth|BEIX|anne-elisabeth.beix@aviation-civile.gouv.fr|aebeix1146||||G1146||Gestionnaire||
+DGAC|Anne-Elisabeth BEIX|Anne-Elisabeth|BEIX|anne-elisabeth.beix@aviation-civile.gouv.fr|aebeix||||||Pilotage|TOUS|Tous corps
+DGAC|Sylvie RAMBEAU|Sylvie|RAMBEAU|sylvie.rambeau@aviation-civile.gouv.fr|srambeau437||||G437||Gestionnaire||
+DGAC|Sylvie RAMBEAU|Sylvie|RAMBEAU|sylvie.rambeau@aviation-civile.gouv.fr|srambeau1146||||G1146||Gestionnaire||
+DGAC|Sylvie RAMBEAU|Sylvie|RAMBEAU|sylvie.rambeau@aviation-civile.gouv.fr|srambeau||||||Pilotage|TOUS|Tous corps

@@ -69,7 +69,7 @@ public class DossierBean extends GenericBean {
 
 		// Supplier
 		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(getCurrentUserPayLot(),
-				getCurrentUserCorpsCode(), getCurrentUserAffectationCode());
+				getCurrentUserCorpsCode(), getCurrentUserAffectationCode(), getCurrentUserGestionnaireCode());
 		for (final DossierDTO dossier : dossiers) {
 			this.dossiers.add(DossierModelFactory.createDossier(dossier));
 		}

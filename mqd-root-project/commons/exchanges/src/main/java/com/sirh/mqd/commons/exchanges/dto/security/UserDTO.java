@@ -16,6 +16,10 @@ public class UserDTO {
 
 	private String password;
 
+	private String email;
+
+	private String ministere;
+
 	private String prenom;
 
 	private String nom;
@@ -26,7 +30,9 @@ public class UserDTO {
 
 	private String affectationCode;
 
-	private String payGestionnaireCode;
+	private String gestionnaireCode;
+
+	private String service;
 
 	private Date authenticationDate;
 
@@ -108,12 +114,36 @@ public class UserDTO {
 		this.nom = nom;
 	}
 
-	public String getPayGestionnaireCode() {
-		return payGestionnaireCode;
+	public String getGestionnaireCode() {
+		return gestionnaireCode;
 	}
 
-	public void setPayGestionnaireCode(final String payGestionnaireCode) {
-		this.payGestionnaireCode = payGestionnaireCode;
+	public void setGestionnaireCode(final String gestionnaireCode) {
+		this.gestionnaireCode = gestionnaireCode;
+	}
+
+	public String getMinistere() {
+		return ministere;
+	}
+
+	public void setMinistere(final String ministere) {
+		this.ministere = ministere;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(final String service) {
+		this.service = service;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
 	}
 
 	public boolean isAccountNonExpired() {

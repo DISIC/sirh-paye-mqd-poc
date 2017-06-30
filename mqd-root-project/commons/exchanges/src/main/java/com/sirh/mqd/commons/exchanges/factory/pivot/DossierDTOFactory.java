@@ -69,7 +69,7 @@ public final class DossierDTOFactory {
 		dossier.setDossierNumero(
 				(dossierNumero != null) ? Integer.parseInt(StringUtils.normalizeSpace(dossierNumero)) : null);
 		dossier.setNir(nir);
-		dossier.setCodeGestionnaire(codeGestionnaire);
+		dossier.setGestionnaireCode(codeGestionnaire);
 		dossier.setTgCode(codeTG);
 		dossier.setTemoinDossierPrincipal((temoinDossierPrincipal != null)
 				? Integer.parseInt(StringUtils.normalizeSpace(temoinDossierPrincipal)) : null);

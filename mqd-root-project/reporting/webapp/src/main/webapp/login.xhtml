@@ -6,80 +6,165 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<f:view contentType="text/html">
-		<h:head>
-			<f:facet name="first">
-				<meta http-equiv="X-UA-Compatible" content="IE=8" />
-				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-				<ui:insert name="zone_href">
-					<ui:include src="/WEB-INF/template/href.xhtml" />
-				</ui:insert>
-				<title>
-					<h:outputText value="#{label['application.name']}" />
-					<h:outputText value=" #{label['header.separator']} " escape="false" />
-					<h:outputText value="#{label['application.version']}" />
-				</title>
-			</f:facet>
-			<link rel="stylesheet" type="text/css" href="spring/resources/css/application.css" />
-			<link rel="stylesheet" type="text/css" href="spring/resources/css/login.css" />
-		</h:head>
-		<h:body>
-			<div id="page" class="ui-fluid">
-				<div id="header">
-					<div id="titre">
-						<table>
-							<tr>
-								<td>
-									<h1>
-										<h:outputText value="#{label['application.name']}" styleClass="ui-widget" />
-									</h1>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h1>
-										<h:outputText value="Version : #{label['application.version']}" styleClass="ui-widget version" />
-									</h1>
-								</td>
-							</tr>
-						</table>
-					</div>
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=8" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<ui:insert name="zone_href">
+				<ui:include src="/WEB-INF/template/href.xhtml" />
+			</ui:insert>
+			<title><h:outputText value="#{label['application.name']}" />
+				<h:outputText value=" #{label['header.separator']} " escape="false" />
+				<h:outputText value="#{label['application.version']}" /></title>
+		</f:facet>
+		<link rel="stylesheet" type="text/css"
+			href="spring/resources/css/application.css" />
+		<link rel="stylesheet" type="text/css"
+			href="spring/resources/css/login.css" />
+	</h:head>
+	<h:body>
+		<div id="page" class="ui-fluid">
+			<div id="header">
+				<div id="titre">
+					<table>
+						<tr>
+							<td>
+								<h1>
+									<h:outputText value="#{label['application.name']}"
+										styleClass="ui-widget" />
+								</h1>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h1>
+									<h:outputText value="Version : #{label['application.version']}"
+										styleClass="ui-widget version" />
+								</h1>
+							</td>
+						</tr>
+					</table>
 				</div>
-	
-				<p:messages id="messages" showDetail="true" showSummary="false"	closable="true" />
-	
-				<form id="formLogin" action="${request.contextPath}/j_spring_security_check" method="post" >
-	
-					<div id="formulaire">
-						<p:fieldset legend="#{label['login.form.legend']}">
-							<p:panelGrid>
-								<p:row>
-									<p:column styleClass="libelle">
-										<h:outputLabel value="#{label['login.libelle.username']}" />
-									</p:column>
-									<p:column>
-										<input type="text" name="j_username"/>
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column styleClass="libelle">
-										<h:outputLabel value="#{label['login.libelle.password']}" />
-									</p:column>
-									<p:column>
-										<input type="password" name="j_password"/>
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column colspan="2" styleClass="centrer">
-										<input type="submit" value="#{label['login.button.validate']}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-						</p:fieldset>
-					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</form>
 			</div>
-		</h:body>
-	</f:view>
+
+			<p:messages id="messages" for="globalMessage" showDetail="true" showSummary="false" closable="true" />
+
+			<form id="formLogin"
+				action="${request.contextPath}/j_spring_security_check"
+				method="post">
+
+				<div id="formulaire">
+					<p:fieldset legend="#{label['login.form.legend']}">
+						<p:panelGrid>
+							<p:row>
+								<p:column styleClass="libelle">
+									<h:outputLabel value="#{label['login.libelle.username']}" />
+								</p:column>
+								<p:column>
+									<input type="text" name="j_username" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="libelle">
+									<h:outputLabel value="#{label['login.libelle.password']}" />
+								</p:column>
+								<p:column>
+									<input type="password" name="j_password" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:spacer />
+								</p:column>
+								<p:column>
+									<p:commandLink value="#{label['login.link.password.dialog']}"
+										onclick="PF('dialogChangePassword').show();" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2" styleClass="centrer">
+									<input type="submit" value="#{label['login.button.validate']}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</div>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</form>
+			<div id="dialog">
+				<p:dialog header="#{label['login.dialog.header']}"
+					widgetVar="dialogChangePassword" modal="true" resizable="false"
+					showEffect="fade" hideEffect="fade">
+					<h:form id="dialogForm">
+						<p:panelGrid>
+							<p:row>
+								<p:column styleClass="libelle">
+									<h:outputLabel for="modifiedUsername"
+										value="#{label['login.dialog.libelle.login']}" />
+								</p:column>
+								<p:column>
+									<p:inputText id="modifiedUsername" value="#{userBean.username}">
+										<f:validator binding="#{usernameValidator}" for="modifiedUsername" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2">
+									<p:message for="modifiedUsername" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="libelle">
+									<h:outputLabel for="modifiedPassword"
+										value="#{label['login.dialog.libelle.input.password']}" />
+								</p:column>
+								<p:column>
+									<p:password id="modifiedPassword" value="#{userBean.password}" feedback="false">
+										<f:validator binding="#{requiredValidator}" for="modifiedPassword" />
+										<f:validator binding="#{passwordValidator}" for="modifiedPassword" />
+										<f:attribute name="confirmPassword" value="#{confirmPassword}" />
+									</p:password>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2">
+									<p:message for="modifiedPassword" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="libelle">
+									<h:outputLabel for="confirmedPassword"
+										value="#{label['login.dialog.libelle.confirm.password']}" />
+								</p:column>
+								<p:column>
+									<p:password id="confirmedPassword" binding="#{confirmPassword}"	feedback="false">
+										<f:validator binding="#{requiredValidator}" for="confirmedPassword" />
+									</p:password>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2">
+									<p:message for="confirmedPassword" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="2" styleClass="centrer">
+									<p:commandButton
+										value="#{label['login.dialog.button.validate']}"
+										action="#{userBean.modifierMotDePasse}"
+										update=":dialogForm :messages"
+										oncomplete="if (!args.validationFailed) {PF('dialogChangePassword').hide();}" />
+									<p:commandButton value="#{label['login.dialog.button.cancel']}"
+										onclick="PF('dialogChangePassword').hide()" immediate="true" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:form>
+				</p:dialog>
+			</div>
+		</div>
+	</h:body>
+</f:view>
 </html>

@@ -11,6 +11,8 @@ public final class UserConstantes {
 
 	public static final String COLONNE_USERNAME = "_id";
 
+	public static final String COLONNE_EMAIL = "email";
+
 	public static final String COLONNE_PASSWORD = "password";
 
 	public static final String COLONNE_DATE_AUTHENTIFICATION = "last_connection";
@@ -35,7 +37,11 @@ public final class UserConstantes {
 
 	public static final String COLONNE_NOM = "nom";
 
-	public static final String COLONNE_PAY_GESTIONNAIRE_CODE = "pay_gestionnaire_code";
+	public static final String COLONNE_GESTIONNAIRE_CODE = "gestionnaire_code";
+
+	public static final String COLONNE_SERVICE = "service";
+
+	public static final String COLONNE_MINISTERE = "ministere";
 
 	/**
 	 * Non-constructeur

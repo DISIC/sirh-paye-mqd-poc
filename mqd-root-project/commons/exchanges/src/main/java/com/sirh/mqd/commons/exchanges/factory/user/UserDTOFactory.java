@@ -29,26 +29,32 @@ public final class UserDTOFactory {
 				"Création non autorisée d'une instance de : " + UserDTOFactory.class.getName());
 	}
 
-	public static UserDTO createUserDTO(final String email, final String password, final String prenom,
-			final String nom, final String payLot, final String renoiRHCorpsCode, final String renoiRHAffectationCode,
-			final String payGestionnaireCode, final List<RoleEnum> roles) {
+	public static UserDTO createUserDTO(final String login, final String password, final String email,
+			final String prenom, final String nom, final String payLot, final String renoiRHCorpsCode,
+			final String renoiRHAffectationCode, final String gestionnaireCode, final String ministere,
+			final String service, final List<RoleEnum> roles) {
 		final UserDTO user = new UserDTO();
-		user.setUsername(email);
-		user.setPassword(PASSWORD_ENCODER.encode(password));
-		user.setPrenom(prenom);
-		user.setNom(nom);
+		user.setUsername(StringUtils.normalizeSpace(login));
+		user.setPassword(StringUtils.isNotBlank(password)
+				? PASSWORD_ENCODER.encode(StringUtils.normalizeSpace(password)) : null);
+		user.setPrenom(StringUtils.normalizeSpace(prenom));
+		user.setNom(StringUtils.normalizeSpace(nom));
+
+		user.setMinistere(StringUtils.normalizeSpace(ministere));
+		user.setService(StringUtils.normalizeSpace(service));
+		user.setEmail(StringUtils.normalizeSpace(email));
 
 		if (StringUtils.isNotBlank(payLot)) {
-			user.setPayLot(payLot);
+			user.setPayLot(StringUtils.normalizeSpace(payLot));
 		}
 		if (StringUtils.isNotBlank(renoiRHCorpsCode)) {
-			user.setCorpsCode(renoiRHCorpsCode);
+			user.setCorpsCode(StringUtils.normalizeSpace(renoiRHCorpsCode));
 		}
 		if (StringUtils.isNotBlank(renoiRHAffectationCode)) {
-			user.setAffectationCode(renoiRHAffectationCode);
+			user.setAffectationCode(StringUtils.normalizeSpace(renoiRHAffectationCode));
 		}
-		if (StringUtils.isNotBlank(payGestionnaireCode)) {
-			user.setPayGestionnaireCode(payGestionnaireCode);
+		if (StringUtils.isNotBlank(gestionnaireCode)) {
+			user.setGestionnaireCode(StringUtils.normalizeSpace(gestionnaireCode));
 		}
 		user.setAuthenticationDate(null);
 

@@ -30,13 +30,17 @@ public class UserEntityFactory {
 
 			user.setPrenom(entity.getPrenom());
 			user.setNom(entity.getNom());
+			user.setEmail(entity.getEmail());
+
+			user.setMinistere(entity.getMinistere());
+			user.setService(entity.getService());
 
 			user.setAuthenticationDate(DateUtils.clonerDate(entity.getAuthenticationDate()));
 
 			user.setPayLot(entity.getPayLot());
 			user.setAffectationCode(entity.getAffectationCode());
 			user.setCorpsCode(entity.getCorpsCode());
-			user.setPayGestionnaireCode(entity.getPayGestionnaireCode());
+			user.setGestionnaireCode(entity.getGestionnaireCode());
 
 			user.setAccountNonExpired(entity.isAccountNonExpired());
 			user.setAccountNonLocked(entity.isAccountNonLocked());
@@ -56,13 +60,17 @@ public class UserEntityFactory {
 
 			entity.setPrenom(user.getPrenom());
 			entity.setNom(user.getNom());
+			entity.setEmail(user.getEmail());
+
+			entity.setMinistere(user.getMinistere());
+			entity.setService(user.getService());
 
 			entity.setAuthenticationDate(DateUtils.clonerDate(user.getAuthenticationDate()));
 
 			entity.setPayLot(user.getPayLot());
 			entity.setAffectationCode(user.getAffectationCode());
 			entity.setCorpsCode(user.getCorpsCode());
-			entity.setPayGestionnaireCode(user.getPayGestionnaireCode());
+			entity.setGestionnaireCode(user.getGestionnaireCode());
 
 			entity.setAccountNonExpired(user.isAccountNonExpired());
 			entity.setAccountNonLocked(user.isAccountNonLocked());
