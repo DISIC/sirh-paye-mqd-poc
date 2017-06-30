@@ -153,6 +153,7 @@
 								<p:column colspan="2" styleClass="centrer">
 									<p:commandButton
 										value="#{label['login.dialog.button.validate']}"
+										styleClass="ui-priority-primary"
 										action="#{userBean.modifierMotDePasse}"
 										update=":dialogForm :messages"
 										oncomplete="if (!args.validationFailed) {PF('dialogChangePassword').hide();}" />
