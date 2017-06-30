@@ -43,17 +43,4 @@ public final class SyntheseModelFactory {
 
 		return syntheseModel;
 	}
-
-	public static DossierDTO createSyntheseDTO(final SyntheseModel syntheseModel, final String payLot,
-			final String matricule) {
-		final DossierDTO syntheseDTO = new DossierDTO();
-		// commentaireDTO.setDateCreation(DateUtils.getCalendarInstance().getTime());
-		// commentaireDTO.setContenu(commentaireModel.getContenu());
-		// commentaireDTO.setAuteurLogin(commentaireModel.getAuteurLogin());
-		// commentaireDTO.setAuteurNom(commentaireModel.getAuteurNom());
-		// commentaireDTO.setAuteurPrenom(commentaireModel.getAuteurPrenom());
-		// commentaireDTO.setPayLot(payLot);
-		// commentaireDTO.setRenoiRHMatricule(matricule);
-		return syntheseDTO;
-	}
 }

@@ -6,59 +6,143 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 	
-	<h:form>
-	    <p:growl id="msgs" showDetail="true" />
-       	<h:outputLabel value="#{label['dossiers.overview.synthese_table.header.fiche_synthese_agent']}" />
-		<p:panel id="donnees_personnelles" header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}" style="margin-bottom:20px">
-	        
-	        
-	        <h:panelGrid columns="2" cellpadding="5">
-	         	<h:outputLabel value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{syntheseBean.setup}" />
+	</f:metadata>
 
-	        </h:panelGrid>
-	        
-	        
-			<!-- <p:dataGrid var="" value="#{SyntheseBean.dossierDTO}" columns="3" layout="grid"
-	        rows="16" paginator="false" id="cars">
-			    <f:facet name="header" value="#{label['dossiers.overview.synthese_table.header.fiche_synthese_agent']}" />
-				
-				<f:facet name="header">
-		            Cars for Sale
-		        </f:facet>
-		 
-		        <p:panel header="#{car.id}" style="text-align:center">
-		            <h:panelGrid columns="1" style="width:100%">
-		                <p:graphicImage name="demo/images/car/#{car.brand}.gif"/> 
-		 
-		                <h:outputText value="#{car.year}" />
-		 
-		                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
-		                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-		                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
-		                </p:commandLink>
-		            </h:panelGrid>
-		        </p:panel>
-				
-				
-				<p:panel id="donnees_personnelles" header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}" style="margin-bottom:20px">
-			        <h:panelGrid columns="2" cellpadding="5">
-		         		<h:outputLabel value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
-		       			<h:outputLabel value="#{syntheseBean.commentaire}" />
-		        		
+	<h:form>
+		<p:growl id="msgs" showDetail="true" />
 		
-			        </h:panelGrid>
-			    </p:panel>
-	        </p:dataGrid> -->
-	        
-	        
-	        
-	    </p:panel>	    
-	 
-	    <p:panel id="situation_actuelle" header="#{label['dossiers.overview.synthese_table.header.situaltion_actuelle']}" toggleable="true" toggleOrientation="horizontal">
-	        <h:panelGrid columns="2" cellpadding="10">
-	            
-	        </h:panelGrid>
-	    </p:panel>
+		<h:outputLabel value="#{label['dossiers.overview.synthese_table.header.fiche_synthese_agent']}" />
+		
+		<p:panel header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}"
+		style="margin-top:20px">
+			<p:panelGrid id="donnees_personnelles"
+				styleClass="ui-noborder" >				
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.nom_naissance']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.prenom']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.sexe']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.date_naissance']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.ville_de_naissance']}" />
+					</p:column>			
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="#{syntheseBean.syntheseModel.getNomUsage}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+				</p:row>
+<!-- 				<p:row>
+			        <p:column colspan="4" styleClass="ui-widget-header">
+			            <p:spacer height="0"/>
+			        </p:column>
+			    </p:row> -->
+				<p:row>
+					<p:column colspan="2" style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.adresse']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.cp_ville']}" />
+					</p:column>				
+					<p:column style="font-weight: bold;">					
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.nationalite']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.date_certificatoin_nir']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.nir']}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2">
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.situation_familiale']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.contact_tel']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.contact_mail']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.matricule_ancien_SIRH']}" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.id_classotheque']}" />
+					</p:column>			
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Content" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+		<p:panel header="#{label['dossiers.overview.synthese_table.header.situaltion_actuelle']}"
+		style="margin-top:20px">
+			<p:panelGrid id="situation_actuelle"
+				toggleable="true" toggleOrientation="horizontal">
+				<h:panelGrid columns="2" cellpadding="10">
+	
+				</h:panelGrid>
+			</p:panelGrid>
+		</p:panel>
 	</h:form>
 
 </ui:composition>

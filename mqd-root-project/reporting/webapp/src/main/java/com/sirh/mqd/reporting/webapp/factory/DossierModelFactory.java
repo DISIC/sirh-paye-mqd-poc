@@ -38,4 +38,21 @@ public final class DossierModelFactory {
 		dossierModel.setNbAnomalies(dossierDTO.getNbAnomalies());
 		return dossierModel;
 	}
+
+	public static DossierDTO createDossierDTO(final DossierModel dossierModel) {
+		final DossierDTO dossierDTO = new DossierDTO();
+		dossierDTO.setPayLot(dossierModel.getPayLot());
+		dossierDTO.setNir(dossierModel.getNir());
+		dossierDTO.setRenoiRHMatricule(dossierModel.getRenoiRHMatricule());
+		dossierDTO.setRenoiRHCorpsCode(dossierModel.getRenoiRHCorpsCode());
+		dossierDTO.setRenoiRHCorpsLibelleCourt(dossierModel.getRenoiRHCorpsLibelleCourt());
+		dossierDTO.setRenoiRHAffectationCode(dossierModel.getRenoiRHAffectationCode());
+		dossierDTO.setRenoiRHAffectationLibelleCourt(dossierModel.getRenoiRHAffectationLibelleCourt());
+		dossierDTO.setRenoiRHNom(dossierModel.getRenoiRHNom());
+		dossierDTO.setRenoiRHPrenom(dossierModel.getRenoiRHPrenom());
+		dossierDTO.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierModel.getRenoiRHDateNaissance()));
+		dossierDTO.setNbAlertes(dossierModel.getNbAlertes());
+		dossierDTO.setNbAnomalies(dossierModel.getNbAnomalies());
+		return dossierDTO;
+	}
 }

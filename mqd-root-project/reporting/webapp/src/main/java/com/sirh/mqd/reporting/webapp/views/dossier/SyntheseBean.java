@@ -1,19 +1,19 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.reporting.core.api.ICommentaireService;
-import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
+import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
+import com.sirh.mqd.commons.traces.IFacadeLogs;
+import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
+import com.sirh.mqd.reporting.webapp.factory.DossierModelFactory;
+import com.sirh.mqd.reporting.webapp.factory.SyntheseModelFactory;
+import com.sirh.mqd.reporting.webapp.model.DossierModel;
 import com.sirh.mqd.reporting.webapp.model.SyntheseModel;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
@@ -31,14 +31,18 @@ public class SyntheseBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = 5230591657668482045L;
 
+	// @Inject
+	// @Qualifier(CoreConstantes.SYNTHESE_SERVICE)
+	// private ISyntheseService syntheseService;
+
 	@Inject
-	@Qualifier(CoreConstantes.SYNTHESE_SERVICE)
-	private ISyntheseService syntheseService;
+	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	private IFacadeLogs logger;
 
 	/*
 	 * Données personnelles
 	 */
-	private SyntheseModel donneesPersonnelles;
+	private SyntheseModel syntheseModel;
 
 	public void setup() {
 
@@ -47,12 +51,25 @@ public class SyntheseBean extends GenericBean {
 		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
-			this.donneesPersonnelles = new ArrayList<String>();
+			alimenterSyntheseDossier();
 		}
 	}
 
-	public void alimenterDonneesPersonnelles(final SyntheseModel synteseModel) {
-		final DossierDTO donneesPersonnelles = this.dossier
+	public void alimenterSyntheseDossier() {
+		final DossierModel selectedDossier = getCurrentDossier();
+		if (selectedDossier != null) {
+			final DossierDTO dossierDTO = DossierModelFactory.createDossierDTO(selectedDossier);
+			setSyntheseModel(SyntheseModelFactory.createSyntheseModel(dossierDTO));
+		}
+
+	}
+
+	public SyntheseModel getSyntheseModel() {
+		return syntheseModel;
+	}
+
+	public void setSyntheseModel(final SyntheseModel syntheseModel) {
+		this.syntheseModel = syntheseModel;
 	}
 
 }
