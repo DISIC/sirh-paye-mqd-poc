@@ -66,7 +66,7 @@ check_delivery_repository() {
 ######################################################################################
 directories_sftp() {
 	echo -e "Création du répertoire local pour récupérer les fichier du serveur SFTP."
-	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac,user}
+	sudo mkdir -p ${filter.repo.root.path}/{pay,mso,dgac,user,calendrier}
 	sudo chown ${filter.tomcat.process.user}:root -R ${filter.repo.root.path}
 }
 
