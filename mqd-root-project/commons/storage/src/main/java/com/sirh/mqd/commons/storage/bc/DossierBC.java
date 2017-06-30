@@ -58,12 +58,14 @@ public class DossierBC {
 	 *            le corps auquel est associé l'utilisateur
 	 * @param renoiRHAffectationCode
 	 *            l'affectation auquel est associé à l'utilisateur
+	 * @param gestionnaireCode
+	 *            le code gestionnaire DGAC
 	 * @return {@link List} correspondant à une liste de dossiers
 	 */
 	public List<DossierDTO> listerDossiers(final String payLot, final String renoiRHCorpsCode,
-			final String renoiRHAffectationCode) {
+			final String renoiRHAffectationCode, final String gestionnaireCode) {
 		final List<DossierEntity> dossierEntities = this.dossierDAO.selectDossiers(payLot, renoiRHCorpsCode,
-				renoiRHAffectationCode);
+				renoiRHAffectationCode, gestionnaireCode);
 		dossierEntities.forEach((dossierEntity) -> {
 			dossierEntity.setNbAnomalies(this.dossierDAO.countAnomaliesDossier(dossierEntity.getPayLot(),
 					dossierEntity.getRenoiRHMatricule()));

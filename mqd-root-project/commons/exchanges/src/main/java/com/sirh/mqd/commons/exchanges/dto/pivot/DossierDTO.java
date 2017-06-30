@@ -20,7 +20,7 @@ public class DossierDTO {
 
 	private Integer diGestionnaire;
 
-	private String codeGestionnaire;
+	private String gestionnaireCode;
 
 	private String adminCode;
 
@@ -283,12 +283,12 @@ public class DossierDTO {
 		this.nir = nir;
 	}
 
-	public String getCodeGestionnaire() {
-		return codeGestionnaire;
+	public String getGestionnaireCode() {
+		return gestionnaireCode;
 	}
 
-	public void setCodeGestionnaire(final String codeGestionnaire) {
-		this.codeGestionnaire = codeGestionnaire;
+	public void setGestionnaireCode(final String gestionnaireCode) {
+		this.gestionnaireCode = gestionnaireCode;
 	}
 
 	public String getTgCode() {

@@ -14,7 +14,11 @@ public interface IUserDAO {
 
 	UserEntity selectUser(String username);
 
+	UserEntity selectUserWithPassword(String username);
+
 	void insertUser(UserEntity user);
 
 	void updateUserAuthenticationDate(String username, Date lastConnection);
+
+	void updateUserPassword(String username, String password);
 }

@@ -35,7 +35,8 @@ public final class UserModelFactory {
 			final String payLot = user.getPayLot();
 			final String corpsCode = user.getCorpsCode();
 			final String affectationCode = user.getAffectationCode();
-			final String payGestionnaireCode = user.getPayGestionnaireCode();
+			final String gestionnaireCode = user.getGestionnaireCode();
+			final String service = user.getService();
 			final Date dateAuthentification = user.getAuthenticationDate();
 			final boolean enabled = user.isEnabled();
 			final boolean accountNonExpired = user.isAccountNonExpired();
@@ -43,8 +44,8 @@ public final class UserModelFactory {
 			final boolean accountNonLocked = user.isAccountNonLocked();
 			final List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getRolesAsStrings());
 			return new UserModel(username, encryptPassword, prenom, nom, payLot, corpsCode, affectationCode,
-					payGestionnaireCode, dateAuthentification, enabled, accountNonExpired, credentialsNonExpired,
-					accountNonLocked, authorities);
+					gestionnaireCode, service, dateAuthentification, enabled, accountNonExpired,
+					credentialsNonExpired, accountNonLocked, authorities);
 		}
 		return null;
 	}

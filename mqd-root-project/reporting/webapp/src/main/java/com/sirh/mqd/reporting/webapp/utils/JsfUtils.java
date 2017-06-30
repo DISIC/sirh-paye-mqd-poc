@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 
 import org.slf4j.event.Level;
@@ -36,6 +37,8 @@ public class JsfUtils implements Serializable {
 	 * Generated UID
 	 */
 	private static final long serialVersionUID = 8655311462397794689L;
+
+	private static final String CLIENT_ID = "globalMessage";
 
 	/**
 	 * Service technique de gestion des messages
@@ -78,34 +81,8 @@ public class JsfUtils implements Serializable {
 	 * @see FacesContext#addMessage(String, FacesMessage)
 	 */
 	public void addMessageByCode(final Severity severity, final String code) {
-		final String[] s = getSummaryAndDetailFromCode(severity, code, null);
-		getFacesCurrentInstance().addMessage(null, new FacesMessage(severity, s[0], s[1]));
-	}
-
-	/**
-	 * Ajout d'un message au contexte JSF courant par code.
-	 * <p>
-	 * Le code permet de chercher les deux attributs d'un message JSF :
-	 * <ul>
-	 * <li>summary : le résumé du message correspond à la valeur de la propriété
-	 * <i>code.summary</i>. Par défaut, elle prend la valeur <i>[code]</i>.</li>
-	 * <li>detail : le détail du message correspond à la valeur de la propriété
-	 * <i>code</i>. Par défaut, voir le comportement du service de gestion des
-	 * messages {@link bundle#getMessage}.</li>
-	 * </ul>
-	 * </p>
-	 *
-	 * @param severity
-	 *            Niveau de sévérité du message
-	 * @param code
-	 *            Propriété associée
-	 * @param clientId
-	 *            Identifiant client du composant attaché au message
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessageByCode(final Severity severity, final String code, final String clientId) {
-		final String[] s = getSummaryAndDetailFromCode(severity, code, null);
-		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(severity, s[0], s[1]));
+		final String[] s = getSummaryAndDetailFromCode(severity, code);
+		getFacesCurrentInstance().addMessage(CLIENT_ID, new FacesMessage(severity, s[0], s[1]));
 	}
 
 	/**
@@ -129,13 +106,51 @@ public class JsfUtils implements Serializable {
 	 *            Arguments éventuels du message
 	 * @see FacesContext#addMessage(String, FacesMessage)
 	 */
-	public void addMessageByCode(final Severity severity, final String code, final Object[] arguments) {
+	public void addMessageByCode(final Severity severity, final String code, final Object... arguments) {
 		final String[] s = getSummaryAndDetailFromCode(severity, code, arguments);
-		getFacesCurrentInstance().addMessage(null, new FacesMessage(severity, s[0], s[1]));
+		getFacesCurrentInstance().addMessage(CLIENT_ID, new FacesMessage(severity, s[0], s[1]));
 	}
 
 	/**
-	 * Ajout d'un message au contexte JSF courant par code.
+	 * Ajout d'un message global d'information (
+	 * {@link FacesMessage#SEVERITY_INFO}) sans détail au contexte JSF courant.
+	 *
+	 * @param summary
+	 *            Résumé du message
+	 * @see FacesContext#addMessage(String, FacesMessage)
+	 */
+	public void addMessage(final String summary) {
+		getFacesCurrentInstance().addMessage(CLIENT_ID, new FacesMessage(summary));
+	}
+
+	/**
+	 * Remonte une exception de validation JSF dont le message à afficher est
+	 * associé à un code.
+	 * <p>
+	 * Le code permet de chercher les deux attributs d'un message JSF :
+	 * <ul>
+	 * <li>summary : le résumé du message correspond à la valeur de la propriété
+	 * <i>code.summary</i>. Par défaut, elle prend la valeur <i>[code]</i>.</li>
+	 * <li>detail : le détail du message correspond à la valeur de la propriété
+	 * <i>code</i>. Par défaut, voir le comportement du service de gestion des
+	 * messages {@link bundle#getMessage}.</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * @param severity
+	 *            Niveau de sévérité du message
+	 * @param code
+	 *            Propriété associée
+	 * @see FacesContext#addMessage(String, FacesMessage)
+	 */
+	public void throwValidationExceptionByCode(final Severity severity, final String code) throws ValidatorException {
+		final String[] s = getSummaryAndDetailFromCode(severity, code);
+		throw new ValidatorException(new FacesMessage(severity, s[0], s[1]));
+	}
+
+	/**
+	 * Remonte une exception de validation JSF dont le message à afficher est
+	 * associé à un code.
 	 * <p>
 	 * Le code permet de chercher les deux attributs d'un message JSF :
 	 * <ul>
@@ -153,59 +168,12 @@ public class JsfUtils implements Serializable {
 	 *            Propriété associée
 	 * @param arguments
 	 *            Arguments éventuels du message
-	 * @param clientId
-	 *            Identifiant client du composant attaché au message
-	 * @see FacesContext#addMessage(String, FacesMessage)
+	 * @see ValidatorException
 	 */
-	public void addMessageByCode(final Severity severity, final String code, final Object[] arguments,
-			final String clientId) {
+	public void throwValidationExceptionByCode(final Severity severity, final String code, final Object... arguments)
+			throws ValidatorException {
 		final String[] s = getSummaryAndDetailFromCode(severity, code, arguments);
-		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(severity, s[0], s[1]));
-	}
-
-	/**
-	 * Ajout d'un message global d'information (
-	 * {@link FacesMessage#SEVERITY_INFO}) sans détail au contexte JSF courant.
-	 *
-	 * @param summary
-	 *            Résumé du message
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessage(final String summary) {
-		getFacesCurrentInstance().addMessage(null, new FacesMessage(summary));
-	}
-
-	/**
-	 * Ajout d'un message d'information ({@link FacesMessage#SEVERITY_INFO}) au
-	 * contexte JSF courant.
-	 *
-	 * @param summary
-	 *            Résumé du message
-	 * @param detail
-	 *            Détail du message
-	 * @param clientId
-	 *            Identifiant client du composant attaché au message
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessage(final String summary, final String detail, final String clientId) {
-		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(summary, detail));
-	}
-
-	/**
-	 * Ajout d'un message au contexte JSF courant.
-	 *
-	 * @param severity
-	 *            Niveau de sévérité du message
-	 * @param summary
-	 *            Résumé du message
-	 * @param detail
-	 *            Détail du message
-	 * @param clientId
-	 *            Identifiant client du composant attaché au message
-	 * @see FacesContext#addMessage(String, FacesMessage)
-	 */
-	public void addMessage(final Severity severity, final String summary, final String detail, final String clientId) {
-		getFacesCurrentInstance().addMessage(clientId, new FacesMessage(severity, summary, detail));
+		throw new ValidatorException(new FacesMessage(severity, s[0], s[1]));
 	}
 
 	/**
@@ -219,7 +187,8 @@ public class JsfUtils implements Serializable {
 	 *            Les arguments éventuels du message
 	 * @return String[] [résumé, détail]
 	 */
-	private String[] getSummaryAndDetailFromCode(final Severity severity, final String code, final Object[] arguments) {
+	private String[] getSummaryAndDetailFromCode(final Severity severity, final String code,
+			final Object... arguments) {
 		final String[] s = new String[2];
 		// Résumé
 		try {

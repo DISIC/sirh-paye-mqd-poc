@@ -21,9 +21,11 @@ public interface IDossierService {
 	 *            le corps auquel est associé l'utilisateur
 	 * @param affectationCode
 	 *            l'affectation auquel est associé à l'utilisateur
+	 * @param gestionnaireCode
+	 *            le code gestionnaire DGAC
 	 * @return {@link List} des dossiers rattachés à l'utilisateur connecté
 	 */
-	List<DossierDTO> listerDossiers(String payLot, final String corpsCode, final String affectationCode);
+	List<DossierDTO> listerDossiers(String payLot, String corpsCode, String affectationCode, String gestionnaireCode);
 
 	/**
 	 * Méthode permettant de lister les anomalies d'un dossier

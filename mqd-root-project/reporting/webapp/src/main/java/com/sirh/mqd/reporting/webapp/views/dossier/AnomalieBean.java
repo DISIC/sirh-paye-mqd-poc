@@ -108,8 +108,8 @@ public class AnomalieBean extends GenericBean {
 				alimenterAnomalies(selectedDossier);
 
 				this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_INFO,
-						"view.dossiers.anomalies.update.status.success",
-						new Object[] { comparaisonDTO.getType().getLibelle(), selectedDossier.getRenoiRHMatricule() });
+						"view.dossiers.anomalies.update.status.success", comparaisonDTO.getType().getLibelle(),
+						selectedDossier.getRenoiRHMatricule());
 			} else {
 				this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
 						"view.dossiers.anomalies.erreur.no.anomalie.selected");

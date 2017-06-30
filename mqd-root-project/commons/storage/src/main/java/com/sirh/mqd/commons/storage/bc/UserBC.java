@@ -1,6 +1,7 @@
 package com.sirh.mqd.commons.storage.bc;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,8 +24,8 @@ public class UserBC {
 	@Qualifier(PersistenceConstantes.USER_DAO)
 	private IUserDAO userDAO;
 
-	public UserDTO rechercherUtilisateur(final String username) {
-		return UserEntityFactory.createUserDTO(userDAO.selectUser(username));
+	public Optional<UserDTO> rechercherUtilisateur(final String username) {
+		return Optional.ofNullable(UserEntityFactory.createUserDTO(userDAO.selectUser(username)));
 	}
 
 	public void ajouterUtilisateur(final UserDTO user) {
@@ -33,5 +34,13 @@ public class UserBC {
 
 	public void modifierDateDerniereConnexion(final String username, final Date lastConnection) {
 		userDAO.updateUserAuthenticationDate(username, lastConnection);
+	}
+
+	public void modifierMotDePasse(final String username, final String password) {
+		userDAO.updateUserPassword(username, password);
+	}
+
+	public Optional<UserDTO> rechercherUtilisateurAvecMotDePasse(final String username) {
+		return Optional.ofNullable(UserEntityFactory.createUserDTO(userDAO.selectUserWithPassword(username)));
 	}
 }

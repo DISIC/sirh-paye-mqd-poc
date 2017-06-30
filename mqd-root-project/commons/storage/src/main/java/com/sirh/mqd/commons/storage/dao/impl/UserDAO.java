@@ -39,6 +39,18 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
+	public UserEntity selectUserWithPassword(final String username) {
+		UserEntity user = null;
+		if (username != null) {
+			final Query query = new Query();
+			query.addCriteria(Criteria.where(UserConstantes.COLONNE_USERNAME).is(username));
+			query.addCriteria(Criteria.where(UserConstantes.COLONNE_PASSWORD).exists(Boolean.TRUE));
+			user = mongoTemplate.findOne(query, UserEntity.class);
+		}
+		return user;
+	}
+
+	@Override
 	public void insertUser(final UserEntity user) {
 		if (user != null) {
 			mongoTemplate.save(user);
@@ -52,6 +64,17 @@ public class UserDAO implements IUserDAO {
 			query.addCriteria(Criteria.where(UserConstantes.COLONNE_USERNAME).is(username));
 			final Update update = new Update();
 			update.set(UserConstantes.COLONNE_DATE_AUTHENTIFICATION, lastConnection);
+			mongoTemplate.updateFirst(query, update, UserEntity.class);
+		}
+	}
+
+	@Override
+	public void updateUserPassword(final String username, final String password) {
+		if (username != null) {
+			final Query query = new Query();
+			query.addCriteria(Criteria.where(UserConstantes.COLONNE_USERNAME).is(username));
+			final Update update = new Update();
+			update.set(UserConstantes.COLONNE_PASSWORD, password);
 			mongoTemplate.updateFirst(query, update, UserEntity.class);
 		}
 	}

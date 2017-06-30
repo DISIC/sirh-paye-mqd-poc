@@ -17,7 +17,8 @@ public interface IDossierDAO {
 
 	DossierEntity selectDossier(String payLot, String renoiRHMatricule);
 
-	List<DossierEntity> selectDossiers(String payLot, String renoiRHCorpsCode, String renoiRHAffectationCode);
+	List<DossierEntity> selectDossiers(String payLot, String renoiRHCorpsCode, String renoiRHAffectationCode,
+			String gestionnaireCode);
 
 	void insertDossier(DossierEntity dossier);
 

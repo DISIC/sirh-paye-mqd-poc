@@ -21,8 +21,9 @@ public class DossierService implements IDossierService {
 	private DossierBC dossierBC;
 
 	@Override
-	public List<DossierDTO> listerDossiers(final String payLot, final String corpsCode, final String affectationCode) {
-		return dossierBC.listerDossiers(payLot, corpsCode, affectationCode);
+	public List<DossierDTO> listerDossiers(final String payLot, final String corpsCode, final String affectationCode,
+			final String gestionnaireCode) {
+		return dossierBC.listerDossiers(payLot, corpsCode, affectationCode, gestionnaireCode);
 	}
 
 	@Override

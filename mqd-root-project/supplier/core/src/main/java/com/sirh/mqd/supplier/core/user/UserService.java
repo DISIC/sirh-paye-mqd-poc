@@ -46,9 +46,23 @@ public class UserService {
 				final String line = scanner.nextLine();
 				if (i > 1) {
 					final String[] lineArray = UserUtils.splitUtilisateursData(line);
-					userBC.ajouterUtilisateur(UserDTOFactory.createUserDTO(lineArray[0], lineArray[1], lineArray[2],
-							lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[7],
-							UserUtils.createListeRoles(lineArray[8])));
+					// Ministère : 0
+					// Utilisateur : 1
+					// Prénom : 2
+					// Nom : 3
+					// Email : 4
+					// Login : 5
+					// Password : 6
+					// Code gestionnaire paye (DGAC) : 7
+					// Lot de paye : 8
+					// Corps (code) : 9
+					// Affectation administrative (code) : 10
+					// Rôle : 11
+					// Service (si rôle pilotage) : 12
+					// Commentaire : 13
+					userBC.ajouterUtilisateur(UserDTOFactory.createUserDTO(lineArray[5], lineArray[6], lineArray[4],
+							lineArray[2], lineArray[3], lineArray[8], lineArray[9], lineArray[10], lineArray[7],
+							lineArray[0], lineArray[12], UserUtils.createListeRoles(lineArray[11])));
 				}
 				i++;
 			}

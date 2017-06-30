@@ -1,5 +1,7 @@
 package com.sirh.mqd.reporting.webapp.security;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,9 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		final UserDTO user = userService.rechercherUtilisateur(username);
-		if (user != null) {
-			return UserModelFactory.createUserModel(user);
+		final Optional<UserDTO> user = userService.rechercherUtilisateurAvecMotDePasse(username);
+		if (user.isPresent()) {
+			return UserModelFactory.createUserModel(user.get());
 		}
 		throw new UsernameNotFoundException(
 				messagesBundle.getMessage("security.error.functional.no.username.found", new Object[] { username }));

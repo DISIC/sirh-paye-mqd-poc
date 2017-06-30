@@ -54,6 +54,7 @@ public class DossierEntityFactory {
 			dossier.setNir(entity.getNir());
 			dossier.setTgCode(entity.getTgCode());
 			dossier.setTemoinDossierPrincipal(entity.getTemoinDossierPrincipal());
+			dossier.setGestionnaireCode(entity.getGestionnaireCode());
 		}
 		return dossier;
 	}
@@ -90,6 +91,7 @@ public class DossierEntityFactory {
 			entity.setNir(dossier.getNir());
 			entity.setTgCode(dossier.getTgCode());
 			entity.setTemoinDossierPrincipal(dossier.getTemoinDossierPrincipal());
+			entity.setGestionnaireCode(dossier.getGestionnaireCode());
 		}
 		return entity;
 	}

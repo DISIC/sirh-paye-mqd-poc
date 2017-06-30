@@ -22,6 +22,9 @@ public class UserEntity {
 	@Field(UserConstantes.COLONNE_USERNAME)
 	private String username;
 
+	@Field(UserConstantes.COLONNE_EMAIL)
+	private String email;
+
 	@Field(UserConstantes.COLONNE_PASSWORD)
 	private String password;
 
@@ -43,8 +46,14 @@ public class UserEntity {
 	@Field(UserConstantes.COLONNE_AFFECTATION_CODE)
 	private String affectationCode;
 
-	@Field(UserConstantes.COLONNE_PAY_GESTIONNAIRE_CODE)
-	private String payGestionnaireCode;
+	@Field(UserConstantes.COLONNE_GESTIONNAIRE_CODE)
+	private String gestionnaireCode;
+
+	@Field(UserConstantes.COLONNE_MINISTERE)
+	private String ministere;
+
+	@Field(UserConstantes.COLONNE_SERVICE)
+	private String service;
 
 	@Field(UserConstantes.COLONNE_ACCOUNT_ENABLED)
 	private boolean enabled;
@@ -79,6 +88,14 @@ public class UserEntity {
 
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(final String service) {
+		this.service = service;
 	}
 
 	public Date getAuthenticationDate() {
@@ -169,11 +186,27 @@ public class UserEntity {
 		this.nom = nom;
 	}
 
-	public String getPayGestionnaireCode() {
-		return payGestionnaireCode;
+	public String getGestionnaireCode() {
+		return gestionnaireCode;
 	}
 
-	public void setPayGestionnaireCode(final String payGestionnaireCode) {
-		this.payGestionnaireCode = payGestionnaireCode;
+	public void setGestionnaireCode(final String gestionnaireCode) {
+		this.gestionnaireCode = gestionnaireCode;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+
+	public String getMinistere() {
+		return ministere;
+	}
+
+	public void setMinistere(final String ministere) {
+		this.ministere = ministere;
 	}
 }

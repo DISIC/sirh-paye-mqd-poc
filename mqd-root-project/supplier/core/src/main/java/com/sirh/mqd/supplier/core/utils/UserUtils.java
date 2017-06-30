@@ -1,12 +1,9 @@
 package com.sirh.mqd.supplier.core.utils;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.regex.Pattern;
 
 import com.sirh.mqd.commons.exchanges.enums.RoleEnum;
-import com.sirh.mqd.commons.utils.constante.Constantes;
 
 /**
  * Classe utilitaire permettant de gérer les données des utilisateurs reçues en
@@ -16,7 +13,7 @@ import com.sirh.mqd.commons.utils.constante.Constantes;
  */
 public final class UserUtils {
 
-	private static final String CSV_FILE_USER_SEPARATOR = "\",\"";
+	private static final String CSV_FILE_USER_SEPARATOR = Pattern.quote("|");
 
 	/**
 	 * Non constructeur.
@@ -38,26 +35,17 @@ public final class UserUtils {
 	 * @return {@link Array} tableau des données
 	 */
 	public static String[] splitUtilisateursData(final String line) {
-		final String[] lineArray = line.split(CSV_FILE_USER_SEPARATOR);
-		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
-		final int lastIndex = lineArray.length - 1;
-		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
-		return lineArray;
+		return line.split(CSV_FILE_USER_SEPARATOR, -1);
 	}
 
 	/**
 	 * Méthode permettant de construire la liste des roles associés à
 	 * l'utilisateur. Par défaut, tout utilisateur aura le role USER.
 	 *
-	 * @param isAdmin
+	 * @param role
 	 * @return {@link List} des roles de l'utilisateur
 	 */
-	public static List<RoleEnum> createListeRoles(final String isAdmin) {
-		final List<RoleEnum> roles = new ArrayList<RoleEnum>();
-		roles.add(RoleEnum.ROLE_USER);
-		if (StringUtils.isNotBlank(isAdmin)) {
-			roles.add(RoleEnum.ROLE_ADMIN);
-		}
-		return roles;
+	public static List<RoleEnum> createListeRoles(final String role) {
+		return RoleEnum.enumOf(role);
 	}
 }

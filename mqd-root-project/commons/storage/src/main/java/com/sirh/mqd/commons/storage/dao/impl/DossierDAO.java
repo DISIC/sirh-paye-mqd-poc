@@ -55,15 +55,15 @@ public class DossierDAO implements IDossierDAO {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
-		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
+		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(Boolean.TRUE));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
-				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(false));
+				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(Boolean.FALSE));
 		return Math.toIntExact(mongoTemplate.count(query, ComparaisonEntity.class));
 	}
 
 	@Override
 	public List<DossierEntity> selectDossiers(final String payLot, final String renoiRHCorpsCode,
-			final String renoiRHAffectationCode) {
+			final String renoiRHAffectationCode, final String gestionnaireCode) {
 		final Query query = new Query();
 		if (StringUtils.isNotBlank(payLot)) {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
@@ -74,6 +74,8 @@ public class DossierDAO implements IDossierDAO {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_CORPS_CODE).is(renoiRHCorpsCode));
 		} else if (StringUtils.isNotBlank(renoiRHAffectationCode)) {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_AFFECTATION_CODE).is(renoiRHAffectationCode));
+		} else if (StringUtils.isNotBlank(gestionnaireCode)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_GESTIONNAIRE_CODE).is(gestionnaireCode));
 		}
 		return mongoTemplate.find(query, DossierEntity.class);
 	}
@@ -129,9 +131,9 @@ public class DossierDAO implements IDossierDAO {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
-		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(true));
+		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE).exists(Boolean.TRUE));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
-				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(false));
+				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE).exists(Boolean.FALSE));
 		return mongoTemplate.find(query, ComparaisonEntity.class);
 	}
 

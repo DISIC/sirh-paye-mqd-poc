@@ -110,6 +110,9 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_TEMOIN_DOSSIER_PRINCIPAL)
 	private Integer temoinDossierPrincipal;
 
+	@Field(DossierConstantes.COLONNE_GESTIONNAIRE_CODE)
+	private String gestionnaireCode;
+
 	@Transient
 	private int nbAlertes;
 
@@ -350,5 +353,13 @@ public class DossierEntity {
 
 	public void setTemoinDossierPrincipal(final Integer temoinDossierPrincipal) {
 		this.temoinDossierPrincipal = temoinDossierPrincipal;
+	}
+
+	public String getGestionnaireCode() {
+		return gestionnaireCode;
+	}
+
+	public void setGestionnaireCode(final String gestionnaireCode) {
+		this.gestionnaireCode = gestionnaireCode;
 	}
 }
