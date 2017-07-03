@@ -41,7 +41,7 @@
 				<p:outputLabel for="type"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.type.label']}" />
 				<p:inputText id="type"
-					value="#{calendrierGestionBean.typeNouveauEvenement}"
+					value="#{calendrierGestionBean.event.data.type}"
 					required="true" />
 
 				<p:outputLabel for="from"
@@ -58,25 +58,25 @@
 				<p:outputLabel for="acteurs"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.acteurs.label']}" />
 				<p:inputText id="acteurs"
-					value="#{calendrierGestionBean.acteurNouveauEvenement}"
+					value="#{calendrierGestionBean.event.data.acteurs}"
 					required="true" />
 
 				<p:outputLabel for="corps"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.corps.label']}" />
 				<p:inputText id="corps"
-					value="#{calendrierGestionBean.corpsNouveauEvenement}"
+					value="#{calendrierGestionBean.event.data.corps}"
 					required="true" />
 
 				<p:outputLabel for="service"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.service.label']}" />
 				<p:inputText id="service"
-					value="#{calendrierGestionBean.serviceNouveauEvenement}"
+					value="#{calendrierGestionBean.event.data.service}"
 					required="true" />
 
 				<p:outputLabel for="couleur"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.couleur.label']}" />
 				<p:inputText id="couleur"
-					value="#{calendrierGestionBean.couleurNouveauEvenement}"
+					value="#{calendrierGestionBean.event.data.couleur}"
 					required="true" />
 
 				<p:outputLabel for="allDay"
@@ -84,10 +84,10 @@
 				<h:selectBooleanCheckbox id="allDay"
 					value="#{calendrierGestionBean.event.allDay}" />
 
-				<p:commandButton id="addButton"
+				<!-- p:commandButton id="addButton"
 					value="#{label['evenement.overview.calendrier_gestion.event.form.bouton_valider.label']}"
 					actionListener="#{calendrierGestionBean.ajouterModifierEvenement}"
-					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" /-->
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,15 +16,11 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
-import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
-import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
-import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
-import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -89,36 +84,38 @@ public class CalendrierGestionBean extends GenericBean {
 	private void listerEventCalendrierGestion() {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
-		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel.addEvent(
-				CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel
+				.addEvent(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
 	}
 
-	public void ajouterModifierEvenement(final ActionEvent actionEvent) {
-		ScheduleEvent eventInitial = new DefaultScheduleEvent();
-		if (this.event.getTitle() == null && this.event.getStartDate() == null && this.event.getEndDate() == null) {
-			this.scheduleModel.addEvent(this.event);
-		} else {
-			eventInitial = this.event;
-			this.scheduleModel.updateEvent(this.event);
-		}
-		final EventCalendrierDTO eventCalendrierGestionDTO = CalendrierGestionModelFactory
-				.createEventCalendrierGestionDTO(event);
-
-		eventCalendrierGestionDTO.setEvenement(this.event.getTitle());
-		eventCalendrierGestionDTO.setType(this.typeNouveauEvenement);
-		eventCalendrierGestionDTO.setDebut(this.event.getStartDate());
-		eventCalendrierGestionDTO.setEcheance(this.event.getEndDate());
-		eventCalendrierGestionDTO.setActeurs(this.acteurNouveauEvenement);
-		eventCalendrierGestionDTO.setCorps(this.corpsNouveauEvenement);
-		eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
-		eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
-
-		this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
-		this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.SUCCESS,
-				IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION, null, eventInitial, this.event));
-
-		this.event = new DefaultScheduleEvent();
-	}
+	/*
+	 * L'AJOUT ET LA MODIFICATION N'ONT PAS ETE DEMANDE EN TANT QUE USER STORY
+	 * public void ajouterModifierEvenement(final ActionEvent actionEvent) {
+	 * ScheduleEvent eventInitial = new DefaultScheduleEvent(); if
+	 * (this.event.getTitle() == null && this.event.getStartDate() == null &&
+	 * this.event.getEndDate() == null) {
+	 * this.scheduleModel.addEvent(this.event); } else { eventInitial =
+	 * this.event; this.scheduleModel.updateEvent(this.event); } final
+	 * EventCalendrierDTO eventCalendrierGestionDTO =
+	 * CalendrierGestionModelFactory .createEventCalendrierGestionDTO(event);
+	 *
+	 * eventCalendrierGestionDTO.setEvenement(this.event.getTitle());
+	 * eventCalendrierGestionDTO.setType(this.typeNouveauEvenement);
+	 * eventCalendrierGestionDTO.setDebut(this.event.getStartDate());
+	 * eventCalendrierGestionDTO.setEcheance(this.event.getEndDate());
+	 * eventCalendrierGestionDTO.setActeurs(this.acteurNouveauEvenement);
+	 * eventCalendrierGestionDTO.setCorps(this.corpsNouveauEvenement);
+	 * eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
+	 * eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
+	 *
+	 * this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
+	 * this.logger.logAction(Level.INFO,
+	 * computeLogActionDTO(IHMUserActionEnum.CREATION,
+	 * IHMUserResultEnum.SUCCESS, IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION,
+	 * null, eventInitial, this.event));
+	 *
+	 * this.event = new DefaultScheduleEvent(); }
+	 */
 
 	public ScheduleModel getScheduleModel() {
 		return scheduleModel;
