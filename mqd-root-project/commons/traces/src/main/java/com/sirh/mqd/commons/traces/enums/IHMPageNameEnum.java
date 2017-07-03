@@ -13,6 +13,8 @@ public enum IHMPageNameEnum {
 
 	ANOMALIE,
 
+	ALERTE,
+
 	COMMENTAIRE,
 
 	STATUT_DOSSIER,

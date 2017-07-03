@@ -8,8 +8,12 @@
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="zone_config_page">
-		<link rel="stylesheet" type="text/css"
-			href="spring/resources/css/dossiers.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/alertes.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/anomalies.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/commentaires.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/dossiers.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/historique.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/statut_dossier.css" />
 	</ui:define>
 
 	<ui:define name="zone_contenu">
@@ -21,6 +25,9 @@
 					footer="#{dossierBean.selectedDossierMatricule}"
 					rendered="#{dossierBean.tabsDisplayable}">
 					<p:tabView id="ongletsDossier">
+						<p:tab title="#{label['dossiers.overview.sous_menu.detail_des_alertes']}">
+							<ui:include src="alertes.xhtml" />
+						</p:tab>
 						<p:tab title="#{label['dossiers.overview.sous_menu.detail_des_anomalies']}">
 							<ui:include src="anomalies.xhtml" />
 						</p:tab>

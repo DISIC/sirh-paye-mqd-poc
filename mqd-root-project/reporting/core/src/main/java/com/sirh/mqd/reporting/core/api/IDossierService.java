@@ -2,6 +2,7 @@ package com.sirh.mqd.reporting.core.api;
 
 import java.util.List;
 
+import com.sirh.mqd.commons.exchanges.dto.pivot.AlerteDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 
@@ -46,4 +47,22 @@ public interface IDossierService {
 	 */
 	void modifierAnomalie(ComparaisonDTO anomalie);
 
+	/**
+	 * Méthode permettant de lister les aalertes d'un dossier
+	 *
+	 * @param matricule
+	 *            matricule
+	 * @param payLot
+	 *            lot de paie
+	 * @return {@link List} des alertes
+	 */
+	List<AlerteDTO> listerAlertes(String matricule, String payLot);
+
+	/**
+	 * Méthode permettant de modifier l'état de correction d'une alerte
+	 *
+	 * @param alerte
+	 *            l'alerte à mettre à jour
+	 */
+	void modifierAlerte(AlerteDTO alerte);
 }

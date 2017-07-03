@@ -230,6 +230,11 @@ public class JsfUtils implements Serializable {
 	public <T extends GenericBean> T getBean(final String beanName, final Class<T> className) {
 		final FacesContext facesContext = getFacesCurrentInstance();
 		if (facesContext != null) {
+			// final Object bean =
+			// facesContext.getExternalContext().getSessionMap().get(beanName);
+			// if (className.isInstance(bean)) {
+			// return className.cast(bean);
+			// }
 			return facesContext.getApplication().evaluateExpressionGet(facesContext, "#{" + beanName + "}", className);
 		}
 		return null;

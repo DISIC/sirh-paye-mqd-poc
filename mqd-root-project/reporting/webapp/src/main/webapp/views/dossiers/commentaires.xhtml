@@ -11,7 +11,6 @@
 	</f:metadata>
 	
 	<h:form id="formCommentaire">
-		<link rel="stylesheet" type="text/css" href="spring/resources/css/commentaire.css" />
 		<h:panelGroup id="commentaireSaisie">
 	   		<p:inputTextarea id="commentaire_saisie" placeholder="#{label['dossiers.overview.commentaires_saisie.saisir_nouveau_commentaire']}" value="#{commentaireBean.commentaire}" required="true"/>
 			<p:commandButton value="#{label['dossiers.overview.commentaires_input.libelle_bouton']}" styleClass="ui-priority-primary" actionListener="#{commentaireBean.ajouterCommentaire}" update=":commentairesGroup :formCommentaire:commentaireSaisie :messages"/>
