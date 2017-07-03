@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.traces.dto.LogActionDTO;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
 import com.sirh.mqd.commons.traces.enums.IHMUserActionEnum;
@@ -102,6 +103,10 @@ public class GenericBean implements Serializable {
 
 	public String getCurrentUserService() {
 		return this.loginUtils.getCurrentUserService();
+	}
+
+	public InteractionSirhEnum getCurrentUserMinistere() {
+		return this.loginUtils.getCurrentUserMinistere();
 	}
 
 	public DossierModel getCurrentDossier() {

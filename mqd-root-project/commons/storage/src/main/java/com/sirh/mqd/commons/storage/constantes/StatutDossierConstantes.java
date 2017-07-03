@@ -7,7 +7,7 @@ package com.sirh.mqd.commons.storage.constantes;
  */
 public final class StatutDossierConstantes {
 
-	public static final String COLLECTION_NAME = "statut_dossier";
+	public static final String COLLECTION_NAME = "statuts_dossiers";
 
 	public static final String COLONNE_ID = "_id";
 

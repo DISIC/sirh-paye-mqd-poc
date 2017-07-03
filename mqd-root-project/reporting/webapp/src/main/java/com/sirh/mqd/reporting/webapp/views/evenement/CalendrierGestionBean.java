@@ -20,7 +20,7 @@ import org.primefaces.model.ScheduleModel;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
+import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -29,12 +29,11 @@ import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
-import com.sirh.mqd.reporting.webapp.factory.EventCalendrierGestionModelFactory;
-import com.sirh.mqd.reporting.webapp.model.EventCalendrierGestionModel;
+import com.sirh.mqd.reporting.webapp.factory.CalendrierGestionModelFactory;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
- * La vue du statut d'un dossier
+ * La vue du calendrier de gestion
  *
  * @author khalil
  */
@@ -81,49 +80,44 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setup() {
 		// Initialization
-		scheduleModel = new DefaultScheduleModel();
+		this.scheduleModel = new DefaultScheduleModel();
 
 		// Supplier
-		listerEventCalendrierGestion(); // ne faudrait pas mettre ça dans une
-										// méthode alimenterCalendrierGestion?
-	}
-
-	protected void alimenterCalendrierGestion(final EventCalendrierGestionModel eventCalendrierGestionModel) {
-
+		listerEventCalendrierGestion();
 	}
 
 	private void listerEventCalendrierGestion() {
-		final List<EventCalendrierGestionDTO> eventsCalendrierGestionDTO = this.calendrierGestionService
-				.listerEventCalendrierGestion();
-		eventsCalendrierGestionDTO.forEach(eventCalendrierGestionDTO -> scheduleModel.addEvent(
-				EventCalendrierGestionModelFactory.createEventCalendrierGestionModel(eventCalendrierGestionDTO)));
+		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel.addEvent(
+				CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
 	}
 
 	public void ajouterModifierEvenement(final ActionEvent actionEvent) {
 		ScheduleEvent eventInitial = new DefaultScheduleEvent();
 		if (this.event.getTitle() == null && this.event.getStartDate() == null && this.event.getEndDate() == null) {
-			scheduleModel.addEvent(event);
+			this.scheduleModel.addEvent(this.event);
 		} else {
-			eventInitial = event;
-			scheduleModel.updateEvent(event);
+			eventInitial = this.event;
+			this.scheduleModel.updateEvent(this.event);
 		}
-		final EventCalendrierGestionDTO eventCalendrierGestionDTO = EventCalendrierGestionModelFactory
+		final EventCalendrierDTO eventCalendrierGestionDTO = CalendrierGestionModelFactory
 				.createEventCalendrierGestionDTO(event);
 
-		eventCalendrierGestionDTO.setEvenement(event.getTitle());
-		eventCalendrierGestionDTO.setType(typeNouveauEvenement);
-		eventCalendrierGestionDTO.setDebut(event.getStartDate());
-		eventCalendrierGestionDTO.setEcheance(event.getEndDate());
-		eventCalendrierGestionDTO.setActeurs(acteurNouveauEvenement);
-		eventCalendrierGestionDTO.setCorps(corpsNouveauEvenement);
-		eventCalendrierGestionDTO.setService(serviceNouveauEvenement);
-		eventCalendrierGestionDTO.setCouleur(couleurNouveauEvenement);
+		eventCalendrierGestionDTO.setEvenement(this.event.getTitle());
+		eventCalendrierGestionDTO.setType(this.typeNouveauEvenement);
+		eventCalendrierGestionDTO.setDebut(this.event.getStartDate());
+		eventCalendrierGestionDTO.setEcheance(this.event.getEndDate());
+		eventCalendrierGestionDTO.setActeurs(this.acteurNouveauEvenement);
+		eventCalendrierGestionDTO.setCorps(this.corpsNouveauEvenement);
+		eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
+		eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
 
-		this.calendrierGestionService.ajouterEventCalendrierGestion(eventCalendrierGestionDTO);
+		this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
 		this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.SUCCESS,
-				IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION, null, eventInitial, event));
+				IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION, null, eventInitial, this.event));
 
-		event = new DefaultScheduleEvent();
+		this.event = new DefaultScheduleEvent();
 	}
 
 	public ScheduleModel getScheduleModel() {

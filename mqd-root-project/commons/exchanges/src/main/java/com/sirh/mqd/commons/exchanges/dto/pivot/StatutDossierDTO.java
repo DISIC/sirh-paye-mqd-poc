@@ -1,4 +1,4 @@
-package com.sirh.mqd.commons.exchanges.dto.statutdossier;
+package com.sirh.mqd.commons.exchanges.dto.pivot;
 
 import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
 import com.sirh.mqd.commons.exchanges.enums.DossierDisponibiliteEnum;

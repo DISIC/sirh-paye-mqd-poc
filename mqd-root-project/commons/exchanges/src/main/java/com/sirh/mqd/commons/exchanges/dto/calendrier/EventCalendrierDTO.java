@@ -1,13 +1,19 @@
-package com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion;
+package com.sirh.mqd.commons.exchanges.dto.calendrier;
 
 import java.util.Date;
+
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 
 /**
  * DTO permettant de manipuler le calendrier gestion
  *
  * @author khalil
  */
-public class EventCalendrierGestionDTO {
+public class EventCalendrierDTO {
+
+	private String id;
+
+	private InteractionSirhEnum referentiel;
 
 	private String evenement;
 
@@ -25,8 +31,16 @@ public class EventCalendrierGestionDTO {
 
 	private String couleur;
 
-	public EventCalendrierGestionDTO() {
+	public EventCalendrierDTO() {
 		super();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(final String id) {
+		this.id = id;
 	}
 
 	public String getEvenement() {
@@ -91,5 +105,13 @@ public class EventCalendrierGestionDTO {
 
 	public void setCouleur(final String couleur) {
 		this.couleur = couleur;
+	}
+
+	public InteractionSirhEnum getReferentiel() {
+		return referentiel;
+	}
+
+	public void setReferentiel(final InteractionSirhEnum referentiel) {
+		this.referentiel = referentiel;
 	}
 }

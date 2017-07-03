@@ -8,16 +8,12 @@
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="zone_config_page">
-		<link rel="stylesheet" type="text/css"
-			href="spring/resources/css/evenements.css" />
+		<link rel="stylesheet" type="text/css" href="spring/resources/css/evenements.css" />
 	</ui:define>
 
 	<ui:define name="zone_contenu">
-
 		<h:panelGroup id="evenements" >
-			<p:panel id="calendrierGestion" header="#{label['evenement.overview.sous_menu.calendrier_gestion']}">
-				<ui:include src="calendrier_gestion.xhtml" />
-			</p:panel>
+			<ui:include src="calendrier_gestion.xhtml" />
 		</h:panelGroup>
 	</ui:define>
 </ui:composition>

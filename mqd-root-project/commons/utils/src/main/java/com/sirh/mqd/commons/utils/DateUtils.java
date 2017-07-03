@@ -45,6 +45,11 @@ public final class DateUtils {
 	private static final String DATE_FORMAT_MM_YY = "MM/yy";
 
 	/**
+	 * Format de date "j/m/aaaa".
+	 */
+	private static final String DATE_FORMAT_D_M_YYYY = "d/M/yyyy";
+
+	/**
 	 * Format de date "jj/mm/aaaa".
 	 */
 	private static final String DATE_FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
@@ -363,6 +368,18 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Création d'un objet Date à partir du format "j/m/aaaa"
+	 *
+	 * @param date
+	 *            date sous forme de chaîne de caractères
+	 *
+	 * @return date en objet {@link Date}
+	 */
+	public static Date parseDateJMAAAA(final String date) {
+		return parseDate(date, DATE_FORMAT_D_M_YYYY);
+	}
+
+	/**
 	 * Création d'un objet Date à partir du format "aaaa-mm-jj'T'hh:mm:ss,SSSZ"
 	 *
 	 * @param date
@@ -521,6 +538,60 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Crée une nouvelle date en ajoutant ou soustrayant un nombre de mois à la
+	 * date.<br/>
+	 * Si un nombre de mois est soustrait de la date, l'heure sera au format :
+	 * YYYY-MM-01-00:00:00.000<br/>
+	 * Si un nombre de mois est rajouté à la date, l'heure sera au format :
+	 * YYYY-MM-28/31-23:59:59.999
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @param nbMois
+	 *            le nombre de mois à ajouter ou à soustraire
+	 * @return Date la date obtenue
+	 */
+	public static Date addMonthsWithBounds(final Date date, final int nbMois) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		calendar.roll(Calendar.MONTH, nbMois);
+		if (Integer.signum(nbMois) == -1) {
+			return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.MONTH).getTime();
+		} else if (Integer.signum(nbMois) == 1) {
+			return org.apache.commons.lang3.time.DateUtils.addMilliseconds(
+					org.apache.commons.lang3.time.DateUtils.ceiling(calendar, Calendar.MONTH).getTime(), -1);
+		}
+		return calendar.getTime();
+	}
+
+	/**
+	 * Crée une nouvelle date en définissant l'heure au format : 00:00:00.000
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundHoursToMinimum(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.DAY_OF_MONTH).getTime();
+	}
+
+	/**
+	 * Crée une nouvelle date en définissant l'heure au format : 23:59:59.999
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundHoursToMaximum(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		return org.apache.commons.lang3.time.DateUtils.addMilliseconds(
+				org.apache.commons.lang3.time.DateUtils.ceiling(calendar, Calendar.DAY_OF_MONTH).getTime(), -1);
+	}
+
+	/**
 	 * Méthode permettant de créer une nouvelle date en ajoutant les champs
 	 * correspondant à la date
 	 *
@@ -654,14 +725,10 @@ public final class DateUtils {
 	 * @return la différence d'heure entre les deux dates
 	 */
 	public static int hoursBetween(final Date startDate, final Date endDate) {
-
 		final DateTime startDateX = new DateTime(startDate.getTime());
 		final DateTime endDateX = new DateTime(endDate.getTime());
-
 		final Hours hours = Hours.hoursBetween(startDateX, endDateX);
-
 		return hours.getHours();
-
 	}
 
 	/**

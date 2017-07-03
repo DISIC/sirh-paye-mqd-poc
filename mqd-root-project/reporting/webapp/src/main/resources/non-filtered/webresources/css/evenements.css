@@ -1,0 +1,12 @@
+div#calendrier_gestion_toolbar {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.fc-button-group {
+	display: inline-flex;
+}
+
+.ui-fluid .ui-button {
+	width: auto;
+}
