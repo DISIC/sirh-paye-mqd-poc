@@ -85,6 +85,10 @@ public class DossierBean extends GenericBean {
 		if (anomalieBean != null) {
 			anomalieBean.alimenterAnomalies(this.selectedDossier);
 		}
+		final AlerteBean alerteBean = this.jsfUtils.getBean(ViewConstantes.ALERTE_BEAN, AlerteBean.class);
+		if (alerteBean != null) {
+			alerteBean.alimenterAlertes(this.selectedDossier);
+		}
 		final CommentaireBean commentaireBean = this.jsfUtils.getBean(ViewConstantes.COMMENTAIRE_BEAN,
 				CommentaireBean.class);
 		if (commentaireBean != null) {
@@ -94,6 +98,10 @@ public class DossierBean extends GenericBean {
 				StatutDossierBean.class);
 		if (statutDossierBean != null) {
 			statutDossierBean.alimenterStatutDossier(this.selectedDossier);
+		}
+		final SyntheseBean syntheseBean = this.jsfUtils.getBean(ViewConstantes.SYNTHESE_BEAN, SyntheseBean.class);
+		if (syntheseBean != null) {
+			syntheseBean.alimenterSyntheseDossier(this.selectedDossier);
 		}
 	}
 

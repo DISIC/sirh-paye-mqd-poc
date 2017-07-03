@@ -15,7 +15,11 @@ public final class ViewConstantes {
 
 	public static final String ANOMALIE_BEAN = "anomalieBean";
 
+	public static final String ALERTE_BEAN = "alerteBean";
+
 	public static final String HISTORIQUE_BEAN = "historiqueBean";
+
+	public static final String SYNTHESE_BEAN = "syntheseBean";
 
 	public static final String COMMENTAIRE_BEAN = "commentaireBean";
 
