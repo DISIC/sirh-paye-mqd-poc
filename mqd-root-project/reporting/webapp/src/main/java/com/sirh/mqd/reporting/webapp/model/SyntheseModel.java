@@ -103,7 +103,7 @@ public class SyntheseModel implements Serializable {
 		return dateCertificatoinNir;
 	}
 
-	public void setDateCertificatoinNir(final Date dateCertificatoinNir) {
+	public void setDateCertificationNir(final Date dateCertificatoinNir) {
 		this.dateCertificatoinNir = dateCertificatoinNir;
 	}
 

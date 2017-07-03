@@ -95,6 +95,10 @@ public class DossierBean extends GenericBean {
 		if (statutDossierBean != null) {
 			statutDossierBean.alimenterStatutDossier(this.selectedDossier);
 		}
+		final SyntheseBean syntheseBean = this.jsfUtils.getBean(ViewConstantes.SYNTHESE_BEAN, SyntheseBean.class);
+		if (syntheseBean != null) {
+			syntheseBean.alimenterSyntheseDossier(this.selectedDossier);
+		}
 	}
 
 	public boolean isTabsDisplayable() {

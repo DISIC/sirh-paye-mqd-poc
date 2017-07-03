@@ -18,7 +18,8 @@
 		<p:panel header="#{label['dossiers.overview.synthese_table.header.donnees_personnelles']}"
 		style="margin-top:20px">
 			<p:panelGrid id="donnees_personnelles"
-				styleClass="ui-noborder" >				
+				styleClass="ui-noborder"
+				value="#{syntheseBean}" >				
 				<p:row>
 					<p:column style="font-weight: bold;">
 						<h:outputText value="#{label['dossiers.overview.synthese_table.libelle.nom_usage']}" />
@@ -41,22 +42,22 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<h:outputLabel value="#{syntheseBean.syntheseModel.getNomUsage}" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.nomUsage}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.nomNaissance}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.prenom}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.sexe}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.dateNaissance}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.villeNaissance}" />
 					</p:column>
 				</p:row>
 <!-- 				<p:row>
@@ -83,19 +84,19 @@
 				</p:row>
 				<p:row>
 					<p:column colspan="2">
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.adresse}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.cpVille}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.nationalite}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.dateCertificatoinNir}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.nir}" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -117,19 +118,19 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.situationFamiliale}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.contactTel}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.contactMail}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.matriculeAncienSIRH}" />
 					</p:column>
 					<p:column>
-						<h:outputLabel value="Content" />
+						<h:outputLabel value="#{syntheseBean.syntheseModel.idClassotheque}" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>

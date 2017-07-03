@@ -1,6 +1,7 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -51,15 +52,16 @@ public class SyntheseBean extends GenericBean {
 		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
-			alimenterSyntheseDossier();
 		}
 	}
 
-	public void alimenterSyntheseDossier() {
-		final DossierModel selectedDossier = getCurrentDossier();
+	public void alimenterSyntheseDossier(final DossierModel selectedDossier) {
 		if (selectedDossier != null) {
 			final DossierDTO dossierDTO = DossierModelFactory.createDossierDTO(selectedDossier);
 			setSyntheseModel(SyntheseModelFactory.createSyntheseModel(dossierDTO));
+		} else {
+			this.jsfUtils.addMessageByCode(FacesMessage.SEVERITY_ERROR,
+					"view.dossiers.synthese.erreur.no.dossier.selected");
 		}
 
 	}
