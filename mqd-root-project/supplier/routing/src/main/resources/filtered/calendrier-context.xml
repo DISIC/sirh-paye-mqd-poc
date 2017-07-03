@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-sftp="http://www.springframework.org/schema/integration/sftp"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
+		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
+	default-autowire="byName">
+	
+	<int:channel id="calendrierCSVFileDGACChannel" />
+	<int:channel id="calendrierCSVFileMSOChannel" />
+	
+	<int-sftp:inbound-channel-adapter
+		session-factory="sftpSessionFactory"
+		remote-directory="/sirh-paye-data/calendrier"
+		local-directory="${sftp.directory.local.path}/calendrier"
+		filename-pattern="SIRH-POC outils - calendrier de gestion DGAC*.csv"
+		auto-create-local-directory="false"
+		delete-remote-files="false"
+		channel="calendrierCSVFileDGACChannel" >
+		<int:poller 
+			fixed-rate="10000"/>
+	</int-sftp:inbound-channel-adapter>
+	
+	<int:service-activator
+		input-channel="calendrierCSVFileDGACChannel"
+		ref="calendrierGestionBean"
+		method="manageCSVFileFromDGAC" />
+	
+	<int-sftp:inbound-channel-adapter
+		session-factory="sftpSessionFactory"
+		remote-directory="/sirh-paye-data/calendrier"
+		local-directory="${sftp.directory.local.path}/calendrier"
+		filename-pattern="SIRH-POC outils - calendrier de gestion MSO*.csv"
+		auto-create-local-directory="false"
+		delete-remote-files="false"
+		channel="calendrierCSVFileMSOChannel" >
+		<int:poller 
+			fixed-rate="10000"/>
+	</int-sftp:inbound-channel-adapter>
+	
+	<int:service-activator
+		input-channel="calendrierCSVFileMSOChannel"
+		ref="calendrierGestionBean"
+		method="manageCSVFileFromMSO" />
+
+</beans>

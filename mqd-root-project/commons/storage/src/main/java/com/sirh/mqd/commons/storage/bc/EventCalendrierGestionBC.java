@@ -1,6 +1,5 @@
 package com.sirh.mqd.commons.storage.bc;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.storage.dao.IEventCalendrierGestionDAO;
 import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
@@ -31,17 +31,15 @@ public class EventCalendrierGestionBC {
 	/**
 	 * Méthode permettant de récuperer un evenement du calendrier gestion
 	 *
-	 * @param evenement
 	 * @param debut
 	 * @param echeance
 	 * @return {@link EventCalendrierGestionDTO} correspondant à l'evenement
 	 *         d'un calendrier gestion contenant les informations issues de la
 	 *         base de données
 	 */
-	public Optional<EventCalendrierGestionDTO> rechercherEventCalendrierGestion(final String evenement,
-			final Date debut, final Date echeance) {
+	public Optional<EventCalendrierGestionDTO> rechercherEventCalendrierGestion(final String id) {
 		final EventCalendrierGestionEntity eventCalendrierGestionEntity = this.eventCalendrierGestionDAO
-				.selectEventCalendrierGestion(evenement, debut, echeance);
+				.selectEventCalendrierGestion(id);
 		return Optional.ofNullable(
 				EventCalendrierGestionEntityFactory.createEventCalendrierGestionDTO(eventCalendrierGestionEntity));
 	}
@@ -58,9 +56,10 @@ public class EventCalendrierGestionBC {
 		eventCalendrierGestionDAO.upsertCalendrierGestion(entity);
 	}
 
-	public List<EventCalendrierGestionDTO> listerEventCalendrierGestion() {
+	public List<EventCalendrierGestionDTO> listerEventCalendrierGestion(final InteractionSirhEnum referentiel,
+			final String service) {
 		final List<EventCalendrierGestionEntity> eventCalendrierGestionEntities = this.eventCalendrierGestionDAO
-				.selectEventsCalendrierGestion();
+				.selectEventsCalendrierGestion(referentiel, service);
 		return eventCalendrierGestionEntities.stream()
 				.map(eventCalendrierGestionEntity -> EventCalendrierGestionEntityFactory
 						.createEventCalendrierGestionDTO(eventCalendrierGestionEntity))

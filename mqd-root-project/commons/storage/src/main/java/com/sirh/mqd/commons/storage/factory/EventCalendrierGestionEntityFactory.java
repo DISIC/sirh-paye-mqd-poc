@@ -1,10 +1,7 @@
 package com.sirh.mqd.commons.storage.factory;
 
-import java.util.Date;
-
 import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
 import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
-import com.sirh.mqd.commons.utils.constante.Constantes;
 
 /**
  * Factory de création des entités des calendrier gestion.
@@ -27,6 +24,8 @@ public class EventCalendrierGestionEntityFactory {
 		EventCalendrierGestionDTO eventCalendrierGestion = null;
 		if (entity != null) {
 			eventCalendrierGestion = new EventCalendrierGestionDTO();
+			eventCalendrierGestion.setId(entity.getId());
+			eventCalendrierGestion.setReferentiel(entity.getReferentiel());
 			eventCalendrierGestion.setEvenement(entity.getEvenement());
 			eventCalendrierGestion.setType(entity.getType());
 			eventCalendrierGestion.setDebut(entity.getDebut());
@@ -44,8 +43,8 @@ public class EventCalendrierGestionEntityFactory {
 		EventCalendrierGestionEntity entity = null;
 		if (eventCalendrierGestion != null) {
 			entity = new EventCalendrierGestionEntity();
-			entity.setId(generateEntityId(eventCalendrierGestion.getEvenement(), eventCalendrierGestion.getDebut(),
-					eventCalendrierGestion.getEcheance()));
+			entity.setId(eventCalendrierGestion.getId());
+			entity.setReferentiel(eventCalendrierGestion.getReferentiel());
 			entity.setEvenement(eventCalendrierGestion.getEvenement());
 			entity.setType(eventCalendrierGestion.getType());
 			entity.setDebut(eventCalendrierGestion.getDebut());
@@ -54,19 +53,7 @@ public class EventCalendrierGestionEntityFactory {
 			entity.setCorps(eventCalendrierGestion.getCorps());
 			entity.setService(eventCalendrierGestion.getService());
 			entity.setCouleur(eventCalendrierGestion.getCouleur());
-
 		}
 		return entity;
-	}
-
-	private static String generateEntityId(final String evenement, final Date debut, final Date echeance) {
-		final StringBuilder builder = new StringBuilder();
-		builder.append(evenement);
-		builder.append(Constantes.DASH);
-		builder.append(debut);
-		builder.append(Constantes.DASH);
-		builder.append(echeance);
-		builder.append(Constantes.DASH);
-		return builder.toString();
 	}
 }

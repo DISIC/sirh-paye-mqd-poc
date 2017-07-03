@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.constantes.EventCalendrierGestionConstantes;
 
 /**
@@ -17,26 +18,30 @@ import com.sirh.mqd.commons.storage.constantes.EventCalendrierGestionConstantes;
  * @author khalil
  */
 @Document(collection = EventCalendrierGestionConstantes.COLLECTION_NAME)
-@CompoundIndexes({ @CompoundIndex(name = "index_calendrier_gestion", def = "{'"
-		+ EventCalendrierGestionConstantes.COLONNE_EVENEMENT + "' : 1, '" + EventCalendrierGestionConstantes.COLONNE_DEBUT
-		+ "' : 1, '" + EventCalendrierGestionConstantes.COLONNE_ECHEANCE + "' : 1}") })
+@CompoundIndexes({
+		@CompoundIndex(name = "index_calendrier_service", def = "{'"
+				+ EventCalendrierGestionConstantes.COLONNE_REFERENTIEL + "' : 1, '"
+				+ EventCalendrierGestionConstantes.COLONNE_SERVICE + "' : 1}"),
+		@CompoundIndex(name = "index_calendrier_range", def = "{'" + EventCalendrierGestionConstantes.COLONNE_DEBUT
+				+ "' : 1, '" + EventCalendrierGestionConstantes.COLONNE_ECHEANCE + "' : 1}") })
 public class EventCalendrierGestionEntity {
 
 	@Id
 	private String id;
 
 	@Indexed
+	@Field(EventCalendrierGestionConstantes.COLONNE_REFERENTIEL)
+	private InteractionSirhEnum referentiel;
+
 	@Field(EventCalendrierGestionConstantes.COLONNE_EVENEMENT)
 	private String evenement;
 
 	@Field(EventCalendrierGestionConstantes.COLONNE_TYPE)
 	private String type;
 
-	@Indexed
 	@Field(EventCalendrierGestionConstantes.COLONNE_DEBUT)
 	private Date debut;
 
-	@Indexed
 	@Field(EventCalendrierGestionConstantes.COLONNE_ECHEANCE)
 	private Date echeance;
 
@@ -46,6 +51,7 @@ public class EventCalendrierGestionEntity {
 	@Field(EventCalendrierGestionConstantes.COLONNE_CORPS)
 	private String corps;
 
+	@Indexed
 	@Field(EventCalendrierGestionConstantes.COLONNE_SERVICE)
 	private String service;
 
@@ -126,5 +132,13 @@ public class EventCalendrierGestionEntity {
 
 	public void setCouleur(final String couleur) {
 		this.couleur = couleur;
+	}
+
+	public InteractionSirhEnum getReferentiel() {
+		return referentiel;
+	}
+
+	public void setReferentiel(final InteractionSirhEnum referentiel) {
+		this.referentiel = referentiel;
 	}
 }

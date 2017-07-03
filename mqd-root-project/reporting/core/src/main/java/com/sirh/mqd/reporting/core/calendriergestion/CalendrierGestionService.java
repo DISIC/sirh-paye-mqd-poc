@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.bc.EventCalendrierGestionBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
@@ -20,8 +21,9 @@ public class CalendrierGestionService implements ICalendrierGestionService {
 	private EventCalendrierGestionBC eventCalendrierGestionBC;
 
 	@Override
-	public List<EventCalendrierGestionDTO> listerEventCalendrierGestion() {
-		return eventCalendrierGestionBC.listerEventCalendrierGestion();
+	public List<EventCalendrierGestionDTO> listerEventCalendrierGestion(final InteractionSirhEnum referentiel,
+			final String service) {
+		return eventCalendrierGestionBC.listerEventCalendrierGestion(referentiel, service);
 	}
 
 	@Override

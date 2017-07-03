@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
 import com.sirh.mqd.reporting.webapp.model.UserModel;
@@ -98,6 +99,15 @@ public class LoginUtils implements Serializable {
 			return authenticatedUser.getService();
 		}
 		return "USER UNDEFINED";
+	}
+
+	public InteractionSirhEnum getCurrentUserMinistere() {
+		final UserModel authenticatedUser = (UserModel) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (authenticatedUser != null) {
+			return authenticatedUser.getMinistere();
+		}
+		return null;
 	}
 
 	public Collection<? extends GrantedAuthority> getRoles() {
