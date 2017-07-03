@@ -14,52 +14,47 @@
 		<link rel="stylesheet" type="text/css" href="spring/resources/css/evenement.css" />
 		<p:growl id="messages" showDetail="true" />
 		
-	    <h:panelGrid columnClasses="value">
-	   		<div id="calendrier_gestion_toolbar">
-		        <p:schedule id="schedule" rows= "1" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="GMT+2">
-	
-		            <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-		            <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-		            <p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
-		            <p:ajax event="eventResize" listener="#{calendrierGestionBean.onEventResize}" update="messages" />
-		 
-	       		</p:schedule>
-       		</div>	
-       	</h:panelGrid>
-       	
+	  	<div id="calendrier_gestion_toolbar">
+		<p:schedule id="schedule" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="UTC" clientTimeZone="UTC" locale="fr" >
+
+	        <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+    	    <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+        	<p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
+            <p:ajax event="eventResize" listener="#{calendrierGestionBean.onEventResize}" update="messages" />
+ 
+      	</p:schedule>
+       	</div>	       	
        	<p:dialog widgetVar="eventDialog" header="Détails Évènement" showEffect="clip" hideEffect="clip">
-			<h:panelGrid id="eventDetails" columns="2" >
-		    	<p:outputLabel for="title" value="#{label['evenement.overview.calendrier_gestion.event.form.evenement.label']}" />
-				<p:inputText id="title" value="#{calendrierGestionBean.event.title}" required="true" />
-		 
-				<p:outputLabel for="type" value="#{label['evenement.overview.calendrier_gestion.event.form.type.label']}" />
-		        <p:inputText id="type" value="#{calendrierGestionBean.typeNouveauEvenement}" required="true" />
-		            
-		        <p:outputLabel for="from" value="#{label['evenement.overview.calendrier_gestion.event.form.debut.label']}" />
-		        <p:calendar id="from" value="#{calendrierGestionBean.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
-		 
-		        <p:outputLabel for="to" value="#{label['evenement.overview.calendrier_gestion.event.form.echeance.label']}" />
-		        <p:calendar id="to" value="#{calendrierGestionBean.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
-		            
-		        <p:outputLabel for="acteurs" value="#{label['evenement.overview.calendrier_gestion.event.form.acteurs.label']}" />
-		        <p:inputText id="acteurs" value="#{calendrierGestionBean.acteurNouveauEvenement}" required="true" />
-		            
-		        <p:outputLabel for="corps" value="#{label['evenement.overview.calendrier_gestion.event.form.corps.label']}Corps: " />
-		        <p:inputText id="corps" value="#{calendrierGestionBean.corpsNouveauEvenement}" required="true" />
-		            
-		        <p:outputLabel for="service" value="#{label['evenement.overview.calendrier_gestion.event.form.service.label']}" />
-		        <p:inputText id="service" value="#{calendrierGestionBean.serviceNouveauEvenement}" required="true" />
-		         
-		        <p:outputLabel for="couleur" value="#{label['evenement.overview.calendrier_gestion.event.form.couleur.label']}" />  
-		        <p:selectOneMenu id="couleur" value="Couleur: ">
-					<f:selectItems itemValue="red" styleClass="background-color:red" />
-				</p:selectOneMenu>
-		 
-		        <p:outputLabel for="allDay" value="#{label['evenement.overview.calendrier_gestion.event.form.journee.label']}" />
-		        <h:selectBooleanCheckbox id="allDay" value="#{calendrierGestionBean.event.allDay}" />
-		 
-		        <p:commandButton id="addButton" value="#{label['evenement.overview.calendrier_gestion.event.form.bouton_valider.label']}" actionListener="#{calendrierGestionBean.ajouterModifierEvenement}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-		    </h:panelGrid>
-   		</p:dialog>   
+	        <h:panelGrid id="eventDetails" columns="2" >
+	            <p:outputLabel for="title" value="#{label['evenement.overview.calendrier_gestion.event.form.evenement.label']}" />
+	            <p:inputText id="title" value="#{calendrierGestionBean.event.title}" required="true" />
+	 
+			 	<p:outputLabel for="type" value="#{label['evenement.overview.calendrier_gestion.event.form.type.label']}" />
+	            <p:inputText id="type" value="#{calendrierGestionBean.typeNouveauEvenement}" required="true" />
+	            
+	            <p:outputLabel for="from" value="#{label['evenement.overview.calendrier_gestion.event.form.debut.label']}" />
+	            <p:calendar id="from" value="#{calendrierGestionBean.event.startDate}" timeZone="UTC" pattern="dd/MM/yyyy HH:mm"/>
+	 
+	            <p:outputLabel for="to" value="#{label['evenement.overview.calendrier_gestion.event.form.echeance.label']}" />
+	            <p:calendar id="to" value="#{calendrierGestionBean.event.endDate}" timeZone="UTC" pattern="dd/MM/yyyy HH:mm"/>
+	            
+	            <p:outputLabel for="acteurs" value="#{label['evenement.overview.calendrier_gestion.event.form.acteurs.label']}" />
+	            <p:inputText id="acteurs" value="#{calendrierGestionBean.acteurNouveauEvenement}" required="true" />
+	            
+	            <p:outputLabel for="corps" value="#{label['evenement.overview.calendrier_gestion.event.form.corps.label']}" />
+	            <p:inputText id="corps" value="#{calendrierGestionBean.corpsNouveauEvenement}" required="true" />
+	            
+	            <p:outputLabel for="service" value="#{label['evenement.overview.calendrier_gestion.event.form.service.label']}" />
+	            <p:inputText id="service" value="#{calendrierGestionBean.serviceNouveauEvenement}" required="true" />
+	            
+	            <p:outputLabel for="couleur" value="#{label['evenement.overview.calendrier_gestion.event.form.couleur.label']}" />
+	            <p:inputText id="couleur" value="#{calendrierGestionBean.couleurNouveauEvenement}" required="true" />
+	 
+	            <p:outputLabel for="allDay" value="#{label['evenement.overview.calendrier_gestion.event.form.journee.label']}" />
+	            <h:selectBooleanCheckbox id="allDay" value="#{calendrierGestionBean.event.allDay}" />
+	 
+	            <p:commandButton id="addButton" value="#{label['evenement.overview.calendrier_gestion.event.form.bouton_valider.label']}" actionListener="#{calendrierGestionBean.ajouterModifierEvenement}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+	        </h:panelGrid>
+  		</p:dialog>
 	</h:form>	
 </ui:composition>
