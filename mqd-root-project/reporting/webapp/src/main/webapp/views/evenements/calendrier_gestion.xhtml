@@ -12,6 +12,7 @@
 
 	<h:form id="formCalendrierGestion">
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<link rel="stylesheet" type="text/css" href="spring/resources/css/evenement.css" />
 		<p:growl id="messages" showDetail="true" />
 		
@@ -58,6 +59,10 @@
 =======
         <p:schedule id="schedule" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="UTC" clientTimeZone="UTC" locale="fr" >
 
+=======
+        <p:schedule id="schedule" value="#{calendrierGestionBean.scheduleModel}" widgetVar="myschedule" timeZone="UTC" clientTimeZone="UTC" locale="fr" >
+
+>>>>>>> 298ae9948c1f74a775a219b0cf677481717de2ea
             <p:ajax event="dateSelect" listener="#{calendrierGestionBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
             <p:ajax event="eventSelect" listener="#{calendrierGestionBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
             <p:ajax event="eventMove" listener="#{calendrierGestionBean.onEventMove}" update="messages" />
@@ -94,6 +99,9 @@
 	            <h:selectBooleanCheckbox id="allDay" value="#{calendrierGestionBean.event.allDay}" />
 	 
 	            <p:commandButton id="addButton" value="Valider" actionListener="#{calendrierGestionBean.ajouterModifierEvenement}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+<<<<<<< HEAD
+>>>>>>> 298ae9948c1f74a775a219b0cf677481717de2ea
+=======
 >>>>>>> 298ae9948c1f74a775a219b0cf677481717de2ea
 	        </h:panelGrid>
   		</p:dialog>
