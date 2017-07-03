@@ -7,7 +7,6 @@ import com.sirh.mqd.commons.exchanges.dto.pivot.DifferenceDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
-import com.sirh.mqd.commons.utils.constante.Constantes;
 import com.sirh.mqd.reporting.webapp.model.AnomalieModel;
 
 /**

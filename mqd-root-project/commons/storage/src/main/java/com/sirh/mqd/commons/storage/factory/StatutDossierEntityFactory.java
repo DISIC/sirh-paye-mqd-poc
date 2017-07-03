@@ -1,7 +1,7 @@
 package com.sirh.mqd.commons.storage.factory;
 
 import com.google.common.base.Joiner;
-import com.sirh.mqd.commons.exchanges.dto.statutdossier.StatutDossierDTO;
+import com.sirh.mqd.commons.exchanges.dto.pivot.StatutDossierDTO;
 import com.sirh.mqd.commons.storage.entity.StatutDossierEntity;
 import com.sirh.mqd.commons.utils.constante.Constantes;
 

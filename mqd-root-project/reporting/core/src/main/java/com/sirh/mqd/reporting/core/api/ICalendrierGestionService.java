@@ -2,7 +2,7 @@ package com.sirh.mqd.reporting.core.api;
 
 import java.util.List;
 
-import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
+import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 
 /**
@@ -14,6 +14,13 @@ public interface ICalendrierGestionService {
 
 	/**
 	 * Méthode permettant de lister tous les evenements du calendrier gestion
+	 * avec une limitation dans le temps :
+	 * <ul>
+	 * <li>date de début : 1 mois avant la date actuelle (tout le mois compris)
+	 * </li>
+	 * <li>date de fin : 6 mois après la date actuelle (tout le dernier mois
+	 * compris)</li>
+	 * </ul>
 	 *
 	 * @param referentiel
 	 *            le sirh
@@ -21,7 +28,7 @@ public interface ICalendrierGestionService {
 	 *            le service associé à l'événement
 	 * @return {@link List} des evenements du calendrier gestion
 	 */
-	List<EventCalendrierGestionDTO> listerEventCalendrierGestion(InteractionSirhEnum referentiel, String service);
+	List<EventCalendrierDTO> listerEventsAvecBornesTemporelles(InteractionSirhEnum referentiel, String service);
 
 	/**
 	 * Méthode permettant d'ajouter un evenement au calendrier gestion
@@ -29,6 +36,5 @@ public interface ICalendrierGestionService {
 	 * @param eventCalendrierGestionDTO
 	 *            evenement à ajouter
 	 */
-	void ajouterEventCalendrierGestion(EventCalendrierGestionDTO eventCalendrierGestionDTO);
-
+	void ajouterEvent(EventCalendrierDTO eventCalendrierGestionDTO);
 }

@@ -5,9 +5,9 @@ package com.sirh.mqd.commons.storage.constantes;
  *
  * @author khalil
  */
-public final class EventCalendrierGestionConstantes {
+public final class EventCalendrierConstantes {
 
-	public static final String COLLECTION_NAME = "calendrier_gestion";
+	public static final String COLLECTION_NAME = "events_calendriers_gestion";
 
 	public static final String COLONNE_ID = "_id";
 
@@ -15,9 +15,9 @@ public final class EventCalendrierGestionConstantes {
 
 	public static final String COLONNE_TYPE = "type";
 
-	public static final String COLONNE_DEBUT = "debut";
+	public static final String COLONNE_DEBUT = "date_debut";
 
-	public static final String COLONNE_ECHEANCE = "echeance";
+	public static final String COLONNE_ECHEANCE = "date_echeance";
 
 	public static final String COLONNE_ACTEURS = "acteurs";
 
@@ -34,8 +34,8 @@ public final class EventCalendrierGestionConstantes {
 	 *
 	 * @throws InstantiationException
 	 */
-	private EventCalendrierGestionConstantes() throws InstantiationException {
+	private EventCalendrierConstantes() throws InstantiationException {
 		throw new InstantiationException(
-				"Création non autorisée d'une instance de : " + EventCalendrierGestionConstantes.class.getName());
+				"Création non autorisée d'une instance de : " + EventCalendrierConstantes.class.getName());
 	}
 }

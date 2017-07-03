@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sirh.mqd.commons.exchanges.factory.calendrier.CalendrierGestionDTOFactory;
-import com.sirh.mqd.commons.storage.bc.EventCalendrierGestionBC;
+import com.sirh.mqd.commons.storage.bc.CalendrierGestionBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.commons.utils.exception.TechnicalException;
 import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
@@ -25,8 +25,8 @@ import com.sirh.mqd.supplier.core.utils.CalendrierGestionUtils;
 public class CalendrierGestionService {
 
 	@Autowired
-	@Qualifier(PersistenceConstantes.EVENT_CALENDRIER_GESTION_BC)
-	private EventCalendrierGestionBC calendrierGestionBC;
+	@Qualifier(PersistenceConstantes.CALENDRIER_GESTION_BC)
+	private CalendrierGestionBC calendrierGestionBC;
 
 	public void storeCSVDataFromDGAC(final Long timestamp, final File payload) {
 		importCalendrierDGACData(payload);
@@ -49,9 +49,9 @@ public class CalendrierGestionService {
 					// Corps : 5
 					// Service : 6
 					// Couleur : 7
-					this.calendrierGestionBC.modifierCreerEventCalendrierGestion(
-							CalendrierGestionDTOFactory.createEventDTOFromDGAC(lineArray[0], lineArray[1], lineArray[2],
-									lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[7]));
+					this.calendrierGestionBC.modifierCreerEvent(CalendrierGestionDTOFactory
+							.createEventCalendrierDTOFromDGAC(lineArray[0], lineArray[1], lineArray[2], lineArray[3],
+									lineArray[4], lineArray[5], lineArray[6], lineArray[7]));
 				}
 				i++;
 			}

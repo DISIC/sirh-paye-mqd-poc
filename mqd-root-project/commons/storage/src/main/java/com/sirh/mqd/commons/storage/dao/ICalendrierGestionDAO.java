@@ -1,9 +1,10 @@
 package com.sirh.mqd.commons.storage.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
-import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
+import com.sirh.mqd.commons.storage.entity.EventCalendrierEntity;
 
 /**
  * @see doc.story.ref307
@@ -14,7 +15,7 @@ import com.sirh.mqd.commons.storage.entity.EventCalendrierGestionEntity;
  * @author khalil
  */
 
-public interface IEventCalendrierGestionDAO {
+public interface ICalendrierGestionDAO {
 
 	/**
 	 * Méthode permettant de récupérer les infos d'UN evenement
@@ -23,7 +24,7 @@ public interface IEventCalendrierGestionDAO {
 	 *            identité de l'événement
 	 * @return EventCalendrierGestionEntity correspondant à l'évènement
 	 */
-	EventCalendrierGestionEntity selectEventCalendrierGestion(String id);
+	EventCalendrierEntity selectEventCalendrierGestion(String id);
 
 	/**
 	 * Méthode permettant de de récupérer les infos de TOUS les evenements sous
@@ -33,10 +34,15 @@ public interface IEventCalendrierGestionDAO {
 	 *            le sirh
 	 * @param service
 	 *            le service associé à l'événement
+	 * @param dateFin
+	 *            la date de début de recherche
+	 * @param dateDebut
+	 *            la date de fin de recherche
 	 * @return List<EventCalendrierGestionDTO> correspondant à tous les
 	 *         évènements existants
 	 */
-	List<EventCalendrierGestionEntity> selectEventsCalendrierGestion(InteractionSirhEnum referentiel, String service);
+	List<EventCalendrierEntity> selectEventsCalendrierGestion(InteractionSirhEnum referentiel, String service,
+			Date dateDebut, Date dateFin);
 
 	/**
 	 * Méthode permettant de mettre à jour ou de créer un evenement
@@ -44,7 +50,7 @@ public interface IEventCalendrierGestionDAO {
 	 * @param eventCalendrierGestionEntity
 	 *            evenement à modifier/créer
 	 */
-	void upsertCalendrierGestion(EventCalendrierGestionEntity eventCalendrierGestionEntity);
+	void upsertCalendrierGestion(EventCalendrierEntity eventCalendrierGestionEntity);
 
 	/**
 	 * Méthode permettant de supprimer un evenement
@@ -52,6 +58,6 @@ public interface IEventCalendrierGestionDAO {
 	 * @param eventCalendrierGestionEntity
 	 *            evenement à supprimer
 	 */
-	void deleteCalendrierGestion(EventCalendrierGestionEntity eventCalendrierGestionEntity);
+	void deleteCalendrierGestion(EventCalendrierEntity eventCalendrierGestionEntity);
 
 }

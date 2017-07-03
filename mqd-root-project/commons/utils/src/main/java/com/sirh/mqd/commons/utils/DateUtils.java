@@ -541,9 +541,9 @@ public final class DateUtils {
 	 * Crée une nouvelle date en ajoutant ou soustrayant un nombre de mois à la
 	 * date.<br/>
 	 * Si un nombre de mois est soustrait de la date, l'heure sera au format :
-	 * 00:00:00.000<br/>
+	 * YYYY-MM-01-00:00:00.000<br/>
 	 * Si un nombre de mois est rajouté à la date, l'heure sera au format :
-	 * 23:59:59.999
+	 * YYYY-MM-28/31-23:59:59.999
 	 *
 	 * @param date
 	 *            la date à modifier
@@ -556,10 +556,10 @@ public final class DateUtils {
 		calendar.setTime(date);
 		calendar.roll(Calendar.MONTH, nbMois);
 		if (Integer.signum(nbMois) == -1) {
-			return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.DAY_OF_MONTH).getTime();
+			return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.MONTH).getTime();
 		} else if (Integer.signum(nbMois) == 1) {
 			return org.apache.commons.lang3.time.DateUtils.addMilliseconds(
-					org.apache.commons.lang3.time.DateUtils.ceiling(calendar, Calendar.DAY_OF_MONTH).getTime(), -1);
+					org.apache.commons.lang3.time.DateUtils.ceiling(calendar, Calendar.MONTH).getTime(), -1);
 		}
 		return calendar.getTime();
 	}

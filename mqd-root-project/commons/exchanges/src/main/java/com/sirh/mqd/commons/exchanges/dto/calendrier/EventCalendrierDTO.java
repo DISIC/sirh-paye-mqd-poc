@@ -1,4 +1,4 @@
-package com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion;
+package com.sirh.mqd.commons.exchanges.dto.calendrier;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
  *
  * @author khalil
  */
-public class EventCalendrierGestionDTO {
+public class EventCalendrierDTO {
 
 	private String id;
 
@@ -31,7 +31,7 @@ public class EventCalendrierGestionDTO {
 
 	private String couleur;
 
-	public EventCalendrierGestionDTO() {
+	public EventCalendrierDTO() {
 		super();
 	}
 

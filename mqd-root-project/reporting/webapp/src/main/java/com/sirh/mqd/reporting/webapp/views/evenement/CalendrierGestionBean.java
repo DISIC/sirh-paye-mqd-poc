@@ -20,7 +20,7 @@ import org.primefaces.model.ScheduleModel;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.commons.exchanges.dto.eventcalendriergestion.EventCalendrierGestionDTO;
+import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -29,7 +29,7 @@ import com.sirh.mqd.commons.traces.enums.IHMUserResultEnum;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
-import com.sirh.mqd.reporting.webapp.factory.EventCalendrierGestionModelFactory;
+import com.sirh.mqd.reporting.webapp.factory.CalendrierGestionModelFactory;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
@@ -87,10 +87,10 @@ public class CalendrierGestionBean extends GenericBean {
 	}
 
 	private void listerEventCalendrierGestion() {
-		final List<EventCalendrierGestionDTO> eventsCalendrierGestionDTO = this.calendrierGestionService
-				.listerEventCalendrierGestion(getCurrentUserMinistere(), getCurrentUserService());
-		eventsCalendrierGestionDTO.forEach(eventCalendrierGestionDTO -> this.scheduleModel.addEvent(
-				EventCalendrierGestionModelFactory.createEventCalendrierGestionModel(eventCalendrierGestionDTO)));
+		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel.addEvent(
+				CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
 	}
 
 	public void ajouterModifierEvenement(final ActionEvent actionEvent) {
@@ -101,7 +101,7 @@ public class CalendrierGestionBean extends GenericBean {
 			eventInitial = this.event;
 			this.scheduleModel.updateEvent(this.event);
 		}
-		final EventCalendrierGestionDTO eventCalendrierGestionDTO = EventCalendrierGestionModelFactory
+		final EventCalendrierDTO eventCalendrierGestionDTO = CalendrierGestionModelFactory
 				.createEventCalendrierGestionDTO(event);
 
 		eventCalendrierGestionDTO.setEvenement(this.event.getTitle());
@@ -113,7 +113,7 @@ public class CalendrierGestionBean extends GenericBean {
 		eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
 		eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
 
-		this.calendrierGestionService.ajouterEventCalendrierGestion(eventCalendrierGestionDTO);
+		this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
 		this.logger.logAction(Level.INFO, computeLogActionDTO(IHMUserActionEnum.CREATION, IHMUserResultEnum.SUCCESS,
 				IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION, null, eventInitial, this.event));
 

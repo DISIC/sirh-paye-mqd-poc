@@ -10,55 +10,56 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
-import com.sirh.mqd.commons.storage.constantes.EventCalendrierGestionConstantes;
+import com.sirh.mqd.commons.storage.constantes.EventCalendrierConstantes;
 
 /**
- * Entité des calendrier gestion
+ * Entité des événements d'un calendrier gestion
  *
  * @author khalil
  */
-@Document(collection = EventCalendrierGestionConstantes.COLLECTION_NAME)
+@Document(collection = EventCalendrierConstantes.COLLECTION_NAME)
 @CompoundIndexes({
-		@CompoundIndex(name = "index_calendrier_service", def = "{'"
-				+ EventCalendrierGestionConstantes.COLONNE_REFERENTIEL + "' : 1, '"
-				+ EventCalendrierGestionConstantes.COLONNE_SERVICE + "' : 1}"),
-		@CompoundIndex(name = "index_calendrier_range", def = "{'" + EventCalendrierGestionConstantes.COLONNE_DEBUT
-				+ "' : 1, '" + EventCalendrierGestionConstantes.COLONNE_ECHEANCE + "' : 1}") })
-public class EventCalendrierGestionEntity {
+		@CompoundIndex(name = "index_calendrier_service", def = "{'" + EventCalendrierConstantes.COLONNE_REFERENTIEL
+				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_SERVICE + "' : 1}"),
+		@CompoundIndex(name = "index_calendrier_range", def = "{'" + EventCalendrierConstantes.COLONNE_DEBUT
+				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_ECHEANCE + "' : 1}") })
+public class EventCalendrierEntity {
 
 	@Id
 	private String id;
 
 	@Indexed
-	@Field(EventCalendrierGestionConstantes.COLONNE_REFERENTIEL)
+	@Field(EventCalendrierConstantes.COLONNE_REFERENTIEL)
 	private InteractionSirhEnum referentiel;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_EVENEMENT)
+	@Field(EventCalendrierConstantes.COLONNE_EVENEMENT)
 	private String evenement;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_TYPE)
+	@Field(EventCalendrierConstantes.COLONNE_TYPE)
 	private String type;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_DEBUT)
+	@Indexed
+	@Field(EventCalendrierConstantes.COLONNE_DEBUT)
 	private Date debut;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_ECHEANCE)
+	@Indexed
+	@Field(EventCalendrierConstantes.COLONNE_ECHEANCE)
 	private Date echeance;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_ACTEURS)
+	@Field(EventCalendrierConstantes.COLONNE_ACTEURS)
 	private String acteurs;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_CORPS)
+	@Field(EventCalendrierConstantes.COLONNE_CORPS)
 	private String corps;
 
 	@Indexed
-	@Field(EventCalendrierGestionConstantes.COLONNE_SERVICE)
+	@Field(EventCalendrierConstantes.COLONNE_SERVICE)
 	private String service;
 
-	@Field(EventCalendrierGestionConstantes.COLONNE_COULEUR)
+	@Field(EventCalendrierConstantes.COLONNE_COULEUR)
 	private String couleur;
 
-	public EventCalendrierGestionEntity() {
+	public EventCalendrierEntity() {
 		super();
 	}
 
