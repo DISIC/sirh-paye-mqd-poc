@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.sirh.mqd.reporting</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.3.7-SNAPSHOT</version>
+		<version>0.3.7</version>
 	</parent>
 
 	<artifactId>api</artifactId>

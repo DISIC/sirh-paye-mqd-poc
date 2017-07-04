@@ -3,7 +3,7 @@
 
 	<groupId>com.sirh.mqd</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.7-SNAPSHOT</version>
+	<version>0.3.7</version>
 	<packaging>pom</packaging>
 
 	<name>POC MQD RH Parent</name>
