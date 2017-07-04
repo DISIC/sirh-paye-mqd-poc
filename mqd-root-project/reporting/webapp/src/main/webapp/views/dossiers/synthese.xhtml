@@ -51,7 +51,9 @@
 							<h:outputLabel value="#{syntheseBean.syntheseModel.sexe}" />
 						</p:column>
 						<p:column>
-							<h:outputLabel value="#{syntheseBean.syntheseModel.dateNaissance}" />
+							<h:outputLabel value="#{syntheseBean.syntheseModel.dateNaissance}" >
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputLabel>
 						</p:column>
 						<p:column>
 							<h:outputLabel value="#{syntheseBean.syntheseModel.villeNaissance}" />
@@ -90,7 +92,9 @@
 							<h:outputLabel value="#{syntheseBean.syntheseModel.nationalite}" />
 						</p:column>
 						<p:column>
-							<h:outputLabel value="#{syntheseBean.syntheseModel.dateCertificatoinNir}" />
+							<h:outputLabel value="#{syntheseBean.syntheseModel.dateCertificatoinNir}" >
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputLabel>
 						</p:column>
 						<p:column>
 							<h:outputLabel value="#{syntheseBean.syntheseModel.nir}" />
