@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -55,6 +54,11 @@ public class CalendrierGestionBean extends GenericBean {
 	private ScheduleModel scheduleModel;
 
 	/**
+	 * Evénement sélectionné du calendrier
+	 */
+	private ScheduleEvent event;
+
+	/**
 	 * Attributs de l'Event à créer/modifier non présent parmi les attributs de
 	 * la classe DefaultScheduleEvent
 	 */
@@ -68,17 +72,16 @@ public class CalendrierGestionBean extends GenericBean {
 
 	private String couleurNouveauEvenement;
 
-	/**
-	 *
-	 */
-	private ScheduleEvent event = new DefaultScheduleEvent();
-
 	public void setup() {
 		// Initialization
-		this.scheduleModel = new DefaultScheduleModel();
 
 		// Supplier
-		listerEventCalendrierGestion();
+		final FacesContext facesContext = FacesContext.getCurrentInstance();
+		if (facesContext != null && !facesContext.isPostback()) {
+			this.scheduleModel = new DefaultScheduleModel();
+			this.event = new DefaultScheduleEvent();
+			listerEventCalendrierGestion();
+		}
 	}
 
 	private void listerEventCalendrierGestion() {
@@ -86,6 +89,24 @@ public class CalendrierGestionBean extends GenericBean {
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
 		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel
 				.addEvent(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
+	}
+
+	public void onEventSelect(final SelectEvent selectEvent) {
+		this.event = (ScheduleEvent) selectEvent.getObject();
+	}
+
+	public void onDateSelect(final SelectEvent selectEvent) {
+		this.event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+	}
+
+	public void onEventMove(final ScheduleEntryMoveEvent event) {
+		this.jsfUtils.addMessage(
+				"Event moved : Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
+	}
+
+	public void onEventResize(final ScheduleEntryResizeEvent event) {
+		this.jsfUtils.addMessage(
+				"Event resized : Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
 	}
 
 	/*
@@ -172,31 +193,4 @@ public class CalendrierGestionBean extends GenericBean {
 	public void setCouleurNouveauEvenement(final String couleurNouveauEvenement) {
 		this.couleurNouveauEvenement = couleurNouveauEvenement;
 	}
-
-	public void onEventSelect(final SelectEvent selectEvent) {
-		event = (ScheduleEvent) selectEvent.getObject();
-	}
-
-	public void onDateSelect(final SelectEvent selectEvent) {
-		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
-	}
-
-	public void onEventMove(final ScheduleEntryMoveEvent event) {
-		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved",
-				"Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
-		addMessage(message);
-	}
-
-	public void onEventResize(final ScheduleEntryResizeEvent event) {
-		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized",
-				"Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
-		addMessage(message);
-	}
-
-	private void addMessage(final FacesMessage message) {
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
 }
