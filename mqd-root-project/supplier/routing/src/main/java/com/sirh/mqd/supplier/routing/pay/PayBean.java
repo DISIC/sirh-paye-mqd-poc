@@ -42,14 +42,15 @@ public class PayBean {
 	private IFacadeLogs logger;
 
 	/**
-	 * Méthode permettant de manipuler un fichier CSV GA-PAY du MSO en entrée et
-	 * de stocker les informations en base de données.
+	 * Méthode permettant de manipuler un fichier CSV GA-PAY du MSO ou un
+	 * fichier TXT GA-PAY de la DGAC en entrée et de stocker les informations en
+	 * base de données.
 	 *
 	 * @param message
 	 *            le message contenant le fichier
 	 *
 	 */
-	public void manageCSVFile(final Message<File> message) throws MessagingException {
-		this.payService.storeCSVData(message.getHeaders().getTimestamp(), message.getPayload());
+	public void manageFiles(final Message<File> message) throws MessagingException {
+		this.payService.storeData(message.getHeaders().getTimestamp(), message.getPayload());
 	}
 }

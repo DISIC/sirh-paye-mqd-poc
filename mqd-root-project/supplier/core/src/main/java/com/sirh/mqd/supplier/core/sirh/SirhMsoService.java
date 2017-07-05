@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.commons.utils.exception.TechnicalException;
 import com.sirh.mqd.supplier.core.constantes.CoreConstantes;
 import com.sirh.mqd.supplier.core.constantes.MsoConstantes;
+import com.sirh.mqd.supplier.core.constantes.PayConstantes;
 import com.sirh.mqd.supplier.core.utils.AnomalieDetectionMSOUtils;
 
 /**
@@ -75,8 +77,40 @@ public class SirhMsoService {
 		case MsoConstantes.CSV_FILE_TEMPS_TRAVAIL:
 			importTempsTravailData(payload);
 			break;
+		case PayConstantes.CSV_FILE_MSO_GLOBAL:
+			importGlobalData(payload);
+			break;
 		default:
 			break;
+		}
+	}
+
+	private void importGlobalData(final File payload) {
+		Scanner scanner = null;
+		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
+		try {
+			scanner = new Scanner(payload);
+			int i = 0;
+			while (scanner.hasNextLine()) {
+				final String line = scanner.nextLine();
+				if (i > 2) {
+					final String[] lineArray = AnomalieDetectionMSOUtils.splitPAYData(line);
+					// La dernière ligne du tableau correspond à des calculs
+					// EXCEL : On ne la traite pas.
+					if (StringUtils.isNotBlank(lineArray[0])) {
+						dossiers.add(DossierDTOFactory.createDossierDTOFromMSO(lineArray[0], lineArray[1], lineArray[2],
+								lineArray[3], lineArray[4], lineArray[5], lineArray[6], lineArray[9], lineArray[10],
+								lineArray[11], lineArray[12], lineArray[13], lineArray[14], lineArray[15], null, null,
+								null, null, null, null, null, null, null));
+					}
+				}
+				i++;
+			}
+			this.stockerDossiers(dossiers);
+		} catch (final FileNotFoundException e) {
+			throw new TechnicalException(e);
+		} finally {
+			IOUtils.closeQuietly(scanner);
 		}
 	}
 

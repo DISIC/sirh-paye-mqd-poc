@@ -51,6 +51,7 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_PAY_LOT)
 	private String payLot;
 
+	@Indexed
 	@Field(DossierConstantes.COLONNE_MATRICULE)
 	private String renoiRHMatricule;
 
@@ -110,6 +111,7 @@ public class DossierEntity {
 	@Field(DossierConstantes.COLONNE_TEMOIN_DOSSIER_PRINCIPAL)
 	private Integer temoinDossierPrincipal;
 
+	@Indexed
 	@Field(DossierConstantes.COLONNE_GESTIONNAIRE_CODE)
 	private String gestionnaireCode;
 

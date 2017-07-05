@@ -19,13 +19,19 @@ import com.sirh.mqd.commons.utils.constante.Constantes;
  */
 @Document(collection = ComparaisonConstantes.COLLECTION_NAME)
 @CompoundIndexes({
-		@CompoundIndex(name = "index_comparaison", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+		@CompoundIndex(name = "index_comparaison_sirh", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
 				+ DossierConstantes.COLONNE_MATRICULE + "': 1, '" + ComparaisonConstantes.COLONNE_TYPE_DONNEE
 				+ "': 1}"),
+		@CompoundIndex(name = "index_comparaison_dgac", def = "{'" + DossierConstantes.COLONNE_MATRICULE + "': 1, '"
+				+ ComparaisonConstantes.COLONNE_TYPE_DONNEE + "': 1}"),
 		@CompoundIndex(name = "index_comparaison_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
 				+ DossierConstantes.COLONNE_MATRICULE + "': 1}"),
-		@CompoundIndex(name = "index_anomalie_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+		@CompoundIndex(name = "index_anomalie_dossier_sirh", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
 				+ DossierConstantes.COLONNE_MATRICULE + "': 1, '" + ComparaisonConstantes.COLONNE_ANOMALIE + "': 1, '"
+				+ ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
+				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE + "': 1}"),
+		@CompoundIndex(name = "index_anomalie_dossier_dgac", def = "{'" + DossierConstantes.COLONNE_MATRICULE
+				+ "': 1, '" + ComparaisonConstantes.COLONNE_ANOMALIE + "': 1, '"
 				+ ComparaisonConstantes.COLONNE_ANOMALIE + Constantes.DOT
 				+ ComparaisonConstantes.COLONNE_ANOMALIE_DATE_CLOTURE + "': 1}") })
 public class ComparaisonEntity {

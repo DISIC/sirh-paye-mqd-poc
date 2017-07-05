@@ -137,8 +137,8 @@ public final class AnomalieDetectionMSOUtils {
 
 	/**
 	 * Méthode permettant de diviser une chaîne de caractères issue d'un fichier
-	 * PAY dont les données sont séparées par des virgules et dont les données
-	 * sont entourées de guillements
+	 * PAY fourni par MSO dont les données sont séparées par des virgules et
+	 * dont les données sont entourées de guillements
 	 *
 	 * @param line
 	 *            la ligne à découper

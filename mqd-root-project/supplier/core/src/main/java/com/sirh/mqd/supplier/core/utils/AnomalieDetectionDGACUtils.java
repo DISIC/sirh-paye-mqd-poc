@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
-import com.sirh.mqd.commons.utils.constante.Constantes;
 import com.sirh.mqd.supplier.api.FunctionTwoParameters;
 
 /**
@@ -18,9 +17,9 @@ import com.sirh.mqd.supplier.api.FunctionTwoParameters;
  */
 public final class AnomalieDetectionDGACUtils {
 
-	private static final String CSV_FILE_PAY_SEPARATOR = "\",\"";
+	private static final String TXT_FILE_PAY_SEPARATOR = ";";
 
-	private static final String CSV_FILE_DGAC_SEPARATOR = ";";
+	private static final String TXT_FILE_DGAC_SEPARATOR = ";";
 
 	private static final FunctionTwoParameters<String, String, Boolean> FUNCTION_CASE_SENSITIVE_COMPARISON = (data1,
 			data2) -> data1 != null && data2 != null
@@ -70,19 +69,15 @@ public final class AnomalieDetectionDGACUtils {
 
 	/**
 	 * Méthode permettant de diviser une chaîne de caractères issue d'un fichier
-	 * PAY dont les données sont séparées par des virgules et dont les données
-	 * sont entourées de guillements
+	 * PAY fourni par la DGAC dont les données sont séparées par des
+	 * point-virgules
 	 *
 	 * @param line
 	 *            la ligne à découper
 	 * @return {@link Array} tableau des données
 	 */
 	public static String[] splitPAYData(final String line) {
-		final String[] lineArray = line.split(CSV_FILE_PAY_SEPARATOR, -1);
-		lineArray[0] = lineArray[0].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
-		final int lastIndex = lineArray.length - 1;
-		lineArray[lastIndex] = lineArray[lastIndex].replaceAll(Constantes.QUOTE, StringUtils.EMPTY);
-		return lineArray;
+		return line.split(TXT_FILE_PAY_SEPARATOR, -1);
 	}
 
 	/**
@@ -94,6 +89,6 @@ public final class AnomalieDetectionDGACUtils {
 	 * @return {@link Array} tableau des données
 	 */
 	public static String[] splitDGACData(final String line) {
-		return line.split(CSV_FILE_DGAC_SEPARATOR, -1);
+		return line.split(TXT_FILE_DGAC_SEPARATOR, -1);
 	}
 }
