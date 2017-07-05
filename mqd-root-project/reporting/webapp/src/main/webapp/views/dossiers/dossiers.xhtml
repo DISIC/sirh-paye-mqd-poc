@@ -12,7 +12,7 @@
 
 	<h:form id="formDossier">
 		<p:dataTable var="dossier" value="#{dossierBean.dossiers}" id="dossiersTable"
-			widgetVar="dossiers_table" reflow="true"
+			widgetVar="dossiers_table" reflow="true" stickyHeader="true"
 			emptyMessage="Aucun dossier n'a été trouvé." paginator="true" rows="10"
 			selectionMode="single" selection="#{dossierBean.selectedDossier}"
 			rowKey="#{dossier.renoiRHMatricule}">
