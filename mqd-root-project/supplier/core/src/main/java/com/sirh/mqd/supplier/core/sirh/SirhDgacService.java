@@ -3,6 +3,7 @@ package com.sirh.mqd.supplier.core.sirh;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,7 +87,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -124,8 +125,9 @@ public class SirhDgacService {
 	private void importTGData(final File payload) {
 		Scanner scanner = null;
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
+		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -147,16 +149,19 @@ public class SirhDgacService {
 						// Code gestionnaire : 10
 						// Temoin dossier principal : 11
 						if (StringUtils.isNotBlank(lineArray[11])
-								&& String.valueOf(1) == StringUtils.normalizeSpace(lineArray[11])) {
+								&& String.valueOf(1).equals(StringUtils.normalizeSpace(lineArray[11]))) {
 							dossiers.add(DossierDTOFactory.createDossierDTOFromDGAC(lineArray[9], lineArray[7],
 									lineArray[0], null, null, null, null, null, null, lineArray[3], lineArray[4], null,
 									null, lineArray[1], lineArray[10], lineArray[8], lineArray[11]));
+							comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
+									AnomalieTypeEnum.NUMERO_DOSSIER, InteractionSirhEnum.DGAC, lineArray[7]));
 						}
 					}
 				}
 				i++;
 			}
 			this.stockerDossiers(dossiers);
+			this.stockerComparaisons(comparaisonsGA);
 		} catch (final FileNotFoundException e) {
 			throw new TechnicalException(e);
 		} finally {
@@ -169,7 +174,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -210,7 +215,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -253,7 +258,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -294,7 +299,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -321,6 +326,8 @@ public class SirhDgacService {
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
 								AnomalieTypeEnum.PRENOM, InteractionSirhEnum.DGAC, lineArray[4]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
+								AnomalieTypeEnum.CIVILITE, InteractionSirhEnum.DGAC, lineArray[5]));
+						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
 								AnomalieTypeEnum.DATE_NAISSANCE, InteractionSirhEnum.DGAC, lineArray[6]));
 					}
 				}
@@ -340,7 +347,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -383,7 +390,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
@@ -434,7 +441,7 @@ public class SirhDgacService {
 		final List<DossierDTO> dossiers = new ArrayList<DossierDTO>();
 		final List<ComparaisonDTO> comparaisonsGA = new ArrayList<ComparaisonDTO>();
 		try {
-			scanner = new Scanner(payload);
+			scanner = new Scanner(payload, StandardCharsets.ISO_8859_1.name());
 			int i = 0;
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();

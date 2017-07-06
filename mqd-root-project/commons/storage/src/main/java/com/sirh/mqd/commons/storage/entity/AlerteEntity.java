@@ -19,9 +19,11 @@ import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
  */
 @Document(collection = AlerteConstantes.COLLECTION_NAME)
 @CompoundIndexes({
-		@CompoundIndex(name = "index_alerte", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
+		@CompoundIndex(name = "index_alerte_sirh", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
 				+ DossierConstantes.COLONNE_MATRICULE + "': 1, '" + ComparaisonConstantes.COLONNE_TYPE_DONNEE
 				+ "': 1}"),
+		@CompoundIndex(name = "index_alerte_dgac", def = "{'" + DossierConstantes.COLONNE_MATRICULE + "': 1, '"
+				+ ComparaisonConstantes.COLONNE_TYPE_DONNEE + "': 1}"),
 		@CompoundIndex(name = "index_alerte_dossier", def = "{'" + DossierConstantes.COLONNE_PAY_LOT + "' : 1, '"
 				+ DossierConstantes.COLONNE_MATRICULE + "': 1}") })
 public class AlerteEntity {

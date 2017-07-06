@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
 	
-	<int:channel id="dgacCSVFileChannel" />
+	<int:channel id="dgacTXTFileChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
@@ -23,13 +23,13 @@
 		filename-pattern="*.txt"
 		auto-create-local-directory="false"
 		delete-remote-files="false"
-		channel="dgacCSVFileChannel" >
+		channel="dgacTXTFileChannel" >
 		<int:poller 
 			fixed-rate="10000"/>
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator
-		input-channel="dgacCSVFileChannel"
+		input-channel="dgacTXTFileChannel"
 		ref="dgacBean"
 		method="manageTXTFile" />
 

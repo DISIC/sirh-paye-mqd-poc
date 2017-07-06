@@ -31,7 +31,9 @@ public enum AnomaliePerimetreEnum {
 
 	TEMPS_TRAVAIL("Temps de travail"),
 
-	PENSION("Pension");
+	PENSION("Pension"),
+
+	TG("TG");
 
 	public static final List<AnomaliePerimetreEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 

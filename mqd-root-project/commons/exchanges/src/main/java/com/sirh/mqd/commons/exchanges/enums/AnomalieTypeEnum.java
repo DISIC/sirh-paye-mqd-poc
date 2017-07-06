@@ -65,7 +65,9 @@ public enum AnomalieTypeEnum {
 
 	NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE),
 
-	PENSION("Pension", AnomaliePerimetreEnum.PENSION);
+	PENSION("Pension", AnomaliePerimetreEnum.PENSION),
+
+	NUMERO_DOSSIER("Numéro de dossier", AnomaliePerimetreEnum.TG);
 
 	public static final List<AnomalieTypeEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 

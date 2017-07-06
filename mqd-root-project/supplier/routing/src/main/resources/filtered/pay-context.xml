@@ -14,23 +14,22 @@
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
 	
-	<int:channel id="payCSVFileChannel" />
+	<int:channel id="payFilesChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
 		remote-directory="/sirh-paye-data/pay"
 		local-directory="${sftp.directory.local.path}/pay"
-		filename-pattern="*.csv"
 		auto-create-local-directory="false"
 		delete-remote-files="false"
-		channel="payCSVFileChannel" >
+		channel="payFilesChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="1000"/>
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator
-		input-channel="payCSVFileChannel"
+		input-channel="payFilesChannel"
 		ref="payBean"
-		method="manageCSVFile" />
+		method="manageFiles" />
 
 </beans>
