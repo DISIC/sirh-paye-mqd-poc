@@ -1,4 +1,5 @@
 /* GLOBAL */
+
 button.ui-button-icon-only {
 	width: 25px;
 	height: 25px;
@@ -56,6 +57,15 @@ tbody.ui-datatable-data td {
 div.ui-chkbox span.ui-icon-check {
 	height: 17px;
 	width: 17px;
+}
+
+/* TAB SELECTED */
+div ul li.ui-tabs-selected {
+	background-color: #0081c2 !important; 
+}
+div ul li.ui-tabs-selected a {
+	color: #ffffff !important;
+	text-shadow: none;
 }
 
 /* CALENDAR */
