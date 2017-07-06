@@ -27,6 +27,8 @@ public final class EventCalendrierConstantes {
 
 	public static final String COLONNE_COULEUR = "couleur";
 
+	public static final String COLONNE_COMMENTAIRE = "commentaire";
+
 	public static final String COLONNE_REFERENTIEL = "referentiel";
 
 	/**

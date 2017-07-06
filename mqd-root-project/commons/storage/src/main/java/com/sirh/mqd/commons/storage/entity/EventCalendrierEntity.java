@@ -59,6 +59,9 @@ public class EventCalendrierEntity {
 	@Field(EventCalendrierConstantes.COLONNE_COULEUR)
 	private String couleur;
 
+	@Field(EventCalendrierConstantes.COLONNE_COMMENTAIRE)
+	private String commentaire;
+
 	public EventCalendrierEntity() {
 		super();
 	}
@@ -133,6 +136,14 @@ public class EventCalendrierEntity {
 
 	public void setCouleur(final String couleur) {
 		this.couleur = couleur;
+	}
+
+	public String getCommentaire() {
+		return this.commentaire;
+	}
+
+	public void setCommentaire(final String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	public InteractionSirhEnum getReferentiel() {

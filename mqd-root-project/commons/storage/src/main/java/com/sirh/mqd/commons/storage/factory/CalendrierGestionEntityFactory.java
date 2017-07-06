@@ -34,6 +34,7 @@ public class CalendrierGestionEntityFactory {
 			eventCalendrier.setCorps(entity.getCorps());
 			eventCalendrier.setService(entity.getService());
 			eventCalendrier.setCouleur(entity.getCouleur());
+			eventCalendrier.setCommentaire(entity.getCommentaire());
 		}
 		return eventCalendrier;
 	}
@@ -52,6 +53,7 @@ public class CalendrierGestionEntityFactory {
 			entity.setCorps(eventCalendrier.getCorps());
 			entity.setService(eventCalendrier.getService());
 			entity.setCouleur(eventCalendrier.getCouleur());
+			entity.setCommentaire(eventCalendrier.getCommentaire());
 		}
 		return entity;
 	}
