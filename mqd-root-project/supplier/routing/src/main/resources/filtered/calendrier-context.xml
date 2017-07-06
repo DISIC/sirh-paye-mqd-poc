@@ -17,11 +17,20 @@
 	<int:channel id="calendrierCSVFileDGACChannel" />
 	<int:channel id="calendrierCSVFileMSOChannel" />
 	
+	<bean id="regexFilenameCalendrierDGACFilterBean" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
+		<property name="filter">
+			<bean class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+				<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*DGAC.*\.csv$')}" />
+			</bean>
+		</property>
+		<property name="preventDuplicates" value="true" />
+	</bean>
+	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
 		remote-directory="/sirh-paye-data/calendrier"
 		local-directory="${sftp.directory.local.path}/calendrier"
-		filename-pattern="SIRH-POC outils - calendrier de gestion DGAC*.csv"
+		local-filter="regexFilenameCalendrierDGACFilterBean"
 		auto-create-local-directory="false"
 		delete-remote-files="false"
 		channel="calendrierCSVFileDGACChannel" >
@@ -33,12 +42,21 @@
 		input-channel="calendrierCSVFileDGACChannel"
 		ref="calendrierGestionBean"
 		method="manageCSVFileFromDGAC" />
+
+	<bean id="regexFilenameCalendrierMSOFilterBean" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
+		<property name="filter">
+			<bean class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
+				<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*MSO.*\.csv$')}" />
+			</bean>
+		</property>
+		<property name="preventDuplicates" value="true" />
+	</bean>
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
 		remote-directory="/sirh-paye-data/calendrier"
 		local-directory="${sftp.directory.local.path}/calendrier"
-		filename-pattern="SIRH-POC outils - calendrier de gestion MSO*.csv"
+		local-filter="regexFilenameCalendrierMSOFilterBean"
 		auto-create-local-directory="false"
 		delete-remote-files="false"
 		channel="calendrierCSVFileMSOChannel" >
