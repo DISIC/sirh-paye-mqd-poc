@@ -22,13 +22,13 @@ public final class CalendrierGestionModelFactory {
 				"Création non autorisée d'une instance de : " + CalendrierGestionModelFactory.class.getName());
 	}
 
-	public static DefaultScheduleEvent createEventCalendrierModel(
-			final EventCalendrierDTO eventCalendrierGestionDTO) {
+	public static DefaultScheduleEvent createEventCalendrierModel(final EventCalendrierDTO eventCalendrierGestionDTO) {
 		final DefaultScheduleEvent event = new DefaultScheduleEvent();
 		event.setTitle(eventCalendrierGestionDTO.getEvenement());
 		event.setStartDate(eventCalendrierGestionDTO.getDebut());
 		event.setEndDate(eventCalendrierGestionDTO.getEcheance());
 		event.setData(eventCalendrierGestionDTO);
+		event.setDescription(eventCalendrierGestionDTO.getCommentaire());
 		return event;
 	}
 
@@ -47,7 +47,7 @@ public final class CalendrierGestionModelFactory {
 		// event.getData()).getService());
 		// eventCalendrierGestionDTO.setCouleur(((EventCalendrierGestionModel)
 		// event.getData()).getCouleur());
-
+		eventCalendrierGestionDTO.setCommentaire(event.getDescription());
 		return eventCalendrierGestionDTO;
 	}
 }

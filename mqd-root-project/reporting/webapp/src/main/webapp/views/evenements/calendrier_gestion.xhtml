@@ -79,6 +79,12 @@
 				<p:inputText id="couleur" readonly="true" disabled="true"
 					value="#{calendrierGestionBean.event.data.couleur}"
 					required="true" />
+					
+				<p:outputLabel for="commentaire"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.commentaire.label']}" />
+				<p:inputText id="commentaire" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.event.description}"
+					required="true" />	
 
 				<!-- <p:outputLabel for="allDay"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.journee.label']}" />

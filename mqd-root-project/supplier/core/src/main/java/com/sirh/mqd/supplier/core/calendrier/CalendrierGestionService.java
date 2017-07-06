@@ -49,9 +49,10 @@ public class CalendrierGestionService {
 					// Corps : 5
 					// Service : 6
 					// Couleur : 7
+					// Commentaire : 8
 					this.calendrierGestionBC.modifierCreerEvent(CalendrierGestionDTOFactory
 							.createEventCalendrierDTOFromDGAC(lineArray[0], lineArray[1], lineArray[2], lineArray[3],
-									lineArray[4], lineArray[5], lineArray[6], lineArray[7]));
+									lineArray[4], lineArray[5], lineArray[6], lineArray[7], lineArray[8]));
 				}
 				i++;
 			}

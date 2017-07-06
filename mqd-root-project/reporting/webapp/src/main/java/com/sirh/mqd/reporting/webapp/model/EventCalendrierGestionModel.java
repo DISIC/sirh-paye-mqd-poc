@@ -26,6 +26,8 @@ public class EventCalendrierGestionModel implements Serializable {
 
 	private String couleur;
 
+	private String commentaire;
+
 	public EventCalendrierGestionModel() {
 		super();
 	}
@@ -92,5 +94,13 @@ public class EventCalendrierGestionModel implements Serializable {
 
 	public void setCouleur(final String couleur) {
 		this.couleur = couleur;
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(final String commentaire) {
+		this.commentaire = commentaire;
 	}
 }

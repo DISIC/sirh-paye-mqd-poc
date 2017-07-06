@@ -128,6 +128,7 @@ public class CalendrierGestionBean extends GenericBean {
 	 * eventCalendrierGestionDTO.setCorps(this.corpsNouveauEvenement);
 	 * eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
 	 * eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
+	 * eventCalendrierGestionDTO.setCommentaire(this.event.getDescription;
 	 *
 	 * this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
 	 * this.logger.logAction(Level.INFO,

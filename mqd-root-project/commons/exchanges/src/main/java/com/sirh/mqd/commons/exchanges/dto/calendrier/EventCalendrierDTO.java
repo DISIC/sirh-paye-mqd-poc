@@ -31,6 +31,8 @@ public class EventCalendrierDTO {
 
 	private String couleur;
 
+	private String commentaire;
+
 	public EventCalendrierDTO() {
 		super();
 	}
@@ -105,6 +107,14 @@ public class EventCalendrierDTO {
 
 	public void setCouleur(final String couleur) {
 		this.couleur = couleur;
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(final String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	public InteractionSirhEnum getReferentiel() {

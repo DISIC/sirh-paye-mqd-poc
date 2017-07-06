@@ -26,12 +26,13 @@ public final class CalendrierGestionDTOFactory {
 
 	public static EventCalendrierDTO createEventCalendrierDTOFromDGAC(final String evenement, final String type,
 			final String dateDebut, final String dateEcheance, final String acteurs, final String corps,
-			final String service, final String couleur) {
+			final String service, final String couleur, final String commentaire) {
 		final EventCalendrierDTO eventCalendrier = new EventCalendrierDTO();
 		eventCalendrier.setReferentiel(InteractionSirhEnum.DGAC);
 		eventCalendrier.setActeurs(acteurs);
 		eventCalendrier.setCorps(corps);
 		eventCalendrier.setCouleur(couleur);
+		eventCalendrier.setCommentaire(commentaire);
 		if (StringUtils.isBlank(dateDebut)) {
 			eventCalendrier.setDebut(DateUtils.getDateBoundHoursToMinimum(DateUtils.parseDateJMAAAA(dateEcheance)));
 		} else {
