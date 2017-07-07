@@ -2,15 +2,21 @@ package com.sirh.mqd.commons.storage.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.MongoConverter;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.DBObject;
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.constantes.EventCalendrierConstantes;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
@@ -59,11 +65,41 @@ public class CalendrierGestionDAO implements ICalendrierGestionDAO {
 		return mongoTemplate.find(query, EventCalendrierEntity.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void upsertCalendrierGestion(final EventCalendrierEntity eventCalendrierGestionEntity) {
+	public void updateCalendrierGestion(final EventCalendrierEntity eventCalendrierGestionEntity) {
 		if (eventCalendrierGestionEntity != null) {
-			mongoTemplate.save(eventCalendrierGestionEntity);
+			final Query query = new Query();
+			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_EVENEMENT)
+					.is(eventCalendrierGestionEntity.getEvenement()));
+			if (eventCalendrierGestionEntity.getDebut() != null) {
+				query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_DEBUT)
+						.is(eventCalendrierGestionEntity.getDebut()));
+			}
+			if (eventCalendrierGestionEntity.getEcheance() != null) {
+				query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_ECHEANCE)
+						.is(eventCalendrierGestionEntity.getEcheance()));
+			}
+
+			if (mongoTemplate.exists(query, EventCalendrierEntity.class)) {
+				final ObjectMapper mapper = new ObjectMapper();
+				mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+				final MongoConverter converter = mongoTemplate.getConverter();
+				final DBObject dbo = (DBObject) converter.convertToMongoType(eventCalendrierGestionEntity);
+
+				final Map<String, Object> map = mapper.convertValue(dbo, Map.class);
+				map.remove(EventCalendrierConstantes.COLONNE_ID);
+				final Update update = new Update();
+				for (final Map.Entry<String, Object> entry : map.entrySet()) {
+					update.set(entry.getKey(), entry.getValue());
+				}
+				mongoTemplate.upsert(query, update, EventCalendrierEntity.class);
+			} else {
+				mongoTemplate.save(eventCalendrierGestionEntity);
+			}
 		}
+
 	}
 
 	@Override

@@ -78,7 +78,7 @@ public class CalendrierGestionBC {
 	public void modifierCreerEvent(final EventCalendrierDTO eventCalendrierDTO) {
 		final EventCalendrierEntity entity = CalendrierGestionEntityFactory
 				.createEventCalendrierEntity(eventCalendrierDTO);
-		this.eventCalendrierGestionDAO.upsertCalendrierGestion(entity);
+		this.eventCalendrierGestionDAO.updateCalendrierGestion(entity);
 	}
 
 	/**

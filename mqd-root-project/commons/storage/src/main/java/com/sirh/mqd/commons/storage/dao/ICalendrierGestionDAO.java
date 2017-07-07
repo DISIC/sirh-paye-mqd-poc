@@ -50,7 +50,7 @@ public interface ICalendrierGestionDAO {
 	 * @param eventCalendrierGestionEntity
 	 *            evenement à modifier/créer
 	 */
-	void upsertCalendrierGestion(EventCalendrierEntity eventCalendrierGestionEntity);
+	void updateCalendrierGestion(EventCalendrierEntity eventCalendrierGestionEntity);
 
 	/**
 	 * Méthode permettant de supprimer un evenement
