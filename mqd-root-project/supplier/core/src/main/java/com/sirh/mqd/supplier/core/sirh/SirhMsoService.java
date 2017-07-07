@@ -134,7 +134,7 @@ public class SirhMsoService {
 								null, null, null, null, null, lineArray[16], lineArray[17]));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.MODALITE, InteractionSirhEnum.MSO, lineArray[19]));
+								AnomalieTypeEnum.TEMPS_TRAVAIL_MODALITE, InteractionSirhEnum.MSO, lineArray[19]));
 					}
 				}
 				i++;
@@ -170,7 +170,7 @@ public class SirhMsoService {
 						// Si non présente un message par défaut est écrit :
 						// Aucune date trouvée
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.DATE_FIN_FONCTION, InteractionSirhEnum.MSO, lineArray[18]));
+								AnomalieTypeEnum.POSITION_DATE_FIN_FONCTION, InteractionSirhEnum.MSO, lineArray[18]));
 					}
 				}
 				i++;
@@ -207,7 +207,7 @@ public class SirhMsoService {
 						// - Nombre d'enfants SFT RenoiRH : 17
 						// - Nombre total d'enfants RenoiRH : 18
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NB_ENFANTS, InteractionSirhEnum.MSO, lineArray[17]));
+								AnomalieTypeEnum.ENFANT_NB_ENFANTS, InteractionSirhEnum.MSO, lineArray[17]));
 					}
 				}
 				i++;
@@ -241,11 +241,11 @@ public class SirhMsoService {
 								null, null, null, null, null, null, null));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.MODE_PAIEMENT, InteractionSirhEnum.MSO, lineArray[17]));
+								AnomalieTypeEnum.COORDONNEE_BANCAIRE_MODE_PAIEMENT, InteractionSirhEnum.MSO, lineArray[17]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.IBAN, InteractionSirhEnum.MSO, lineArray[19]));
+								AnomalieTypeEnum.COORDONNEE_BANCAIRE_IBAN, InteractionSirhEnum.MSO, lineArray[19]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.BIC_SWIFT, InteractionSirhEnum.MSO, lineArray[21]));
+								AnomalieTypeEnum.COORDONNEE_BANCAIRE_BIC_SWIFT, InteractionSirhEnum.MSO, lineArray[21]));
 					}
 				}
 				i++;
@@ -279,19 +279,19 @@ public class SirhMsoService {
 								null, null, null, null, null, null, null));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NUMERO_VOIE, InteractionSirhEnum.MSO, lineArray[17]));
+								AnomalieTypeEnum.ADRESSE_NUMERO_VOIE, InteractionSirhEnum.MSO, lineArray[17]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMPLEMENT_NUMERO_VOIE, InteractionSirhEnum.MSO, lineArray[19]));
+								AnomalieTypeEnum.ADRESSE_COMPLEMENT_NUMERO_VOIE, InteractionSirhEnum.MSO, lineArray[19]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.TYPE_VOIE, InteractionSirhEnum.MSO, lineArray[21]));
+								AnomalieTypeEnum.ADRESSE_TYPE_VOIE, InteractionSirhEnum.MSO, lineArray[21]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NOM_VOIE, InteractionSirhEnum.MSO, lineArray[23]));
+								AnomalieTypeEnum.ADRESSE_NOM_VOIE, InteractionSirhEnum.MSO, lineArray[23]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.CODE_POSTAL, InteractionSirhEnum.MSO, lineArray[25]));
+								AnomalieTypeEnum.ADRESSE_CODE_POSTAL, InteractionSirhEnum.MSO, lineArray[25]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMMUNE, InteractionSirhEnum.MSO, lineArray[27]));
+								AnomalieTypeEnum.ADRESSE_COMMUNE, InteractionSirhEnum.MSO, lineArray[27]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.COMPLEMENT_ADRESSE, InteractionSirhEnum.MSO, lineArray[29]));
+								AnomalieTypeEnum.ADRESSE_COMPLEMENT_ADRESSE, InteractionSirhEnum.MSO, lineArray[29]));
 					}
 				}
 				i++;
@@ -327,7 +327,7 @@ public class SirhMsoService {
 						// TODO : Comment détecter un écart sur ces données ?
 						// Les informations sont toutes différentes.
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.ABSENCE, InteractionSirhEnum.MSO, lineArray[17]));
+								AnomalieTypeEnum.ABSENCE_ABSENCE, InteractionSirhEnum.MSO, lineArray[17]));
 					}
 				}
 				i++;
@@ -361,7 +361,7 @@ public class SirhMsoService {
 								null, null, null, null, null, null, null));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.MSO, lineArray[17]));
+								AnomalieTypeEnum.NBI_NB_POINTS, InteractionSirhEnum.MSO, lineArray[17]));
 					}
 				}
 				i++;
@@ -396,15 +396,15 @@ public class SirhMsoService {
 								lineArray[26], null, null, null));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NOM, InteractionSirhEnum.MSO, lineArray[18]));
+								AnomalieTypeEnum.ETAT_CIVIL_NOM, InteractionSirhEnum.MSO, lineArray[18]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.PRENOM, InteractionSirhEnum.MSO, lineArray[20]));
+								AnomalieTypeEnum.ETAT_CIVIL_PRENOM, InteractionSirhEnum.MSO, lineArray[20]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.DATE_NAISSANCE, InteractionSirhEnum.MSO, lineArray[22]));
+								AnomalieTypeEnum.ETAT_CIVIL_DATE_NAISSANCE, InteractionSirhEnum.MSO, lineArray[22]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.CIVILITE, InteractionSirhEnum.MSO, lineArray[24]));
+								AnomalieTypeEnum.ETAT_CIVIL_CIVILITE, InteractionSirhEnum.MSO, lineArray[24]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.SEXE, InteractionSirhEnum.MSO, lineArray[26]));
+								AnomalieTypeEnum.ETAT_CIVIL_SEXE, InteractionSirhEnum.MSO, lineArray[26]));
 					}
 				}
 				i++;
@@ -440,15 +440,15 @@ public class SirhMsoService {
 						// TODO : Comment détecter un écart sur ces données ?
 						// Les informations sont toutes différentes.
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.GRADE, InteractionSirhEnum.MSO, lineArray[18]));
+								AnomalieTypeEnum.CARRIERE_GRADE, InteractionSirhEnum.MSO, lineArray[18]));
 
 						// TODO : Comment détecter un écart sur ces données ?
 						// Les informations sont toutes différentes.
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.NIVEAU_ECHELON, InteractionSirhEnum.MSO, lineArray[20]));
+								AnomalieTypeEnum.CARRIERE_NIVEAU_ECHELON, InteractionSirhEnum.MSO, lineArray[20]));
 
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(lineArray[6], lineArray[9],
-								AnomalieTypeEnum.INDICE, InteractionSirhEnum.MSO, lineArray[22]));
+								AnomalieTypeEnum.CARRIERE_INDICE, InteractionSirhEnum.MSO, lineArray[22]));
 					}
 				}
 				i++;

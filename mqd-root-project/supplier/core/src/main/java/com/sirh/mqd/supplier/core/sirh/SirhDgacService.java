@@ -108,7 +108,7 @@ public class SirhDgacService {
 								null, null, null, null, lineArray[3], lineArray[4], null, null, lineArray[1], null,
 								null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.PENSION, InteractionSirhEnum.DGAC, lineArray[7]));
+								AnomalieTypeEnum.PENSION_PENSION, InteractionSirhEnum.DGAC, lineArray[7]));
 					}
 				}
 				i++;
@@ -154,7 +154,7 @@ public class SirhDgacService {
 									lineArray[0], null, null, null, null, null, null, lineArray[3], lineArray[4], null,
 									null, lineArray[1], lineArray[10], lineArray[8], lineArray[11]));
 							comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-									AnomalieTypeEnum.NUMERO_DOSSIER, InteractionSirhEnum.DGAC, lineArray[7]));
+									AnomalieTypeEnum.TG_NUMERO_DOSSIER, InteractionSirhEnum.DGAC, lineArray[7]));
 						}
 					}
 				}
@@ -280,7 +280,7 @@ public class SirhDgacService {
 								null, null, null, null, lineArray[3], lineArray[4], null, null, lineArray[1], null,
 								null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.NB_POINTS, InteractionSirhEnum.DGAC, lineArray[8]));
+								AnomalieTypeEnum.NBI_NB_POINTS, InteractionSirhEnum.DGAC, lineArray[8]));
 					}
 				}
 				i++;
@@ -320,15 +320,15 @@ public class SirhDgacService {
 								null, null, null, null, lineArray[3], lineArray[4], lineArray[6], null, lineArray[1],
 								null, null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.INSEE, InteractionSirhEnum.DGAC, lineArray[1]));
+								AnomalieTypeEnum.ETAT_CIVIL_INSEE, InteractionSirhEnum.DGAC, lineArray[1]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.NOM, InteractionSirhEnum.DGAC, lineArray[3]));
+								AnomalieTypeEnum.ETAT_CIVIL_NOM, InteractionSirhEnum.DGAC, lineArray[3]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.PRENOM, InteractionSirhEnum.DGAC, lineArray[4]));
+								AnomalieTypeEnum.ETAT_CIVIL_PRENOM, InteractionSirhEnum.DGAC, lineArray[4]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.CIVILITE, InteractionSirhEnum.DGAC, lineArray[5]));
+								AnomalieTypeEnum.ETAT_CIVIL_CIVILITE, InteractionSirhEnum.DGAC, lineArray[5]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.DATE_NAISSANCE, InteractionSirhEnum.DGAC, lineArray[6]));
+								AnomalieTypeEnum.ETAT_CIVIL_DATE_NAISSANCE, InteractionSirhEnum.DGAC, lineArray[6]));
 					}
 				}
 				i++;
@@ -369,9 +369,9 @@ public class SirhDgacService {
 								null, null, null, null, lineArray[3], lineArray[4], null, null, lineArray[1], null,
 								null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.MODE_PAIEMENT, InteractionSirhEnum.DGAC, lineArray[7]));
+								AnomalieTypeEnum.COORDONNEE_BANCAIRE_MODE_PAIEMENT, InteractionSirhEnum.DGAC, lineArray[7]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.IBAN, InteractionSirhEnum.DGAC, lineArray[8]));
+								AnomalieTypeEnum.COORDONNEE_BANCAIRE_IBAN, InteractionSirhEnum.DGAC, lineArray[8]));
 					}
 				}
 				i++;
@@ -418,11 +418,11 @@ public class SirhDgacService {
 								null, lineArray[10], null, null, null, lineArray[3], lineArray[4], null, lineArray[13],
 								lineArray[1], null, null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.INDICE, InteractionSirhEnum.DGAC, lineArray[12]));
+								AnomalieTypeEnum.CARRIERE_INDICE, InteractionSirhEnum.DGAC, lineArray[12]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.GRADE, InteractionSirhEnum.DGAC, lineArray[10]));
+								AnomalieTypeEnum.CARRIERE_GRADE, InteractionSirhEnum.DGAC, lineArray[10]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.NIVEAU_ECHELON, InteractionSirhEnum.DGAC, lineArray[11]));
+								AnomalieTypeEnum.CARRIERE_NIVEAU_ECHELON, InteractionSirhEnum.DGAC, lineArray[11]));
 					}
 				}
 				i++;
@@ -464,11 +464,11 @@ public class SirhDgacService {
 								lineArray[10], null, null, null, lineArray[3], lineArray[4], null, null, lineArray[1],
 								null, null, null));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.VOIE, InteractionSirhEnum.DGAC, lineArray[9]));
+								AnomalieTypeEnum.ADRESSE_VOIE, InteractionSirhEnum.DGAC, lineArray[9]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.CODE_POSTAL, InteractionSirhEnum.DGAC, lineArray[8]));
+								AnomalieTypeEnum.ADRESSE_CODE_POSTAL, InteractionSirhEnum.DGAC, lineArray[8]));
 						comparaisonsGA.add(AnomalieDTOFactory.createComparaisonDTO(null, lineArray[0],
-								AnomalieTypeEnum.CODE_PAYS, InteractionSirhEnum.DGAC, lineArray[7]));
+								AnomalieTypeEnum.ADRESSE_CODE_PAYS, InteractionSirhEnum.DGAC, lineArray[7]));
 					}
 				}
 				i++;

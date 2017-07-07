@@ -50,7 +50,7 @@ public class DossierService implements IDossierService {
 		alerte1.setPayLot(payLot);
 		alerte1.setDateEcheance(DateUtils.getCalendarInstance().getTime());
 		alerte1.setDonnee("78500");
-		alerte1.setType(AnomalieTypeEnum.CODE_PAYS);
+		alerte1.setType(AnomalieTypeEnum.ADRESSE_CODE_PAYS);
 		alerte1.setEtatCorrection(AlerteEtatEnum.A_TRAITER);
 		alertes.add(alerte1);
 
@@ -59,7 +59,7 @@ public class DossierService implements IDossierService {
 		alerte2.setPayLot(payLot);
 		alerte2.setDateEcheance(DateUtils.getCalendarInstance().getTime());
 		alerte2.setDonnee("14/02/1984");
-		alerte2.setType(AnomalieTypeEnum.DATE_NAISSANCE);
+		alerte2.setType(AnomalieTypeEnum.ETAT_CIVIL_DATE_NAISSANCE);
 		alerte2.setEtatCorrection(AlerteEtatEnum.DEMANDE_ASSISTANCE);
 		alerte2.setResponsableLogin("atingaud");
 		alerte2.setResponsableNom("TINGAUD");

@@ -19,7 +19,7 @@ public class AnomalieDetectionMSOUtilsTest {
 
 	private static final String MATRICULE = "MSO000000000";
 
-	private static final AnomalieTypeEnum UNSUPPORTED_TYPE_ANOMALIE = AnomalieTypeEnum.ABSENCE;
+	private static final AnomalieTypeEnum UNSUPPORTED_TYPE_ANOMALIE = AnomalieTypeEnum.COORDONNEE_BANCAIRE_BIC_SWIFT;
 
 	private static final String UNSUPPORTED_TYPE_PAY_VALUE = "10";
 
@@ -29,7 +29,7 @@ public class AnomalieDetectionMSOUtilsTest {
 
 	private ComparaisonDTO comparaisonUnsupportedTypeExistanteSansAnomalie;
 
-	private static final AnomalieTypeEnum SENSITIVE_TYPE_ANOMALIE = AnomalieTypeEnum.NOM_VOIE;
+	private static final AnomalieTypeEnum SENSITIVE_TYPE_ANOMALIE = AnomalieTypeEnum.ADRESSE_CODE_PAYS;
 
 	private static final String SENSITIVE_TYPE_PAY_VALUE = "NATIONALE";
 
@@ -45,7 +45,7 @@ public class AnomalieDetectionMSOUtilsTest {
 
 	private ComparaisonDTO comparaisonSensitiveTypeExistanteAvecAnomalieFermee;
 
-	private static final AnomalieTypeEnum SENSITIVE_BETWEEN_BRACKET_TYPE_ANOMALIE = AnomalieTypeEnum.GRADE;
+	private static final AnomalieTypeEnum SENSITIVE_BETWEEN_BRACKET_TYPE_ANOMALIE = AnomalieTypeEnum.CARRIERE_GRADE;
 
 	private static final String SENSITIVE_BETWEEN_BRACKET_TYPE_PAY_VALUE = "0500010000";
 
@@ -61,7 +61,7 @@ public class AnomalieDetectionMSOUtilsTest {
 
 	private ComparaisonDTO comparaisonSensitiveWithBracketsTypeExistanteAvecAnomalieFermee;
 
-	private static final AnomalieTypeEnum INSENSITIVE_TRUNC_20_TYPE_ANOMALIE = AnomalieTypeEnum.NOM;
+	private static final AnomalieTypeEnum INSENSITIVE_TRUNC_20_TYPE_ANOMALIE = AnomalieTypeEnum.ETAT_CIVIL_NOM;
 
 	private static final String INSENSITIVE_TRUNC_20_TYPE_PAY_VALUE = "SAM-MI-LAI RAHARIFIM";
 
@@ -77,7 +77,7 @@ public class AnomalieDetectionMSOUtilsTest {
 
 	private ComparaisonDTO comparaisonInsensitive20CharTypeExistanteAvecAnomalieFermee;
 
-	private static final AnomalieTypeEnum INSENSITIVE_TRUNC_15_TYPE_ANOMALIE = AnomalieTypeEnum.PRENOM;
+	private static final AnomalieTypeEnum INSENSITIVE_TRUNC_15_TYPE_ANOMALIE = AnomalieTypeEnum.ETAT_CIVIL_PRENOM;
 
 	private static final String INSENSITIVE_TRUNC_15_TYPE_PAY_VALUE = "MARIE FREDERIQU";
 

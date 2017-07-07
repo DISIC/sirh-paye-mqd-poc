@@ -61,6 +61,10 @@ public final class AnomalieDetectionMSOUtils {
 			anomalie) -> (FUNCTION_CASE_SENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),
 					anomalie.getDonnees().getDonneeGA()));
 
+	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_DATA_COMPARISON = (
+			anomalie) -> (FUNCTION_CASE_INSENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),
+					anomalie.getDonnees().getDonneeGA()));
+
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_SENSITIVE_DATA_COMPARISON_GA_BETWEEN_BRACKETS = (
 			anomalie) -> (FUNCTION_CASE_SENSITIVE_COMPARISON.apply(anomalie.getDonnees().getDonneePAY(),
 					FUNCTION_FORMAT_DATA_BETWEEN_BRACKETS.apply(anomalie.getDonnees().getDonneeGA())));
@@ -78,21 +82,23 @@ public final class AnomalieDetectionMSOUtils {
 							.apply(FUNCTION_REPLACE_SPECIAL_CHAR.apply(anomalie.getDonnees().getDonneeGA()))));
 
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_INSENSITIVE_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.NOM.equals(anomalie.getType())
-					|| AnomalieTypeEnum.PRENOM.equals(anomalie.getType()));
+			anomalie) -> (AnomalieTypeEnum.ETAT_CIVIL_NOM.equals(anomalie.getType())
+					|| AnomalieTypeEnum.ETAT_CIVIL_PRENOM.equals(anomalie.getType())
+					|| AnomalieTypeEnum.ADRESSE_NOM_VOIE.equals(anomalie.getType()));
 
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_CARRIERE_GRADE_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.GRADE.equals(anomalie.getType()));
+			anomalie) -> (AnomalieTypeEnum.CARRIERE_GRADE.equals(anomalie.getType()));
 
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_TRUNCATE_20_CHAR_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.NOM.equals(anomalie.getType()));
+			anomalie) -> (AnomalieTypeEnum.ETAT_CIVIL_NOM.equals(anomalie.getType()));
 
 	private static final Predicate<ComparaisonDTO> FILTER_CASE_TRUNCATE_15_CHAR_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.PRENOM.equals(anomalie.getType()));
+			anomalie) -> (AnomalieTypeEnum.ETAT_CIVIL_PRENOM.equals(anomalie.getType()));
 
 	private static final Predicate<ComparaisonDTO> FILTER_UNSUPPORTED_DATA_TYPES = (
-			anomalie) -> (AnomalieTypeEnum.NIVEAU_ECHELON.equals(anomalie.getType())
-					|| AnomalieTypeEnum.ABSENCE.equals(anomalie.getType()));
+			anomalie) -> (AnomalieTypeEnum.COORDONNEE_BANCAIRE_IBAN.equals(anomalie.getType())
+					|| AnomalieTypeEnum.COORDONNEE_BANCAIRE_MODE_PAIEMENT.equals(anomalie.getType())
+					|| AnomalieTypeEnum.COORDONNEE_BANCAIRE_BIC_SWIFT.equals(anomalie.getType()));
 
 	/**
 	 * Non constructeur.
@@ -119,6 +125,10 @@ public final class AnomalieDetectionMSOUtils {
 						.and(FILTER_CASE_SENSITIVE_DATA_COMPARISON)).or(
 								FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_CARRIERE_GRADE_DATA_TYPES)
 										.and(FILTER_CASE_SENSITIVE_DATA_COMPARISON_GA_BETWEEN_BRACKETS))
+								.or(FILTER_CASE_INSENSITIVE_DATA_TYPES
+										.and(FILTER_CASE_TRUNCATE_20_CHAR_DATA_TYPES.negate())
+										.and(FILTER_CASE_TRUNCATE_15_CHAR_DATA_TYPES.negate())
+										.and(FILTER_CASE_INSENSITIVE_DATA_COMPARISON))
 								.or(FILTER_CASE_INSENSITIVE_DATA_TYPES.and(FILTER_CASE_TRUNCATE_15_CHAR_DATA_TYPES)
 										.and(FILTER_CASE_INSENSITIVE_DATA_COMPARISON_PAY_15_CHAR_LIMITATION))
 								.or(FILTER_CASE_INSENSITIVE_DATA_TYPES.and(FILTER_CASE_TRUNCATE_20_CHAR_DATA_TYPES)

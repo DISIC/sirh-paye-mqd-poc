@@ -13,61 +13,61 @@ import java.util.List;
  */
 public enum AnomalieTypeEnum {
 
-	NOM("Nom", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_NOM("Nom", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	PRENOM("Prénom", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_PRENOM("Prénom", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	INSEE("INSEE", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_INSEE("INSEE", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	DATE_NAISSANCE("Date de naissance", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_DATE_NAISSANCE("Date de naissance", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	CIVILITE("Civilité", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_CIVILITE("Civilité", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	SEXE("Sexe", AnomaliePerimetreEnum.ETAT_CIVIL),
+	ETAT_CIVIL_SEXE("Sexe", AnomaliePerimetreEnum.ETAT_CIVIL),
 
-	NB_POINTS("Nombre de points", AnomaliePerimetreEnum.NBI),
+	NBI_NB_POINTS("Nombre de points", AnomaliePerimetreEnum.NBI),
 
-	ABSENCE("Absence", AnomaliePerimetreEnum.ABSENCE),
+	ABSENCE_ABSENCE("Absence", AnomaliePerimetreEnum.ABSENCE),
 
-	VOIE("Voie", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_VOIE("Voie", AnomaliePerimetreEnum.ADRESSE),
 
-	NUMERO_VOIE("Numéro de voie", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_NUMERO_VOIE("Numéro de voie", AnomaliePerimetreEnum.ADRESSE),
 
-	COMPLEMENT_NUMERO_VOIE("Bis/Ter", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_COMPLEMENT_NUMERO_VOIE("Bis/Ter", AnomaliePerimetreEnum.ADRESSE),
 
-	TYPE_VOIE("Type de voie", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_TYPE_VOIE("Type de voie", AnomaliePerimetreEnum.ADRESSE),
 
-	NOM_VOIE("Nom de voie", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_NOM_VOIE("Nom de voie", AnomaliePerimetreEnum.ADRESSE),
 
-	CODE_POSTAL("Code postal", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_CODE_POSTAL("Code postal", AnomaliePerimetreEnum.ADRESSE),
 
-	CODE_PAYS("Code pays", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_CODE_PAYS("Code pays", AnomaliePerimetreEnum.ADRESSE),
 
-	COMMUNE("Commune", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_COMMUNE("Commune", AnomaliePerimetreEnum.ADRESSE),
 
-	COMPLEMENT_ADRESSE("Complément d'adresse", AnomaliePerimetreEnum.ADRESSE),
+	ADRESSE_COMPLEMENT_ADRESSE("Complément d'adresse", AnomaliePerimetreEnum.ADRESSE),
 
-	MODE_PAIEMENT("Mode de paiement", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+	COORDONNEE_BANCAIRE_MODE_PAIEMENT("Mode de paiement", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
 
-	IBAN("IBAN", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+	COORDONNEE_BANCAIRE_IBAN("IBAN", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
 
-	BIC_SWIFT("BIC/SWIFT", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
+	COORDONNEE_BANCAIRE_BIC_SWIFT("BIC/SWIFT", AnomaliePerimetreEnum.COORDONNEE_BANCAIRE),
 
-	NB_ENFANTS("Nombre d'enfants", AnomaliePerimetreEnum.ENFANT),
+	ENFANT_NB_ENFANTS("Nombre d'enfants", AnomaliePerimetreEnum.ENFANT),
 
-	DATE_FIN_FONCTION("Date de fin de fonction", AnomaliePerimetreEnum.POSITION),
+	POSITION_DATE_FIN_FONCTION("Date de fin de fonction", AnomaliePerimetreEnum.POSITION),
 
-	MODALITE("Modalité", AnomaliePerimetreEnum.TEMPS_TRAVAIL),
+	TEMPS_TRAVAIL_MODALITE("Modalité", AnomaliePerimetreEnum.TEMPS_TRAVAIL),
 
-	INDICE("Indice", AnomaliePerimetreEnum.CARRIERE),
+	CARRIERE_INDICE("Indice", AnomaliePerimetreEnum.CARRIERE),
 
-	GRADE("Grade", AnomaliePerimetreEnum.CARRIERE),
+	CARRIERE_GRADE("Grade", AnomaliePerimetreEnum.CARRIERE),
 
-	NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE),
+	CARRIERE_NIVEAU_ECHELON("Niveau d'échelon", AnomaliePerimetreEnum.CARRIERE),
 
-	PENSION("Pension", AnomaliePerimetreEnum.PENSION),
+	PENSION_PENSION("Pension", AnomaliePerimetreEnum.PENSION),
 
-	NUMERO_DOSSIER("Numéro de dossier", AnomaliePerimetreEnum.TG);
+	TG_NUMERO_DOSSIER("Numéro de dossier", AnomaliePerimetreEnum.TG);
 
 	public static final List<AnomalieTypeEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 
