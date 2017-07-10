@@ -16,15 +16,15 @@ import org.apache.commons.collections4.CollectionUtils;
  */
 public enum AnomalieEtatEnum {
 
-	A_TRAITER(""),
+	ETAT_ANOMALIE_1_A_TRAITER(""),
 
-	EN_COURS("Correction en cours"),
+	ETAT_ANOMALIE_2_EN_COURS("Correction en cours"),
 
-	CORRECTION_EFFECTUEE("Correction effectuée"),
+	ETAT_ANOMALIE_3_CORRECTION_EFFECTUEE("Correction effectuée"),
 
-	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire"),
+	ETAT_ANOMALIE_4_DEMANDE_ASSISTANCE("Demande d'assistance"),
 
-	DEMANDE_ASSISTANCE("Demande d'assistance");
+	ETAT_ANOMALIE_5_AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire");
 
 	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
 
@@ -82,7 +82,7 @@ public enum AnomalieEtatEnum {
 	public static List<String> getLibellesAnomaliesDejaTraitees() {
 		if (CollectionUtils.isEmpty(CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES)) {
 			for (final AnomalieEtatEnum libelle : values()) {
-				if (!libelle.getLibelle().equals(A_TRAITER.getLibelle())) {
+				if (!libelle.getLibelle().equals(ETAT_ANOMALIE_1_A_TRAITER.getLibelle())) {
 					CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES.add(libelle.getLibelle());
 				}
 			}

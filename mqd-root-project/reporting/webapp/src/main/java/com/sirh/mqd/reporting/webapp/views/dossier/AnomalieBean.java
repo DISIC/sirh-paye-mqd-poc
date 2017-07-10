@@ -13,6 +13,7 @@ import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
+import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -77,6 +78,10 @@ public class AnomalieBean extends GenericBean {
 			final ComparaisonDTO anomalie = anomalies.get(i);
 			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(anomalie));
 		}
+	}
+
+	public int trierAnomaliesParEtatCorrection(final AnomalieEtatEnum ano1, final AnomalieEtatEnum ano2) {
+		return ano1.compareTo(ano2);
 	}
 
 	public void modifierEtatCorrection() {

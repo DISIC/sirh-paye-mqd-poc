@@ -57,10 +57,10 @@ public final class AnomalieDetectionDGACUtils {
 				.filter((FILTER_CASE_INSENSITIVE_DATA_TYPES.negate().and(FILTER_CASE_SENSITIVE_DATA_COMPARISON)))
 				.forEach((anomalie) -> {
 					if (anomalie.getEtatCorrection() != null
-							&& AnomalieEtatEnum.CORRECTION_EFFECTUEE.equals(anomalie.getEtatCorrection())) {
+							&& AnomalieEtatEnum.ETAT_ANOMALIE_3_CORRECTION_EFFECTUEE.equals(anomalie.getEtatCorrection())) {
 						anomalie.setAnomalieReouverte(Boolean.TRUE);
 					} else if (anomalie.getEtatCorrection() == null) {
-						anomalie.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
+						anomalie.setEtatCorrection(AnomalieEtatEnum.ETAT_ANOMALIE_1_A_TRAITER);
 					}
 					anomalie.setAnomalieDonnees(Boolean.TRUE);
 					anomalie.setDateCloture(null);

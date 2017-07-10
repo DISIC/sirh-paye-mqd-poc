@@ -36,11 +36,11 @@ public final class AnomalieModelFactory {
 		if (anomalieDTO.getEtatCorrection() != null) {
 			anomalieModel.setEtatCorrection(anomalieDTO.getEtatCorrection().getLibelle());
 		} else {
-			anomalieModel.setEtatCorrection(AnomalieEtatEnum.A_TRAITER.getLibelle());
+			anomalieModel.setEtatCorrection(AnomalieEtatEnum.ETAT_ANOMALIE_1_A_TRAITER.getLibelle());
 		}
 
 		if (anomalieDTO.getEtatCorrection() == null
-				|| AnomalieEtatEnum.A_TRAITER.equals(anomalieDTO.getEtatCorrection())) {
+				|| AnomalieEtatEnum.ETAT_ANOMALIE_1_A_TRAITER.equals(anomalieDTO.getEtatCorrection())) {
 			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibelles());
 		} else {
 			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibellesAnomaliesDejaTraitees());
