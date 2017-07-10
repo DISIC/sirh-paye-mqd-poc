@@ -2,6 +2,7 @@ package com.sirh.mqd.reporting.webapp.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -42,6 +43,8 @@ public class AnomalieModel implements Serializable {
 	private Date dateModification;
 
 	private boolean anomalieReouverte;
+
+	private List<String> listeEtatsCorrection;
 
 	public AnomalieModel() {
 		super();
@@ -141,5 +144,13 @@ public class AnomalieModel implements Serializable {
 
 	public void setAnomalieReouverte(final boolean anomalieReouverte) {
 		this.anomalieReouverte = anomalieReouverte;
+	}
+
+	public List<String> getListeEtatsCorrection() {
+		return listeEtatsCorrection;
+	}
+
+	public void setListeEtatsCorrection(final List<String> listeEtatsCorrection) {
+		this.listeEtatsCorrection = listeEtatsCorrection;
 	}
 }

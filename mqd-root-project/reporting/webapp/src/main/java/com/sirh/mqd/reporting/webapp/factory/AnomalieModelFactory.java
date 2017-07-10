@@ -39,6 +39,13 @@ public final class AnomalieModelFactory {
 			anomalieModel.setEtatCorrection(AnomalieEtatEnum.A_TRAITER.getLibelle());
 		}
 
+		if (anomalieDTO.getEtatCorrection() == null
+				|| AnomalieEtatEnum.A_TRAITER.equals(anomalieDTO.getEtatCorrection())) {
+			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibelles());
+		} else {
+			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibellesAnomaliesDejaTraitees());
+		}
+
 		anomalieModel.setModeOperatoire(anomalieDTO.getModeOperatoire());
 		anomalieModel.setPerimetre(anomalieDTO.getType().getPerimetre().getLibelle());
 		anomalieModel.setType(anomalieDTO.getType().getLibelle());

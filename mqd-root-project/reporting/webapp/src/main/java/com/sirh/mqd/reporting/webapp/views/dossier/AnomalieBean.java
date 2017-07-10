@@ -13,7 +13,6 @@ import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
-import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -60,11 +59,6 @@ public class AnomalieBean extends GenericBean {
 	 */
 	private List<AnomalieModel> anomalies;
 
-	/**
-	 * Liste par défaut des états de correction connus.
-	 */
-	private List<String> listeEtatsCorrection;
-
 	public void setup() {
 		// Initialization
 
@@ -72,8 +66,6 @@ public class AnomalieBean extends GenericBean {
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.anomalies = new ArrayList<AnomalieModel>();
-			this.listeEtatsCorrection = new ArrayList<String>();
-			this.listeEtatsCorrection.addAll(AnomalieEtatEnum.getLibelles());
 		}
 	}
 
@@ -134,14 +126,6 @@ public class AnomalieBean extends GenericBean {
 
 	public void setAnomalies(final List<AnomalieModel> anomalies) {
 		this.anomalies = anomalies;
-	}
-
-	public List<String> getListeEtatsCorrection() {
-		return listeEtatsCorrection;
-	}
-
-	public void setListeEtatsCorrection(final List<String> listeEtatsCorrection) {
-		this.listeEtatsCorrection = listeEtatsCorrection;
 	}
 
 	public AnomalieModel getSelectedAnomalie() {

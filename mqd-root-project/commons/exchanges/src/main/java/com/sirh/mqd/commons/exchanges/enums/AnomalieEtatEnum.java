@@ -28,6 +28,8 @@ public enum AnomalieEtatEnum {
 
 	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
 
+	private static final List<String> CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES = new ArrayList<String>();
+
 	public static final List<AnomalieEtatEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 
 	private String libelle;
@@ -75,5 +77,16 @@ public enum AnomalieEtatEnum {
 			}
 		}
 		return CACHE_LIBELLES;
+	}
+
+	public static List<String> getLibellesAnomaliesDejaTraitees() {
+		if (CollectionUtils.isEmpty(CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES)) {
+			for (final AnomalieEtatEnum libelle : values()) {
+				if (!libelle.getLibelle().equals(A_TRAITER.getLibelle())) {
+					CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES.add(libelle.getLibelle());
+				}
+			}
+		}
+		return CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES;
 	}
 }
