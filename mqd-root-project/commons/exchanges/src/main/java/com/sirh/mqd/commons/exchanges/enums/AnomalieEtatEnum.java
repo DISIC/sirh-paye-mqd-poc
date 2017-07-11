@@ -16,19 +16,17 @@ import org.apache.commons.collections4.CollectionUtils;
  */
 public enum AnomalieEtatEnum {
 
-	ETAT_ANOMALIE_1_A_TRAITER(""),
+	A_TRAITER(""),
 
-	ETAT_ANOMALIE_2_EN_COURS("Correction en cours"),
+	EN_COURS("Correction en cours"),
 
-	ETAT_ANOMALIE_3_CORRECTION_EFFECTUEE("Correction effectuée"),
+	CORRECTION_EFFECTUEE("Correction effectuée"),
 
-	ETAT_ANOMALIE_4_DEMANDE_ASSISTANCE("Demande d'assistance"),
+	DEMANDE_ASSISTANCE("Demande d'assistance"),
 
-	ETAT_ANOMALIE_5_AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire");
+	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire");
 
-	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
-
-	private static final List<String> CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES = new ArrayList<String>();
+	private static final List<AnomalieEtatEnum> CACHE_ENUMS_DEJA_TRAITEES = new ArrayList<AnomalieEtatEnum>();
 
 	public static final List<AnomalieEtatEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 
@@ -65,28 +63,30 @@ public enum AnomalieEtatEnum {
 	}
 
 	/**
-	 * Méthode permettant de récupérer la liste des libellées pour les états
-	 * possibles d'une correction.
+	 * Méthode permettant de récupérer la liste des états possibles d'une
+	 * correction.
 	 *
-	 * @return {@link List} des libellés d'états de correction existants
+	 * @return {@link List} des états de correction existants
 	 */
-	public static List<String> getLibelles() {
-		if (CollectionUtils.isEmpty(CACHE_LIBELLES)) {
-			for (final AnomalieEtatEnum libelle : values()) {
-				CACHE_LIBELLES.add(libelle.getLibelle());
-			}
-		}
-		return CACHE_LIBELLES;
+	public static List<AnomalieEtatEnum> getEtatsCorrection() {
+		return CACHE_ENUMS;
 	}
 
-	public static List<String> getLibellesAnomaliesDejaTraitees() {
-		if (CollectionUtils.isEmpty(CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES)) {
+	/**
+	 * Méthode permettant de récupérer la liste des états possibles d'une
+	 * correction en dehors de l'état {@link AnomalieEtatEnum.A_TRAITER}.
+	 *
+	 * @return {@link List} des états de correction existants sauf
+	 *         {@link AnomalieEtatEnum.A_TRAITER}
+	 */
+	public static List<AnomalieEtatEnum> getEtatsCorrectionDejaTraites() {
+		if (CollectionUtils.isEmpty(CACHE_ENUMS_DEJA_TRAITEES)) {
 			for (final AnomalieEtatEnum libelle : values()) {
-				if (!libelle.getLibelle().equals(ETAT_ANOMALIE_1_A_TRAITER.getLibelle())) {
-					CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES.add(libelle.getLibelle());
+				if (!libelle.equals(A_TRAITER)) {
+					CACHE_ENUMS_DEJA_TRAITEES.add(libelle);
 				}
 			}
 		}
-		return CACHE_LIBELLES_ANOMALIES_DEJA_TRAITEES;
+		return CACHE_ENUMS_DEJA_TRAITEES;
 	}
 }

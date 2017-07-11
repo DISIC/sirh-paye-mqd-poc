@@ -44,10 +44,9 @@
 						<h:outputText value="#{anomalie.modeOperatoire}" />
 					</p:column>
 					<p:column  styleClass="liste_etats_correction"
-						headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}" sortFunction="#{anomalieBean.trierAnomaliesParEtatCorrection}">
-						<p:selectOneMenu id="listEtatCorrection"
-							value="#{anomalie.etatCorrection}">
-							<f:selectItems value="#{anomalie.listeEtatsCorrection}" />
+						headerText="#{label['dossiers.overview.anomalies_table.header.etat_correction']}">
+						<p:selectOneMenu id="listEtatCorrection" value="#{anomalie.etatCorrection}">
+							<f:selectItems value="#{anomalie.listeEtatsCorrection}" var="etatCorrection" itemLabel="#{etatCorrection.libelle}" itemValue="#{etatCorrection}" />
 						</p:selectOneMenu>
 					</p:column>
 					<p:column

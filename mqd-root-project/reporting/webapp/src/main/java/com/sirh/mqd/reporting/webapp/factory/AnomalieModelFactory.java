@@ -34,16 +34,16 @@ public final class AnomalieModelFactory {
 		anomalieModel.setDonneesPAY(donnes.getDonneePAY());
 
 		if (anomalieDTO.getEtatCorrection() != null) {
-			anomalieModel.setEtatCorrection(anomalieDTO.getEtatCorrection().getLibelle());
+			anomalieModel.setEtatCorrection(anomalieDTO.getEtatCorrection());
 		} else {
-			anomalieModel.setEtatCorrection(AnomalieEtatEnum.ETAT_ANOMALIE_1_A_TRAITER.getLibelle());
+			anomalieModel.setEtatCorrection(AnomalieEtatEnum.A_TRAITER);
 		}
 
 		if (anomalieDTO.getEtatCorrection() == null
-				|| AnomalieEtatEnum.ETAT_ANOMALIE_1_A_TRAITER.equals(anomalieDTO.getEtatCorrection())) {
-			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibelles());
+				|| AnomalieEtatEnum.A_TRAITER.equals(anomalieDTO.getEtatCorrection())) {
+			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getEtatsCorrection());
 		} else {
-			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getLibellesAnomaliesDejaTraitees());
+			anomalieModel.setListeEtatsCorrection(AnomalieEtatEnum.getEtatsCorrectionDejaTraites());
 		}
 
 		anomalieModel.setModeOperatoire(anomalieDTO.getModeOperatoire());
@@ -85,7 +85,7 @@ public final class AnomalieModelFactory {
 		donnesDTO.setDonneePAY(anomalieModel.getDonneesPAY());
 		anomalieDTO.setDonnees(donnesDTO);
 
-		anomalieDTO.setEtatCorrection(AnomalieEtatEnum.enumOf(anomalieModel.getEtatCorrection()));
+		anomalieDTO.setEtatCorrection(anomalieModel.getEtatCorrection());
 		anomalieDTO.setModeOperatoire(anomalieModel.getModeOperatoire());
 		anomalieDTO.setType(AnomalieTypeEnum.enumOf(anomalieModel.getType()));
 		anomalieDTO.setAnomalieDonnees(true);

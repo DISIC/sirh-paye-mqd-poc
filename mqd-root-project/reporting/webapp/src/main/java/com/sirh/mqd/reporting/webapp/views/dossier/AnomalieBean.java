@@ -1,6 +1,7 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -13,7 +14,6 @@ import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
-import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -26,6 +26,8 @@ import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
 import com.sirh.mqd.reporting.webapp.factory.AnomalieModelFactory;
 import com.sirh.mqd.reporting.webapp.model.AnomalieModel;
 import com.sirh.mqd.reporting.webapp.model.DossierModel;
+import com.sirh.mqd.reporting.webapp.model.comparator.AnomalieModelPerimetreComparator;
+import com.sirh.mqd.reporting.webapp.model.comparator.AnomalieModelTypeComparator;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
@@ -78,10 +80,8 @@ public class AnomalieBean extends GenericBean {
 			final ComparaisonDTO anomalie = anomalies.get(i);
 			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(anomalie));
 		}
-	}
-
-	public int trierAnomaliesParEtatCorrection(final AnomalieEtatEnum ano1, final AnomalieEtatEnum ano2) {
-		return ano1.compareTo(ano2);
+		Collections.sort(this.anomalies, new AnomalieModelTypeComparator());
+		Collections.sort(this.anomalies, new AnomalieModelPerimetreComparator());
 	}
 
 	public void modifierEtatCorrection() {

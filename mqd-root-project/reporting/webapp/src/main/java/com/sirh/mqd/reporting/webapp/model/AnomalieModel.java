@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import com.sirh.mqd.commons.exchanges.enums.AnomalieEtatEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
@@ -32,7 +33,7 @@ public class AnomalieModel implements Serializable {
 
 	private Date dateEcheance;
 
-	private String etatCorrection;
+	private AnomalieEtatEnum etatCorrection;
 
 	private String responsableLogin;
 
@@ -44,7 +45,7 @@ public class AnomalieModel implements Serializable {
 
 	private boolean anomalieReouverte;
 
-	private List<String> listeEtatsCorrection;
+	private List<AnomalieEtatEnum> listeEtatsCorrection;
 
 	public AnomalieModel() {
 		super();
@@ -98,14 +99,6 @@ public class AnomalieModel implements Serializable {
 		this.dateEcheance = DateUtils.clonerDate(dateEcheance);
 	}
 
-	public String getEtatCorrection() {
-		return etatCorrection;
-	}
-
-	public void setEtatCorrection(final String etatCorrection) {
-		this.etatCorrection = etatCorrection;
-	}
-
 	public String getResponsableLogin() {
 		return responsableLogin;
 	}
@@ -146,11 +139,19 @@ public class AnomalieModel implements Serializable {
 		this.anomalieReouverte = anomalieReouverte;
 	}
 
-	public List<String> getListeEtatsCorrection() {
+	public AnomalieEtatEnum getEtatCorrection() {
+		return etatCorrection;
+	}
+
+	public void setEtatCorrection(final AnomalieEtatEnum etatCorrection) {
+		this.etatCorrection = etatCorrection;
+	}
+
+	public List<AnomalieEtatEnum> getListeEtatsCorrection() {
 		return listeEtatsCorrection;
 	}
 
-	public void setListeEtatsCorrection(final List<String> listeEtatsCorrection) {
+	public void setListeEtatsCorrection(final List<AnomalieEtatEnum> listeEtatsCorrection) {
 		this.listeEtatsCorrection = listeEtatsCorrection;
 	}
 }
