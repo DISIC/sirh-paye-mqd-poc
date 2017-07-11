@@ -3,6 +3,26 @@ div#calendrier_gestion_toolbar {
 	margin-bottom: 1em;
 }
 
+div#calendrier_gestion_toolbar td.fc-event-container a.rouge {
+	border: 1px solid #ad3a3a;
+	background-color: #ad3a3a;
+}
+
+div#calendrier_gestion_toolbar td.fc-event-container a.orange {
+	border: 1px solid #ef9610;
+	background-color: #ef9610;
+}
+
+div#calendrier_gestion_toolbar td.fc-event-container a.jaune {
+	border: 1px solid #f9ff00;
+	background-color: #f9ff00;
+}
+
+div#calendrier_gestion_toolbar td.fc-event-container a.vert {
+	border: 1px solid #3bde23;
+	background-color: #3bde23;
+}
+
 .fc-button-group {
 	display: inline-flex;
 }

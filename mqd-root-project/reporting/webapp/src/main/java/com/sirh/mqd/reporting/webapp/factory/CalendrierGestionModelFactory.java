@@ -1,5 +1,6 @@
 package com.sirh.mqd.reporting.webapp.factory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.ScheduleEvent;
 
@@ -29,25 +30,22 @@ public final class CalendrierGestionModelFactory {
 		event.setEndDate(eventCalendrierGestionDTO.getEcheance());
 		event.setData(eventCalendrierGestionDTO);
 		event.setDescription(eventCalendrierGestionDTO.getCommentaire());
+		event.setStyleClass(StringUtils.normalizeSpace(eventCalendrierGestionDTO.getCouleur()));
 		return event;
 	}
 
 	public static EventCalendrierDTO createEventCalendrierGestionDTO(final ScheduleEvent event) {
 		final EventCalendrierDTO eventCalendrierGestionDTO = new EventCalendrierDTO();
 		eventCalendrierGestionDTO.setEvenement(event.getTitle());
-		// eventCalendrierGestionDTO.setType(((EventCalendrierGestionDTO)
-		// event.getData()).getType());
 		eventCalendrierGestionDTO.setDebut(event.getStartDate());
 		eventCalendrierGestionDTO.setEcheance(event.getEndDate());
-		// eventCalendrierGestionDTO.setActeurs(((EventCalendrierGestionModel)
-		// event.getData()).getActeurs());
-		// eventCalendrierGestionDTO.setCorps(((EventCalendrierGestionModel)
-		// event.getData()).getCorps());
-		// eventCalendrierGestionDTO.setService(((EventCalendrierGestionModel)
-		// event.getData()).getService());
-		// eventCalendrierGestionDTO.setCouleur(((EventCalendrierGestionModel)
-		// event.getData()).getCouleur());
 		eventCalendrierGestionDTO.setCommentaire(event.getDescription());
+
+		eventCalendrierGestionDTO.setType(((EventCalendrierDTO) event.getData()).getType());
+		eventCalendrierGestionDTO.setActeurs(((EventCalendrierDTO) event.getData()).getActeurs());
+		eventCalendrierGestionDTO.setCorps(((EventCalendrierDTO) event.getData()).getCorps());
+		eventCalendrierGestionDTO.setService(((EventCalendrierDTO) event.getData()).getService());
+		eventCalendrierGestionDTO.setCouleur(((EventCalendrierDTO) event.getData()).getCouleur());
 		return eventCalendrierGestionDTO;
 	}
 }
