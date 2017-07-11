@@ -14,13 +14,13 @@ div#calendrier_gestion_toolbar td.fc-event-container a.orange {
 }
 
 div#calendrier_gestion_toolbar td.fc-event-container a.jaune {
-	border: 1px solid #f9ff00;
-	background-color: #f9ff00;
+	border: 1px solid #c2c600;
+	background-color: #c2c600;
 }
 
 div#calendrier_gestion_toolbar td.fc-event-container a.vert {
-	border: 1px solid #3bde23;
-	background-color: #3bde23;
+	border: 1px solid #18bd00;
+	background-color: #18bd00;
 }
 
 .fc-button-group {
