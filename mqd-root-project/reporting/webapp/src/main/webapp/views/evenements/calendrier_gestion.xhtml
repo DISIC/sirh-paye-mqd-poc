@@ -49,12 +49,12 @@
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.debut.label']}" />
 				<p:calendar id="from" readonly="true" disabled="true"
 					value="#{calendrierGestionBean.event.startDate}" timeZone="UTC"
-					pattern="dd/MM/yyyy HH:mm" />
+					pattern="dd/MM/yyyy" />
 
 				<p:outputLabel for="to"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.echeance.label']}" />
 				<p:calendar id="to" value="#{calendrierGestionBean.event.endDate}" readonly="true" disabled="true"
-					timeZone="UTC" pattern="dd/MM/yyyy HH:mm" />
+					timeZone="UTC" pattern="dd/MM/yyyy" />
 
 				<p:outputLabel for="acteurs"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.acteurs.label']}" />
