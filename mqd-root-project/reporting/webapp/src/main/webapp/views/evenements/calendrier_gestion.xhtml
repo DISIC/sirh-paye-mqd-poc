@@ -15,7 +15,8 @@
 			<p:schedule id="schedule"
 				value="#{calendrierGestionBean.scheduleModel}"
 				widgetVar="myschedule" timeZone="UTC" clientTimeZone="UTC"
-				locale="fr">
+				locale="fr" showWeekends="false" 
+				showWeekNumbers="true" weekNumberCalculation="ISO" >
 
 				<p:ajax event="dateSelect"
 					listener="#{calendrierGestionBean.onDateSelect}"
