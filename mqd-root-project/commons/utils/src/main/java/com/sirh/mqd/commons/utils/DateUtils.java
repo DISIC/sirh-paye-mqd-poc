@@ -45,9 +45,9 @@ public final class DateUtils {
 	private static final String DATE_FORMAT_MM_YY = "MM/yy";
 
 	/**
-	 * Format de date "j/m/aaaa".
+	 * Format de date "m/j/aaaa".
 	 */
-	private static final String DATE_FORMAT_D_M_YYYY = "d/M/yyyy";
+	private static final String DATE_FORMAT_M_D_YYYY = "M/d/yyyy";
 
 	/**
 	 * Format de date "jj/mm/aaaa".
@@ -368,15 +368,15 @@ public final class DateUtils {
 	}
 
 	/**
-	 * Création d'un objet Date à partir du format "j/m/aaaa"
+	 * Création d'un objet Date à partir du format "m/j/aaaa"
 	 *
 	 * @param date
 	 *            date sous forme de chaîne de caractères
 	 *
 	 * @return date en objet {@link Date}
 	 */
-	public static Date parseDateJMAAAA(final String date) {
-		return parseDate(date, DATE_FORMAT_D_M_YYYY);
+	public static Date parseDateMJAAAA(final String date) {
+		return parseDate(date, DATE_FORMAT_M_D_YYYY);
 	}
 
 	/**
@@ -554,7 +554,7 @@ public final class DateUtils {
 	public static Date addMonthsWithBounds(final Date date, final int nbMois) {
 		final Calendar calendar = DateUtils.getCalendarInstance();
 		calendar.setTime(date);
-		calendar.roll(Calendar.MONTH, nbMois);
+		calendar.add(Calendar.MONTH, nbMois);
 		if (Integer.signum(nbMois) == -1) {
 			return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.MONTH).getTime();
 		} else if (Integer.signum(nbMois) == 1) {

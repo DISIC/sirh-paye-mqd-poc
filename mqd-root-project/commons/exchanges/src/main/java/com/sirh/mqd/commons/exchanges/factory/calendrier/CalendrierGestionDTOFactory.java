@@ -34,11 +34,11 @@ public final class CalendrierGestionDTOFactory {
 		eventCalendrier.setCouleur(couleur);
 		eventCalendrier.setCommentaire(commentaire);
 		if (StringUtils.isBlank(dateDebut)) {
-			eventCalendrier.setDebut(DateUtils.getDateBoundHoursToMinimum(DateUtils.parseDateJMAAAA(dateEcheance)));
+			eventCalendrier.setDebut(DateUtils.getDateBoundHoursToMinimum(DateUtils.parseDateMJAAAA(dateEcheance)));
 		} else {
-			eventCalendrier.setDebut(DateUtils.getDateBoundHoursToMinimum(DateUtils.parseDateJMAAAA(dateDebut)));
+			eventCalendrier.setDebut(DateUtils.getDateBoundHoursToMinimum(DateUtils.parseDateMJAAAA(dateDebut)));
 		}
-		eventCalendrier.setEcheance(DateUtils.getDateBoundHoursToMaximum(DateUtils.parseDateJMAAAA(dateEcheance)));
+		eventCalendrier.setEcheance(DateUtils.getDateBoundHoursToMaximum(DateUtils.parseDateMJAAAA(dateEcheance)));
 		eventCalendrier.setEvenement(evenement);
 		eventCalendrier.setService(service);
 		eventCalendrier.setType(type);
