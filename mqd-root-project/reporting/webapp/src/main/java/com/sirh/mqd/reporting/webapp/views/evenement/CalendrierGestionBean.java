@@ -11,10 +11,12 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -90,6 +92,11 @@ public class CalendrierGestionBean extends GenericBean {
 	 * Timeline qui contiendra les events
 	 */
 	private TimelineModel timelineModel;
+
+	/**
+	 * Evénement sélectionné du timeline
+	 */
+	private TimelineEvent selectedTimelineEvent;
 
 	/**
 	 * Méthode permettant de lister tous les evenements du calendrier gestion
@@ -169,16 +176,15 @@ public class CalendrierGestionBean extends GenericBean {
 		this.event = (ScheduleEvent) selectEvent.getObject();
 	}
 
-	public void onDateSelect(final SelectEvent selectEvent) {
-		this.event = new DefaultScheduleEvent(StringUtils.EMPTY, (Date) selectEvent.getObject(),
-				(Date) selectEvent.getObject());
-	}
-
 	public void onViewChange(final SelectEvent selectEvent) {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
 						this.limitStartDate, this.limitEndDate);
 		listerEventInformations(eventsCalendrierDTO);
+	}
+
+	public void onSelectTimelineEvent(final TimelineSelectEvent selectEvent) {
+		this.selectedTimelineEvent = selectEvent.getTimelineEvent();
 	}
 
 	public ScheduleModel getScheduleModel() {
@@ -243,5 +249,13 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setTimelineModel(final TimelineModel timelineModel) {
 		this.timelineModel = timelineModel;
+	}
+
+	public TimelineEvent getSelectedTimelineEvent() {
+		return selectedTimelineEvent;
+	}
+
+	public void setSelectedTimelineEvent(final TimelineEvent selectedTimelineEvent) {
+		this.selectedTimelineEvent = selectedTimelineEvent;
 	}
 }

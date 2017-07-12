@@ -88,12 +88,9 @@
 				weekNumberCalculation="ISO" allDaySlot="false"
 				rightHeaderTemplate="month,agendaWeek">
 
-				<p:ajax event="dateSelect"
-					listener="#{calendrierGestionBean.onDateSelect}"
-					update="eventDetails" oncomplete="PF('eventDialog').show();" />
 				<p:ajax event="eventSelect"
 					listener="#{calendrierGestionBean.onEventSelect}"
-					update="eventDetails" oncomplete="PF('eventDialog').show();" />
+					update="eventDetails" oncomplete="PF('eventTimelineDialog').hide();PF('eventDialog').show();" />
 				<p:ajax event="viewChange" update=":formCalendrierGestion:infoEventGroup"
 					listener="#{calendrierGestionBean.onViewChange}" />
 
@@ -175,11 +172,66 @@
 				showNavigation="false"
 				min="#{calendrierGestionBean.limitStartDate}"
 				max="#{calendrierGestionBean.limitEndDate}">
+				<p:ajax event="select" listener="#{calendrierGestionBean.onSelectTimelineEvent}"
+					update="eventTimelineDetails" oncomplete="PF('eventDialog').hide();PF('eventTimelineDialog').show();" />
+
 				<h:panelGroup>
 					<h:outputText value="#{timeevent.evenement}" />
 				</h:panelGroup>
 			</p:timeline>
 		</div>
+		
+		<p:dialog widgetVar="eventTimelineDialog"
+			header="#{label['evenement.overview.calendrier_gestion.event.dialog.header']}"
+			showEffect="clip" hideEffect="clip">
+			<h:panelGrid id="eventTimelineDetails" columns="2">
+				<p:outputLabel for="titleTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.evenement.label']}" />
+				<p:inputText id="titleTimeline" value="#{calendrierGestionBean.selectedTimelineEvent.data.evenement}"
+					readonly="true" disabled="true" required="true" />
+
+				<p:outputLabel for="typeTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.type.label']}" />
+				<p:inputText id="typeTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.type}" required="true" />
+
+				<p:outputLabel for="fromTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.debut.label']}" />
+				<p:calendar id="fromTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.debut}" timeZone="UTC"
+					pattern="dd/MM/yyyy" />
+
+				<p:outputLabel for="toTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.echeance.label']}" />
+				<p:calendar id="toTimeline" value="#{calendrierGestionBean.selectedTimelineEvent.data.echeance}"
+					readonly="true" disabled="true" timeZone="UTC" pattern="dd/MM/yyyy" />
+
+				<p:outputLabel for="acteursTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.acteurs.label']}" />
+				<p:inputText id="acteursTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.acteurs}" required="true" />
+
+				<p:outputLabel for="corpsTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.corps.label']}" />
+				<p:inputText id="corpsTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.corps}" required="true" />
+
+				<p:outputLabel for="serviceTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.service.label']}" />
+				<p:inputText id="serviceTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.service}" required="true" />
+
+				<p:outputLabel for="couleurTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.couleur.label']}" />
+				<p:inputText id="couleurTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.couleur}" required="true" />
+
+				<p:outputLabel for="commentaireTimeline"
+					value="#{label['evenement.overview.calendrier_gestion.event.dialog.commentaire.label']}" />
+				<p:inputText id="commentaireTimeline" readonly="true" disabled="true"
+					value="#{calendrierGestionBean.selectedTimelineEvent.data.commentaire}" required="true" />
+			</h:panelGrid>
+		</p:dialog>
 	</h:form>
 	
 	<h:form id="formHidden">
