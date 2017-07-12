@@ -1,6 +1,7 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -17,6 +18,8 @@ import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
 import com.sirh.mqd.reporting.webapp.factory.DossierModelFactory;
 import com.sirh.mqd.reporting.webapp.model.DossierModel;
+import com.sirh.mqd.reporting.webapp.model.comparator.DossierModelAlerteComparator;
+import com.sirh.mqd.reporting.webapp.model.comparator.DossierModelAnomalieComparator;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
@@ -78,6 +81,9 @@ public class DossierBean extends GenericBean {
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.selectedDossier = null;
 		}
+		Collections.sort(this.dossiers, new DossierModelAlerteComparator());
+		Collections.sort(this.dossiers, new DossierModelAnomalieComparator());
+
 	}
 
 	public void afficherInformationsDossier(final SelectEvent event) {
