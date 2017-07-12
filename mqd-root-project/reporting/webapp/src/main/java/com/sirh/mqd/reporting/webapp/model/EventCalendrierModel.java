@@ -3,7 +3,7 @@ package com.sirh.mqd.reporting.webapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class EventCalendrierGestionModel implements Serializable {
+public class EventCalendrierModel implements Serializable {
 
 	/**
 	 * Generated UID
@@ -28,7 +28,7 @@ public class EventCalendrierGestionModel implements Serializable {
 
 	private String commentaire;
 
-	public EventCalendrierGestionModel() {
+	public EventCalendrierModel() {
 		super();
 	}
 

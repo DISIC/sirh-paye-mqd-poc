@@ -1,5 +1,6 @@
 package com.sirh.mqd.reporting.webapp.views.evenement;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.ScheduleEntryMoveEvent;
-import org.primefaces.event.ScheduleEntryResizeEvent;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
@@ -20,10 +20,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
+import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
 import com.sirh.mqd.reporting.webapp.factory.CalendrierGestionModelFactory;
+import com.sirh.mqd.reporting.webapp.model.EventCalendrierModel;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
@@ -59,18 +61,13 @@ public class CalendrierGestionBean extends GenericBean {
 	private ScheduleEvent event;
 
 	/**
-	 * Attributs de l'Event à créer/modifier non présent parmi les attributs de
-	 * la classe DefaultScheduleEvent
+	 * Liste des événements de type "information"
 	 */
-	private String typeNouveauEvenement;
+	private List<EventCalendrierModel> listeInformations;
 
-	private String acteurNouveauEvenement;
+	private Date viewStartDate;
 
-	private String corpsNouveauEvenement;
-
-	private String serviceNouveauEvenement;
-
-	private String couleurNouveauEvenement;
+	private Date viewEndDate;
 
 	public void setup() {
 		// Initialization
@@ -78,17 +75,47 @@ public class CalendrierGestionBean extends GenericBean {
 		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
+			this.listeInformations = new ArrayList<EventCalendrierModel>();
 			this.scheduleModel = new DefaultScheduleModel();
 			this.event = new DefaultScheduleEvent();
-			listerEventCalendrierGestion();
+			listerEvents();
 		}
 	}
 
-	private void listerEventCalendrierGestion() {
+	private void listerEvents() {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
-		eventsCalendrierDTO.forEach(eventCalendrierDTO -> this.scheduleModel
-				.addEvent(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO)));
+		listerEventInformations(eventsCalendrierDTO);
+		listerEventCalendrierGestion(eventsCalendrierDTO);
+	}
+
+	private void listerEventInformations(final List<EventCalendrierDTO> eventsCalendrierDTO) {
+		if (this.viewStartDate == null) {
+			this.viewStartDate = DateUtils.getDateBoundDaysToMinimum(DateUtils.getCalendarInstance().getTime());
+		}
+		if (this.viewEndDate == null) {
+			this.viewEndDate = DateUtils.getDateBoundDaysToMaximum(DateUtils.getCalendarInstance().getTime());
+		}
+		this.listeInformations.clear();
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
+			if ("information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
+				if (eventCalendrierDTO.getEcheance().after(this.viewStartDate)
+						&& eventCalendrierDTO.getDebut().before(this.viewEndDate)) {
+					this.listeInformations
+							.add(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO));
+				}
+			}
+		});
+	}
+
+	private void listerEventCalendrierGestion(final List<EventCalendrierDTO> eventsCalendrierDTO) {
+		this.scheduleModel.clear();
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
+			if (!"information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
+				this.scheduleModel
+						.addEvent(CalendrierGestionModelFactory.createDefaultScheduleEvent(eventCalendrierDTO));
+			}
+		});
 	}
 
 	public void onEventSelect(final SelectEvent selectEvent) {
@@ -99,14 +126,10 @@ public class CalendrierGestionBean extends GenericBean {
 		this.event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
 	}
 
-	public void onEventMove(final ScheduleEntryMoveEvent event) {
-		this.jsfUtils.addMessage(
-				"Event moved : Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-	}
-
-	public void onEventResize(final ScheduleEntryResizeEvent event) {
-		this.jsfUtils.addMessage(
-				"Event resized : Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
+	public void onViewChange(final SelectEvent selectEvent) {
+		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
+		listerEventInformations(eventsCalendrierDTO);
 	}
 
 	/*
@@ -155,43 +178,27 @@ public class CalendrierGestionBean extends GenericBean {
 		this.event = event;
 	}
 
-	public String getTypeNouveauEvenement() {
-		return typeNouveauEvenement;
+	public List<EventCalendrierModel> getListeInformations() {
+		return listeInformations;
 	}
 
-	public void setTypeNouveauEvenement(final String typeNouveauEvenement) {
-		this.typeNouveauEvenement = typeNouveauEvenement;
+	public void setListeInformations(final List<EventCalendrierModel> listeInformations) {
+		this.listeInformations = listeInformations;
 	}
 
-	public String getActeurNouveauEvenement() {
-		return acteurNouveauEvenement;
+	public Date getViewStartDate() {
+		return viewStartDate;
 	}
 
-	public void setActeurNouveauEvenement(final String acteurNouveauEvenement) {
-		this.acteurNouveauEvenement = acteurNouveauEvenement;
+	public void setViewStartDate(final Date viewStartDate) {
+		this.viewStartDate = viewStartDate;
 	}
 
-	public String getCorpsNouveauEvenement() {
-		return corpsNouveauEvenement;
+	public Date getViewEndDate() {
+		return viewEndDate;
 	}
 
-	public void setCorpsNouveauEvenement(final String corpsNouveauEvenement) {
-		this.corpsNouveauEvenement = corpsNouveauEvenement;
-	}
-
-	public String getServiceNouveauEvenement() {
-		return serviceNouveauEvenement;
-	}
-
-	public void setServiceNouveauEvenement(final String serviceNouveauEvenement) {
-		this.serviceNouveauEvenement = serviceNouveauEvenement;
-	}
-
-	public String getCouleurNouveauEvenement() {
-		return couleurNouveauEvenement;
-	}
-
-	public void setCouleurNouveauEvenement(final String couleurNouveauEvenement) {
-		this.couleurNouveauEvenement = couleurNouveauEvenement;
+	public void setViewEndDate(final Date viewEndDate) {
+		this.viewEndDate = viewEndDate;
 	}
 }

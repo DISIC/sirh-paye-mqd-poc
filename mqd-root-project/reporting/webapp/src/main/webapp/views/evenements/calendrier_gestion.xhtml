@@ -3,20 +3,90 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 	<f:metadata>
-		<f:event type="preRenderView" listener="#{calendrierGestionBean.setup}" />
+		<f:event type="preRenderView"
+			listener="#{calendrierGestionBean.setup}" />
 	</f:metadata>
 
 	<h:form id="formCalendrierGestion">
-		<div id="calendrier_gestion_toolbar">
+		<div id="info_gestion">
+			<h:panelGroup id="infoEventGroup" >
+				<p:carousel id="carousel_info" value="#{calendrierGestionBean.listeInformations}" rendered="#{not empty calendrierGestionBean.listeInformations}"
+					headerText="#{label['evenement.overview.calendrier_gestion.event.info.carousel.header']}"
+					var="info" numVisible="5" responsive="true">
+					<p:panelGrid styleClass="ui-panelgrid-blank">
+						<f:facet name="header" >
+							<h:outputText value="#{info.evenement}" styleClass="item_carousel_header" />
+						</f:facet>
+						<p:row>
+							<p:column colspan="2" >
+								<p:outputLabel value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.periode.label']}" />
+								<h:outputText value="#{info.debut}">
+									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="UTC" locale="fr" />
+								</h:outputText>
+								<h:outputText value=" - " />
+								<h:outputText value="#{info.echeance}">
+									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="UTC" locale="fr" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="right" >
+								<p:outputLabel value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.service.label']}" />
+							</p:column>
+							<p:column styleClass="left" >
+								<h:outputText value="#{info.service}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="right" >
+								<p:outputLabel value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.acteurs.label']}" />
+							</p:column>
+							<p:column styleClass="left" >
+								<h:outputText value="#{info.acteurs}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="right" >
+								<p:outputLabel value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.corps.label']}" />
+							</p:column>
+							<p:column styleClass="left" >
+								<h:outputText value="#{info.corps}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column styleClass="right" >
+								<p:outputLabel value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.commentaire.label']}" />
+							</p:column>
+							<p:column styleClass="left" >
+								<h:outputText value="#{info.commentaire}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+	
+					<f:facet name="footer">
+						<h:outputFormat
+							value="#{label['evenement.overview.calendrier_gestion.event.info.carousel.footer']}"
+							escape="false">
+							<f:param
+								value="#{fn:length(calendrierGestionBean.listeInformations)}" />
+						</h:outputFormat>
+					</f:facet>
+				</p:carousel>
+			</h:panelGroup>
+		</div>
+	
+		<div id="calendrier_gestion">
 			<p:schedule id="schedule"
 				value="#{calendrierGestionBean.scheduleModel}"
 				widgetVar="myschedule" timeZone="UTC" clientTimeZone="UTC"
-				locale="fr" showWeekends="false" 
-				showWeekNumbers="true" weekNumberCalculation="ISO" >
+				locale="fr" showWeekends="false" showWeekNumbers="true"
+				weekNumberCalculation="ISO" allDaySlot="false"
+				rightHeaderTemplate="month,agendaWeek">
 
 				<p:ajax event="dateSelect"
 					listener="#{calendrierGestionBean.onDateSelect}"
@@ -24,27 +94,25 @@
 				<p:ajax event="eventSelect"
 					listener="#{calendrierGestionBean.onEventSelect}"
 					update="eventDetails" oncomplete="PF('eventDialog').show();" />
-				<p:ajax event="eventMove"
-					listener="#{calendrierGestionBean.onEventMove}" update="messages" />
-				<p:ajax event="eventResize"
-					listener="#{calendrierGestionBean.onEventResize}" update="messages" />
+				<p:ajax event="viewChange" update=":formCalendrierGestion:infoEventGroup"
+					listener="#{calendrierGestionBean.onViewChange}" />
 
 			</p:schedule>
 		</div>
-		<p:dialog widgetVar="eventDialog" 
+
+		<p:dialog widgetVar="eventDialog"
 			header="#{label['evenement.overview.calendrier_gestion.event.dialog.header']}"
 			showEffect="clip" hideEffect="clip">
 			<h:panelGrid id="eventDetails" columns="2">
 				<p:outputLabel for="title"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.evenement.label']}" />
-				<p:inputText id="title" value="#{calendrierGestionBean.event.title}" readonly="true" disabled="true"
-					required="true" />
+				<p:inputText id="title" value="#{calendrierGestionBean.event.title}"
+					readonly="true" disabled="true" required="true" />
 
 				<p:outputLabel for="type"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.type.label']}" />
 				<p:inputText id="type" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.data.type}"
-					required="true" />
+					value="#{calendrierGestionBean.event.data.type}" required="true" />
 
 				<p:outputLabel for="from"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.debut.label']}" />
@@ -54,38 +122,33 @@
 
 				<p:outputLabel for="to"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.echeance.label']}" />
-				<p:calendar id="to" value="#{calendrierGestionBean.event.endDate}" readonly="true" disabled="true"
-					timeZone="UTC" pattern="dd/MM/yyyy" />
+				<p:calendar id="to" value="#{calendrierGestionBean.event.endDate}"
+					readonly="true" disabled="true" timeZone="UTC" pattern="dd/MM/yyyy" />
 
 				<p:outputLabel for="acteurs"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.acteurs.label']}" />
 				<p:inputText id="acteurs" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.data.acteurs}"
-					required="true" />
+					value="#{calendrierGestionBean.event.data.acteurs}" required="true" />
 
 				<p:outputLabel for="corps"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.corps.label']}" />
 				<p:inputText id="corps" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.data.corps}"
-					required="true" />
+					value="#{calendrierGestionBean.event.data.corps}" required="true" />
 
 				<p:outputLabel for="service"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.service.label']}" />
 				<p:inputText id="service" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.data.service}"
-					required="true" />
+					value="#{calendrierGestionBean.event.data.service}" required="true" />
 
 				<p:outputLabel for="couleur"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.couleur.label']}" />
 				<p:inputText id="couleur" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.data.couleur}"
-					required="true" />
-					
+					value="#{calendrierGestionBean.event.data.couleur}" required="true" />
+
 				<p:outputLabel for="commentaire"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.commentaire.label']}" />
 				<p:inputText id="commentaire" readonly="true" disabled="true"
-					value="#{calendrierGestionBean.event.description}"
-					required="true" />	
+					value="#{calendrierGestionBean.event.description}" required="true" />
 
 				<!-- <p:outputLabel for="allDay"
 					value="#{label['evenement.overview.calendrier_gestion.event.dialog.journee.label']}" />
@@ -98,5 +161,16 @@
 					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" /> -->
 			</h:panelGrid>
 		</p:dialog>
+	</h:form>
+	
+	<h:form id="formHidden">
+		<p:inputText id="startDate" value="#{calendrierGestionBean.viewStartDate}" type="hidden" >
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+			<p:ajax />
+		</p:inputText>
+		<p:inputText id="endDate" value="#{calendrierGestionBean.viewEndDate}" type="hidden" >
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+			<p:ajax />
+		</p:inputText>
 	</h:form>
 </ui:composition>

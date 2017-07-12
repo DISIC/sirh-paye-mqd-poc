@@ -5,6 +5,7 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.ScheduleEvent;
 
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
+import com.sirh.mqd.reporting.webapp.model.EventCalendrierModel;
 
 /**
  * Factory de création du calendrier gestion à manipuler côté IHM.
@@ -23,7 +24,7 @@ public final class CalendrierGestionModelFactory {
 				"Création non autorisée d'une instance de : " + CalendrierGestionModelFactory.class.getName());
 	}
 
-	public static DefaultScheduleEvent createEventCalendrierModel(final EventCalendrierDTO eventCalendrierGestionDTO) {
+	public static DefaultScheduleEvent createDefaultScheduleEvent(final EventCalendrierDTO eventCalendrierGestionDTO) {
 		final DefaultScheduleEvent event = new DefaultScheduleEvent();
 		event.setTitle(eventCalendrierGestionDTO.getEvenement());
 		event.setStartDate(eventCalendrierGestionDTO.getDebut());
@@ -31,6 +32,21 @@ public final class CalendrierGestionModelFactory {
 		event.setData(eventCalendrierGestionDTO);
 		event.setDescription(eventCalendrierGestionDTO.getCommentaire());
 		event.setStyleClass(StringUtils.normalizeSpace(eventCalendrierGestionDTO.getCouleur()));
+		event.setEditable(Boolean.FALSE);
+		return event;
+	}
+
+	public static EventCalendrierModel createEventCalendrierModel(final EventCalendrierDTO eventCalendrierGestionDTO) {
+		final EventCalendrierModel event = new EventCalendrierModel();
+		event.setEvenement(eventCalendrierGestionDTO.getEvenement());
+		event.setDebut(eventCalendrierGestionDTO.getDebut());
+		event.setEcheance(eventCalendrierGestionDTO.getEcheance());
+		event.setCommentaire(eventCalendrierGestionDTO.getCommentaire());
+		event.setActeurs(eventCalendrierGestionDTO.getActeurs());
+		event.setCorps(eventCalendrierGestionDTO.getCorps());
+		event.setCouleur(eventCalendrierGestionDTO.getCouleur());
+		event.setService(eventCalendrierGestionDTO.getService());
+		event.setType(eventCalendrierGestionDTO.getType());
 		return event;
 	}
 

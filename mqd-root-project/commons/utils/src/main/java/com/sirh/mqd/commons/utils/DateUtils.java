@@ -578,6 +578,34 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Crée une nouvelle date en définissant la date au format :
+	 * 28/31-23:59:59.999
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundDaysToMaximum(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		return org.apache.commons.lang3.time.DateUtils.addMilliseconds(
+				org.apache.commons.lang3.time.DateUtils.ceiling(calendar, Calendar.MONTH).getTime(), -1);
+	}
+
+	/**
+	 * Crée une nouvelle date en définissant la date au format : 01-00:00:00.000
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundDaysToMinimum(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		return org.apache.commons.lang3.time.DateUtils.truncate(calendar, Calendar.MONTH).getTime();
+	}
+
+	/**
 	 * Crée une nouvelle date en définissant l'heure au format : 23:59:59.999
 	 *
 	 * @param date
