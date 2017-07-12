@@ -3,24 +3,44 @@ div#calendrier_gestion {
 	margin-bottom: 1em;
 }
 
-div#calendrier_gestion td.fc-event-container a.rouge {
+div#calendrier_gestion .fc-event-container a.rouge {
 	border: 1px solid #ad3a3a;
 	background-color: #ad3a3a;
 }
 
-div#calendrier_gestion td.fc-event-container a.orange {
+div#calendrier_gestion .fc-event-container a.orange {
 	border: 1px solid #ef9610;
 	background-color: #ef9610;
 }
 
-div#calendrier_gestion td.fc-event-container a.jaune {
+div#calendrier_gestion .fc-event-container a.jaune {
 	border: 1px solid #c2c600;
 	background-color: #c2c600;
 }
 
-div#calendrier_gestion td.fc-event-container a.vert {
+div#calendrier_gestion .fc-event-container a.vert {
 	border: 1px solid #18bd00;
 	background-color: #18bd00;
+}
+
+div#calendrier_gestion span.rouge {
+	color: #ad3a3a;
+}
+
+div#calendrier_gestion span.orange {
+	color: #ef9610;
+}
+
+div#calendrier_gestion span.jaune {
+	color: #c2c600;
+}
+
+div#calendrier_gestion span.vert {
+	color: #18bd00;
+}
+
+div#calendrier_gestion td.fc-event-container span.fc-time {
+	display: none;
 }
 
 div#info_gestion div.ui-panelgrid-blank {

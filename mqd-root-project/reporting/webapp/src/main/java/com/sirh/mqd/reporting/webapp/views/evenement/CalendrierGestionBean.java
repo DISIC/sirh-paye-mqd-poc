@@ -15,6 +15,7 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import org.primefaces.model.timeline.TimelineModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
@@ -65,10 +66,41 @@ public class CalendrierGestionBean extends GenericBean {
 	 */
 	private List<EventCalendrierModel> listeInformations;
 
+	/**
+	 * Date début limite affichable
+	 */
+	private Date limitStartDate;
+
+	/**
+	 * Date de fin limite affichable
+	 */
+	private Date limitEndDate;
+
+	/**
+	 * Date début du calendrier actuellement affichée
+	 */
 	private Date viewStartDate;
 
+	/**
+	 * Date de fin du calendrier actuellement affichée
+	 */
 	private Date viewEndDate;
 
+	/**
+	 * Timeline qui contiendra les events
+	 */
+	private TimelineModel timelineModel;
+
+	/**
+	 * Méthode permettant de lister tous les evenements du calendrier gestion
+	 * avec une limitation dans le temps :
+	 * <ul>
+	 * <li>date de début : 1 mois avant la date actuelle (tout le mois compris)
+	 * </li>
+	 * <li>date de fin : 6 mois après la date actuelle (tout le dernier mois
+	 * compris)</li>
+	 * </ul>
+	 */
 	public void setup() {
 		// Initialization
 
@@ -76,16 +108,22 @@ public class CalendrierGestionBean extends GenericBean {
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.listeInformations = new ArrayList<EventCalendrierModel>();
+			this.timelineModel = new TimelineModel();
 			this.scheduleModel = new DefaultScheduleModel();
 			this.event = new DefaultScheduleEvent();
+			final Date now = DateUtils.getCalendarInstance().getTime();
+			this.limitStartDate = DateUtils.addMonthsWithBounds(now, -1);
+			this.limitEndDate = DateUtils.addMonthsWithBounds(now, 6);
 			listerEvents();
 		}
 	}
 
 	private void listerEvents() {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
-				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
+						this.limitStartDate, this.limitEndDate);
 		listerEventInformations(eventsCalendrierDTO);
+		listerEventTimeline(eventsCalendrierDTO);
 		listerEventCalendrierGestion(eventsCalendrierDTO);
 	}
 
@@ -108,6 +146,15 @@ public class CalendrierGestionBean extends GenericBean {
 		});
 	}
 
+	private void listerEventTimeline(final List<EventCalendrierDTO> eventsCalendrierDTO) {
+		this.timelineModel.clear();
+		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
+			if (!"information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
+				this.timelineModel.add(CalendrierGestionModelFactory.createDefaultTimelineEvent(eventCalendrierDTO));
+			}
+		});
+	}
+
 	private void listerEventCalendrierGestion(final List<EventCalendrierDTO> eventsCalendrierDTO) {
 		this.scheduleModel.clear();
 		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
@@ -123,44 +170,16 @@ public class CalendrierGestionBean extends GenericBean {
 	}
 
 	public void onDateSelect(final SelectEvent selectEvent) {
-		this.event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+		this.event = new DefaultScheduleEvent(StringUtils.EMPTY, (Date) selectEvent.getObject(),
+				(Date) selectEvent.getObject());
 	}
 
 	public void onViewChange(final SelectEvent selectEvent) {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
-				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService());
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
+						this.limitStartDate, this.limitEndDate);
 		listerEventInformations(eventsCalendrierDTO);
 	}
-
-	/*
-	 * L'AJOUT ET LA MODIFICATION N'ONT PAS ETE DEMANDE EN TANT QUE USER STORY
-	 * public void ajouterModifierEvenement(final ActionEvent actionEvent) {
-	 * ScheduleEvent eventInitial = new DefaultScheduleEvent(); if
-	 * (this.event.getTitle() == null && this.event.getStartDate() == null &&
-	 * this.event.getEndDate() == null) {
-	 * this.scheduleModel.addEvent(this.event); } else { eventInitial =
-	 * this.event; this.scheduleModel.updateEvent(this.event); } final
-	 * EventCalendrierDTO eventCalendrierGestionDTO =
-	 * CalendrierGestionModelFactory .createEventCalendrierGestionDTO(event);
-	 *
-	 * eventCalendrierGestionDTO.setEvenement(this.event.getTitle());
-	 * eventCalendrierGestionDTO.setType(this.typeNouveauEvenement);
-	 * eventCalendrierGestionDTO.setDebut(this.event.getStartDate());
-	 * eventCalendrierGestionDTO.setEcheance(this.event.getEndDate());
-	 * eventCalendrierGestionDTO.setActeurs(this.acteurNouveauEvenement);
-	 * eventCalendrierGestionDTO.setCorps(this.corpsNouveauEvenement);
-	 * eventCalendrierGestionDTO.setService(this.serviceNouveauEvenement);
-	 * eventCalendrierGestionDTO.setCouleur(this.couleurNouveauEvenement);
-	 * eventCalendrierGestionDTO.setCommentaire(this.event.getDescription;
-	 *
-	 * this.calendrierGestionService.ajouterEvent(eventCalendrierGestionDTO);
-	 * this.logger.logAction(Level.INFO,
-	 * computeLogActionDTO(IHMUserActionEnum.CREATION,
-	 * IHMUserResultEnum.SUCCESS, IHMPageNameEnum.EVENEMENT_CALENDRIER_GESTION,
-	 * null, eventInitial, this.event));
-	 *
-	 * this.event = new DefaultScheduleEvent(); }
-	 */
 
 	public ScheduleModel getScheduleModel() {
 		return scheduleModel;
@@ -200,5 +219,29 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setViewEndDate(final Date viewEndDate) {
 		this.viewEndDate = viewEndDate;
+	}
+
+	public Date getLimitStartDate() {
+		return limitStartDate;
+	}
+
+	public void setLimitStartDate(final Date limitStartDate) {
+		this.limitStartDate = limitStartDate;
+	}
+
+	public Date getLimitEndDate() {
+		return limitEndDate;
+	}
+
+	public void setLimitEndDate(final Date limitEndDate) {
+		this.limitEndDate = limitEndDate;
+	}
+
+	public TimelineModel getTimelineModel() {
+		return timelineModel;
+	}
+
+	public void setTimelineModel(final TimelineModel timelineModel) {
+		this.timelineModel = timelineModel;
 	}
 }

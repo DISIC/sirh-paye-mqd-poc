@@ -446,7 +446,11 @@ public final class DateUtils {
 	 * @return -1, 0 ou 1 si d1 est antérieure, égale ou postérieure à d2.
 	 */
 	public static int compareDates(final Date d1, final Date d2) {
-		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.DAY_OF_MONTH);
+		final Calendar calendar1 = DateUtils.getCalendarInstance();
+		calendar1.setTime(d1);
+		final Calendar calendar2 = DateUtils.getCalendarInstance();
+		calendar2.setTime(d2);
+		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(calendar1, calendar2, Calendar.DAY_OF_MONTH);
 	}
 
 	/**
@@ -460,7 +464,11 @@ public final class DateUtils {
 	 * @return -1, 0 ou 1 si d1 est antérieure, égale ou postérieure à d2.
 	 */
 	public static int compareMilliSecondes(final Date d1, final Date d2) {
-		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(d1, d2, Calendar.MILLISECOND);
+		final Calendar calendar1 = DateUtils.getCalendarInstance();
+		calendar1.setTime(d1);
+		final Calendar calendar2 = DateUtils.getCalendarInstance();
+		calendar2.setTime(d2);
+		return org.apache.commons.lang3.time.DateUtils.truncatedCompareTo(calendar1, calendar2, Calendar.MILLISECOND);
 	}
 
 	/**
@@ -488,7 +496,6 @@ public final class DateUtils {
 	public static XMLGregorianCalendar convertDateToXmlGregorianCalendar(final Date date) {
 		try {
 			XMLGregorianCalendar dateRetour = null;
-
 			if (date != null) {
 				final Calendar calendar = DateUtils.getCalendarInstance();
 				calendar.setTime(date);
@@ -496,7 +503,6 @@ public final class DateUtils {
 						.newXMLGregorianCalendar((GregorianCalendar) calendar);
 				dateRetour = xmlgc.normalize();
 			}
-
 			return dateRetour;
 		} catch (final DatatypeConfigurationException e) {
 			throw new TechnicalException(e);

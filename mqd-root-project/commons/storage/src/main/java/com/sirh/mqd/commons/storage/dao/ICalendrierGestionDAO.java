@@ -34,9 +34,9 @@ public interface ICalendrierGestionDAO {
 	 *            le sirh
 	 * @param service
 	 *            le service associé à l'événement
-	 * @param dateFin
-	 *            la date de début de recherche
 	 * @param dateDebut
+	 *            la date de début de recherche
+	 * @param dateFin
 	 *            la date de fin de recherche
 	 * @return List<EventCalendrierGestionDTO> correspondant à tous les
 	 *         évènements existants

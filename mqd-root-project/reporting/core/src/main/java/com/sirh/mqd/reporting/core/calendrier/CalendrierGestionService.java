@@ -11,7 +11,6 @@ import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.storage.bc.CalendrierGestionBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
-import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.core.api.ICalendrierGestionService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 
@@ -24,10 +23,7 @@ public class CalendrierGestionService implements ICalendrierGestionService {
 
 	@Override
 	public List<EventCalendrierDTO> listerEventsAvecBornesTemporelles(final InteractionSirhEnum referentiel,
-			final String service) {
-		final Date now = DateUtils.getCalendarInstance().getTime();
-		final Date dateDebut = DateUtils.addMonthsWithBounds(now, -1);
-		final Date dateFin = DateUtils.addMonthsWithBounds(now, 6);
+			final String service, final Date dateDebut, final Date dateFin) {
 		return calendrierGestionBC.listerEvents(referentiel, service, dateDebut, dateFin);
 	}
 

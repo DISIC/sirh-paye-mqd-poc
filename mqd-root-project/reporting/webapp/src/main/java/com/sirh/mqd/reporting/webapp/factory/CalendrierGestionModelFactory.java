@@ -2,9 +2,10 @@ package com.sirh.mqd.reporting.webapp.factory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultScheduleEvent;
-import org.primefaces.model.ScheduleEvent;
+import org.primefaces.model.timeline.TimelineEvent;
 
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
+import com.sirh.mqd.commons.utils.DateUtils;
 import com.sirh.mqd.reporting.webapp.model.EventCalendrierModel;
 
 /**
@@ -24,44 +25,42 @@ public final class CalendrierGestionModelFactory {
 				"Création non autorisée d'une instance de : " + CalendrierGestionModelFactory.class.getName());
 	}
 
-	public static DefaultScheduleEvent createDefaultScheduleEvent(final EventCalendrierDTO eventCalendrierGestionDTO) {
+	public static DefaultScheduleEvent createDefaultScheduleEvent(final EventCalendrierDTO eventCalendrierDTO) {
 		final DefaultScheduleEvent event = new DefaultScheduleEvent();
-		event.setTitle(eventCalendrierGestionDTO.getEvenement());
-		event.setStartDate(eventCalendrierGestionDTO.getDebut());
-		event.setEndDate(eventCalendrierGestionDTO.getEcheance());
-		event.setData(eventCalendrierGestionDTO);
-		event.setDescription(eventCalendrierGestionDTO.getCommentaire());
-		event.setStyleClass(StringUtils.normalizeSpace(eventCalendrierGestionDTO.getCouleur()));
+		event.setTitle(eventCalendrierDTO.getEvenement());
+		event.setStartDate(eventCalendrierDTO.getDebut());
+		event.setEndDate(eventCalendrierDTO.getEcheance());
+		event.setData(createEventCalendrierModel(eventCalendrierDTO));
+		event.setDescription(eventCalendrierDTO.getCommentaire());
+		event.setStyleClass(StringUtils.normalizeSpace(eventCalendrierDTO.getCouleur()));
 		event.setEditable(Boolean.FALSE);
 		return event;
 	}
 
-	public static EventCalendrierModel createEventCalendrierModel(final EventCalendrierDTO eventCalendrierGestionDTO) {
+	public static EventCalendrierModel createEventCalendrierModel(final EventCalendrierDTO eventCalendrierDTO) {
 		final EventCalendrierModel event = new EventCalendrierModel();
-		event.setEvenement(eventCalendrierGestionDTO.getEvenement());
-		event.setDebut(eventCalendrierGestionDTO.getDebut());
-		event.setEcheance(eventCalendrierGestionDTO.getEcheance());
-		event.setCommentaire(eventCalendrierGestionDTO.getCommentaire());
-		event.setActeurs(eventCalendrierGestionDTO.getActeurs());
-		event.setCorps(eventCalendrierGestionDTO.getCorps());
-		event.setCouleur(eventCalendrierGestionDTO.getCouleur());
-		event.setService(eventCalendrierGestionDTO.getService());
-		event.setType(eventCalendrierGestionDTO.getType());
+		event.setEvenement(eventCalendrierDTO.getEvenement());
+		event.setDebut(eventCalendrierDTO.getDebut());
+		event.setEcheance(eventCalendrierDTO.getEcheance());
+		event.setCommentaire(eventCalendrierDTO.getCommentaire());
+		event.setActeurs(eventCalendrierDTO.getActeurs());
+		event.setCorps(eventCalendrierDTO.getCorps());
+		event.setCouleur(eventCalendrierDTO.getCouleur());
+		event.setService(eventCalendrierDTO.getService());
+		event.setType(eventCalendrierDTO.getType());
 		return event;
 	}
 
-	public static EventCalendrierDTO createEventCalendrierGestionDTO(final ScheduleEvent event) {
-		final EventCalendrierDTO eventCalendrierGestionDTO = new EventCalendrierDTO();
-		eventCalendrierGestionDTO.setEvenement(event.getTitle());
-		eventCalendrierGestionDTO.setDebut(event.getStartDate());
-		eventCalendrierGestionDTO.setEcheance(event.getEndDate());
-		eventCalendrierGestionDTO.setCommentaire(event.getDescription());
-
-		eventCalendrierGestionDTO.setType(((EventCalendrierDTO) event.getData()).getType());
-		eventCalendrierGestionDTO.setActeurs(((EventCalendrierDTO) event.getData()).getActeurs());
-		eventCalendrierGestionDTO.setCorps(((EventCalendrierDTO) event.getData()).getCorps());
-		eventCalendrierGestionDTO.setService(((EventCalendrierDTO) event.getData()).getService());
-		eventCalendrierGestionDTO.setCouleur(((EventCalendrierDTO) event.getData()).getCouleur());
-		return eventCalendrierGestionDTO;
+	public static TimelineEvent createDefaultTimelineEvent(final EventCalendrierDTO eventCalendrierDTO) {
+		final TimelineEvent event = new TimelineEvent();
+		event.setStartDate(eventCalendrierDTO.getDebut());
+		if (DateUtils.compareDates(eventCalendrierDTO.getDebut(), eventCalendrierDTO.getEcheance()) != 0) {
+			event.setEndDate(eventCalendrierDTO.getEcheance());
+		}
+		event.setData(createEventCalendrierModel(eventCalendrierDTO));
+		event.setGroup(eventCalendrierDTO.getType());
+		event.setStyleClass(StringUtils.normalizeSpace(eventCalendrierDTO.getCouleur()));
+		event.setEditable(Boolean.FALSE);
+		return event;
 	}
 }

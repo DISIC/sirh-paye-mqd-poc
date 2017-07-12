@@ -52,9 +52,9 @@ public class CalendrierGestionBC {
 	 *            le sirh
 	 * @param service
 	 *            le service associé à l'événement
-	 * @param dateFin
-	 *            la date de début de recherche
 	 * @param dateDebut
+	 *            la date de début de recherche
+	 * @param dateFin
 	 *            la date de fin de recherche
 	 * @return {@link List} correspondant à tous les evenements d'un calendrier
 	 *         gestion présents dans la base de donnée

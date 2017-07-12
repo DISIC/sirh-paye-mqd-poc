@@ -58,6 +58,17 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
             if(lang.eventLimitText) {
                 this.cfg.eventLimitText = lang.eventLimitText;
             }
+            this.cfg.axisFormat = 'HH:mm';
+            this.cfg.timeFormat = 'HH:mm';
+            this.cfg.weekNumberTitle = 'S';
+            this.cfg.titleFormat = {
+                    month: 'MMMM YYYY',
+                    week: 'DD MMMM YYYY'
+             };
+             this.cfg.columnFormat = {
+                    month: 'dddd',
+                    week: 'dddd DD/MM'
+             };
         }
     },
 
@@ -217,6 +228,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
             var viewName = $(this).data('view');
             $this.viewNameState.val(viewName);
             
+            // BEGINNING : CHANGED PART
             var viewAttributes = $this.jqc.fullCalendar('getView');
             
             var startDate = viewAttributes.intervalStart.format('DD/MM/YYYY');
@@ -226,8 +238,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
             var endDate = viewAttributes.intervalEnd.format('DD/MM/YYYY');
             $('#formHidden\\:endDate').val(endDate);
             $('#formHidden\\:endDate').change();
-
-            //$('#formHidden').submit();
+            // END : CHANGED PART
             
             if($this.cfg.behaviors) {
                 var viewChangeBehavior = $this.cfg.behaviors['viewChange'];
