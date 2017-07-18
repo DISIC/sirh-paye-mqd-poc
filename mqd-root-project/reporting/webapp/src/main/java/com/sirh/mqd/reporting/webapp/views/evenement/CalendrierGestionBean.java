@@ -146,10 +146,13 @@ public class CalendrierGestionBean extends GenericBean {
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.listeFiltreCouleur = new ArrayList<String>();
 			this.listeFiltreCouleur.addAll(this.calendrierGestionService.listerCouleursEvents());
+			this.listeFiltreCouleur.sort((couleur1, couleur2) -> couleur1.compareTo(couleur2));
 			this.listeFiltreCorps = new ArrayList<String>();
 			this.listeFiltreCorps.addAll(this.calendrierGestionService.listerCorpsEvents());
+			this.listeFiltreCorps.sort((corps1, corps2) -> corps1.compareTo(corps2));
 			this.listeFiltreType = new ArrayList<String>();
 			this.listeFiltreType.addAll(this.calendrierGestionService.listerTypesEvents());
+			this.listeFiltreType.sort((type1, type2) -> type1.compareTo(type2));
 
 			this.listeInformations = new ArrayList<EventCalendrierModel>();
 			this.timelineModel = new TimelineModel();

@@ -8,27 +8,26 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 	<f:metadata>
-		<f:event type="preRenderView"
-			listener="#{calendrierGestionBean.setup}" />
+		<f:event type="preRenderView" listener="#{calendrierGestionBean.setup}" />
 	</f:metadata>
 	<div id="filtres_gestion">
-		<h:form id="formFiltreEvent">
-			<h:panelGroup id="filtresEvent" columns="3" cellpadding="15" >
+		<h:form id="formFiltreEvent" >
+			<h:panelGrid id="filtresEvent" styleClass="label_spacing form_bottom_spacing dropdown_width" columns="7" cellpadding="5">
 				<p:outputLabel for="corps" value="#{label['evenement.overview.filtres.dialog.corps.label']}" />
-				<p:selectOneMenu id="corps" value="#{calendrierGestionBean.selectedCorps}" style="width:200px">
+				<p:selectOneMenu id="corps" value="#{calendrierGestionBean.selectedCorps}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreCorps}" var="corps" itemLabel="#{corps}" itemValue="#{corps}" />
 				</p:selectOneMenu>
 				<p:outputLabel for="type" value="#{label['evenement.overview.filtres.dialog.type.label']}" />
-				<p:selectOneMenu id="type" value="#{calendrierGestionBean.selectedType}" style="width:200px">
+				<p:selectOneMenu id="type" value="#{calendrierGestionBean.selectedType}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreType}" var="type" itemLabel="#{type}" itemValue="#{type}" />
 				</p:selectOneMenu>
 				<p:outputLabel for="couleur" value="#{label['evenement.overview.filtres.dialog.couleur.label']}" />
-				<p:selectOneMenu id="couleur" value="#{calendrierGestionBean.selectedCouleur}" style="width:200px">
+				<p:selectOneMenu id="couleur" value="#{calendrierGestionBean.selectedCouleur}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreCouleur}" var="couleur" itemLabel="#{couleur}" itemValue="#{couleur}" />
 				</p:selectOneMenu>
-			</h:panelGroup>
-			<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:schedule"
-				value="#{label['evenement.overview.form.actions.button']}" styleClass="ui-priority-primary" />
+				<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:schedule"
+					value="#{label['evenement.overview.form.actions.button']}" styleClass="ui-priority-primary" />
+			</h:panelGrid>
 		</h:form>	
 	</div>
 

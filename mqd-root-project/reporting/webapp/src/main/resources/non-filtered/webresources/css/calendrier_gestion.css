@@ -2,9 +2,17 @@ div#filtres_gestion {
 	margin-bottom: 20px;
 }
 
-div#filtres_gestion .label j_idt34{
-	margin-right: 20px;
-	margin-left: 20px;
+div#filtres_gestion table.form_bottom_spacing {
+	margin-bottom: 10px;
+}
+
+div#filtres_gestion table.label_spacing label.ui-outputlabel {
+	margin-left: 10px;
+}
+
+div#filtres_gestion table.dropdown_width div.ui-selectonemenu {
+	width: 200px;
+	padding-right: 0px;
 }
 
 div#calendrier_gestion .fc-event-container a.rouge {
