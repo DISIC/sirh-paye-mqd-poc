@@ -1,25 +1,29 @@
 
 div#dossier_gestion_couleur_anomalie {
-	margin-bottom:20px;
-	margin-top:30px;
+	margin-bottom: 20px;
+	margin-top: 30px;
 }
 
-.red{
-   background-color:#e67870;
-   background-image:none;
+form#formDossier tr.ui-widget-content td.color {
+	color: #5c5c5c;
 }
 
-.yellow{
-   background-color:#f3f1a9;
-   background-image:none;
+form#formDossier td.red {
+   background-color: #ffb0ab;
+   background-image: none;
 }
 
-.green{
-   background-color:#99f98d;
-   background-image:none;
+form#formDossier td.yellow {
+   background-color: #fffdab;
+   background-image: none;
 }
 
-.orange{
-   background-color:#fbd38f;
-   background-image:none;
+form#formDossier td.green {
+   background-color: #cfffc9;
+   background-image: none;
+}
+
+form#formDossier td.orange {
+   background-color: #ffdb9e;
+   background-image: none;
 }
