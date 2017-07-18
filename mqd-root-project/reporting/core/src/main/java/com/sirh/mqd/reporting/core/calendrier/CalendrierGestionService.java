@@ -23,12 +23,28 @@ public class CalendrierGestionService implements ICalendrierGestionService {
 
 	@Override
 	public List<EventCalendrierDTO> listerEventsAvecBornesTemporelles(final InteractionSirhEnum referentiel,
-			final String service, final Date dateDebut, final Date dateFin) {
-		return calendrierGestionBC.listerEvents(referentiel, service, dateDebut, dateFin);
+			final String service, final Date dateDebut, final Date dateFin, final String type, final String couleur,
+			final String corps) {
+		return calendrierGestionBC.listerEvents(referentiel, service, dateDebut, dateFin, type, couleur, corps);
 	}
 
 	@Override
 	public void ajouterEvent(final EventCalendrierDTO eventCalendrierGestion) {
 		calendrierGestionBC.modifierCreerEvent(eventCalendrierGestion);
+	}
+
+	@Override
+	public List<String> listerCouleursEvents() {
+		return calendrierGestionBC.listerCouleursEvents();
+	}
+
+	@Override
+	public List<String> listerCorpsEvents() {
+		return calendrierGestionBC.listerCorpsEvents();
+	}
+
+	@Override
+	public List<String> listerTypesEvents() {
+		return calendrierGestionBC.listerTypesEvents();
 	}
 }

@@ -38,11 +38,17 @@ public interface ICalendrierGestionDAO {
 	 *            la date de début de recherche
 	 * @param dateFin
 	 *            la date de fin de recherche
+	 * @param corps
+	 *            le corps sur lequel on filtre les événements
+	 * @param couleur
+	 *            la couleur sur laquelle on filtre les événements
+	 * @param type
+	 *            le type sur lequel on filtre les événements
 	 * @return List<EventCalendrierGestionDTO> correspondant à tous les
 	 *         évènements existants
 	 */
 	List<EventCalendrierEntity> selectEventsCalendrierGestion(InteractionSirhEnum referentiel, String service,
-			Date dateDebut, Date dateFin);
+			Date dateDebut, Date dateFin, String type, String couleur, String corps);
 
 	/**
 	 * Méthode permettant de mettre à jour ou de créer un evenement
@@ -59,5 +65,30 @@ public interface ICalendrierGestionDAO {
 	 *            evenement à supprimer
 	 */
 	void deleteCalendrierGestion(EventCalendrierEntity eventCalendrierGestionEntity);
+
+	/**
+	 * Méthode permettant de lister les couleurs d'un événement
+	 *
+	 * @return List<String> correspondant aux différentes couleurs des
+	 *         événements
+	 *
+	 */
+	List<String> selectCouleursEvents();
+
+	/**
+	 * Méthode permettant de lister les corps d'un événement
+	 *
+	 * @return List<String> correspondant aux différents corps des événements
+	 *
+	 */
+	List<String> selectCorpsEvents();
+
+	/**
+	 * Méthode permettant de lister les types d'un événement
+	 *
+	 * @return List<String> correspondant aux différents types des événements
+	 *
+	 */
+	List<String> selectTypesEvents();
 
 }

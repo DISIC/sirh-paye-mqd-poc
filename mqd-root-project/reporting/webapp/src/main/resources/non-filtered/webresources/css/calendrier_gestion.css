@@ -1,6 +1,10 @@
-div#calendrier_gestion {
-	text-align: center;
-	margin-bottom: 1em;
+div#filtres_gestion {
+	margin-bottom: 20px;
+}
+
+div#filtres_gestion .label j_idt34{
+	margin-right: 20px;
+	margin-left: 20px;
 }
 
 div#calendrier_gestion .fc-event-container a.rouge {

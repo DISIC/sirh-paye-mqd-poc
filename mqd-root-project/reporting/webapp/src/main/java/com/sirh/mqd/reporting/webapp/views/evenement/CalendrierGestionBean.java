@@ -99,6 +99,36 @@ public class CalendrierGestionBean extends GenericBean {
 	private TimelineEvent selectedTimelineEvent;
 
 	/**
+	 * Liste des couleurs sur lesquels on peut filtrer
+	 */
+	private List<String> listeFiltreCorps;
+
+	/**
+	 * Liste des couleurs sur lesquels on peut filtrer
+	 */
+	private List<String> listeFiltreType;
+
+	/**
+	 * Liste des couleurs sur lesquels on peut filtrer
+	 */
+	private List<String> listeFiltreCouleur;
+
+	/**
+	 * Corps selectionné comme filtre
+	 */
+	private String selectedCorps;
+
+	/**
+	 * Type selectionné comme filtre
+	 */
+	private String selectedType;
+
+	/**
+	 * Couleur selectionnee comme filtre
+	 */
+	private String selectedCouleur;
+
+	/**
 	 * Méthode permettant de lister tous les evenements du calendrier gestion
 	 * avec une limitation dans le temps :
 	 * <ul>
@@ -114,6 +144,13 @@ public class CalendrierGestionBean extends GenericBean {
 		// Supplier
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
+			this.listeFiltreCouleur = new ArrayList<String>();
+			this.listeFiltreCouleur.addAll(this.calendrierGestionService.listerCouleursEvents());
+			this.listeFiltreCorps = new ArrayList<String>();
+			this.listeFiltreCorps.addAll(this.calendrierGestionService.listerCorpsEvents());
+			this.listeFiltreType = new ArrayList<String>();
+			this.listeFiltreType.addAll(this.calendrierGestionService.listerTypesEvents());
+
 			this.listeInformations = new ArrayList<EventCalendrierModel>();
 			this.timelineModel = new TimelineModel();
 			this.scheduleModel = new DefaultScheduleModel();
@@ -125,10 +162,11 @@ public class CalendrierGestionBean extends GenericBean {
 		}
 	}
 
-	private void listerEvents() {
+	public void listerEvents() {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
-						this.limitStartDate, this.limitEndDate);
+						this.limitStartDate, this.limitEndDate, this.selectedType, this.selectedCouleur,
+						this.selectedCorps);
 		listerEventInformations(eventsCalendrierDTO);
 		listerEventTimeline(eventsCalendrierDTO);
 		listerEventCalendrierGestion(eventsCalendrierDTO);
@@ -179,7 +217,8 @@ public class CalendrierGestionBean extends GenericBean {
 	public void onViewChange(final SelectEvent selectEvent) {
 		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
 				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
-						this.limitStartDate, this.limitEndDate);
+						this.limitStartDate, this.limitEndDate, this.selectedType, this.selectedCouleur,
+						this.selectedCorps);
 		listerEventInformations(eventsCalendrierDTO);
 	}
 
@@ -257,5 +296,53 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setSelectedTimelineEvent(final TimelineEvent selectedTimelineEvent) {
 		this.selectedTimelineEvent = selectedTimelineEvent;
+	}
+
+	public List<String> getListeFiltreCorps() {
+		return listeFiltreCorps;
+	}
+
+	public void setListeFiltreCorps(final List<String> listeFiltreCorps) {
+		this.listeFiltreCorps = listeFiltreCorps;
+	}
+
+	public List<String> getListeFiltreType() {
+		return listeFiltreType;
+	}
+
+	public void setListeFiltreType(final List<String> listeFiltreType) {
+		this.listeFiltreType = listeFiltreType;
+	}
+
+	public List<String> getListeFiltreCouleur() {
+		return listeFiltreCouleur;
+	}
+
+	public void setListeFiltreCouleur(final List<String> listeFiltreCouleur) {
+		this.listeFiltreCouleur = listeFiltreCouleur;
+	}
+
+	public String getSelectedCouleur() {
+		return selectedCouleur;
+	}
+
+	public void setSelectedCouleur(final String selectedCouleur) {
+		this.selectedCouleur = selectedCouleur;
+	}
+
+	public String getSelectedCorps() {
+		return selectedCorps;
+	}
+
+	public void setSelectedCorps(final String selectedCorps) {
+		this.selectedCorps = selectedCorps;
+	}
+
+	public String getSelectedType() {
+		return selectedType;
+	}
+
+	public void setSelectedType(final String selectedType) {
+		this.selectedType = selectedType;
 	}
 }

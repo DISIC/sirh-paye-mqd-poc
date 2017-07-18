@@ -16,7 +16,7 @@
 			<p:selectOneRadio id="disponibilite" value="#{statutDossierBean.selectedDisponibilite}">
 				<f:selectItems value="#{statutDossierBean.listeDisponibilites}" var="dispo" itemLabel="#{dispo.libelle}" itemValue="#{dispo}" />
 			</p:selectOneRadio>
-			<p:outputLabel for="disponibilite" value="#{label['dossiers.statut_dossier.form.affectation.label']}" />
+			<p:outputLabel for="affectation" value="#{label['dossiers.statut_dossier.form.affectation.label']}" />
 			<p:selectOneMenu id="affectation" value="#{statutDossierBean.selectedAffectation}">
 				<f:selectItems value="#{statutDossierBean.listeAffectations}" var="affectation" itemLabel="#{affectation.libelle}" itemValue="#{affectation}" />
 			</p:selectOneMenu>

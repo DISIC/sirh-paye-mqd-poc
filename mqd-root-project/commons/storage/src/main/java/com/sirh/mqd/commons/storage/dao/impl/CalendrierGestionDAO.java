@@ -48,7 +48,8 @@ public class CalendrierGestionDAO implements ICalendrierGestionDAO {
 
 	@Override
 	public List<EventCalendrierEntity> selectEventsCalendrierGestion(final InteractionSirhEnum referentiel,
-			final String service, final Date dateDebut, final Date dateFin) {
+			final String service, final Date dateDebut, final Date dateFin, final String type, final String couleur,
+			final String corps) {
 		final Query query = new Query();
 		if (dateFin != null) {
 			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_DEBUT).lte(dateFin));
@@ -61,6 +62,15 @@ public class CalendrierGestionDAO implements ICalendrierGestionDAO {
 		}
 		if (StringUtils.isNotBlank(service)) {
 			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_SERVICE).is(service));
+		}
+		if (StringUtils.isNotBlank(type)) {
+			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_TYPE).is(type));
+		}
+		if (StringUtils.isNotBlank(couleur)) {
+			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_COULEUR).is(couleur));
+		}
+		if (StringUtils.isNotBlank(corps)) {
+			query.addCriteria(Criteria.where(EventCalendrierConstantes.COLONNE_CORPS).is(corps));
 		}
 		return mongoTemplate.find(query, EventCalendrierEntity.class);
 	}
@@ -107,5 +117,26 @@ public class CalendrierGestionDAO implements ICalendrierGestionDAO {
 		if (eventCalendrierGestionEntity != null) {
 			mongoTemplate.remove(eventCalendrierGestionEntity);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> selectCouleursEvents() {
+		return mongoTemplate.getCollection(EventCalendrierConstantes.COLLECTION_NAME)
+				.distinct(EventCalendrierConstantes.COLONNE_COULEUR);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> selectCorpsEvents() {
+		return mongoTemplate.getCollection(EventCalendrierConstantes.COLLECTION_NAME)
+				.distinct(EventCalendrierConstantes.COLONNE_CORPS);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> selectTypesEvents() {
+		return mongoTemplate.getCollection(EventCalendrierConstantes.COLLECTION_NAME)
+				.distinct(EventCalendrierConstantes.COLONNE_TYPE);
 	}
 }

@@ -56,13 +56,19 @@ public class CalendrierGestionBC {
 	 *            la date de début de recherche
 	 * @param dateFin
 	 *            la date de fin de recherche
+	 * @param corps
+	 *            le corps sur lequel on filtre les événements
+	 * @param couleur
+	 *            la couleur sur laquelle on filtre les événements
+	 * @param type
+	 *            le type sur lequel on filtre les événements
 	 * @return {@link List} correspondant à tous les evenements d'un calendrier
 	 *         gestion présents dans la base de donnée
 	 */
 	public List<EventCalendrierDTO> listerEvents(final InteractionSirhEnum referentiel, final String service,
-			final Date dateDebut, final Date dateFin) {
+			final Date dateDebut, final Date dateFin, final String type, final String couleur, final String corps) {
 		final List<EventCalendrierEntity> eventCalendrierGestionEntities = this.eventCalendrierGestionDAO
-				.selectEventsCalendrierGestion(referentiel, service, dateDebut, dateFin);
+				.selectEventsCalendrierGestion(referentiel, service, dateDebut, dateFin, type, couleur, corps);
 		return eventCalendrierGestionEntities.stream()
 				.map(eventCalendrierGestionEntity -> CalendrierGestionEntityFactory
 						.createEventCalendrierDTO(eventCalendrierGestionEntity))
@@ -91,5 +97,20 @@ public class CalendrierGestionBC {
 		final EventCalendrierEntity entity = CalendrierGestionEntityFactory
 				.createEventCalendrierEntity(eventCalendrierDTO);
 		this.eventCalendrierGestionDAO.deleteCalendrierGestion(entity);
+	}
+
+	public List<String> listerCouleursEvents() {
+		final List<String> listeCouleursEvents = this.eventCalendrierGestionDAO.selectCouleursEvents();
+		return listeCouleursEvents;
+	}
+
+	public List<String> listerCorpsEvents() {
+		final List<String> listeCorpsEvents = this.eventCalendrierGestionDAO.selectCorpsEvents();
+		return listeCorpsEvents;
+	}
+
+	public List<String> listerTypesEvents() {
+		final List<String> listeTypesEvents = this.eventCalendrierGestionDAO.selectTypesEvents();
+		return listeTypesEvents;
 	}
 }
