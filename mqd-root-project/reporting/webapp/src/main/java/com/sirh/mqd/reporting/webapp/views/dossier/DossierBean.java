@@ -76,14 +76,13 @@ public class DossierBean extends GenericBean {
 		for (final DossierDTO dossier : dossiers) {
 			this.dossiers.add(DossierModelFactory.createDossier(dossier));
 		}
+		Collections.sort(this.dossiers, new DossierModelAnomalieComparator());
+		Collections.sort(this.dossiers, new DossierModelAlerteComparator());
 
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.selectedDossier = null;
 		}
-		Collections.sort(this.dossiers, new DossierModelAlerteComparator());
-		Collections.sort(this.dossiers, new DossierModelAnomalieComparator());
-
 	}
 
 	public void afficherInformationsDossier(final SelectEvent event) {
