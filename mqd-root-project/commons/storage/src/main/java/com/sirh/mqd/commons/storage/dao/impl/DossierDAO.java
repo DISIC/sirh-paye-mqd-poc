@@ -154,7 +154,7 @@ public class DossierDAO implements IDossierDAO {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		}
 		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
-		return Math.toIntExact(0 + (int) (Math.random() * ((10 - 0) + 1)));
+		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
 	}
 
 	@Override
