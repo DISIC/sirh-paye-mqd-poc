@@ -15,6 +15,11 @@ div#filtres_gestion table.dropdown_width div.ui-selectonemenu {
 	padding-right: 0px;
 }
 
+div#calendrier_gestion {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
 div#calendrier_gestion .fc-event-container a.rouge {
 	border: 1px solid #ad3a3a;
 	background-color: #ad3a3a;

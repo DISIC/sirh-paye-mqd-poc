@@ -129,6 +129,11 @@ public class CalendrierGestionBean extends GenericBean {
 	private String selectedCouleur;
 
 	/**
+	 * Affichage des événements de type "informations"
+	 */
+	private boolean informationsDisplayable;
+
+	/**
 	 * Méthode permettant de lister tous les evenements du calendrier gestion
 	 * avec une limitation dans le temps :
 	 * <ul>
@@ -154,6 +159,7 @@ public class CalendrierGestionBean extends GenericBean {
 			this.listeFiltreType.addAll(this.calendrierGestionService.listerTypesEvents());
 			this.listeFiltreType.sort((type1, type2) -> type1.compareTo(type2));
 
+			this.informationsDisplayable = Boolean.TRUE;
 			this.listeInformations = new ArrayList<EventCalendrierModel>();
 			this.timelineModel = new TimelineModel();
 			this.scheduleModel = new DefaultScheduleModel();
@@ -176,22 +182,25 @@ public class CalendrierGestionBean extends GenericBean {
 	}
 
 	private void listerEventInformations(final List<EventCalendrierDTO> eventsCalendrierDTO) {
-		if (this.viewStartDate == null) {
-			this.viewStartDate = DateUtils.getDateBoundDaysToMinimum(DateUtils.getCalendarInstance().getTime());
-		}
-		if (this.viewEndDate == null) {
-			this.viewEndDate = DateUtils.getDateBoundDaysToMaximum(DateUtils.getCalendarInstance().getTime());
-		}
 		this.listeInformations.clear();
-		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
-			if ("information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
-				if (eventCalendrierDTO.getEcheance().after(this.viewStartDate)
-						&& eventCalendrierDTO.getDebut().before(this.viewEndDate)) {
-					this.listeInformations
-							.add(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO));
-				}
+		if (this.informationsDisplayable) {
+			if (this.viewStartDate == null) {
+				this.viewStartDate = DateUtils.getDateBoundDaysToMinimum(DateUtils.getCalendarInstance().getTime());
 			}
-		});
+			if (this.viewEndDate == null) {
+				this.viewEndDate = DateUtils.getDateBoundDaysToMaximum(DateUtils.getCalendarInstance().getTime());
+			}
+
+			eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
+				if ("information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
+					if (eventCalendrierDTO.getEcheance().after(this.viewStartDate)
+							&& eventCalendrierDTO.getDebut().before(this.viewEndDate)) {
+						this.listeInformations
+								.add(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO));
+					}
+				}
+			});
+		}
 	}
 
 	private void listerEventTimeline(final List<EventCalendrierDTO> eventsCalendrierDTO) {
@@ -347,5 +356,13 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setSelectedType(final String selectedType) {
 		this.selectedType = selectedType;
+	}
+
+	public boolean isInformationsDisplayable() {
+		return informationsDisplayable;
+	}
+
+	public void setInformationsDisplayable(final boolean informationsDisplayable) {
+		this.informationsDisplayable = informationsDisplayable;
 	}
 }

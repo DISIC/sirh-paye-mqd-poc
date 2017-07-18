@@ -232,12 +232,12 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
             var viewAttributes = $this.jqc.fullCalendar('getView');
             
             var startDate = viewAttributes.intervalStart.format('DD/MM/YYYY');
-            $('#formHidden\\:startDate').val(startDate);
-            $('#formHidden\\:startDate').change();
+            $('#formCalendrierGestion\\:startDate').val(startDate);
+            $('#formCalendrierGestion\\:startDate').change();
             
             var endDate = viewAttributes.intervalEnd.format('DD/MM/YYYY');
-            $('#formHidden\\:endDate').val(endDate);
-            $('#formHidden\\:endDate').change();
+            $('#formCalendrierGestion\\:endDate').val(endDate);
+            $('#formCalendrierGestion\\:endDate').change();
             // END : CHANGED PART
             
             if($this.cfg.behaviors) {

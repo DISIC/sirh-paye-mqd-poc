@@ -10,28 +10,29 @@
 	<f:metadata>
 		<f:event type="preRenderView" listener="#{calendrierGestionBean.setup}" />
 	</f:metadata>
-	<div id="filtres_gestion">
-		<h:form id="formFiltreEvent" >
-			<h:panelGrid id="filtresEvent" styleClass="label_spacing form_bottom_spacing dropdown_width" columns="7" cellpadding="5">
-				<p:outputLabel for="corps" value="#{label['evenement.overview.filtres.dialog.corps.label']}" />
-				<p:selectOneMenu id="corps" value="#{calendrierGestionBean.selectedCorps}">
+	
+	<h:form id="formCalendrierGestion">
+		<div id="filtres_gestion">
+			<h:panelGrid id="filtresEvent" styleClass="label_spacing form_bottom_spacing dropdown_width" columns="9" cellpadding="5">
+				<p:outputLabel for="filter_corps" value="#{label['evenement.overview.calendrier_gestion.filtres.form.corps.label']}" />
+				<p:selectOneMenu id="filter_corps" value="#{calendrierGestionBean.selectedCorps}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreCorps}" var="corps" itemLabel="#{corps}" itemValue="#{corps}" />
 				</p:selectOneMenu>
-				<p:outputLabel for="type" value="#{label['evenement.overview.filtres.dialog.type.label']}" />
-				<p:selectOneMenu id="type" value="#{calendrierGestionBean.selectedType}">
+				<p:outputLabel for="filter_type" value="#{label['evenement.overview.calendrier_gestion.filtres.form.type.label']}" />
+				<p:selectOneMenu id="filter_type" value="#{calendrierGestionBean.selectedType}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreType}" var="type" itemLabel="#{type}" itemValue="#{type}" />
 				</p:selectOneMenu>
-				<p:outputLabel for="couleur" value="#{label['evenement.overview.filtres.dialog.couleur.label']}" />
-				<p:selectOneMenu id="couleur" value="#{calendrierGestionBean.selectedCouleur}">
+				<p:outputLabel for="filter_couleur" value="#{label['evenement.overview.calendrier_gestion.filtres.form.couleur.label']}" />
+				<p:selectOneMenu id="filter_couleur" value="#{calendrierGestionBean.selectedCouleur}">
 					<f:selectItems value="#{calendrierGestionBean.listeFiltreCouleur}" var="couleur" itemLabel="#{couleur}" itemValue="#{couleur}" />
 				</p:selectOneMenu>
-				<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:schedule"
-					value="#{label['evenement.overview.form.actions.button']}" styleClass="ui-priority-primary" />
+				<p:outputLabel for="filter_display_informations" value="#{label['evenement.overview.calendrier_gestion.filtres.form.display_informations.label']}" />
+				<p:selectBooleanCheckbox id="filter_display_informations" value="#{calendrierGestionBean.informationsDisplayable}" />
+				<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:infoEventGroup :formCalendrierGestion:schedule :formCalendrierGestion:timeline"
+					value="#{label['evenement.overview.calendrier_gestion.filtres.form.actions.button']}" styleClass="ui-priority-primary" />
 			</h:panelGrid>
-		</h:form>	
-	</div>
+		</div>
 
-	<h:form id="formCalendrierGestion">
 		<div id="info_gestion">
 			<h:panelGroup id="infoEventGroup" >
 				<p:carousel id="carousel_info" value="#{calendrierGestionBean.listeInformations}" rendered="#{not empty calendrierGestionBean.listeInformations}"
@@ -251,9 +252,7 @@
 					value="#{calendrierGestionBean.selectedTimelineEvent.data.commentaire}" required="true" />
 			</h:panelGrid>
 		</p:dialog>
-	</h:form>
-	
-	<h:form id="formHidden">
+		
 		<p:inputText id="startDate" value="#{calendrierGestionBean.viewStartDate}" type="hidden" >
 			<f:convertDateTime pattern="dd/MM/yyyy" />
 			<p:ajax />
