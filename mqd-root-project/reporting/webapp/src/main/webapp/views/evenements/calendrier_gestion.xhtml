@@ -28,14 +28,15 @@
 				</p:selectOneMenu>
 				<p:outputLabel for="filter_display_informations" value="#{label['evenement.overview.calendrier_gestion.filtres.form.display_informations.label']}" />
 				<p:selectBooleanCheckbox id="filter_display_informations" value="#{calendrierGestionBean.informationsDisplayable}" />
-				<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:infoEventGroup :formCalendrierGestion:schedule :formCalendrierGestion:timeline"
+				<p:commandButton action="#{calendrierGestionBean.listerEvents}" update=":formCalendrierGestion:infoEventGroup :formCalendrierGestion:timeline" oncomplete="PF('myschedule').update();"
 					value="#{label['evenement.overview.calendrier_gestion.filtres.form.actions.button']}" styleClass="ui-priority-primary" />
 			</h:panelGrid>
 		</div>
 
 		<div id="info_gestion">
-			<h:panelGroup id="infoEventGroup" >
-				<p:carousel id="carousel_info" value="#{calendrierGestionBean.listeInformations}" rendered="#{not empty calendrierGestionBean.listeInformations}"
+			<h:panelGroup id="infoEventGroup">
+				<p:carousel id="carousel_info" value="#{calendrierGestionBean.listeInformations}" 
+					rendered="#{not empty calendrierGestionBean.listeInformations and calendrierGestionBean.informationsDisplayable}"
 					headerText="#{label['evenement.overview.calendrier_gestion.event.info.carousel.header']}"
 					var="info" numVisible="5" responsive="true">
 					<p:panelGrid styleClass="ui-panelgrid-blank">
@@ -111,8 +112,9 @@
 				<p:ajax event="eventSelect"
 					listener="#{calendrierGestionBean.onEventSelect}"
 					update="eventDetails" oncomplete="PF('eventTimelineDialog').hide();PF('eventDialog').show();" />
-				<p:ajax event="viewChange" update=":formCalendrierGestion:infoEventGroup"
-					listener="#{calendrierGestionBean.onViewChange}" />
+				<p:ajax event="viewChange" 
+					listener="#{calendrierGestionBean.onViewChange}" 
+					update=":formCalendrierGestion:infoEventGroup" />
 
 			</p:schedule>
 			

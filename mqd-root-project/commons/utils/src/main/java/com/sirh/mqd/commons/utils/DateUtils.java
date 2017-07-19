@@ -626,6 +626,34 @@ public final class DateUtils {
 	}
 
 	/**
+	 * Crée une nouvelle date en définissant la date au Lundi de la semaine
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundWeekDayToMonday(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Crée une nouvelle date en définissant la date au Dimanche de la semaine
+	 *
+	 * @param date
+	 *            la date à modifier
+	 * @return Date la date obtenue
+	 */
+	public static Date getDateBoundWeekDayToSunday(final Date date) {
+		final Calendar calendar = DateUtils.getCalendarInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return calendar.getTime();
+	}
+
+	/**
 	 * Méthode permettant de créer une nouvelle date en ajoutant les champs
 	 * correspondant à la date
 	 *

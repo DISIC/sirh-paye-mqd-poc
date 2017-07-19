@@ -58,6 +58,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
             if(lang.eventLimitText) {
                 this.cfg.eventLimitText = lang.eventLimitText;
             }
+            // BEGINNING : CHANGED PART
             this.cfg.axisFormat = 'HH:mm';
             this.cfg.timeFormat = 'HH:mm';
             this.cfg.weekNumberTitle = 'S';
@@ -69,6 +70,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
                     month: 'dddd',
                     week: 'dddd DD/MM'
              };
+             // END : CHANGED PART
         }
     },
 
@@ -208,6 +210,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
 
     bindViewChangeListener: function() {
     	// BEGINNING : CHANGED PART
+        // var viewButtons = this.jqc.find('> .fc-toolbar button:not(.fc-prev-button,.fc-next-button,.fc-today-button)'),
         var viewButtons = this.jqc.find('> .fc-toolbar button'),
         $this = this;
         // END : CHANGED PART
@@ -226,6 +229,7 @@ PrimeFaces.widget.Schedule = PrimeFaces.widget.DeferredWidget.extend({
 
         viewButtons.on('click.schedule', function() {
             var viewName = $(this).data('view');
+            
             $this.viewNameState.val(viewName);
             
             // BEGINNING : CHANGED PART

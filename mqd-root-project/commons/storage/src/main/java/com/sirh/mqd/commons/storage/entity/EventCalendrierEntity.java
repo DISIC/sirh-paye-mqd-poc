@@ -22,7 +22,9 @@ import com.sirh.mqd.commons.storage.constantes.EventCalendrierConstantes;
 		@CompoundIndex(name = "index_calendrier_service", def = "{'" + EventCalendrierConstantes.COLONNE_REFERENTIEL
 				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_SERVICE + "' : 1}"),
 		@CompoundIndex(name = "index_calendrier_range", def = "{'" + EventCalendrierConstantes.COLONNE_DEBUT
-				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_ECHEANCE + "' : 1}") })
+				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_ECHEANCE + "' : 1}"),
+		@CompoundIndex(name = "index_calendrier_couleur_type", def = "{'" + EventCalendrierConstantes.COLONNE_COULEUR
+				+ "' : 1, '" + EventCalendrierConstantes.COLONNE_TYPE + "' : 1}") })
 public class EventCalendrierEntity {
 
 	@Id
@@ -35,6 +37,7 @@ public class EventCalendrierEntity {
 	@Field(EventCalendrierConstantes.COLONNE_EVENEMENT)
 	private String evenement;
 
+	@Indexed
 	@Field(EventCalendrierConstantes.COLONNE_TYPE)
 	private String type;
 
@@ -49,6 +52,7 @@ public class EventCalendrierEntity {
 	@Field(EventCalendrierConstantes.COLONNE_ACTEURS)
 	private String acteurs;
 
+	@Indexed
 	@Field(EventCalendrierConstantes.COLONNE_CORPS)
 	private String corps;
 
@@ -56,6 +60,7 @@ public class EventCalendrierEntity {
 	@Field(EventCalendrierConstantes.COLONNE_SERVICE)
 	private String service;
 
+	@Indexed
 	@Field(EventCalendrierConstantes.COLONNE_COULEUR)
 	private String couleur;
 

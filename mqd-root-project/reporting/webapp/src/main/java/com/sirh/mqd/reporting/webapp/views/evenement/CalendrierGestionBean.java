@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
-import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import org.primefaces.model.timeline.TimelineEvent;
@@ -162,7 +162,27 @@ public class CalendrierGestionBean extends GenericBean {
 			this.informationsDisplayable = Boolean.TRUE;
 			this.listeInformations = new ArrayList<EventCalendrierModel>();
 			this.timelineModel = new TimelineModel();
-			this.scheduleModel = new DefaultScheduleModel();
+			this.scheduleModel = new LazyScheduleModel() {
+				/**
+				 * Generated UID
+				 */
+				private static final long serialVersionUID = -1712833719075081547L;
+
+				@Override
+				public void loadEvents(final Date start, final Date end) {
+					final List<EventCalendrierDTO> eventsCalendrierDTO = calendrierGestionService
+							.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
+									start, end, selectedType, selectedCouleur, selectedCorps);
+
+					this.clear();
+
+					eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
+						if (!"information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
+							this.addEvent(CalendrierGestionModelFactory.createDefaultScheduleEvent(eventCalendrierDTO));
+						}
+					});
+				}
+			};
 			this.event = new DefaultScheduleEvent();
 			final Date now = DateUtils.getCalendarInstance().getTime();
 			this.limitStartDate = DateUtils.addMonthsWithBounds(now, -1);
@@ -172,16 +192,11 @@ public class CalendrierGestionBean extends GenericBean {
 	}
 
 	public void listerEvents() {
-		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
-				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
-						this.limitStartDate, this.limitEndDate, this.selectedType, this.selectedCouleur,
-						this.selectedCorps);
-		listerEventInformations(eventsCalendrierDTO);
-		listerEventTimeline(eventsCalendrierDTO);
-		listerEventCalendrierGestion(eventsCalendrierDTO);
+		listerEventTimeline();
+		listerEventInformations();
 	}
 
-	private void listerEventInformations(final List<EventCalendrierDTO> eventsCalendrierDTO) {
+	private void listerEventInformations() {
 		this.listeInformations.clear();
 		if (this.informationsDisplayable) {
 			if (this.viewStartDate == null) {
@@ -191,19 +206,25 @@ public class CalendrierGestionBean extends GenericBean {
 				this.viewEndDate = DateUtils.getDateBoundDaysToMaximum(DateUtils.getCalendarInstance().getTime());
 			}
 
+			final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
+					.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
+							this.viewStartDate, this.viewEndDate, this.selectedType, this.selectedCouleur,
+							this.selectedCorps);
+
 			eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
 				if ("information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
-					if (eventCalendrierDTO.getEcheance().after(this.viewStartDate)
-							&& eventCalendrierDTO.getDebut().before(this.viewEndDate)) {
-						this.listeInformations
-								.add(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO));
-					}
+					this.listeInformations
+							.add(CalendrierGestionModelFactory.createEventCalendrierModel(eventCalendrierDTO));
 				}
 			});
 		}
 	}
 
-	private void listerEventTimeline(final List<EventCalendrierDTO> eventsCalendrierDTO) {
+	private void listerEventTimeline() {
+		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
+				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
+						this.limitStartDate, this.limitEndDate, this.selectedType, this.selectedCouleur,
+						this.selectedCorps);
 		this.timelineModel.clear();
 		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
 			if (!"information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
@@ -212,26 +233,12 @@ public class CalendrierGestionBean extends GenericBean {
 		});
 	}
 
-	private void listerEventCalendrierGestion(final List<EventCalendrierDTO> eventsCalendrierDTO) {
-		this.scheduleModel.clear();
-		eventsCalendrierDTO.forEach(eventCalendrierDTO -> {
-			if (!"information".equals(StringUtils.normalizeSpace(eventCalendrierDTO.getType()))) {
-				this.scheduleModel
-						.addEvent(CalendrierGestionModelFactory.createDefaultScheduleEvent(eventCalendrierDTO));
-			}
-		});
+	public void onViewChange(final SelectEvent selectEvent) {
+		listerEventInformations();
 	}
 
 	public void onEventSelect(final SelectEvent selectEvent) {
 		this.event = (ScheduleEvent) selectEvent.getObject();
-	}
-
-	public void onViewChange(final SelectEvent selectEvent) {
-		final List<EventCalendrierDTO> eventsCalendrierDTO = this.calendrierGestionService
-				.listerEventsAvecBornesTemporelles(getCurrentUserMinistere(), getCurrentUserService(),
-						this.limitStartDate, this.limitEndDate, this.selectedType, this.selectedCouleur,
-						this.selectedCorps);
-		listerEventInformations(eventsCalendrierDTO);
 	}
 
 	public void onSelectTimelineEvent(final TimelineSelectEvent selectEvent) {

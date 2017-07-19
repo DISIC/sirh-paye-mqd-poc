@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
@@ -212,8 +213,17 @@ public class JsfUtils implements Serializable {
 	 *
 	 * @return le context courant de faces.
 	 */
-	private FacesContext getFacesCurrentInstance() {
+	public FacesContext getFacesCurrentInstance() {
 		return FacesContext.getCurrentInstance();
+	}
+
+	/**
+	 * Méthode permettant de retourner le context externe courant de faces.
+	 *
+	 * @return le context externe courant de faces.
+	 */
+	public ExternalContext getFacesExternalContext() {
+		return getFacesCurrentInstance().getExternalContext();
 	}
 
 	/**
@@ -232,6 +242,10 @@ public class JsfUtils implements Serializable {
 		if (facesContext != null) {
 			// final Object bean =
 			// facesContext.getExternalContext().getSessionMap().get(beanName);
+			// if (className.isInstance(bean)) {
+			// return className.cast(bean);
+			// }
+			// final Object bean = this.sessionMap.get(beanName);
 			// if (className.isInstance(bean)) {
 			// return className.cast(bean);
 			// }
