@@ -28,14 +28,12 @@ public class StatutDossierDAO implements IStatutDossierDAO {
 	@Override
 	public StatutDossierEntity selectStatutDossier(final String renoiRHMatricule, final String payLot) {
 		StatutDossierEntity statutDossier = new StatutDossierEntity();
-		if (payLot != null && renoiRHMatricule != null) {
-			final Query query = new Query();
-			if (StringUtils.isNotBlank(payLot)) {
-				query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
-			}
-			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
-			statutDossier = mongoTemplate.findOne(query, StatutDossierEntity.class);
+		final Query query = new Query();
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		}
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
+		statutDossier = mongoTemplate.findOne(query, StatutDossierEntity.class);
 		return statutDossier;
 	}
 

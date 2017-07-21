@@ -101,6 +101,11 @@
 		<appender-ref ref="IHM_LOGFILE" />
 	</logger>
 
+	<logger name="org.springframework.data.mongodb.core.MongoTemplate" additivity="false">
+		<level value="${filter.log.level.root}" />
+		<appender-ref ref="${filter.log.appender.root}" />
+	</logger>
+
 	<logger name="log4j.category.org.springframework.integration.file" additivity="false">
 		<level value="${filter.log.level.root}" />
 		<appender-ref ref="${filter.log.appender.root}" />

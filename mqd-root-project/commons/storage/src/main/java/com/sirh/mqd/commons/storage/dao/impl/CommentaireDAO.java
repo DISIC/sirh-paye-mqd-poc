@@ -31,14 +31,12 @@ public class CommentaireDAO implements ICommentaireDAO {
 	@Override
 	public List<CommentaireEntity> selectCommentairesDossier(final String payLot, final String renoiRHMatricule) {
 		List<CommentaireEntity> listeCommentaires = new ArrayList<CommentaireEntity>();
-		if (payLot != null && renoiRHMatricule != null) {
-			final Query query = new Query();
-			if (StringUtils.isNotBlank(payLot)) {
-				query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
-			}
-			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
-			listeCommentaires = mongoTemplate.find(query, CommentaireEntity.class);
+		final Query query = new Query();
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
 		}
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(renoiRHMatricule));
+		listeCommentaires = mongoTemplate.find(query, CommentaireEntity.class);
 		return listeCommentaires;
 	}
 

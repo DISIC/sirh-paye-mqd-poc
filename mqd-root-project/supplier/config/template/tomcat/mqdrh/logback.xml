@@ -42,25 +42,6 @@
 		</layout>
 	</appender>
 	
-	<appender name="IHM_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-
-		<file>${filter.log.file.path}/${filter.log.application.name}-ihm.log</file>
-		<prudent>true</prudent>
-
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${filter.log.file.path}/${filter.log.application.name}-ihm.%d{yyyyMMdd}.%i.log</fileNamePattern>
-			<maxHistory>${filter.log.maxHistory}</maxHistory>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches maxFilesSize -->
-				<maxFileSize>${filter.log.maxFileSize}</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>[${date}]-[%level]-[%logger{36}]-%msg%n</pattern>
-		</layout>
-	</appender>
-	
 	<appender name="ROOT_LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
 		<file>${filter.log.file.path}/${filter.log.application.name}-root.log</file>
@@ -95,10 +76,10 @@
 		<level value="${filter.log.level}" />
 		<appender-ref ref="BUSINESS_LOGFILE" />
 	</logger>
-
-	<logger name="com.sirh.mqd.log.ihm" additivity="false">
-		<level value="${filter.log.level}" />
-		<appender-ref ref="IHM_LOGFILE" />
+	
+	<logger name="org.springframework.data.mongodb.core.MongoTemplate" additivity="false">
+		<level value="${filter.log.level.root}" />
+		<appender-ref ref="${filter.log.appender.root}" />
 	</logger>
 
 	<logger name="log4j.category.org.springframework.integration.file" additivity="false">
