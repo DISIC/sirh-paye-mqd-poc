@@ -19,6 +19,8 @@ public final class CoreConstantes {
 
 	public static final String SYNTHESE_SERVICE = "syntheseService";
 
+	public static final String CONFIG_SERVICE = "configService";
+
 	/**
 	 * Non-constructeur
 	 *

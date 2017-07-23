@@ -11,6 +11,7 @@ import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
  *
  * @author alexandre
  */
+
 public interface IDossierService {
 
 	/**

@@ -74,4 +74,5 @@ public class DossierService implements IDossierService {
 	public void modifierAlerte(final AlerteDTO alerte) {
 		// TODO Implémenter la couche BC
 	}
+
 }

@@ -60,11 +60,11 @@
 				<h:outputText value="#{dossier.payLot}" />
 			</p:column>
 			<p:column filterBy="#{dossier.nbAlertes}" filterMatchMode="contains" sortBy="#{dossier.nbAlertes}"
-				headerText="#{label['dossiers.overview.dossiers_table.header.nb_alertes']}" styleClass="color #{(dossier.nbAlertes gt 7) ? 'red' : ((dossier.nbAlertes le 7 and dossier.nbAlertes gt 4) ? 'orange' : ((dossier.nbAlertes le 4 and dossier.nbAlertes gt 0) ? 'yellow' : ((dossier.nbAlertes eq 0 ) ? 'green' : '')))}">
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_alertes']}" styleClass="color #{(dossier.nbAlertes ge dossierBean.seuilAlerteRouge) ? 'red' : ((dossier.nbAlertes lt dossierBean.seuilAlerteRouge and dossier.nbAlertes ge dossierBean.seuilAlerteOrange) ? 'orange' : ((dossier.nbAlertes lt dossierBean.seuilAlerteOrange and dossier.nbAlertes ge dossierBean.seuilAlerteJaune) ? 'yellow' : ((dossier.nbAlertes le dossierBean.seuilAlerteVert ) ? 'green' : '')))}">
 				<h:outputText value="#{dossier.nbAlertes}" />
 			</p:column>
 			<p:column filterBy="#{dossier.nbAnomalies}" filterMatchMode="contains" sortBy="#{dossier.nbAnomalies}"
-				headerText="#{label['dossiers.overview.dossiers_table.header.nb_anomalies']}" styleClass="color #{(dossier.nbAnomalies gt 7) ? 'red' : ((dossier.nbAnomalies le 7 and dossier.nbAnomalies gt 4) ? 'orange' : ((dossier.nbAnomalies le 4 and dossier.nbAnomalies gt 0) ? 'yellow' : ((dossier.nbAnomalies eq 0 ) ? 'green' : '')))}">
+				headerText="#{label['dossiers.overview.dossiers_table.header.nb_anomalies']}" styleClass="color #{(dossier.nbAnomalies ge dossierBean.seuilAnomalieRouge) ? 'red' : ((dossier.nbAnomalies lt dossierBean.seuilAnomalieRouge and dossier.nbAnomalies ge dossierBean.seuilAnomalieOrange) ? 'orange' : ((dossier.nbAnomalies lt dossierBean.seuilAnomalieOrange and dossier.nbAnomalies ge dossierBean.seuilAnomalieJaune) ? 'yellow' : ((dossier.nbAnomalies le dossierBean.seuilAnomalieVert ) ? 'green' : '')))}">
 				<h:outputText value="#{dossier.nbAnomalies}"/>
 			</p:column>
 		</p:dataTable>

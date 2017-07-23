@@ -209,4 +209,5 @@ public class DossierDAO implements IDossierDAO {
 			mongoTemplate.updateFirst(query, update, ComparaisonEntity.class);
 		}
 	}
+
 }

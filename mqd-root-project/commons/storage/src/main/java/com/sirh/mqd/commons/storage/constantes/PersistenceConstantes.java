@@ -63,6 +63,16 @@ public final class PersistenceConstantes {
 	public static final String CALENDRIER_GESTION_BC = "calendrierGestionBC";
 
 	/**
+	 * Nom du DAO pour config
+	 */
+	public static final String CONFIG_DAO = "configDAO";
+
+	/**
+	 * Nom du BC pour config
+	 */
+	public static final String CONFIG_BC = "configBC";
+
+	/**
 	 * Non-constructeur
 	 *
 	 * @throws InstantiationException
