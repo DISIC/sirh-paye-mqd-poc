@@ -1,6 +1,7 @@
 package com.sirh.mqd.reporting.core.api;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.AlerteDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
@@ -66,4 +67,20 @@ public interface IDossierService {
 	 *            l'alerte à mettre à jour
 	 */
 	void modifierAlerte(AlerteDTO alerte);
+
+	/**
+	 * Méthode permettant de lister les couleurs à afficher par seuil d'alerte
+	 *
+	 * @return Map<String, Integer> la liste des couleurs et de leur seuil
+	 *         associé
+	 */
+	Map<String, Integer> rechercherCouleurSeuilsAlerte();
+
+	/**
+	 * Méthode permettant de lister les couleurs à afficher par seuil d'anomalie
+	 *
+	 * @return Map<String, Integer> la liste des couleurs et de leur seuil
+	 *         associé
+	 */
+	Map<String, Integer> rechercherCouleurSeuilsAnomalie();
 }

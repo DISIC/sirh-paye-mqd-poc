@@ -1,6 +1,5 @@
 package com.sirh.mqd.commons.storage.factory;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.ConfigDTO;
 import com.sirh.mqd.commons.storage.entity.ConfigEntity;
 
 public class ConfigEntityFactory {
@@ -15,13 +14,11 @@ public class ConfigEntityFactory {
 				"Création non autorisée d'une instance de : " + ConfigEntityFactory.class.getName());
 	}
 
-	public static ConfigDTO createConfigDTO(final ConfigEntity entity) {
-		ConfigDTO config = null;
+	public static Object createConfigValue(final ConfigEntity entity) {
+		Object valeur = null;
 		if (entity != null) {
-			config = new ConfigDTO();
-			config.setId(entity.getId());
-			config.setValeur(entity.getValeur());
+			valeur = entity.getValeur();
 		}
-		return config;
+		return valeur;
 	}
 }

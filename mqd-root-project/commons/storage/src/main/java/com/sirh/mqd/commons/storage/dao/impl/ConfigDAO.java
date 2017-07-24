@@ -31,7 +31,6 @@ public class ConfigDAO implements IConfigDAO {
 	public ConfigEntity selectConfig(final String id) {
 		final Query query = new Query();
 		query.addCriteria(Criteria.where(ConfigConstantes.COLONNE_ID).is(id));
-
 		return mongoTemplate.findOne(query, ConfigEntity.class);
 	}
 }

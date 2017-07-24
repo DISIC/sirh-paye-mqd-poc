@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.ConfigDTO;
 import com.sirh.mqd.commons.storage.bc.ConfigBC;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
 import com.sirh.mqd.reporting.core.api.IConfigService;
@@ -20,7 +19,7 @@ public class ConfigService implements IConfigService {
 	private ConfigBC configBC;
 
 	@Override
-	public Optional<ConfigDTO> rechercherConfig(final String id) {
+	public Optional<Object> rechercherConfig(final String id) {
 		return configBC.rechercherConfig(id);
 	}
 }

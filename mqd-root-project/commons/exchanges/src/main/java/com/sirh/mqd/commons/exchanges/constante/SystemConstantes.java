@@ -14,6 +14,10 @@ public final class SystemConstantes {
 	 */
 	public static final String CRON_MSO = "CRON_MSO";
 
+	public static final String COULEUR_SEUILS_ALERTE = "COULEUR_SEUILS_ALERTE";
+
+	public static final String COULEUR_SEUILS_ANOMALIE = "COULEUR_SEUILS_ANOMALIE";
+
 	/**
 	 * Non-constructeur
 	 *

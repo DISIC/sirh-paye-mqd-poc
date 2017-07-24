@@ -2,9 +2,8 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -14,7 +13,8 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.sirh.mqd.commons.exchanges.dto.pivot.ConfigDTO;
+import com.sirh.mqd.commons.exchanges.constante.AlerteCouleurSeuilsConstantes;
+import com.sirh.mqd.commons.exchanges.constante.AnomalieCouleurSeuilsConstantes;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.reporting.core.api.IConfigService;
 import com.sirh.mqd.reporting.core.api.IDossierService;
@@ -168,38 +168,19 @@ public class DossierBean extends GenericBean {
 	}
 
 	public void affecterSeuilsAlertes() {
-		final String idSeuilsAlertes = "seuils_alerte";
-		final Optional<ConfigDTO> seuilsAlertes = this.configService.rechercherConfig(idSeuilsAlertes);
-		final ConfigDTO seuilsAlertesDTO;
-		if (seuilsAlertes.isPresent()) {
-			seuilsAlertesDTO = seuilsAlertes.get();
-			final HashMap<String, Double> hashSeuilsAlertes = (HashMap<String, Double>) seuilsAlertesDTO.getValeur();
-			setSeuilAlerteRouge(hashSeuilsAlertes.get("rouge").intValue());
-			setSeuilAlerteOrange(hashSeuilsAlertes.get("orange").intValue());
-			setSeuilAlerteJaune(hashSeuilsAlertes.get("jaune").intValue());
-			setSeuilAlerteVert(hashSeuilsAlertes.get("vert").intValue());
-		} else {
-			seuilsAlertesDTO = null;
-		}
-
+		final Map<String, Integer> mapSeuilsAlertes = this.dossierService.rechercherCouleurSeuilsAlerte();
+		this.seuilAlerteRouge = mapSeuilsAlertes.get(AlerteCouleurSeuilsConstantes.ROUGE);
+		this.seuilAlerteOrange = mapSeuilsAlertes.get(AlerteCouleurSeuilsConstantes.ORANGE);
+		this.seuilAlerteJaune = mapSeuilsAlertes.get(AlerteCouleurSeuilsConstantes.JAUNE);
+		this.seuilAlerteVert = mapSeuilsAlertes.get(AlerteCouleurSeuilsConstantes.VERT);
 	}
 
 	public void affecterSeuilsAnomalies() {
-		final String idSeuilsAnomalies = "seuils_anomalie";
-		final Optional<ConfigDTO> seuilsAnomalies = this.configService.rechercherConfig(idSeuilsAnomalies);
-		final ConfigDTO seuilsAnomaliesDTO;
-		if (seuilsAnomalies.isPresent()) {
-			seuilsAnomaliesDTO = seuilsAnomalies.get();
-			final HashMap<String, Double> hashSeuilsAnomalies = (HashMap<String, Double>) seuilsAnomaliesDTO
-					.getValeur();
-			setSeuilAnomalieRouge(hashSeuilsAnomalies.get("rouge").intValue());
-			setSeuilAnomalieOrange(hashSeuilsAnomalies.get("orange").intValue());
-			setSeuilAnomalieJaune(hashSeuilsAnomalies.get("jaune").intValue());
-			setSeuilAnomalieVert(hashSeuilsAnomalies.get("vert").intValue());
-		} else {
-			seuilsAnomaliesDTO = null;
-		}
-
+		final Map<String, Integer> mapSeuilsAnomalies = this.dossierService.rechercherCouleurSeuilsAnomalie();
+		this.seuilAnomalieRouge = mapSeuilsAnomalies.get(AnomalieCouleurSeuilsConstantes.ROUGE);
+		this.seuilAnomalieOrange = mapSeuilsAnomalies.get(AnomalieCouleurSeuilsConstantes.ORANGE);
+		this.seuilAnomalieJaune = mapSeuilsAnomalies.get(AnomalieCouleurSeuilsConstantes.JAUNE);
+		this.seuilAnomalieVert = mapSeuilsAnomalies.get(AnomalieCouleurSeuilsConstantes.VERT);
 	}
 
 	public void initialisationConfig() {
