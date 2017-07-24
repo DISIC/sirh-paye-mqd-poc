@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.sirh.mqd.commons.exchanges.dto.pivot.AlerteDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
@@ -18,6 +19,7 @@ import com.sirh.mqd.commons.storage.entity.DossierEntity;
 import com.sirh.mqd.commons.storage.factory.AlerteEntityFactory;
 import com.sirh.mqd.commons.storage.factory.AnomalieEntityFactory;
 import com.sirh.mqd.commons.storage.factory.DossierEntityFactory;
+import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
  * Implémentation du BusinessController permettant de gérer les dossiers et les
@@ -112,13 +114,42 @@ public class DossierBC {
 	public void insererComparaison(final ComparaisonDTO comparaison) {
 		this.dossierDAO.insertComparaison(AnomalieEntityFactory.createComparaisonEntity(comparaison));
 		final AlerteEntity entity = AlerteEntityFactory.createAlerteEntity(comparaison.getPayLot(),
-				comparaison.getRenoiRHMatricule(), comparaison.getType());
+				comparaison.getRenoiRHMatricule(), comparaison.getType(), comparaison.getDonnees());
 		final boolean existAlerte = this.dossierDAO.countAlerte(entity) > 0;
 		if (!comparaison.isAnomalieReouverte() && existAlerte) {
-			this.dossierDAO.deleteAlerte(entity);
+			final AlerteEntity existingAlerte = this.dossierDAO.selectAlerte(comparaison.getPayLot(),
+					comparaison.getRenoiRHMatricule(), comparaison.getType());
+			existingAlerte.setDateCloture(DateUtils.getCalendarInstance().getTime());
+			this.dossierDAO.insertAlerte(existingAlerte);
 		} else if (comparaison.isAnomalieReouverte() && !existAlerte) {
 			this.dossierDAO.insertAlerte(entity);
 		}
+	}
+
+	/**
+	 * Méthode permettant de lister des alertes entre les données de flux
+	 * associé à un dossier.
+	 *
+	 * @param payLot
+	 *            le lot paye du dossier
+	 * @param matricule
+	 *            le matricule du dossier
+	 * @return {@link List} correspondant à une liste de alertes
+	 */
+	public List<AlerteDTO> listerAlertes(final String payLot, final String matricule) {
+		final List<AlerteEntity> alerteEntities = this.dossierDAO.selectAlertes(payLot, matricule);
+		return alerteEntities.stream().map(alerteEntity -> AlerteEntityFactory.createAlerteDTO(alerteEntity))
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Méthode permettant de modifier l'état d'une alerte
+	 *
+	 * @param alerte
+	 *            l'alerte à mettre à jour
+	 */
+	public void modifierAlerte(final AlerteDTO alerte) {
+		this.dossierDAO.updateAlerte(AlerteEntityFactory.createAlerteEntity(alerte));
 	}
 
 	/**
@@ -127,13 +158,12 @@ public class DossierBC {
 	 *
 	 * @param payLot
 	 *            le lot paye du dossier
-	 * @param renoiRHMatricule
+	 * @param matricule
 	 *            le matricule du dossier
 	 * @return {@link List} correspondant à une liste de comparaisons
 	 */
-	public List<ComparaisonDTO> listerComparaisons(final String payLot, final String renoiRHMatricule) {
-		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectComparaisons(payLot,
-				renoiRHMatricule);
+	public List<ComparaisonDTO> listerComparaisons(final String payLot, final String matricule) {
+		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectComparaisons(payLot, matricule);
 		return comparaisonsEntities.stream()
 				.map(comparaisonEntity -> AnomalieEntityFactory.createComparaisonDTO(comparaisonEntity))
 				.collect(Collectors.toList());
@@ -145,12 +175,12 @@ public class DossierBC {
 	 *
 	 * @param payLot
 	 *            le lot paye du dossier
-	 * @param renoiRHMatricule
+	 * @param matricule
 	 *            le matricule du dossier
 	 * @return {@link List} correspondant à une liste de comparaisons
 	 */
-	public List<ComparaisonDTO> listerAnomalies(final String payLot, final String renoiRHMatricule) {
-		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectAnomalies(payLot, renoiRHMatricule);
+	public List<ComparaisonDTO> listerAnomalies(final String payLot, final String matricule) {
+		final List<ComparaisonEntity> comparaisonsEntities = this.dossierDAO.selectAnomalies(payLot, matricule);
 		return comparaisonsEntities.stream()
 				.map(comparaisonEntity -> AnomalieEntityFactory.createComparaisonDTO(comparaisonEntity))
 				.collect(Collectors.toList());

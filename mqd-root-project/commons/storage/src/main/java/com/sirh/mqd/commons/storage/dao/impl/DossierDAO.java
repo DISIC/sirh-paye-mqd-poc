@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.DBObject;
 import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
+import com.sirh.mqd.commons.storage.constantes.AlerteConstantes;
 import com.sirh.mqd.commons.storage.constantes.ComparaisonConstantes;
 import com.sirh.mqd.commons.storage.constantes.DossierConstantes;
 import com.sirh.mqd.commons.storage.constantes.PersistenceConstantes;
@@ -157,9 +158,33 @@ public class DossierDAO implements IDossierDAO {
 		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void insertAlerte(final AlerteEntity alerte) {
-		mongoTemplate.save(alerte);
+		final Query query = new Query();
+		if (StringUtils.isNotBlank(alerte.getPayLot())) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(alerte.getPayLot()));
+		}
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(alerte.getMatricule()));
+		query.addCriteria(Criteria.where(AlerteConstantes.COLONNE_TYPE_DONNEE).is(alerte.getType()));
+
+		if (mongoTemplate.exists(query, AlerteEntity.class)) {
+			final ObjectMapper mapper = new ObjectMapper();
+			mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+			final MongoConverter converter = mongoTemplate.getConverter();
+			final DBObject dbo = (DBObject) converter.convertToMongoType(alerte);
+
+			final Map<String, Object> map = mapper.convertValue(dbo, Map.class);
+			map.remove(DossierConstantes.COLONNE_ID);
+			final Update update = new Update();
+			for (final Map.Entry<String, Object> entry : map.entrySet()) {
+				update.set(entry.getKey(), entry.getValue());
+			}
+			mongoTemplate.upsert(query, update, AlerteEntity.class);
+		} else {
+			mongoTemplate.save(alerte);
+		}
 	}
 
 	@Override
@@ -168,7 +193,7 @@ public class DossierDAO implements IDossierDAO {
 		if (StringUtils.isNotBlank(entity.getPayLot())) {
 			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
 		}
-		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getRenoiRHMatricule()));
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getMatricule()));
 		query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
 		return Math.toIntExact(mongoTemplate.count(query, AlerteEntity.class));
 	}
@@ -207,6 +232,47 @@ public class DossierDAO implements IDossierDAO {
 							+ ComparaisonConstantes.COLONNE_ANOMALIE_RESPONSABLE_NOM,
 					entity.getAnomalie().getResponsableNom());
 			mongoTemplate.updateFirst(query, update, ComparaisonEntity.class);
+		}
+	}
+
+	@Override
+	public AlerteEntity selectAlerte(final String payLot, final String matricule, final AnomalieTypeEnum type) {
+		final Query query = new Query();
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(matricule));
+		query.addCriteria(Criteria.where(AlerteConstantes.COLONNE_TYPE_DONNEE).is(type));
+		return mongoTemplate.findOne(query, AlerteEntity.class);
+	}
+
+	@Override
+	public List<AlerteEntity> selectAlertes(final String payLot, final String matricule) {
+		final Query query = new Query();
+		if (StringUtils.isNotBlank(payLot)) {
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(payLot));
+		}
+		query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(matricule));
+		return mongoTemplate.find(query, AlerteEntity.class);
+	}
+
+	@Override
+	public void updateAlerte(final AlerteEntity entity) {
+		if (entity != null) {
+			final Query query = new Query();
+			if (StringUtils.isNotBlank(entity.getPayLot())) {
+				query.addCriteria(Criteria.where(DossierConstantes.COLONNE_PAY_LOT).is(entity.getPayLot()));
+			}
+			query.addCriteria(Criteria.where(DossierConstantes.COLONNE_MATRICULE).is(entity.getMatricule()));
+			query.addCriteria(Criteria.where(ComparaisonConstantes.COLONNE_TYPE_DONNEE).is(entity.getType()));
+
+			final Update update = new Update();
+			update.set(AlerteConstantes.COLONNE_DATE_MODIFICATION, entity.getDateModification());
+			update.set(AlerteConstantes.COLONNE_ETAT, entity.getEtat());
+			update.set(AlerteConstantes.COLONNE_RESPONSABLE_LOGIN, entity.getResponsableLogin());
+			update.set(AlerteConstantes.COLONNE_RESPONSABLE_PRENOM, entity.getResponsablePrenom());
+			update.set(AlerteConstantes.COLONNE_RESPONSABLE_NOM, entity.getResponsableNom());
+			mongoTemplate.updateFirst(query, update, AlerteEntity.class);
 		}
 	}
 }
