@@ -27,6 +27,8 @@ public final class ViewConstantes {
 
 	public static final String CALENDRIER_GESTION_BEAN = "calendrierGestionBean";
 
+	public static final String CONFIG_BEAN = "configBean";
+
 	/**
 	 * Non-constructeur
 	 *

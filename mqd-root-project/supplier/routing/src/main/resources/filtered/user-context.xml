@@ -14,18 +14,46 @@
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
 	
+	<bean id="userPatternFileListFilter"
+		class="org.springframework.integration.sftp.filters.SftpSimplePatternFileListFilter">
+		<constructor-arg value="*.csv" />
+	</bean>
+
+	<!-- http://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound
+	this filter prevents the files being re-downloaded, unless the timestamp on the file changes.
+	this filter stores the accepted file names in an instance of the MetadataStore strategy. -->
+	<bean id="userLastModifiedAccrossServerRestartFileListRemoteFilter" 
+		class="org.springframework.integration.sftp.filters.SftpPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="sftpMongoDbMetadataStore" />
+		<constructor-arg name="prefix" value="users_remote_import_" />
+		<property name="flushOnUpdate" value="true" />
+	</bean>
+
+	<bean id="userCompositeFileListRemoteFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="userPatternFileListFilter" />
+				<ref bean="userLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
+	
 	<int:channel id="userCSVFileChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
-		remote-directory="/sirh-paye-data/user"
-		local-directory="${sftp.directory.local.path}/user"
-		filename-pattern="*.csv"
-		auto-create-local-directory="false"
+		auto-startup="false"
 		delete-remote-files="false"
+		filter="userCompositeFileListRemoteFilter"
+		remote-directory="/sirh-paye-data/user"
+		preserve-timestamp="true"
+		local-directory="${sftp.directory.local.path}/user"
+		auto-create-local-directory="false"
+		local-filter="acceptAllFileListFilter"
 		channel="userCSVFileChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator

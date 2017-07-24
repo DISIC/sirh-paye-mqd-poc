@@ -22,11 +22,11 @@ public enum AlerteEtatEnum {
 
 	CORRECTION_EFFECTUEE("Correction effectuée"),
 
-	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire"),
+	DEMANDE_ASSISTANCE("Demande d'assistance"),
 
-	DEMANDE_ASSISTANCE("Demande d'assistance");
+	AUCUNE_ACTION_NECESSAIRE("Aucune action nécessaire");
 
-	private static final List<String> CACHE_LIBELLES = new ArrayList<String>();
+	private static final List<AlerteEtatEnum> CACHE_ENUMS_DEJA_TRAITEES = new ArrayList<AlerteEtatEnum>();
 
 	public static final List<AlerteEtatEnum> CACHE_ENUMS = Collections.unmodifiableList(Arrays.asList(values()));
 
@@ -59,21 +59,34 @@ public enum AlerteEtatEnum {
 			}
 		}
 		throw new IllegalArgumentException(
-				"Impossible de convertir un élément d'AnomalieEtatEnum à partir du libellé : '" + libelle + "'");
+				"Impossible de convertir un élément d'AlerteEtatEnum à partir du libellé : '" + libelle + "'");
 	}
 
 	/**
-	 * Méthode permettant de récupérer la liste des libellées pour les états
-	 * possibles d'une correction.
+	 * Méthode permettant de récupérer la liste des états possibles d'une
+	 * alerte.
 	 *
-	 * @return {@link List} des libellés d'états de correction existants
+	 * @return {@link List} des états de correction existants
 	 */
-	public static List<String> getLibelles() {
-		if (CollectionUtils.isEmpty(CACHE_LIBELLES)) {
+	public static List<AlerteEtatEnum> getEtatsAlerte() {
+		return CACHE_ENUMS;
+	}
+
+	/**
+	 * Méthode permettant de récupérer la liste des états possibles d'une alerte
+	 * en dehors de l'état {@link AlerteEtatEnum.A_TRAITER}.
+	 *
+	 * @return {@link List} des états existants sauf
+	 *         {@link AlerteEtatEnum.A_TRAITER}
+	 */
+	public static List<AlerteEtatEnum> getEtatsAlerteDejaTraites() {
+		if (CollectionUtils.isEmpty(CACHE_ENUMS_DEJA_TRAITEES)) {
 			for (final AlerteEtatEnum libelle : values()) {
-				CACHE_LIBELLES.add(libelle.getLibelle());
+				if (!libelle.equals(A_TRAITER)) {
+					CACHE_ENUMS_DEJA_TRAITEES.add(libelle);
+				}
 			}
 		}
-		return CACHE_LIBELLES;
+		return CACHE_ENUMS_DEJA_TRAITEES;
 	}
 }

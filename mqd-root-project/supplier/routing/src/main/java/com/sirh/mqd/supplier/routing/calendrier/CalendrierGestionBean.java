@@ -32,6 +32,7 @@ public class CalendrierGestionBean {
 	 */
 	public void manageCSVFileFromDGAC(final Message<File> message) throws MessagingException {
 		this.calendrierGestionService.storeCSVDataFromDGAC(message.getHeaders().getTimestamp(), message.getPayload());
+		message.getPayload().delete();
 	}
 
 	/**
@@ -42,6 +43,7 @@ public class CalendrierGestionBean {
 	 *            le message contenant le fichier
 	 */
 	public void manageCSVFileFromMSO(final Message<File> message) throws MessagingException {
-
+		// TODO Attente achèvement du calendrier de gestion du MSO
+		message.getPayload().delete();
 	}
 }

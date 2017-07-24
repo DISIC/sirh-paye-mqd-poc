@@ -14,17 +14,40 @@
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
 	
+	<!-- http://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound
+	this filter prevents the files being re-downloaded, unless the timestamp on the file changes.
+	this filter stores the accepted file names in an instance of the MetadataStore strategy. -->
+	<bean id="payLastModifiedAccrossServerRestartFileListRemoteFilter" 
+		class="org.springframework.integration.sftp.filters.SftpPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="sftpMongoDbMetadataStore" />
+		<constructor-arg name="prefix" value="pay_remote_import_" />
+		<property name="flushOnUpdate" value="true" />
+	</bean>
+	
+	<bean id="payCompositeFileListRemoteFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="payLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
+	
 	<int:channel id="payFilesChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
+		auto-startup="true"
+		delete-remote-files="false"
+		filter="payCompositeFileListRemoteFilter"
 		remote-directory="/sirh-paye-data/pay"
+		preserve-timestamp="true"
 		local-directory="${sftp.directory.local.path}/pay"
 		auto-create-local-directory="false"
-		delete-remote-files="false"
+		local-filter="acceptAllFileListFilter"
 		channel="payFilesChannel" >
 		<int:poller 
-			fixed-rate="1000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator

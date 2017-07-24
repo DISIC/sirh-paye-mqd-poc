@@ -2,9 +2,11 @@ package com.sirh.mqd.reporting.webapp.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import com.sirh.mqd.commons.exchanges.enums.AlerteEtatEnum;
 import com.sirh.mqd.commons.utils.DateUtils;
 
 /**
@@ -19,23 +21,29 @@ public class AlerteModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 7814970046973218320L;
 
+	private String id;
+
 	private String perimetre;
 
 	private String type;
 
-	private String donnee;
+	private String valeur;
 
 	private Date dateEcheance;
 
 	private Date dateModification;
 
-	private String etatCorrection;
+	private Date dateCloture;
 
 	private String responsableLogin;
 
 	private String responsableNom;
 
 	private String responsablePrenom;
+
+	private AlerteEtatEnum etat;
+
+	private List<AlerteEtatEnum> listeEtats;
 
 	public AlerteModel() {
 		super();
@@ -73,14 +81,6 @@ public class AlerteModel implements Serializable {
 		this.dateModification = DateUtils.clonerDate(dateModification);
 	}
 
-	public String getEtatCorrection() {
-		return etatCorrection;
-	}
-
-	public void setEtatCorrection(final String etatCorrection) {
-		this.etatCorrection = etatCorrection;
-	}
-
 	public String getResponsableLogin() {
 		return responsableLogin;
 	}
@@ -105,11 +105,43 @@ public class AlerteModel implements Serializable {
 		this.responsablePrenom = responsablePrenom;
 	}
 
-	public String getDonnee() {
-		return donnee;
+	public String getId() {
+		return id;
 	}
 
-	public void setDonnee(final String donnee) {
-		this.donnee = donnee;
+	public void setId(final String id) {
+		this.id = id;
+	}
+
+	public String getValeur() {
+		return valeur;
+	}
+
+	public void setValeur(final String valeur) {
+		this.valeur = valeur;
+	}
+
+	public Date getDateCloture() {
+		return dateCloture;
+	}
+
+	public void setDateCloture(final Date dateCloture) {
+		this.dateCloture = dateCloture;
+	}
+
+	public AlerteEtatEnum getEtat() {
+		return etat;
+	}
+
+	public void setEtat(final AlerteEtatEnum etat) {
+		this.etat = etat;
+	}
+
+	public List<AlerteEtatEnum> getListeEtats() {
+		return listeEtats;
+	}
+
+	public void setListeEtats(final List<AlerteEtatEnum> listeEtats) {
+		this.listeEtats = listeEtats;
 	}
 }

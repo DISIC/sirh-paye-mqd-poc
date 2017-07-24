@@ -3,6 +3,7 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -74,12 +75,10 @@ public class AnomalieBean extends GenericBean {
 
 	public void alimenterAnomalies(final DossierModel selectedDossier) {
 		this.anomalies.clear();
-		final List<ComparaisonDTO> anomalies = this.dossierService
+		final List<ComparaisonDTO> anomaliesDTO = this.dossierService
 				.listerAnomalies(selectedDossier.getRenoiRHMatricule(), selectedDossier.getPayLot());
-		for (int i = 0; i < anomalies.size(); i++) {
-			final ComparaisonDTO anomalie = anomalies.get(i);
-			this.anomalies.add(AnomalieModelFactory.createAnomalieModel(anomalie));
-		}
+		this.anomalies.addAll(anomaliesDTO.stream().map(anomalie -> AnomalieModelFactory.createAnomalieModel(anomalie))
+				.collect(Collectors.toList()));
 		Collections.sort(this.anomalies, new AnomalieModelTypeComparator());
 		Collections.sort(this.anomalies, new AnomalieModelPerimetreComparator());
 	}

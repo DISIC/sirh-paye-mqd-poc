@@ -21,7 +21,7 @@
 		 	<p:dataTable var="commentaire" value="#{commentaireBean.commentaires}" 
 		 			sortBy="#{commentaire.dateCreation}" sortOrder="descending" sortMode="single" 
 					id="commentairesTable" widgetVar="commentaires_table" reflow="true"
-					emptyMessage="Aucun commentaire n'a été trouvé.">
+					emptyMessage="#{label['dossiers.overview.commentaires_table.empty_message']}">
 					<p:column width="200"
 						headerText="#{label['dossiers.overview.commentaires_table.date_creation']}" >
 						<h:outputText value="#{commentaire.dateCreation}">

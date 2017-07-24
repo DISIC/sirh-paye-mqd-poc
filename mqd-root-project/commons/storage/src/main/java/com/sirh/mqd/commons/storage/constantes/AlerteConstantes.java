@@ -11,6 +11,24 @@ public final class AlerteConstantes {
 
 	public static final String COLONNE_ID = "_id";
 
+	public static final String COLONNE_TYPE_DONNEE = "type_donnee";
+
+	public static final String COLONNE_VALEUR_DONNEE = "valeur_donnee";
+
+	public static final String COLONNE_DATE_ECHEANCE = "date_echeance";
+
+	public static final String COLONNE_DATE_CLOTURE = "date_cloture";
+
+	public static final String COLONNE_DATE_MODIFICATION = "date_modification";
+
+	public static final String COLONNE_ETAT = "etat";
+
+	public static final String COLONNE_RESPONSABLE_LOGIN = "responsable_login";
+
+	public static final String COLONNE_RESPONSABLE_NOM = "responsable_nom";
+
+	public static final String COLONNE_RESPONSABLE_PRENOM = "responsable_prenom";
+
 	/**
 	 * Non-constructeur
 	 *

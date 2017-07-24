@@ -46,4 +46,5 @@ public class DossierService implements IDossierService {
 	public void modifierAlerte(final AlerteDTO alerte) {
 		dossierBC.modifierAlerte(alerte);
 	}
+
 }

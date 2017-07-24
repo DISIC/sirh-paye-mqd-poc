@@ -15,7 +15,7 @@
 			<h:panelGroup id="alertesGroup">
 				<p:dataTable var="alerte" value="#{alerteBean.alertes}"
 					id="alertesTable" widgetVar="alertes_table" reflow="true"
-					emptyMessage="Aucune alerte n'a été trouvée." paginator="true"
+					emptyMessage="#{label['dossiers.overview.alertes_table.empty_message']}" paginator="true"
 					rows="10">
 					<p:column
 						headerText="#{label['dossiers.overview.alertes_table.header.perimetre']}">
@@ -27,7 +27,7 @@
 					</p:column>
 					<p:column
 						headerText="#{label['dossiers.overview.alertes_table.header.donnee']}">
-						<h:outputText value="#{alerte.donnee}" />
+						<h:outputText value="#{alerte.valeur}" />
 					</p:column>
 					<p:column
 						headerText="#{label['dossiers.overview.alertes_table.header.date_echeance']}">
@@ -35,11 +35,10 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
-					<p:column styleClass="liste_etats_correction"
-						headerText="#{label['dossiers.overview.alertes_table.header.etat_correction']}">
-						<p:selectOneMenu id="listEtatAlerte"
-							value="#{alerte.etatCorrection}">
-							<f:selectItems value="#{alerteBean.listeEtatsCorrection}" />
+					<p:column  styleClass="liste_etats"
+						headerText="#{label['dossiers.overview.alertes_table.header.etat']}">
+						<p:selectOneMenu id="listEtat" value="#{alerte.etat}">
+							<f:selectItems value="#{alerte.listeEtats}" var="etat" itemLabel="#{etat.libelle}" itemValue="#{etat}" />
 						</p:selectOneMenu>
 					</p:column>
 					<p:column
@@ -48,7 +47,7 @@
 					</p:column>
 					<p:column
 						headerText="#{label['dossiers.overview.alertes_table.header.actions']}">
-						<p:commandButton action="#{alerteBean.modifierEtatCorrection}" update=":ongletsDossier:formAlerte:alertesGroup :messages" 
+						<p:commandButton action="#{alerteBean.modifierEtat}" update=":ongletsDossier:formAlerte:alertesGroup :messages" 
 							value="#{label['dossiers.overview.alertes_table.header.actions.button']}">
 							<f:setPropertyActionListener value="#{alerte}" target="#{alerteBean.selectedAlerte}" />
 						</p:commandButton>

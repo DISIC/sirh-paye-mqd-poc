@@ -1,7 +1,9 @@
 package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -13,7 +15,6 @@ import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.AlerteDTO;
-import com.sirh.mqd.commons.exchanges.enums.AlerteEtatEnum;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
 import com.sirh.mqd.commons.traces.constantes.ConstantesTraces;
 import com.sirh.mqd.commons.traces.enums.IHMPageNameEnum;
@@ -26,6 +27,8 @@ import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
 import com.sirh.mqd.reporting.webapp.factory.AlerteModelFactory;
 import com.sirh.mqd.reporting.webapp.model.AlerteModel;
 import com.sirh.mqd.reporting.webapp.model.DossierModel;
+import com.sirh.mqd.reporting.webapp.model.comparator.AlerteModelPerimetreComparator;
+import com.sirh.mqd.reporting.webapp.model.comparator.AlerteModelTypeComparator;
 import com.sirh.mqd.reporting.webapp.views.GenericBean;
 
 /**
@@ -60,11 +63,6 @@ public class AlerteBean extends GenericBean {
 	 */
 	private List<AlerteModel> alertes;
 
-	/**
-	 * Liste par défaut des états de correction connus.
-	 */
-	private List<String> listeEtatsCorrection;
-
 	public void setup() {
 		// Initialization
 
@@ -72,8 +70,6 @@ public class AlerteBean extends GenericBean {
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
 			this.alertes = new ArrayList<AlerteModel>();
-			this.listeEtatsCorrection = new ArrayList<String>();
-			this.listeEtatsCorrection.addAll(AlerteEtatEnum.getLibelles());
 		}
 	}
 
@@ -81,13 +77,13 @@ public class AlerteBean extends GenericBean {
 		this.alertes.clear();
 		final List<AlerteDTO> alertesDTO = this.dossierService.listerAlertes(selectedDossier.getRenoiRHMatricule(),
 				selectedDossier.getPayLot());
-		for (int i = 0; i < alertesDTO.size(); i++) {
-			final AlerteDTO alerte = alertesDTO.get(i);
-			this.alertes.add(AlerteModelFactory.createAlerteModel(alerte));
-		}
+		this.alertes.addAll(alertesDTO.stream().map(alerte -> AlerteModelFactory.createAlerteModel(alerte))
+				.collect(Collectors.toList()));
+		Collections.sort(this.alertes, new AlerteModelTypeComparator());
+		Collections.sort(this.alertes, new AlerteModelPerimetreComparator());
 	}
 
-	public void modifierEtatCorrection() {
+	public void modifierEtat() {
 		final DossierModel selectedDossier = getCurrentDossier();
 		if (selectedDossier != null) {
 			if (this.selectedAlerte != null) {
@@ -132,14 +128,6 @@ public class AlerteBean extends GenericBean {
 
 	public void setAlertes(final List<AlerteModel> alertes) {
 		this.alertes = alertes;
-	}
-
-	public List<String> getListeEtatsCorrection() {
-		return listeEtatsCorrection;
-	}
-
-	public void setListeEtatsCorrection(final List<String> listeEtatsCorrection) {
-		this.listeEtatsCorrection = listeEtatsCorrection;
 	}
 
 	public AlerteModel getSelectedAlerte() {

@@ -48,9 +48,9 @@ public class PayBean {
 	 *
 	 * @param message
 	 *            le message contenant le fichier
-	 *
 	 */
 	public void manageFiles(final Message<File> message) throws MessagingException {
 		this.payService.storeData(message.getHeaders().getTimestamp(), message.getPayload());
+		message.getPayload().delete();
 	}
 }

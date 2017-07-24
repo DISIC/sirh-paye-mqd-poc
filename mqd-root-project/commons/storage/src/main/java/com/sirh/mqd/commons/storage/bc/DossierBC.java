@@ -195,4 +195,5 @@ public class DossierBC {
 	public void modifierAnomalie(final ComparaisonDTO anomalie) {
 		this.dossierDAO.updateAnomalie(AnomalieEntityFactory.createComparaisonEntity(anomalie));
 	}
+
 }

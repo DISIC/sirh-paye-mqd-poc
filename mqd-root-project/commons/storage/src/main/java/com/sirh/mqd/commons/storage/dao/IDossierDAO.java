@@ -15,24 +15,24 @@ import com.sirh.mqd.commons.storage.entity.DossierEntity;
  */
 public interface IDossierDAO {
 
-	DossierEntity selectDossier(String payLot, String renoiRHMatricule);
+	DossierEntity selectDossier(String payLot, String matricule);
 
-	List<DossierEntity> selectDossiers(String payLot, String renoiRHCorpsCode, String renoiRHAffectationCode,
+	List<DossierEntity> selectDossiers(String payLot, String corpsCode, String affectationCode,
 			String gestionnaireCode);
 
 	void insertDossier(DossierEntity dossier);
 
-	ComparaisonEntity selectComparaison(String payLot, String renoiRHMatricule, AnomalieTypeEnum typeDonnee);
+	ComparaisonEntity selectComparaison(String payLot, String matricule, AnomalieTypeEnum typeDonnee);
 
-	List<ComparaisonEntity> selectAnomalies(String payLot, String renoiRHMatricule);
+	List<ComparaisonEntity> selectAnomalies(String payLot, String matricule);
 
-	List<ComparaisonEntity> selectComparaisons(String payLot, String renoiRHMatricule);
+	List<ComparaisonEntity> selectComparaisons(String payLot, String matricule);
 
 	void insertComparaison(ComparaisonEntity comparaison);
 
-	int countAnomaliesDossier(String payLot, String renoiRHMatricule);
+	int countAnomaliesDossier(String payLot, String matricule);
 
-	int countAlertesDossier(String payLot, String renoiRHMatricule);
+	int countAlertesDossier(String payLot, String matricule);
 
 	void insertAlerte(AlerteEntity alerte);
 
@@ -41,4 +41,10 @@ public interface IDossierDAO {
 	void deleteAlerte(AlerteEntity entity);
 
 	void updateAnomalie(ComparaisonEntity entity);
+
+	AlerteEntity selectAlerte(String payLot, String matricule, AnomalieTypeEnum type);
+
+	List<AlerteEntity> selectAlertes(String payLot, String matricule);
+
+	void updateAlerte(AlerteEntity createAlerteEntity);
 }

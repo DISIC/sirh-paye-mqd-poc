@@ -41,5 +41,6 @@ public class DgacBean {
 	 */
 	public void manageTXTFile(final Message<File> message) throws MessagingException {
 		this.sirhDgacService.storeTXTData(message.getHeaders().getTimestamp(), message.getPayload());
+		message.getPayload().delete();
 	}
 }

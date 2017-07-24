@@ -13,11 +13,33 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
+
+	<!-- http://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound
+	this filter prevents the files being re-downloaded, unless the timestamp on the file changes.
+	this filter stores the accepted file names in an instance of the MetadataStore strategy. -->
+	<bean id="calendrierLastModifiedAccrossServerRestartFileListRemoteFilter" 
+		class="org.springframework.integration.sftp.filters.SftpPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="sftpMongoDbMetadataStore" />
+		<constructor-arg name="prefix" value="calendar_remote_import_" />
+		<property name="flushOnUpdate" value="true" />
+	</bean>
+
+	<bean id="calendrierDgacPatternFileListFilter"
+		class="org.springframework.integration.sftp.filters.SftpRegexPatternFileListFilter">
+		<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*DGAC.*\.csv$')}" />
+	</bean>
+
+	<bean id="calendrierDgacCompositeFileListFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="calendrierDgacPatternFileListFilter" />
+				<ref bean="calendrierLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
 	
-	<int:channel id="calendrierCSVFileDGACChannel" />
-	<int:channel id="calendrierCSVFileMSOChannel" />
-	
-	<bean id="regexFilenameCalendrierDGACFilterBean" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
+	<bean id="calendrierDgacRegexFilenameFilter" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
 		<property name="filter">
 			<bean class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
 				<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*DGAC.*\.csv$')}" />
@@ -26,16 +48,22 @@
 		<property name="preventDuplicates" value="true" />
 	</bean>
 	
+	<int:channel id="calendrierCSVFileDGACChannel" />
+	<int:channel id="calendrierCSVFileMSOChannel" />
+	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
-		remote-directory="/sirh-paye-data/calendrier"
-		local-directory="${sftp.directory.local.path}/calendrier"
-		local-filter="regexFilenameCalendrierDGACFilterBean"
-		auto-create-local-directory="false"
+		auto-startup="true"
 		delete-remote-files="false"
+		filter="calendrierDgacCompositeFileListFilter"
+		remote-directory="/sirh-paye-data/calendrier"
+		preserve-timestamp="true"
+		local-directory="${sftp.directory.local.path}/calendrier"
+		local-filter="calendrierDgacRegexFilenameFilter"
+		auto-create-local-directory="false"
 		channel="calendrierCSVFileDGACChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator
@@ -43,7 +71,22 @@
 		ref="calendrierGestionBean"
 		method="manageCSVFileFromDGAC" />
 
-	<bean id="regexFilenameCalendrierMSOFilterBean" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
+	<bean id="calendrierMsoPatternFileListFilter"
+		class="org.springframework.integration.sftp.filters.SftpRegexPatternFileListFilter">
+		<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*MSO.*\.csv$')}" />
+	</bean>
+
+	<bean id="calendrierMsoCompositeFileListFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="calendrierDgacPatternFileListFilter" />
+				<ref bean="calendrierLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="calendrierMsoRegexFilenameFilter" class="org.springframework.integration.file.config.FileListFilterFactoryBean">
 		<property name="filter">
 			<bean class="org.springframework.integration.file.filters.RegexPatternFileListFilter">
 				<constructor-arg value="#{T(java.util.regex.Pattern).compile('.*MSO.*\.csv$')}" />
@@ -54,14 +97,17 @@
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
-		remote-directory="/sirh-paye-data/calendrier"
-		local-directory="${sftp.directory.local.path}/calendrier"
-		local-filter="regexFilenameCalendrierMSOFilterBean"
-		auto-create-local-directory="false"
+		auto-startup="true"
 		delete-remote-files="false"
+		filter="calendrierMsoCompositeFileListFilter"
+		remote-directory="/sirh-paye-data/calendrier"
+		preserve-timestamp="true"
+		local-directory="${sftp.directory.local.path}/calendrier"
+		local-filter="calendrierMsoRegexFilenameFilter"
+		auto-create-local-directory="false"
 		channel="calendrierCSVFileMSOChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator

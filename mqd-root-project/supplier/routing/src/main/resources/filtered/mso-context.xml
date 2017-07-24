@@ -14,18 +14,46 @@
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
 	
+	<bean id="msoPatternFileListFilter"
+		class="org.springframework.integration.sftp.filters.SftpSimplePatternFileListFilter">
+		<constructor-arg value="*.csv" />
+	</bean>
+
+	<!-- http://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound
+	this filter prevents the files being re-downloaded, unless the timestamp on the file changes.
+	this filter stores the accepted file names in an instance of the MetadataStore strategy. -->
+	<bean id="msoLastModifiedAccrossServerRestartFileListRemoteFilter" 
+		class="org.springframework.integration.sftp.filters.SftpPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="sftpMongoDbMetadataStore" />
+		<constructor-arg name="prefix" value="mso_remote_import_" />
+		<property name="flushOnUpdate" value="true" />
+	</bean>
+
+	<bean id="msoCompositeFileListRemoteFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="msoPatternFileListFilter" />
+				<ref bean="msoLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
+	
 	<int:channel id="msoCSVFileChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
-		remote-directory="/sirh-paye-data/mso"
-		local-directory="${sftp.directory.local.path}/mso"
-		filename-pattern="*.csv"
-		auto-create-local-directory="false"
+		auto-startup="true"
 		delete-remote-files="false"
+		filter="msoCompositeFileListRemoteFilter"
+		remote-directory="/sirh-paye-data/mso"
+		preserve-timestamp="true"
+		local-directory="${sftp.directory.local.path}/mso"
+		auto-create-local-directory="false"
+		local-filter="acceptAllFileListFilter"
 		channel="msoCSVFileChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator

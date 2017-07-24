@@ -15,7 +15,7 @@
 			<h:panelGroup id="anomaliesGroup">
 				<p:dataTable var="anomalie" value="#{anomalieBean.anomalies}"
 					id="anomaliesTable" widgetVar="anomalies_table" reflow="true"
-					emptyMessage="Aucune anomalie n'a été trouvée." paginator="true"
+					emptyMessage="#{label['dossiers.overview.anomalies_table.empty_message']}" paginator="true"
 					rows="10">
 					<p:column
 						headerText="#{label['dossiers.overview.anomalies_table.header.perimetre']}">

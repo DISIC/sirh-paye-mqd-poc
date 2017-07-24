@@ -18,5 +18,14 @@
 		<property name="password" value="${sftp.user.password}" />
 		<property name="allowUnknownKeys" value="true" />
 	</bean>
+	
+	<bean id="sftpMongoDbMetadataStore"
+		class="org.springframework.integration.mongodb.metadata.MongoDbMetadataStore" >
+		<constructor-arg name="template" ref="mongoTemplate" />
+		<constructor-arg name="collectionName" value="sftp_files_metadata" />
+	</bean>
+	
+	<bean id="acceptAllFileListFilter" 
+		class="org.springframework.integration.file.filters.AcceptAllFileListFilter"/>
 
 </beans>

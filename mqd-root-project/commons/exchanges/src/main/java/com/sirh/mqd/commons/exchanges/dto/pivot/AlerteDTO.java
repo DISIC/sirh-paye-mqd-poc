@@ -12,15 +12,17 @@ import com.sirh.mqd.commons.exchanges.enums.AnomalieTypeEnum;
  */
 public class AlerteDTO {
 
+	private String id;
+
 	private String payLot;
 
 	private String matricule;
 
 	private AnomalieTypeEnum type;
 
-	private Date dateEcheance;
+	private String valeur;
 
-	private AlerteEtatEnum etatCorrection;
+	private AlerteEtatEnum etat;
 
 	private String responsableLogin;
 
@@ -30,7 +32,9 @@ public class AlerteDTO {
 
 	private Date dateModification;
 
-	private String donnee;
+	private Date dateEcheance;
+
+	private Date dateCloture;
 
 	public AlerteDTO() {
 		super();
@@ -52,28 +56,12 @@ public class AlerteDTO {
 		this.matricule = matricule;
 	}
 
-	public AnomalieTypeEnum getType() {
-		return type;
-	}
-
-	public void setType(final AnomalieTypeEnum type) {
-		this.type = type;
-	}
-
 	public Date getDateEcheance() {
 		return dateEcheance;
 	}
 
 	public void setDateEcheance(final Date dateEcheance) {
 		this.dateEcheance = dateEcheance;
-	}
-
-	public AlerteEtatEnum getEtatCorrection() {
-		return etatCorrection;
-	}
-
-	public void setEtatCorrection(final AlerteEtatEnum etatCorrection) {
-		this.etatCorrection = etatCorrection;
 	}
 
 	public String getResponsableLogin() {
@@ -108,11 +96,43 @@ public class AlerteDTO {
 		this.dateModification = dateModification;
 	}
 
-	public String getDonnee() {
-		return donnee;
+	public String getId() {
+		return id;
 	}
 
-	public void setDonnee(final String donnee) {
-		this.donnee = donnee;
+	public void setId(final String id) {
+		this.id = id;
+	}
+
+	public String getValeur() {
+		return valeur;
+	}
+
+	public void setValeur(final String valeur) {
+		this.valeur = valeur;
+	}
+
+	public AlerteEtatEnum getEtat() {
+		return etat;
+	}
+
+	public void setEtat(final AlerteEtatEnum etat) {
+		this.etat = etat;
+	}
+
+	public Date getDateCloture() {
+		return dateCloture;
+	}
+
+	public void setDateCloture(final Date dateCloture) {
+		this.dateCloture = dateCloture;
+	}
+
+	public AnomalieTypeEnum getType() {
+		return type;
+	}
+
+	public void setType(final AnomalieTypeEnum type) {
+		this.type = type;
 	}
 }

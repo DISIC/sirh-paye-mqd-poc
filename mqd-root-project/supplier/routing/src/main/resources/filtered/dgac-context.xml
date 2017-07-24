@@ -13,19 +13,47 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
 		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.3.xsd"
 	default-autowire="byName">
+
+	<bean id="dgacPatternFileListFilter"
+		class="org.springframework.integration.sftp.filters.SftpSimplePatternFileListFilter">
+		<constructor-arg value="*.txt" />
+	</bean>
+	
+	<!-- http://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound
+	this filter prevents the files being re-downloaded, unless the timestamp on the file changes.
+	this filter stores the accepted file names in an instance of the MetadataStore strategy. -->
+	<bean id="dgacLastModifiedAccrossServerRestartFileListRemoteFilter" 
+		class="org.springframework.integration.sftp.filters.SftpPersistentAcceptOnceFileListFilter">
+		<constructor-arg name="store" ref="sftpMongoDbMetadataStore" />
+		<constructor-arg name="prefix" value="dgac_remote_import_" />
+		<property name="flushOnUpdate" value="true" />
+	</bean>
+
+	<bean id="dgacCompositeFileListRemoteFilter"
+		class="org.springframework.integration.file.filters.CompositeFileListFilter">
+		<constructor-arg>
+			<set>
+				<ref bean="dgacPatternFileListFilter" />
+				<ref bean="dgacLastModifiedAccrossServerRestartFileListRemoteFilter" />
+			</set>
+		</constructor-arg>
+	</bean>
 	
 	<int:channel id="dgacTXTFileChannel" />
 	
 	<int-sftp:inbound-channel-adapter
 		session-factory="sftpSessionFactory"
-		remote-directory="/sirh-paye-data/dgac"
-		local-directory="${sftp.directory.local.path}/dgac"
-		filename-pattern="*.txt"
-		auto-create-local-directory="false"
+		auto-startup="true"
 		delete-remote-files="false"
+		filter="dgacCompositeFileListRemoteFilter"
+		remote-directory="/sirh-paye-data/dgac"
+		preserve-timestamp="true"
+		local-directory="${sftp.directory.local.path}/dgac"
+		auto-create-local-directory="false"
+		local-filter="acceptAllFileListFilter"
 		channel="dgacTXTFileChannel" >
 		<int:poller 
-			fixed-rate="10000"/>
+			fixed-rate="10000" max-messages-per-poll="1" />
 	</int-sftp:inbound-channel-adapter>
 	
 	<int:service-activator

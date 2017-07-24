@@ -30,9 +30,9 @@ public class UserBean {
 	 *
 	 * @param message
 	 *            le message contenant le fichier
-	 *
 	 */
 	public void manageCSVFile(final Message<File> message) throws MessagingException {
 		this.userService.storeCSVData(message.getHeaders().getTimestamp(), message.getPayload());
+		message.getPayload().delete();
 	}
 }

@@ -27,17 +27,24 @@ public final class AlerteModelFactory {
 
 	public static AlerteModel createAlerteModel(final AlerteDTO alerteDTO) {
 		final AlerteModel alerteModel = new AlerteModel();
+		alerteModel.setId(alerteDTO.getId());
 		alerteModel.setDateEcheance(DateUtils.clonerDate(alerteDTO.getDateEcheance()));
-		alerteModel.setDonnee(alerteDTO.getDonnee());
-
-		if (alerteDTO.getEtatCorrection() != null) {
-			alerteModel.setEtatCorrection(alerteDTO.getEtatCorrection().getLibelle());
-		} else {
-			alerteModel.setEtatCorrection(AlerteEtatEnum.A_TRAITER.getLibelle());
-		}
-
+		alerteModel.setDateModification(DateUtils.clonerDate(alerteDTO.getDateModification()));
+		alerteModel.setDateCloture(DateUtils.clonerDate(alerteDTO.getDateCloture()));
+		alerteModel.setValeur(alerteDTO.getValeur());
 		alerteModel.setPerimetre(alerteDTO.getType().getPerimetre().getLibelle());
 		alerteModel.setType(alerteDTO.getType().getLibelle());
+
+		if (alerteDTO.getEtat() != null) {
+			alerteModel.setEtat(alerteDTO.getEtat());
+		} else {
+			alerteModel.setEtat(AlerteEtatEnum.A_TRAITER);
+		}
+		if (alerteModel.getEtat() == null || AlerteEtatEnum.A_TRAITER.equals(alerteDTO.getEtat())) {
+			alerteModel.setListeEtats(AlerteEtatEnum.getEtatsAlerte());
+		} else {
+			alerteModel.setListeEtats(AlerteEtatEnum.getEtatsAlerteDejaTraites());
+		}
 
 		if (alerteDTO.getResponsableLogin() != null) {
 			alerteModel.setResponsableLogin(alerteDTO.getResponsableLogin());
@@ -54,7 +61,6 @@ public final class AlerteModelFactory {
 		} else {
 			alerteModel.setResponsablePrenom(StringUtils.EMPTY);
 		}
-		alerteModel.setDateModification(alerteDTO.getDateModification());
 
 		return alerteModel;
 	}
@@ -67,10 +73,12 @@ public final class AlerteModelFactory {
 		alerteDTO.setMatricule(dossierMatricule);
 
 		alerteDTO.setDateEcheance(DateUtils.clonerDate(alerteModel.getDateEcheance()));
+		alerteDTO.setDateCloture(DateUtils.clonerDate(alerteModel.getDateCloture()));
 
-		alerteDTO.setDonnee(alerteModel.getDonnee());
+		alerteDTO.setId(alerteModel.getId());
+		alerteDTO.setValeur(alerteModel.getValeur());
 
-		alerteDTO.setEtatCorrection(AlerteEtatEnum.enumOf(alerteModel.getEtatCorrection()));
+		alerteDTO.setEtat(alerteModel.getEtat());
 		alerteDTO.setType(AnomalieTypeEnum.enumOf(alerteModel.getType()));
 
 		alerteDTO.setResponsableLogin(userLogin);

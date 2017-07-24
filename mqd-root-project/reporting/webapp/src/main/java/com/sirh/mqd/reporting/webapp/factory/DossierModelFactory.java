@@ -34,7 +34,7 @@ public final class DossierModelFactory {
 		dossierModel.setRenoiRHPrenom(dossierDTO.getRenoiRHPrenom());
 		dossierModel.setRenoiRHDateNaissance(DateUtils.clonerDate(dossierDTO.getRenoiRHDateNaissance()));
 		dossierModel.setRenoiRHDateNaissanceAsString(DateUtils.formateDateMMAA(dossierDTO.getRenoiRHDateNaissance()));
-		dossierModel.setNbAlertes(Math.toIntExact(Math.round(Math.random() * 10)));
+		dossierModel.setNbAlertes(dossierDTO.getNbAlertes());
 		dossierModel.setNbAnomalies(dossierDTO.getNbAnomalies());
 		return dossierModel;
 	}

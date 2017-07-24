@@ -2,7 +2,9 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -12,7 +14,9 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.sirh.mqd.commons.exchanges.dto.pivot.ConfigDTO;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
+import com.sirh.mqd.reporting.core.api.IConfigService;
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -41,8 +45,8 @@ public class DossierBean extends GenericBean {
 	private IDossierService dossierService;
 
 	@Inject
-	@Qualifier(ViewConstantes.ANOMALIE_BEAN)
-	private AnomalieBean anomalieBean;
+	@Qualifier(CoreConstantes.CONFIG_SERVICE)
+	private IConfigService configService;
 
 	@Inject
 	@Qualifier(ViewConstantes.HISTORIQUE_BEAN)
@@ -66,9 +70,62 @@ public class DossierBean extends GenericBean {
 	 */
 	private List<DossierModel> dossiers;
 
+	/**
+	 * Seuil rouge d'Alertes. Si le nombre d'alertes est supérieur ou égale à ce
+	 * seuil alors cellule aura un code couleur rouge
+	 */
+	private int seuilAlerteRouge;
+
+	/**
+	 * Seuil rouge d'Anomalies. Si le nombre d'anomalies est supérieur ou égale
+	 * à ce seuil alors la cellule aura un code couleur rouge
+	 */
+	private int seuilAnomalieRouge;
+
+	/**
+	 * Seuil orange d'Alertes. Si le nombre d'alertes est supérieur ou égale à
+	 * ce seuil mais reste inférieur au seuil rouge alors la cellule aura un
+	 * code couleur orange
+	 */
+	private int seuilAlerteOrange;
+
+	/**
+	 * Seuil orange d'Anomalies. Si le nombre d'anomalies est supérieur ou égale
+	 * à ce seuil mais reste inférieur au seuil rouge alors la cellule aura un
+	 * code couleur orange
+	 */
+	private int seuilAnomalieOrange;
+
+	/**
+	 * Seuil jaune d'Alertes. Si le nombre d'alertes est supérieur ou égale à ce
+	 * seuil mais reste inférieur au seuil orange alors la cellule aura un code
+	 * couleur jaune
+	 */
+	private int seuilAlerteJaune;
+
+	/**
+	 * Seuil jaune d'Anomalies. Si le nombre d'anomalies est supérieur ou égale
+	 * à ce seuil mais reste inférieur au seuil orange alors la cellule aura un
+	 * code couleur jaune
+	 */
+	private int seuilAnomalieJaune;
+
+	/**
+	 * Seuil vert d'Anomalies. Si le nombre d'anomalies est inférieur ou égale à
+	 * ce seuil alors la cellule aura un code couleur vert
+	 */
+	private int seuilAnomalieVert;
+
+	/**
+	 * Seuil jaune d'Alertes. Si le nombre d'alertes est inférieur ou égale à ce
+	 * seuil alors la cellule aura un code couleur vert
+	 */
+	private int seuilAlerteVert;
+
 	public void setup() {
 		// Initialization
 		this.dossiers = new ArrayList<DossierModel>();
+		initialisationConfig();
 
 		// Supplier
 		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(getCurrentUserPayLot(),
@@ -110,6 +167,46 @@ public class DossierBean extends GenericBean {
 		}
 	}
 
+	public void affecterSeuilsAlertes() {
+		final String idSeuilsAlertes = "seuils_alerte";
+		final Optional<ConfigDTO> seuilsAlertes = this.configService.rechercherConfig(idSeuilsAlertes);
+		final ConfigDTO seuilsAlertesDTO;
+		if (seuilsAlertes.isPresent()) {
+			seuilsAlertesDTO = seuilsAlertes.get();
+			final HashMap<String, Double> hashSeuilsAlertes = (HashMap<String, Double>) seuilsAlertesDTO.getValeur();
+			setSeuilAlerteRouge(hashSeuilsAlertes.get("rouge").intValue());
+			setSeuilAlerteOrange(hashSeuilsAlertes.get("orange").intValue());
+			setSeuilAlerteJaune(hashSeuilsAlertes.get("jaune").intValue());
+			setSeuilAlerteVert(hashSeuilsAlertes.get("vert").intValue());
+		} else {
+			seuilsAlertesDTO = null;
+		}
+
+	}
+
+	public void affecterSeuilsAnomalies() {
+		final String idSeuilsAnomalies = "seuils_anomalie";
+		final Optional<ConfigDTO> seuilsAnomalies = this.configService.rechercherConfig(idSeuilsAnomalies);
+		final ConfigDTO seuilsAnomaliesDTO;
+		if (seuilsAnomalies.isPresent()) {
+			seuilsAnomaliesDTO = seuilsAnomalies.get();
+			final HashMap<String, Double> hashSeuilsAnomalies = (HashMap<String, Double>) seuilsAnomaliesDTO
+					.getValeur();
+			setSeuilAnomalieRouge(hashSeuilsAnomalies.get("rouge").intValue());
+			setSeuilAnomalieOrange(hashSeuilsAnomalies.get("orange").intValue());
+			setSeuilAnomalieJaune(hashSeuilsAnomalies.get("jaune").intValue());
+			setSeuilAnomalieVert(hashSeuilsAnomalies.get("vert").intValue());
+		} else {
+			seuilsAnomaliesDTO = null;
+		}
+
+	}
+
+	public void initialisationConfig() {
+		affecterSeuilsAlertes();
+		affecterSeuilsAnomalies();
+	}
+
 	public boolean isTabsDisplayable() {
 		return this.selectedDossier != null;
 	}
@@ -124,14 +221,6 @@ public class DossierBean extends GenericBean {
 
 	public void setDossierService(final IDossierService dossierService) {
 		this.dossierService = dossierService;
-	}
-
-	public AnomalieBean getAnomalieBean() {
-		return anomalieBean;
-	}
-
-	public void setAnomalieBean(final AnomalieBean anomalieBean) {
-		this.anomalieBean = anomalieBean;
 	}
 
 	public HistoriqueBean getHistoriqueBean() {
@@ -172,5 +261,69 @@ public class DossierBean extends GenericBean {
 
 	public void setDossiers(final List<DossierModel> dossiers) {
 		this.dossiers = dossiers;
+	}
+
+	public int getSeuilAlerteRouge() {
+		return seuilAlerteRouge;
+	}
+
+	public void setSeuilAlerteRouge(final int seuilAlerteRouge) {
+		this.seuilAlerteRouge = seuilAlerteRouge;
+	}
+
+	public int getSeuilAnomalieRouge() {
+		return seuilAnomalieRouge;
+	}
+
+	public void setSeuilAnomalieRouge(final int seuilAnomalieRouge) {
+		this.seuilAnomalieRouge = seuilAnomalieRouge;
+	}
+
+	public int getSeuilAlerteOrange() {
+		return seuilAlerteOrange;
+	}
+
+	public void setSeuilAlerteOrange(final int seuilAlerteOrange) {
+		this.seuilAlerteOrange = seuilAlerteOrange;
+	}
+
+	public int getSeuilAnomalieOrange() {
+		return seuilAnomalieOrange;
+	}
+
+	public void setSeuilAnomalieOrange(final int seuilAnomalieOrange) {
+		this.seuilAnomalieOrange = seuilAnomalieOrange;
+	}
+
+	public int getSeuilAlerteJaune() {
+		return seuilAlerteJaune;
+	}
+
+	public void setSeuilAlerteJaune(final int seuilAlerteJaune) {
+		this.seuilAlerteJaune = seuilAlerteJaune;
+	}
+
+	public int getSeuilAnomalieJaune() {
+		return seuilAnomalieJaune;
+	}
+
+	public void setSeuilAnomalieJaune(final int seuilAnomalieJaune) {
+		this.seuilAnomalieJaune = seuilAnomalieJaune;
+	}
+
+	public int getSeuilAnomalieVert() {
+		return seuilAnomalieVert;
+	}
+
+	public void setSeuilAnomalieVert(final int seuilAnomalieVert) {
+		this.seuilAnomalieVert = seuilAnomalieVert;
+	}
+
+	public int getSeuilAlerteVert() {
+		return seuilAlerteVert;
+	}
+
+	public void setSeuilAlerteVert(final int seuilAlerteVert) {
+		this.seuilAlerteVert = seuilAlerteVert;
 	}
 }
