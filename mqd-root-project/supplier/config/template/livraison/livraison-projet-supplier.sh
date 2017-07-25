@@ -145,6 +145,14 @@ scripts_tomcat_centos() {
 }
 
 ######################################################################################
+# Chargement des scripts MongoDB
+######################################################################################
+scripts_mongodb() {
+	echo -e "Chargement des scripts MongoDB."
+	mongorestore -vvvvv --db ${filter.datasource.mongodb.database.name} --collection config --gzip --archive=mongodb-config-collection.gz
+}
+
+######################################################################################
 # Démarrage du service Tomcat
 ######################################################################################
 start_tomcat_centos() {
@@ -162,4 +170,5 @@ directories_tomcat
 scripts_tomcat_delivery
 scripts_tomcat_rights
 scripts_tomcat_centos
+scripts_mongodb
 start_tomcat_centos
