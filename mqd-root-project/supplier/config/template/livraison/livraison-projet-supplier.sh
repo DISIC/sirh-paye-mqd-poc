@@ -146,10 +146,14 @@ scripts_tomcat_centos() {
 
 ######################################################################################
 # Chargement des scripts MongoDB
+# Pré-requis :
+# 1 - Avoir la même version de MongoDB (e.g. 3.4.6) en local 
+# 2 - Créer un DUMP de la collection config en local :
+# mongodump -vvvvv --db ${filter.datasource.mongodb.database.name} --collection config --gzip --archive=mongodb-config-collection.agz
 ######################################################################################
 scripts_mongodb() {
 	echo -e "Chargement des scripts MongoDB."
-	mongorestore -vvvvv --db ${filter.datasource.mongodb.database.name} --collection config --gzip --archive=mongodb-config-collection.gz
+	mongorestore -vvvvv --nsInclude '${filter.datasource.mongodb.database.name}.config' --gzip --archive=mongodb-config-collection.agz
 }
 
 ######################################################################################
