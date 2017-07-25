@@ -147,6 +147,29 @@
 								<resource>
 									<directory>${basedir}/config/template/livraison</directory>
 									<filtering>true</filtering>
+									<excludes>
+										<exclude>**/*.agz</exclude>
+									</excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>mongodb-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<outputDirectory>${main.basedir}/target</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/config/template/livraison</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>**/*.agz</include>
+									</includes>
 								</resource>
 							</resources>
 						</configuration>
