@@ -3,8 +3,8 @@ package com.sirh.mqd.reporting.webapp.utils;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,7 @@ import com.sirh.mqd.reporting.webapp.model.UserModel;
  *
  * @author alexandre
  */
-@Named(ContextConstantes.LOGIN_UTILS)
+@ManagedBean(name = ContextConstantes.LOGIN_UTILS)
 @SessionScoped
 public class LoginUtils implements Serializable {
 

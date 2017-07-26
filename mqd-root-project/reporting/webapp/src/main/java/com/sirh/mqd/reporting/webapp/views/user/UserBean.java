@@ -1,13 +1,13 @@
 package com.sirh.mqd.reporting.webapp.views.user;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.validator.ValidatorException;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,7 +21,7 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author alexandre
  */
-@Named(ViewConstantes.USER_BEAN)
+@ManagedBean(name = ViewConstantes.USER_BEAN)
 @SessionScoped
 public class UserBean extends GenericBean {
 
@@ -32,8 +32,7 @@ public class UserBean extends GenericBean {
 
 	private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-	@Inject
-	@Qualifier(CoreConstantes.USER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.USER_SERVICE + "}")
 	private IUserService userService;
 
 	/**
@@ -46,6 +45,7 @@ public class UserBean extends GenericBean {
 	 */
 	private String password;
 
+	@PostConstruct
 	public void setup() {
 		// Initialization
 		this.username = StringUtils.EMPTY;
@@ -77,5 +77,13 @@ public class UserBean extends GenericBean {
 
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	public IUserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(final IUserService userService) {
+		this.userService = userService;
 	}
 }

@@ -2,9 +2,7 @@ package com.sirh.mqd.reporting.webapp.views;
 
 import java.io.Serializable;
 
-import javax.inject.Inject;
-
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.faces.bean.ManagedProperty;
 
 import com.sirh.mqd.commons.exchanges.enums.InteractionSirhEnum;
 import com.sirh.mqd.commons.traces.dto.LogActionDTO;
@@ -39,15 +37,13 @@ public class GenericBean implements Serializable {
 	/**
 	 * Service de gestion de l'affichage des messages dans l'IHM
 	 */
-	@Inject
-	@Qualifier(ContextConstantes.JSF_UTILS)
+	@ManagedProperty("#{" + ContextConstantes.JSF_UTILS + "}")
 	protected JsfUtils jsfUtils;
 
 	/**
 	 * Service de gestion de l'affichage des messages dans l'IHM
 	 */
-	@Inject
-	@Qualifier(ContextConstantes.LOGIN_UTILS)
+	@ManagedProperty("#{" + ContextConstantes.LOGIN_UTILS + "}")
 	private LoginUtils loginUtils;
 
 	/**
@@ -55,22 +51,6 @@ public class GenericBean implements Serializable {
 	 */
 	public GenericBean() {
 		super();
-	}
-
-	public JsfUtils getJsfUtils() {
-		return jsfUtils;
-	}
-
-	public void setJsfUtils(final JsfUtils jsfUtils) {
-		this.jsfUtils = jsfUtils;
-	}
-
-	public LoginUtils getLoginUtils() {
-		return loginUtils;
-	}
-
-	public void setLoginUtils(final LoginUtils loginUtils) {
-		this.loginUtils = loginUtils;
 	}
 
 	public String getCurrentUsername() {
@@ -111,7 +91,7 @@ public class GenericBean implements Serializable {
 
 	public DossierModel getCurrentDossier() {
 		DossierModel dossier = null;
-		final DossierBean dossierBean = this.jsfUtils.getBean(ViewConstantes.DOSSIER_BEAN, DossierBean.class);
+		final DossierBean dossierBean = this.jsfUtils.getSessionBean(ViewConstantes.DOSSIER_BEAN, DossierBean.class);
 		if (dossierBean != null) {
 			dossier = dossierBean.getSelectedDossier();
 		}
@@ -130,5 +110,21 @@ public class GenericBean implements Serializable {
 		final String authenticationDate = this.loginUtils.getDateConnexion();
 		return LogActionFactory.createLogAction(login, role, authenticationDate, actionType, actionResult, pageName,
 				businessID, businessObjetInitial, businessObjetModified);
+	}
+
+	public JsfUtils getJsfUtils() {
+		return jsfUtils;
+	}
+
+	public void setJsfUtils(final JsfUtils jsfUtils) {
+		this.jsfUtils = jsfUtils;
+	}
+
+	public LoginUtils getLoginUtils() {
+		return loginUtils;
+	}
+
+	public void setLoginUtils(final LoginUtils loginUtils) {
+		this.loginUtils = loginUtils;
 	}
 }

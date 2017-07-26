@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.inject.Inject;
 
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +57,7 @@ public class JsfUtils implements Serializable {
 	/**
 	 * Logger
 	 */
-	@Inject
+	@Autowired
 	@Qualifier(ConstantesTraces.FACADE_LOGS)
 	private IFacadeLogs logger;
 
@@ -237,20 +236,38 @@ public class JsfUtils implements Serializable {
 	 *            GenericBean
 	 * @return le bean attendu ou null s'il n'existe pas dans le contexte JSF
 	 */
-	public <T extends GenericBean> T getBean(final String beanName, final Class<T> className) {
+	public <T extends GenericBean> T getSessionBean(final String beanName, final Class<T> className) {
 		final FacesContext facesContext = getFacesCurrentInstance();
 		if (facesContext != null) {
-			// final Object bean =
-			// facesContext.getExternalContext().getSessionMap().get(beanName);
-			// if (className.isInstance(bean)) {
-			// return className.cast(bean);
-			// }
-			// final Object bean = this.sessionMap.get(beanName);
-			// if (className.isInstance(bean)) {
-			// return className.cast(bean);
-			// }
-			return facesContext.getApplication().evaluateExpressionGet(facesContext, "#{" + beanName + "}", className);
+			final Object bean = facesContext.getExternalContext().getSessionMap().get(beanName);
+			if (className.isInstance(bean)) {
+				return className.cast(bean);
+			}
 		}
 		return null;
+	}
+
+	public IMessageSourceBundle getMessagesBundle() {
+		return messagesBundle;
+	}
+
+	public void setMessagesBundle(final IMessageSourceBundle messagesBundle) {
+		this.messagesBundle = messagesBundle;
+	}
+
+	public IMessageSourceBundle getBundle() {
+		return bundle;
+	}
+
+	public void setBundle(final IMessageSourceBundle bundle) {
+		this.bundle = bundle;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
 	}
 }

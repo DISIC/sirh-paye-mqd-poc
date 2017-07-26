@@ -34,4 +34,12 @@ public class AuthenticationSuccessListener implements ApplicationListener<Authen
 			}
 		}
 	}
+
+	public IUserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(final IUserService userService) {
+		this.userService = userService;
+	}
 }

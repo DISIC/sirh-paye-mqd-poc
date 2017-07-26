@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.slf4j.event.Level;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.StatutDossierDTO;
 import com.sirh.mqd.commons.exchanges.enums.DossierAffectationEnum;
@@ -33,8 +33,8 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author khalil
  */
-@Named(ViewConstantes.STATUT_DOSSIER_BEAN)
-@SessionScoped
+@ManagedBean(name = ViewConstantes.STATUT_DOSSIER_BEAN)
+@RequestScoped
 public class StatutDossierBean extends GenericBean {
 
 	/**
@@ -42,12 +42,10 @@ public class StatutDossierBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = -6757741757173168648L;
 
-	@Inject
-	@Qualifier(CoreConstantes.STATUT_DOSSIER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.STATUT_DOSSIER_SERVICE + "}")
 	private IStatutDossierService statutDossierService;
 
-	@Inject
-	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	@ManagedProperty("#{" + ConstantesTraces.FACADE_LOGS + "}")
 	private IFacadeLogs logger;
 
 	/**
@@ -75,6 +73,7 @@ public class StatutDossierBean extends GenericBean {
 	 */
 	private DossierAffectationEnum selectedAffectation;
 
+	@PostConstruct
 	public void setup() {
 		// Initialization
 		this.listeDisponibilites = new ArrayList<DossierDisponibiliteEnum>();
@@ -83,6 +82,7 @@ public class StatutDossierBean extends GenericBean {
 		this.listeAffectations.addAll(DossierAffectationEnum.getEnumAffichables());
 
 		// Supplier
+		alimenterStatutDossier(getCurrentDossier());
 	}
 
 	protected void alimenterStatutDossier(final DossierModel selectedDossier) {
@@ -161,5 +161,21 @@ public class StatutDossierBean extends GenericBean {
 
 	public void setSelectedAffectation(final DossierAffectationEnum selectedAffectation) {
 		this.selectedAffectation = selectedAffectation;
+	}
+
+	public IStatutDossierService getStatutDossierService() {
+		return statutDossierService;
+	}
+
+	public void setStatutDossierService(final IStatutDossierService statutDossierService) {
+		this.statutDossierService = statutDossierService;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
 	}
 }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
@@ -18,7 +19,6 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.calendrier.EventCalendrierDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
@@ -36,7 +36,7 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author khalil
  */
-@Named(ViewConstantes.CALENDRIER_GESTION_BEAN)
+@ManagedBean(name = ViewConstantes.CALENDRIER_GESTION_BEAN)
 @SessionScoped
 public class CalendrierGestionBean extends GenericBean {
 
@@ -45,12 +45,10 @@ public class CalendrierGestionBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = 6838265929563237041L;
 
-	@Inject
-	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	@ManagedProperty("#{" + ConstantesTraces.FACADE_LOGS + "}")
 	private IFacadeLogs logger;
 
-	@Inject
-	@Qualifier(CoreConstantes.CALENDRIER_GESTION_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.CALENDRIER_GESTION_SERVICE + "}")
 	private ICalendrierGestionService calendrierGestionService;
 
 	/**
@@ -143,6 +141,7 @@ public class CalendrierGestionBean extends GenericBean {
 	 * compris)</li>
 	 * </ul>
 	 */
+	@PostConstruct
 	public void setup() {
 		// Initialization
 
@@ -257,7 +256,7 @@ public class CalendrierGestionBean extends GenericBean {
 		return this.event;
 	}
 
-	public void setEvent(final DefaultScheduleEvent event) {
+	public void setEvent(final ScheduleEvent event) {
 		this.event = event;
 	}
 
@@ -371,5 +370,21 @@ public class CalendrierGestionBean extends GenericBean {
 
 	public void setInformationsDisplayable(final boolean informationsDisplayable) {
 		this.informationsDisplayable = informationsDisplayable;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
+	}
+
+	public ICalendrierGestionService getCalendrierGestionService() {
+		return calendrierGestionService;
+	}
+
+	public void setCalendrierGestionService(final ICalendrierGestionService calendrierGestionService) {
+		this.calendrierGestionService = calendrierGestionService;
 	}
 }

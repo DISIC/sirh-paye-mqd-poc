@@ -5,18 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.primefaces.event.SelectEvent;
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.faces.event.ComponentSystemEvent;
 
 import com.sirh.mqd.commons.exchanges.constante.AlerteCouleurSeuilsConstantes;
 import com.sirh.mqd.commons.exchanges.constante.AnomalieCouleurSeuilsConstantes;
 import com.sirh.mqd.commons.exchanges.dto.pivot.DossierDTO;
-import com.sirh.mqd.reporting.core.api.IConfigService;
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
@@ -31,7 +28,7 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author alexandre
  */
-@Named(ViewConstantes.DOSSIER_BEAN)
+@ManagedBean(name = ViewConstantes.DOSSIER_BEAN)
 @SessionScoped
 public class DossierBean extends GenericBean {
 
@@ -40,25 +37,8 @@ public class DossierBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = 555762255490874333L;
 
-	@Inject
-	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.DOSSIER_SERVICE + "}")
 	private IDossierService dossierService;
-
-	@Inject
-	@Qualifier(CoreConstantes.CONFIG_SERVICE)
-	private IConfigService configService;
-
-	@Inject
-	@Qualifier(ViewConstantes.HISTORIQUE_BEAN)
-	private HistoriqueBean historiqueBean;
-
-	@Inject
-	@Qualifier(ViewConstantes.COMMENTAIRE_BEAN)
-	private CommentaireBean commentaireBean;
-
-	@Inject
-	@Qualifier(ViewConstantes.STATUT_DOSSIER_BEAN)
-	private StatutDossierBean statutDossierBean;
 
 	/**
 	 * Identifiant unique du dossier sélectionnée en amont.
@@ -122,48 +102,22 @@ public class DossierBean extends GenericBean {
 	 */
 	private int seuilAlerteVert;
 
-	public void setup() {
+	public void setup(final ComponentSystemEvent event) {
 		// Initialization
-		this.dossiers = new ArrayList<DossierModel>();
 		initialisationConfig();
 
 		// Supplier
-		final List<DossierDTO> dossiers = this.dossierService.listerDossiers(getCurrentUserPayLot(),
-				getCurrentUserCorpsCode(), getCurrentUserAffectationCode(), getCurrentUserGestionnaireCode());
-		for (final DossierDTO dossier : dossiers) {
-			this.dossiers.add(DossierModelFactory.createDossier(dossier));
-		}
-		Collections.sort(this.dossiers, new DossierModelAnomalieComparator());
-		Collections.sort(this.dossiers, new DossierModelAlerteComparator());
-
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext != null && !facesContext.isPostback()) {
+			this.dossiers = new ArrayList<DossierModel>();
+			final List<DossierDTO> dossiers = this.dossierService.listerDossiers(getCurrentUserPayLot(),
+					getCurrentUserCorpsCode(), getCurrentUserAffectationCode(), getCurrentUserGestionnaireCode());
+			for (final DossierDTO dossier : dossiers) {
+				this.dossiers.add(DossierModelFactory.createDossier(dossier));
+			}
+			Collections.sort(this.dossiers, new DossierModelAnomalieComparator());
+			Collections.sort(this.dossiers, new DossierModelAlerteComparator());
 			this.selectedDossier = null;
-		}
-	}
-
-	public void afficherInformationsDossier(final SelectEvent event) {
-		final AnomalieBean anomalieBean = this.jsfUtils.getBean(ViewConstantes.ANOMALIE_BEAN, AnomalieBean.class);
-		if (anomalieBean != null) {
-			anomalieBean.alimenterAnomalies(this.selectedDossier);
-		}
-		final AlerteBean alerteBean = this.jsfUtils.getBean(ViewConstantes.ALERTE_BEAN, AlerteBean.class);
-		if (alerteBean != null) {
-			alerteBean.alimenterAlertes(this.selectedDossier);
-		}
-		final CommentaireBean commentaireBean = this.jsfUtils.getBean(ViewConstantes.COMMENTAIRE_BEAN,
-				CommentaireBean.class);
-		if (commentaireBean != null) {
-			commentaireBean.alimenterCommentaires(this.selectedDossier);
-		}
-		final StatutDossierBean statutDossierBean = this.jsfUtils.getBean(ViewConstantes.STATUT_DOSSIER_BEAN,
-				StatutDossierBean.class);
-		if (statutDossierBean != null) {
-			statutDossierBean.alimenterStatutDossier(this.selectedDossier);
-		}
-		final SyntheseBean syntheseBean = this.jsfUtils.getBean(ViewConstantes.SYNTHESE_BEAN, SyntheseBean.class);
-		if (syntheseBean != null) {
-			syntheseBean.alimenterSyntheseDossier(this.selectedDossier);
 		}
 	}
 
@@ -194,38 +148,6 @@ public class DossierBean extends GenericBean {
 
 	public String getSelectedDossierMatricule() {
 		return this.selectedDossier.getRenoiRHMatricule();
-	}
-
-	public IDossierService getDossierService() {
-		return dossierService;
-	}
-
-	public void setDossierService(final IDossierService dossierService) {
-		this.dossierService = dossierService;
-	}
-
-	public HistoriqueBean getHistoriqueBean() {
-		return historiqueBean;
-	}
-
-	public void setHistoriqueBean(final HistoriqueBean historiqueBean) {
-		this.historiqueBean = historiqueBean;
-	}
-
-	public CommentaireBean getCommentaireBean() {
-		return commentaireBean;
-	}
-
-	public void setCommentaireBean(final CommentaireBean commentaireBean) {
-		this.commentaireBean = commentaireBean;
-	}
-
-	public StatutDossierBean getStatutDossierBean() {
-		return statutDossierBean;
-	}
-
-	public void setStatutDossierBean(final StatutDossierBean statutDossierBean) {
-		this.statutDossierBean = statutDossierBean;
 	}
 
 	public DossierModel getSelectedDossier() {
@@ -306,5 +228,13 @@ public class DossierBean extends GenericBean {
 
 	public void setSeuilAlerteVert(final int seuilAlerteVert) {
 		this.seuilAlerteVert = seuilAlerteVert;
+	}
+
+	public IDossierService getDossierService() {
+		return dossierService;
+	}
+
+	public void setDossierService(final IDossierService dossierService) {
+		this.dossierService = dossierService;
 	}
 }

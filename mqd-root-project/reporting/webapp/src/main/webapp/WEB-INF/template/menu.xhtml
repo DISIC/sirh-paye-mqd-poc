@@ -8,10 +8,6 @@
 
 <ui:composition>
 
-	<f:metadata>
-		<f:event type="preRenderView" listener="#{menuBean.initMenu}" />
-	</f:metadata>
-
 	<h:form id="formMenu" >
 		<p:menubar model="#{menuBean.modelMenu}" />
 	</h:form>

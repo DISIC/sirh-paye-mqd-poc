@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.slf4j.event.Level;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.ComparaisonDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
@@ -36,8 +35,8 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author alexandre
  */
-@Named(ViewConstantes.ANOMALIE_BEAN)
-@SessionScoped
+@ManagedBean(name = ViewConstantes.ANOMALIE_BEAN)
+@RequestScoped
 public class AnomalieBean extends GenericBean {
 
 	/**
@@ -45,12 +44,10 @@ public class AnomalieBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = 5601792267047025418L;
 
-	@Inject
-	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.DOSSIER_SERVICE + "}")
 	private IDossierService dossierService;
 
-	@Inject
-	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	@ManagedProperty("#{" + ConstantesTraces.FACADE_LOGS + "}")
 	private IFacadeLogs logger;
 
 	/**
@@ -63,14 +60,13 @@ public class AnomalieBean extends GenericBean {
 	 */
 	private List<AnomalieModel> anomalies;
 
+	@PostConstruct
 	public void setup() {
 		// Initialization
+		this.anomalies = new ArrayList<AnomalieModel>();
 
 		// Supplier
-		final FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext != null && !facesContext.isPostback()) {
-			this.anomalies = new ArrayList<AnomalieModel>();
-		}
+		alimenterAnomalies(getCurrentDossier());
 	}
 
 	public void alimenterAnomalies(final DossierModel selectedDossier) {
@@ -116,14 +112,6 @@ public class AnomalieBean extends GenericBean {
 		}
 	}
 
-	public IDossierService getDossierService() {
-		return dossierService;
-	}
-
-	public void setDossierService(final IDossierService dossierService) {
-		this.dossierService = dossierService;
-	}
-
 	public List<AnomalieModel> getAnomalies() {
 		return anomalies;
 	}
@@ -138,5 +126,21 @@ public class AnomalieBean extends GenericBean {
 
 	public void setSelectedAnomalie(final AnomalieModel selectedAnomalie) {
 		this.selectedAnomalie = selectedAnomalie;
+	}
+
+	public IDossierService getDossierService() {
+		return dossierService;
+	}
+
+	public void setDossierService(final IDossierService dossierService) {
+		this.dossierService = dossierService;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
 	}
 }

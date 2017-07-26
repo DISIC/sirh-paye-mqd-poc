@@ -37,4 +37,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				messagesBundle.getMessage("security.error.functional.no.username.found", new Object[] { username }));
 	}
 
+	public IUserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(final IUserService userService) {
+		this.userService = userService;
+	}
+
+	public IMessageSourceBundle getMessagesBundle() {
+		return messagesBundle;
+	}
+
+	public void setMessagesBundle(final IMessageSourceBundle messagesBundle) {
+		this.messagesBundle = messagesBundle;
+	}
 }

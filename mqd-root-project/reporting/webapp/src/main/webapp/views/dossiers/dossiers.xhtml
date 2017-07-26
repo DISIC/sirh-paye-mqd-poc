@@ -16,7 +16,7 @@
 			emptyMessage="#{label['dossiers.overview.dossiers_table.empty_message']}"
 			selectionMode="single" selection="#{dossierBean.selectedDossier}"
 			rowKey="#{dossier.renoiRHMatricule}" paginator="true" rows="10">
-			<p:ajax event="rowSelect" listener="#{dossierBean.afficherInformationsDossier}" update=":dossierGroup" />
+			<p:ajax event="rowSelect" update=":dossierGroup" />
 			<p:column filterBy="#{dossier.renoiRHMatricule}" filterMatchMode="contains" sortBy="#{dossier.renoiRHMatricule}"
 				headerText="#{label['dossiers.overview.dossiers_table.header.renoirh_matricule']}">
 				<h:outputText value="#{dossier.renoiRHMatricule}" />

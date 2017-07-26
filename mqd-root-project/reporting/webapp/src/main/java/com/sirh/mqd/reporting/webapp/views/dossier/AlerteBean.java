@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.slf4j.event.Level;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.pivot.AlerteDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
@@ -36,8 +35,8 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author alexandre
  */
-@Named(ViewConstantes.ALERTE_BEAN)
-@SessionScoped
+@ManagedBean(name = ViewConstantes.ALERTE_BEAN)
+@RequestScoped
 public class AlerteBean extends GenericBean {
 
 	/**
@@ -45,12 +44,10 @@ public class AlerteBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = -4665791775385979013L;
 
-	@Inject
-	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.DOSSIER_SERVICE + "}")
 	private IDossierService dossierService;
 
-	@Inject
-	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	@ManagedProperty("#{" + ConstantesTraces.FACADE_LOGS + "}")
 	private IFacadeLogs logger;
 
 	/**
@@ -63,14 +60,13 @@ public class AlerteBean extends GenericBean {
 	 */
 	private List<AlerteModel> alertes;
 
+	@PostConstruct
 	public void setup() {
 		// Initialization
+		this.alertes = new ArrayList<AlerteModel>();
 
 		// Supplier
-		final FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext != null && !facesContext.isPostback()) {
-			this.alertes = new ArrayList<AlerteModel>();
-		}
+		alimenterAlertes(getCurrentDossier());
 	}
 
 	public void alimenterAlertes(final DossierModel selectedDossier) {
@@ -114,14 +110,6 @@ public class AlerteBean extends GenericBean {
 		}
 	}
 
-	public IDossierService getDossierService() {
-		return dossierService;
-	}
-
-	public void setDossierService(final IDossierService dossierService) {
-		this.dossierService = dossierService;
-	}
-
 	public List<AlerteModel> getAlertes() {
 		return alertes;
 	}
@@ -136,5 +124,21 @@ public class AlerteBean extends GenericBean {
 
 	public void setSelectedAlerte(final AlerteModel selectedAlerte) {
 		this.selectedAlerte = selectedAlerte;
+	}
+
+	public IDossierService getDossierService() {
+		return dossierService;
+	}
+
+	public void setDossierService(final IDossierService dossierService) {
+		this.dossierService = dossierService;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
 	}
 }

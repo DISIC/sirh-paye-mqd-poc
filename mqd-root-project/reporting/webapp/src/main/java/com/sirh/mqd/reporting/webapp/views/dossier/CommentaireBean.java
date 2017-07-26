@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.event.Level;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sirh.mqd.commons.exchanges.dto.commentaire.CommentaireDTO;
 import com.sirh.mqd.commons.traces.IFacadeLogs;
@@ -35,8 +34,8 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author khalil
  */
-@Named(ViewConstantes.COMMENTAIRE_BEAN)
-@SessionScoped
+@ManagedBean(name = ViewConstantes.COMMENTAIRE_BEAN)
+@RequestScoped
 public class CommentaireBean extends GenericBean {
 
 	/**
@@ -44,12 +43,10 @@ public class CommentaireBean extends GenericBean {
 	 */
 	private static final long serialVersionUID = 4048923272053274622L;
 
-	@Inject
-	@Qualifier(CoreConstantes.COMMENTAIRE_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.COMMENTAIRE_SERVICE + "}")
 	private ICommentaireService commentaireService;
 
-	@Inject
-	@Qualifier(ConstantesTraces.FACADE_LOGS)
+	@ManagedProperty("#{" + ConstantesTraces.FACADE_LOGS + "}")
 	private IFacadeLogs logger;
 
 	/**
@@ -67,14 +64,13 @@ public class CommentaireBean extends GenericBean {
 	 */
 	private List<CommentaireModel> commentaires;
 
+	@PostConstruct
 	public void setup() {
 		// Initialization
+		this.commentaires = new ArrayList<CommentaireModel>();
 
 		// Supplier
-		final FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext != null && !facesContext.isPostback()) {
-			this.commentaires = new ArrayList<CommentaireModel>();
-		}
+		alimenterCommentaires(getCurrentDossier());
 	}
 
 	public void alimenterCommentaires(final DossierModel selectedDossier) {
@@ -139,5 +135,21 @@ public class CommentaireBean extends GenericBean {
 
 	public void setCommentaire(final String commentaire) {
 		this.commentaire = commentaire;
+	}
+
+	public ICommentaireService getCommentaireService() {
+		return commentaireService;
+	}
+
+	public void setCommentaireService(final ICommentaireService commentaireService) {
+		this.commentaireService = commentaireService;
+	}
+
+	public IFacadeLogs getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final IFacadeLogs logger) {
+		this.logger = logger;
 	}
 }

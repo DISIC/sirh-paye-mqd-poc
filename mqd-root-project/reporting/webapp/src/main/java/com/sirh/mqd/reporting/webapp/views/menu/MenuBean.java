@@ -6,10 +6,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.xerces.parsers.DOMParser;
@@ -22,7 +23,6 @@ import org.primefaces.model.menu.MenuModel;
 import org.primefaces.model.menu.Submenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,14 +38,13 @@ import com.sirh.mqd.reporting.api.resources.IMessageSourceBundle;
 import com.sirh.mqd.reporting.webapp.constantes.ContextConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.MenuConstantes;
 import com.sirh.mqd.reporting.webapp.constantes.ViewConstantes;
-import com.sirh.mqd.reporting.webapp.resources.LabelSourceBundle;
 
 /**
  * Vue du Menu principal de l'application
  *
  * @author alexandre
  */
-@Named(ViewConstantes.MENU_BEAN)
+@ManagedBean(name = ViewConstantes.MENU_BEAN)
 @RequestScoped
 public class MenuBean implements Serializable {
 
@@ -65,21 +64,21 @@ public class MenuBean implements Serializable {
 	private static final String ROLES_SEPARATOR = ",";
 
 	/**
-	 * Liste des roles selon l'authentification
-	 */
-	private List<String> authorities;
-
-	/**
 	 * Service de gestion des messages
 	 */
-	@Inject
-	@Qualifier(ContextConstantes.MESSAGE)
+	@ManagedProperty("#{" + ContextConstantes.MESSAGE + "}")
 	private IMessageSourceBundle messagesBundle;
 
 	/**
 	 * Service de gestion des libellés
 	 */
+	@ManagedProperty("#{" + ContextConstantes.LABEL + "}")
 	private ILabelSourceBundle labelsBundle;
+
+	/**
+	 * Liste des roles selon l'authentification
+	 */
+	private List<String> authorities;
 
 	/**
 	 * Modèle du menu haut
@@ -101,12 +100,11 @@ public class MenuBean implements Serializable {
 	/**
 	 * Création du menu PrimeFaces pour le menu principal.
 	 */
+	@PostConstruct
 	public void initMenu() {
 		this.modelMenu = new DefaultMenuModel();
 		final FacesContext context = FacesContext.getCurrentInstance();
 		if (context != null) {
-			this.labelsBundle = context.getApplication().evaluateExpressionGet(context,
-					"#{" + ContextConstantes.LABEL + "}", LabelSourceBundle.class);
 			this.currentMenu = context.getExternalContext().getRequestParameterMap().get(MenuConstantes.ARIANE_ATTR_ID);
 		}
 
@@ -292,5 +290,13 @@ public class MenuBean implements Serializable {
 
 	public void setMessagesBundle(final IMessageSourceBundle messagesBundle) {
 		this.messagesBundle = messagesBundle;
+	}
+
+	public ILabelSourceBundle getLabelsBundle() {
+		return labelsBundle;
+	}
+
+	public void setLabelsBundle(final ILabelSourceBundle labelsBundle) {
+		this.labelsBundle = labelsBundle;
 	}
 }

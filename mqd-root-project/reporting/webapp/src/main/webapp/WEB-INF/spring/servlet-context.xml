@@ -36,7 +36,4 @@
 		<property name="suffix" value=".xhtml" />
 	</bean>
 
-	<!-- Traitements des ressources JSF 2 -->
-	<faces:resources />
-
 </beans>

@@ -3,12 +3,10 @@ package com.sirh.mqd.reporting.webapp.views.dossier;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import com.sirh.mqd.reporting.core.api.IDossierService;
 import com.sirh.mqd.reporting.core.constantes.CoreConstantes;
@@ -21,16 +19,16 @@ import com.sirh.mqd.reporting.webapp.views.GenericBean;
  *
  * @author khalil
  */
-@Named(ViewConstantes.HISTORIQUE_BEAN)
-@SessionScoped
+@ManagedBean(name = ViewConstantes.HISTORIQUE_BEAN)
+@RequestScoped
 public class HistoriqueBean extends GenericBean {
+
 	/**
 	 * Generated UID
 	 */
 	private static final long serialVersionUID = 5322434356464346648L;
 
-	@Inject
-	@Qualifier(CoreConstantes.DOSSIER_SERVICE)
+	@ManagedProperty("#{" + CoreConstantes.DOSSIER_SERVICE + "}")
 	private IDossierService dossierService;
 
 	/**
@@ -43,15 +41,13 @@ public class HistoriqueBean extends GenericBean {
 	 */
 	private List<HistoriqueModel> historiques;
 
-
+	@PostConstruct
 	public void setup() {
 		// Initialization
 		this.historiques = new ArrayList<HistoriqueModel>();
+
 		// Supplier
-		final FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext != null && !facesContext.isPostback()) {
-			this.historiques = new ArrayList<HistoriqueModel>();
-		}
+
 	}
 
 	public HistoriqueModel getSelectedHistorique() {
@@ -70,4 +66,11 @@ public class HistoriqueBean extends GenericBean {
 		this.historiques = historiques;
 	}
 
+	public IDossierService getDossierService() {
+		return dossierService;
+	}
+
+	public void setDossierService(final IDossierService dossierService) {
+		this.dossierService = dossierService;
+	}
 }
