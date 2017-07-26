@@ -16,6 +16,30 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 
+	<bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+	<bean id="sessionAuthenticationStrategy"
+		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<constructor-arg>
+			<list>
+				<bean id="authenticationSessionManagerStrategy"
+					class="com.sirh.mqd.reporting.webapp.security.SessionManagerStrategy">
+					<constructor-arg ref="sessionRegistry" />
+					<property name="exceptionIfMaximumExceeded" value="true" />
+					<property name="maximumSessions" value="1" />
+				</bean>
+				<bean
+					class="org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy">
+				</bean>
+				<bean
+					class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+					<constructor-arg ref="sessionRegistry" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+	
 	<security:http 
 		auto-config="true"
 		authentication-manager-ref="authenticationManager">
@@ -34,11 +58,8 @@
 			logout-url="/j_spring_security_logout"
 			invalidate-session="true" 
 			delete-cookies="JSESSIONID" />
-		<security:session-management>
-			<security:concurrency-control
-				max-sessions="1" 
-				error-if-maximum-exceeded="true" />
-		</security:session-management>
+		<security:session-management
+			session-authentication-strategy-ref="sessionAuthenticationStrategy" />
 
 		<security:anonymous enabled="true"
 			granted-authority="ROLE_ANONYMOUS" />

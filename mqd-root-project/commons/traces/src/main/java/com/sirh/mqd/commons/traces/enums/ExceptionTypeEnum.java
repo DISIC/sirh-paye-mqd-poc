@@ -7,6 +7,8 @@ package com.sirh.mqd.commons.traces.enums;
  */
 public enum ExceptionTypeEnum {
 
+	SECURITY_EXCEPTION("Security Exception"),
+
 	WS_EXCEPTION("Web Service Exception"),
 
 	MONGODB_EXCEPTION("MongoDB Exception"),
