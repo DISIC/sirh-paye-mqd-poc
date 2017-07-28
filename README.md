@@ -5,8 +5,13 @@ Prérequis
 
 * Java 8
 * Maven 3
-* Tomcat 8
+* Apache Tomcat 8.0
+* MongoDB 3.4
+* Elasticsearch 5.5
+* Serveur SFTP (voir procédure d'installation ci-dessous)
 * CentOS 7
+* Compte utilisateur (voir procédure d'importation des comptes utilisateurs dans le [WIKI](https://github.com/DISIC/sirh-paye-mqd-poc/wiki))
+
 
 Environnement Local
 =====================
