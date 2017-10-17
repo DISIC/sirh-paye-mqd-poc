@@ -70,14 +70,14 @@ Configurations
 * Utilisateur du process Tomcat : tomcat
 * Groupe du process Tomcat : tomcat
 * Copier sur le serveur le script **livraison-projet.sh** situé à la racine du code source du projet :
-<pre><code>Commande : scp -P 22 livraison-projet.sh root@10.200.54.183:/tmp</code></pre>
+<pre><code>Commande : scp -P 22 livraison-projet.sh login@10.200.xx.yyy:/tmp</code></pre>
 
 N.B. : Demander le mot de passe à un membre de l'équipe si nécessaire
 
 Installation
 --------------------
 
-<pre><code>Commande : ssh -p 22 root@10.200.54.183
+<pre><code>Commande : ssh -p 22 login@10.200.xx.yyy
 Commande : cd /tmp
 Commande : chmod +x livraison-projet.sh
 Commande : ./livraison-projet.sh [RELEASE-GIT AU FORMAT : X.Y.Z]</code></pre>
@@ -88,6 +88,6 @@ https://github.com/DISIC/sirh-paye-mqd-poc/releases/
 Accès aux Services
 --------------------
 
-**IHM Reporting** : http://10.200.54.183:8080/reporting/
+**IHM Reporting** : http://10.200.xx.yyy:8080/reporting/
 
-**Web Services Supplier** : http://10.200.54.183:8080/supplier/...
+**Web Services Supplier** : http://10.200.xx.yyy:8080/supplier/...
